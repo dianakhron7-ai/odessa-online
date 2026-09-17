@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ОДЕССА Online</title>
+
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background:
+    linear-gradient(rgba(5,25,45,.90), rgba(4,18,32,.96)),
+    url("https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=1200&q=80");
+  background-size: cover;
+  background-attachment: fixed;
+  color: white;
+  min-height: 100vh;
+}
+
+.header {
+  padding: 32px 20px 22px;
+  text-align: center;
+}
+
+.logo {
+  font-size: 55px;
+}
+
+h1 {
+  margin: 8px 0 4px;
+  font-size: 30px;
+}
+
+.subtitle {
+  color: #b9d9ec;
+  font-size: 15px;
+}
+
+.container {
+  max-width: 650px;
+  margin: auto;
+  padding: 10px 16px 40px;
+}
+
+.card {
+  background: rgba(255,255,255,.10);
+  border: 1px solid rgba(255,255,255,.13);
+  border-radius: 18px;
+  padding: 17px;
+  margin: 11px 0;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+}
+
+.card:active {
+  transform: scale(.98);
+}
+
+.section {
+  display: none;
+}
+
+.back {
+  background: rgba(255,255,255,.12);
+  display: inline-block;
+  padding: 10px 16px;
+  border-radius: 14px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.section-title {
+  font-size: 27px;
+  margin: 10px 0 20px;
+}
+
+.info {
+  font-size: 14px;
+  color: #b9d9ec;
+  font-weight: normal;
+  margin-top: 6px;
+  line-height: 1.4;
+}
+
+.footer {
+  text-align: center;
+  color: #8aa8ba;
+  font-size: 13px;
+  padding: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+  <div class="logo">🌊</div>
+  <h1>ОДЕССА Online</h1>
+  <div class="subtitle">Городской справочник Одессы</div>
+</div>
+
+<div class="container">
+
+<!-- ГЛАВНОЕ МЕНЮ -->
+
+<div id="home">
+
+  <div class="card" onclick="openSection('transport')">
+    🚌 Транспорт
+    <div class="info">Маршрутки, трамваи, троллейбусы, вокзалы, такси</div>
+  </div>
+
+  <div class="card" onclick="openSection('medicine')">
+    🏥 Медицина
+    <div class="info">Больницы, поликлиники, аптеки, врачи</div>
+  </div>
+
+  <div class="card" onclick="openSection('education')">
+    🏫 Образование
+    <div class="info">Школы, сады, университеты, курсы</div>
+  </div>
+
+  <div class="card">
+    🛍 Покупки
+    <div class="info">Магазины, торговые центры и рынки</div>
+  </div>
+
+  <div class="card">
+    🍽 Где поесть
+    <div class="info">Рестораны, кафе и доставка</div>
+  </div>
+
+  <div class="card">
+    💼 Работа
+    <div class="info">Вакансии и полезная информация</div>
+  </div>
+
+  <div class="card">
+    🏠 Недвижимость
+    <div class="info">Аренда, продажа и жильё</div>
+  </div>
+
+  <div class="card">
+    🎉 Отдых
+    <div class="info">Куда сходить и чем заняться</div>
+  </div>
+
+  <div class="card">
+    🚨 Важное
+    <div class="info">Экстренные службы и важные контакты</div>
+  </div>
+
+</div>
+
+
+<!-- ТРАНСПОРТ -->
+
+<div id="transport" class="section">
+
+  <div class="back" onclick="goHome()">← Назад</div>
+
+  <div class="section-title">🚌 Транспорт</div>
+
+  <div class="card">🚐 Маршрутки</div>
+  <div class="card">🚋 Трамваи</div>
+  <div class="card">🚎 Троллейбусы</div>
+  <div class="card">🚆 Ж/Д вокзал</div>
+  <div class="card">🚌 Автовокзал</div>
+  <div class="card">🚕 Такси</div>
+  <div class="card">✈️ Авиаперелёты</div>
+
+</div>
+
+
+<!-- МЕДИЦИНА -->
+
+<div id="medicine" class="section">
+
+  <div class="back" onclick="goHome()">← Назад</div>
+
+  <div class="section-title">🏥 Медицина</div>
+
+  <div class="card">🏥 Больницы</div>
+  <div class="card">🏨 Поликлиники</div>
+  <div class="card">👶 Детские больницы</div>
+  <div class="card">🧸 Детские поликлиники</div>
+  <div class="card">🚑 Травмпункты</div>
+  <div class="card">💊 Аптеки</div>
+  <div class="card">🧪 Лаборатории / Анализы</div>
+  <div class="card">🦷 Стоматологии</div>
+  <div class="card">👁 Офтальмология / Окулисты</div>
+  <div class="card">👂 ЛОР-врачи</div>
+  <div class="card">🌿 Аллергологи</div>
+  <div class="card">🧴 Дерматологи</div>
+  <div class="card">❤️ Кардиологи</div>
+  <div class="card">🧠 Неврологи</div>
+  <div class="card">👩 Гинекологи</div>
+  <div class="card">👨 Урологи</div>
+  <div class="card">🦴 Ортопеды / Травматологи</div>
+  <div class="card">🩺 Терапевты / Семейные врачи</div>
+  <div class="card">🧬 Эндокринологи</div>
+  <div class="card">🍽 Гастроэнтерологи</div>
+  <div class="card">🧠 Психологи / Психиатры</div>
+  <div class="card">👶 Педиатры</div>
+  <div class="card">🩻 УЗИ / Диагностика</div>
+
+</div>
+
+
+<!-- ОБРАЗОВАНИЕ -->
+
+<div id="education" class="section">
+
+  <div class="back" onclick="goHome()">← Назад</div>
+
+  <div class="section-title">🏫 Образование</div>
+
+  <div class="card">🏫 Школы</div>
+  <div class="card">🧸 Детские сады</div>
+  <div class="card">🎓 Университеты</div>
+  <div class="card">🏛 Колледжи / Техникумы</div>
+  <div class="card">📚 Курсы и обучение</div>
+  <div class="card">🌍 Языковые курсы</div>
+  <div class="card">🎨 Художественные школы</div>
+  <div class="card">🎵 Музыкальные школы</div>
+  <div class="card">⚽ Спортивные школы</div>
+  <div class="card">💻 IT-курсы</div>
+  <div class="card">🚗 Автошколы</div>
+  <div class="card">👩‍🏫 Репетиторы</div>
+  <div class="card">🧒 Развивающие центры</div>
+
+</div>
+
+<div class="footer">
+ОДЕССА Online • городской справочник
+</div>
+
+</div>
+
+<script>
+
+const tg = window.Telegram?.WebApp;
+
+if (tg) {
+  tg.ready();
+  tg.expand();
+}
+
+function openSection(id) {
+  document.getElementById("home").style.display = "none";
+
+  document.querySelectorAll(".section").forEach(section => {
+    section.style.display = "none";
+  });
+
+  document.getElementById(id).style.display = "block";
+
+  window.scrollTo(0,0);
+}
+
+function goHome() {
+  document.querySelectorAll(".section").forEach(section => {
+    section.style.display = "none";
+  });
+
+  document.getElementById("home").style.display = "block";
+
+  window.scrollTo(0,0);
+}
+
+</script>
+
+</body>
+</html>
