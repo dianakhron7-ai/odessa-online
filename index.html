@@ -409,7 +409,9 @@ function openRoute(number) {
     "<br><br>" +
 
     "🔄 <b>Направление:</b><br>" +
-    route.a + " ↔ " + route.b;
+    route.a + " ↔ " + route.b + 
+    "<br><br>🚏 <b>Основные остановки:</b><br>" +
+(route.stops || "Список остановок уточняется");
 
   if (route.note) {
     info +=
@@ -418,7 +420,11 @@ function openRoute(number) {
   }
 
   info +=
-    "<br><br>ℹ️ Расписание и схема движения могут временно изменяться.";
+  "<br><br>🕐 <b>Время работы:</b><br>" +
+  (route.hours || "Актуальный график уточняется") +
+  "<br><br>⏱ <b>Интервал:</b><br>" +
+  (route.interval || "Актуальный интервал уточняется") +
+  "<br><br>ℹ️ Расписание и схема движения могут временно изменяться.";
 
   document.getElementById("routeInfo").innerHTML = info;
 
