@@ -172,7 +172,7 @@ h1 {
 
   <div class="card" onclick="openSection('marshrutki')">🚐 Маршрутки</div>
   <div class="card" onclick="openSection('tramvai')">🚋 Трамваи</div>
-  <div class="card">🚎 Троллейбусы</div>
+  <div class="card" onclick="openSection('trolleybus')">🚎 Троллейбусы</div>
   <div class="card">🚆 Ж/Д вокзал</div>
   <div class="card">🚌 Автовокзал</div>
   <div class="card">🚕 Такси</div>
@@ -201,6 +201,32 @@ h1 {
   <div class="section-title" id="tramNumber">🚋 Трамвай</div>
 
   <div class="card" id="tramInfo">
+    Информация о маршруте
+  </div>
+
+</div>
+  <!-- ТРОЛЛЕЙБУСЫ -->
+
+<div id="trolleybus" class="section">
+
+  <div class="back" onclick="openSection('transport')">← Назад</div>
+
+  <div class="section-title">🚎 Троллейбусы Одессы</div>
+
+  <div id="trolleyList"></div>
+
+</div>
+
+
+<!-- КАРТОЧКА ТРОЛЛЕЙБУСА -->
+
+<div id="trolleyDetails" class="section">
+
+  <div class="back" onclick="openSection('trolleybus')">← Все троллейбусы</div>
+
+  <div class="section-title" id="trolleyNumber">🚎 Троллейбус</div>
+
+  <div class="card" id="trolleyInfo">
     Информация о маршруте
   </div>
 
@@ -786,7 +812,149 @@ function openTram(number) {
 
   openSection("tramDetails");
     }
-</script>
+  // ==========================
+// ТРОЛЛЕЙБУСЫ ОДЕССЫ
+// ==========================
+
+const odessaTrolleys = [
+
+  {
+    n:"2",
+    a:"Ж/Д вокзал",
+    b:"парк Шевченко",
+    stops:"Ж/Д вокзал → Итальянский бульвар → Канатная → проспект Леси Украинки → парк Шевченко",
+    hours:"временный график",
+    interval:"зависит от выпуска",
+    status:"⚠️ Движение может временно изменяться"
+  },
+
+  {
+    n:"3",
+    a:"Ж/Д вокзал",
+    b:"Застава I",
+    stops:"Ж/Д вокзал → Среднефонтанская → проспект Гагарина → Черёмушки → Застава I",
+    hours:"временный график",
+    interval:"зависит от выпуска",
+    status:"⚠️ Движение может временно изменяться"
+  },
+
+  {
+    n:"7",
+    a:"Ж/Д вокзал",
+    b:"ул. Архитекторская",
+    stops:"Ж/Д вокзал → Среднефонтанская → пл. 10 Апреля → Адмиральский проспект → Черёмушки → ул. Академика Королёва → ул. Архитекторская",
+    hours:"ориентировочно 06:00–22:00",
+    interval:"зависит от выпуска",
+    status:"⚠️ Возможна работа по временной или сокращённой схеме"
+  },
+
+  {
+    n:"8",
+    a:"Ж/Д вокзал",
+    b:"Суперфосфатный завод",
+    stops:"Ж/Д вокзал → Пантелеймоновская → Преображенская → Молдаванка → Химическая → Суперфосфатный завод",
+    hours:"ориентировочно 06:00–21:00",
+    interval:"зависит от выпуска",
+    status:"⚠️ Возможны временные изменения движения"
+  },
+
+  {
+    n:"9",
+    a:"ул. Ришельевская",
+    b:"ул. Инглези",
+    stops:"центр → Ж/Д вокзал → Среднефонтанская → Адмиральский проспект → пл. Толбухина → ул. Инглези",
+    hours:"ориентировочно 06:00–22:00",
+    interval:"зависит от выпуска",
+    status:"⚠️ Возможна работа по сокращённой схеме"
+  },
+
+  {
+    n:"10",
+    a:"ул. Ришельевская",
+    b:"ул. Инглези",
+    stops:"центр → Ж/Д вокзал → Среднефонтанская → Черёмушки → ул. Инглези",
+    hours:"ориентировочно 06:00–22:00",
+    interval:"зависит от выпуска",
+    status:"⚠️ Маршрут и график могут временно изменяться"
+  },
+
+  {
+    n:"12",
+    a:"ул. Архитекторская",
+    b:"Ж/Д вокзал",
+    stops:"ул. Архитекторская → ул. Академика Королёва → проспект Князя Ярослава Мудрого → пл. 10 Апреля → Среднефонтанская → Ж/Д вокзал",
+    hours:"ориентировочно 06:00–22:00",
+    interval:"зависит от выпуска",
+    status:"ℹ️ Перед поездкой рекомендуется уточнять текущий выпуск"
+  }
+
+];
+
+
+// СОЗДАЁМ КНОПКИ ТРОЛЛЕЙБУСОВ
+
+const trolleyList = document.getElementById("trolleyList");
+
+odessaTrolleys.forEach(trolley => {
+
+  const button = document.createElement("div");
+
+  button.className = "card";
+
+  button.innerHTML =
+    "🚎 <b>№ " + trolley.n + "</b><br>" +
+    "<small>" + trolley.a + " → " + trolley.b + "</small>";
+
+  button.onclick = function () {
+    openTrolley(trolley.n);
+  };
+
+  trolleyList.appendChild(button);
+
+});
+
+
+// ОТКРЫВАЕМ КАРТОЧКУ ТРОЛЛЕЙБУСА
+
+function openTrolley(number) {
+
+  const trolley = odessaTrolleys.find(t => t.n === number);
+
+  if (!trolley) return;
+
+  document.getElementById("trolleyNumber").innerHTML =
+    "🚎 Троллейбус №" + trolley.n;
+
+  let info =
+    "📍 <b>Откуда:</b><br>" +
+    trolley.a +
+
+    "<br><br>🏁 <b>Куда:</b><br>" +
+    trolley.b +
+
+    "<br><br>🔄 <b>Направление:</b><br>" +
+    trolley.a + " ↔ " + trolley.b +
+
+    "<br><br>🚏 <b>Основные остановки:</b><br>" +
+    trolley.stops +
+
+    "<br><br>🕐 <b>Время работы:</b><br>" +
+    trolley.hours +
+
+    "<br><br>⏱ <b>Интервал:</b><br>" +
+    trolley.interval +
+
+    "<br><br>ℹ️ <b>Статус:</b><br>" +
+    trolley.status +
+
+    "<br><br>⚠️ Расписание и схема движения могут временно изменяться.";
+
+  document.getElementById("trolleyInfo").innerHTML = info;
+
+  openSection("trolleyDetails");
+}
+
+    </script>
 
 </body>
 </html>
