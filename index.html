@@ -590,33 +590,1634 @@ h1 {
 
   <div class="section-title">🏥 Медицина</div>
 
-  <div class="card">🏥 Больницы</div>
-  <div class="card">🏨 Поликлиники</div>
-  <div class="card">👶 Детские больницы</div>
-  <div class="card">🧸 Детские поликлиники</div>
-  <div class="card">🚑 Травмпункты</div>
-  <div class="card">💊 Аптеки</div>
-  <div class="card">🧪 Лаборатории / Анализы</div>
-  <div class="card">🦷 Стоматологии</div>
-  <div class="card">👁 Офтальмология / Окулисты</div>
-  <div class="card">👂 ЛОР-врачи</div>
-  <div class="card">🌿 Аллергологи</div>
-  <div class="card">🧴 Дерматологи</div>
-  <div class="card">❤️ Кардиологи</div>
-  <div class="card">🧠 Неврологи</div>
-  <div class="card">👩 Гинекологи</div>
-  <div class="card">👨 Урологи</div>
-  <div class="card">🦴 Ортопеды / Травматологи</div>
-  <div class="card">🩺 Терапевты / Семейные врачи</div>
-  <div class="card">🧬 Эндокринологи</div>
-  <div class="card">🍽 Гастроэнтерологи</div>
-  <div class="card">🧠 Психологи / Психиатры</div>
-  <div class="card">👶 Педиатры</div>
-  <div class="card">🩻 УЗИ / Диагностика</div>
+<div class="card" onclick="openSection('hospitals')">🏥 Больницы</div>
+<div class="card" onclick="openSection('polyclinics')">🏨 Поликлиники</div>
+<div class="card" onclick="openSection('childHospitals')">👶 Детские больницы</div>
+<div class="card" onclick="openSection('childPolyclinics')">🧸 Детские поликлиники</div>
+<div class="card" onclick="openSection('trauma')">🚑 Травмпункты</div>
+
+<div class="card" onclick="openSection('pharmacies')">💊 Аптеки</div>
+<div class="card" onclick="openSection('laboratories')">🧪 Лаборатории / Анализы</div>
+<div class="card" onclick="openSection('dentistry')">🦷 Стоматологии</div>
+<div class="card" onclick="openSection('ophthalmology')">👁 Офтальмологи / Окулисты</div>
+
+<div class="card" onclick="openSection('ent')">👂 ЛОР-врачи</div>
+<div class="card" onclick="openSection('allergology')">🌿 Аллергологи</div>
+<div class="card" onclick="openSection('dermatology')">🧴 Дерматологи</div>
+<div class="card" onclick="openSection('cardiology')">❤️ Кардиологи</div>
+<div class="card" onclick="openSection('neurology')">🧠 Неврологи</div>
+
+<div class="card" onclick="openSection('gynecology')">👩 Гинекологи</div>
+<div class="card" onclick="openSection('urology')">👨 Урологи</div>
+<div class="card" onclick="openSection('orthopedics')">🦴 Ортопеды / Травматологи</div>
+<div class="card" onclick="openSection('familyDoctors')">🩺 Терапевты / Семейные врачи</div>
+
+<div class="card" onclick="openSection('endocrinology')">🧬 Эндокринологи</div>
+<div class="card" onclick="openSection('gastroenterology')">🍽 Гастроэнтерологи</div>
+<div class="card" onclick="openSection('mentalHealth')">🧠 Психологи / Психиатры</div>
+<div class="card" onclick="openSection('pediatrics')">👶 Педиатры</div>
+<div class="card" onclick="openSection('diagnostics')">🩻 УЗИ / Диагностика</div>
 
 </div>
+<!-- БОЛЬНИЦЫ -->
+<div id="hospitals" class="section">
 
+  <div class="back" onclick="openSection('medicine')">← Назад</div>
 
+  <div class="section-title">🏥 Больницы Одессы</div>
+
+  <div class="card"
+       onclick="window.open('https://www.clinic1.odessa.ua/', '_blank')">
+    🏥 <b>Городская клиническая больница №1</b><br>
+    <div class="info">
+      📍 ул. Мясоедовская, 32<br>
+      ☎️ (048) 750-51-01<br>
+      ☎️ 0 800 33 23 01<br><br>
+      Нажмите, чтобы открыть официальный сайт
+    </div>
+  </div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=Городская+клиническая+больница+10+Одесса', '_blank')">
+    🏥 <b>Городская клиническая больница №10</b><br>
+    <div class="info">
+      📍 ул. Алексея Вадатурского, 61А<br>
+      ☎️ (048) 705-91-03<br><br>
+      Нажмите, чтобы открыть на карте
+    </div>
+  </div>
+
+  <div class="card"
+       onclick="window.open('https://odmkl11.od.ua/', '_blank')">
+    🏥 <b>Городская клиническая больница №11</b><br>
+    <div class="info">
+      📍 ул. Виталия Нестеренко, 5-Г<br>
+      ☎️ +38 (067) 732-00-11<br><br>
+      Нажмите, чтобы открыть официальный сайт
+    </div>
+  </div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=Одесская+областная+клиническая+больница', '_blank')">
+    🏥 <b>Одесская областная клиническая больница</b><br>
+    <div class="info">
+      📍 ул. Академика Заболотного, 26/32<br>
+      ☎️ 0 800 500 101<br><br>
+      Нажмите, чтобы открыть на карте
+    </div>
+  </div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=Инфекционная+больница+Одесса+Пастера+5', '_blank')">
+    🦠 <b>Городская инфекционная клиническая больница</b><br>
+    <div class="info">
+      📍 ул. Пастера, 5/7<br>
+      ☎️ (048) 723-43-04<br><br>
+      Нажмите, чтобы открыть на карте
+    </div>
+  </div>
+
+  <div class="card">
+    🚑 <b>Экстренная помощь</b><br>
+    <div class="info">
+      При угрожающем жизни состоянии обращайтесь за экстренной медицинской помощью.
+    </div>
+  </div>
+
+  <div class="card">
+    ℹ️ <b>Важно</b><br>
+    <div class="info">
+      Перед поездкой рекомендуется уточнить режим работы и возможность обращения в нужное отделение.
+    </div>
+  </div>
+
+</div>
+  <!-- ПОЛИКЛИНИКИ -->
+<div id="polyclinics" class="section">
+
+  <div class="back" onclick="openSection('medicine')">← Назад</div>
+
+  <div class="section-title">🏨 Поликлиники Одессы</div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=Городская+поликлиника+1+Одесса+Болгарская+38', '_blank')">
+    🏨 <b>Городская поликлиника №1</b><br>
+    <div class="info">
+      📍 ул. Болгарская, 38<br>
+      ☎️ 0 800 33 23 01<br>
+      🕐 Пн–Чт: 08:00–20:00<br>
+      Пт: 08:00–18:00<br><br>
+      Нажмите, чтобы открыть на карте
+    </div>
+  </div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=ЦПМСП+3+Одесса+Фонтанская+дорога+30+32', '_blank')">
+    🩺 <b>ЦПМСП №3</b><br>
+    <div class="info">
+      📍 Фонтанская дорога, 30/32<br>
+      ☎️ (048) 700-06-73<br>
+      🕐 Пн–Пт: 08:00–20:00<br>
+      Сб: 08:00–15:00<br><br>
+      Нажмите, чтобы открыть на карте
+    </div>
+  </div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=ЦПМСП+5+Одесса+Академика+Заболотного+32А', '_blank')">
+    🩺 <b>ЦПМСП №5</b><br>
+    <div class="info">
+      📍 ул. Академика Заболотного, 32А<br>
+      ☎️ (048) 758-52-56<br>
+      🕐 Пн–Пт: 08:00–20:00<br>
+      Сб: 09:00–14:00<br><br>
+      Нажмите, чтобы открыть на карте
+    </div>
+  </div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=ЦПМСП+16+Одесса+Ивана+и+Юрия+Лип+1', '_blank')">
+    🩺 <b>ЦПМСП №16</b><br>
+    <div class="info">
+      📍 ул. Ивана и Юрия Лип, 1<br>
+      ☎️ (048) 740-73-55<br>
+      🕐 Пн–Пт: 08:00–20:00<br>
+      Сб–Вс: 09:00–15:00<br><br>
+      Нажмите, чтобы открыть на карте
+    </div>
+  </div>
+
+  <div class="card">
+    ℹ️ <b>Важно</b><br>
+    <div class="info">
+      Перед посещением уточняйте график нужного врача и возможность записи.
+    </div>
+  </div>
+
+</div>
+  <!-- ДЕТСКИЕ БОЛЬНИЦЫ -->
+<div id="childHospitals" class="section">
+
+  <div class="back" onclick="openSection('medicine')">← Назад</div>
+
+  <div class="section-title">👶 Детские больницы Одессы</div>
+
+  <div class="card"
+       onclick="window.open('https://www.oodkl.com.ua/', '_blank')">
+    🏥 <b>Одесская областная детская клиническая больница</b><br>
+    <div class="info">
+      📍 ул. Виталия Нестеренко, 3<br>
+      ☎️ (048) 705-53-15<br>
+      ☎️ (050) 765-81-60<br><br>
+      Нажмите, чтобы открыть официальный сайт
+    </div>
+  </div>
+
+  <div class="card">
+    🚑 <b>Экстренная детская травматологическая и хирургическая помощь</b><br>
+    <div class="info">
+      📍 Областная детская клиническая больница<br>
+      ☎️ (048) 705-53-63
+    </div>
+  </div>
+
+  <div class="card"
+       onclick="window.open('https://www.dgkb3.odessa.ua/', '_blank')">
+    🏥 <b>Детская городская клиническая больница №3</b><br>
+    <div class="info">
+      📍 Локация №1: ул. Академика Заболотного, 26А<br>
+      📍 Локация №2: Дача Ковалевского, 81<br>
+      ☎️ (048) 750-57-42<br><br>
+      Нажмите, чтобы открыть официальный сайт
+    </div>
+  </div>
+
+  <div class="card">
+    🚑 <b>Приёмно-диагностическое отделение больницы №3</b><br>
+    <div class="info">
+      📍 ул. Академика Заболотного, 26А<br>
+      ☎️ (048) 750-57-45<br>
+      🕐 Круглосуточно
+    </div>
+  </div>
+
+  <div class="card">
+    ℹ️ <b>Важно</b><br>
+    <div class="info">
+      Перед плановым обращением уточняйте запись и нужное отделение.
+      При экстренном состоянии обращайтесь за экстренной медицинской помощью.
+    </div>
+  </div>
+
+</div>
+  <!-- ДЕТСКИЕ ПОЛИКЛИНИКИ -->
+<div id="childPolyclinics" class="section">
+
+  <div class="back" onclick="openSection('medicine')">← Назад</div>
+
+  <div class="section-title">🧸 Детские поликлиники Одессы</div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=Детская+поликлиника+1+Одесса', '_blank')">
+    🧸 <b>Детская поликлиника №1</b><br>
+    <div class="info">
+      📍 ул. Праведников мира, 36<br>
+      ☎️ (048) 720-02-95<br><br>
+      Нажмите, чтобы открыть на карте
+    </div>
+  </div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=Детская+поликлиника+2+Одесса', '_blank')">
+    🧸 <b>Детская поликлиника №2</b><br>
+    <div class="info">
+      📍 просп. Князя Владимира Великого, 67/1<br>
+      ☎️ (048) 711-42-01<br><br>
+      Нажмите, чтобы открыть на карте
+    </div>
+  </div>
+
+  <div class="card"
+       onclick="window.open('https://dmp3.od.ua/', '_blank')">
+    🧸 <b>Детская поликлиника №3</b><br>
+    <div class="info">
+      📍 ул. Еврейская, 11<br>
+      📍 ул. Коблевская, 14/16<br>
+      ☎️ (048) 722-11-98<br>
+      ☎️ (048) 723-86-11<br><br>
+      Нажмите, чтобы открыть официальный сайт
+    </div>
+  </div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=Детская+поликлиника+4+Одесса', '_blank')">
+    🧸 <b>Детская поликлиника №4</b><br>
+    <div class="info">
+      📍 ул. Добровольцев, 26<br>
+      ☎️ (063) 322-99-96<br><br>
+      Нажмите, чтобы открыть на карте
+    </div>
+  </div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=Детская+поликлиника+5+Одесса', '_blank')">
+    🧸 <b>Детская поликлиника №5</b><br>
+    <div class="info">
+      📍 ул. Евгения Танцюры, 80<br>
+      ☎️ (048) 762-43-92<br><br>
+      Нажмите, чтобы открыть на карте
+    </div>
+  </div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=Детская+поликлиника+6+Одесса', '_blank')">
+    🧸 <b>Детская поликлиника №6</b><br>
+    <div class="info">
+      📍 просп. Князя Ярослава Мудрого, 32А<br>
+      ☎️ (093) 509-70-70<br><br>
+      Нажмите, чтобы открыть на карте
+    </div>
+  </div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=Детская+поликлиника+7+Одесса', '_blank')">
+    🧸 <b>Детская поликлиника №7</b><br>
+    <div class="info">
+      📍 ул. Бугаевская, 46<br>
+      ☎️ (048) 793-35-60<br><br>
+      Нажмите, чтобы открыть на карте
+    </div>
+  </div>
+
+  <div class="card">
+    ℹ️ <b>Важно</b><br>
+    <div class="info">
+      В 2026 году проходит реорганизация ряда детских поликлиник Одессы
+      с присоединением к городским центрам первичной медико-санитарной помощи.
+      Перед посещением уточняйте актуальное место приёма и запись.
+    </div>
+  </div>
+
+</div>
+  <!-- ТРАВМПУНКТЫ -->
+<div id="trauma" class="section">
+
+  <div class="back" onclick="openSection('medicine')">← Назад</div>
+
+  <div class="section-title">🚑 Травмпункты Одессы</div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=Мясоедовская+32+Одесса', '_blank')">
+    🚑 <b>Городская клиническая больница №1</b><br>
+    <div class="info">
+      📍 ул. Мясоедовская, 32<br>
+      🕐 Круглосуточно<br>
+      ☎️ (048) 750-51-01<br>
+      ☎️ 0 800 33 23 01<br><br>
+      Нажмите, чтобы открыть на карте
+    </div>
+  </div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=Алексея+Вадатурского+61А+Одесса', '_blank')">
+    🚑 <b>Городская клиническая больница №10</b><br>
+    <div class="info">
+      📍 ул. Алексея Вадатурского, 61А<br>
+      🕐 Круглосуточно<br>
+      ☎️ (048) 705-91-03<br><br>
+      Нажмите, чтобы открыть на карте
+    </div>
+  </div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=Виталия+Нестеренко+5+Одесса', '_blank')">
+    🚑 <b>Городская клиническая больница №11</b><br>
+    <div class="info">
+      📍 ул. Виталия Нестеренко, 5<br>
+      🕐 Приёмное отделение — круглосуточно<br><br>
+      Нажмите, чтобы открыть на карте
+    </div>
+  </div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=КДЦ+29+Одесса+Князя+Владимира+Великого+100', '_blank')">
+    🚑 <b>КДЦ №29 — травмпункт</b><br>
+    <div class="info">
+      📍 просп. Князя Владимира Великого, 100<br>
+      🕐 Круглосуточно<br>
+      ☎️ (048) 754-90-18<br><br>
+      Нажмите, чтобы открыть на карте
+    </div>
+  </div>
+
+  <div class="card">
+    🩺 <b>Городская больница №8</b><br>
+    <div class="info">
+      📍 Фонтанская дорога, 110<br>
+      🕐 Пн–Пт: 08:00–17:00<br>
+      Травматологический кабинет
+    </div>
+  </div>
+
+  <div class="card">
+    🩺 <b>КДЦ №20</b><br>
+    <div class="info">
+      📍 ул. Левитана, 62<br>
+      🕐 Пн–Пт: 08:00–20:00<br>
+      Травматологический кабинет
+    </div>
+  </div>
+
+  <div class="card">
+    👶 <b>Экстренная помощь детям</b><br>
+    <div class="info">
+      Круглосуточно:<br>
+      • Детская городская клиническая больница №3 — ул. Академика Заболотного, 26А<br>
+      • Областная детская клиническая больница — ул. Виталия Нестеренко, 3
+    </div>
+  </div>
+
+  <div class="card">
+    ⚠️ <b>Важно</b><br>
+    <div class="info">
+      При угрожающем жизни состоянии вызывайте экстренную медицинскую помощь — 103.
+    </div>
+  </div>
+
+</div>
+  <!-- АПТЕКИ -->
+<div id="pharmacies" class="section">
+
+  <div class="back" onclick="openSection('medicine')">← Назад</div>
+
+  <div class="section-title">💊 Аптеки Одессы</div>
+
+  <div class="card"
+       onclick="window.open('https://tabletki.ua/uk/pharmacy/odesa/', '_blank')">
+    📍 <b>Найти ближайшую аптеку</b><br>
+    <div class="info">
+      Аптеки Одессы на карте<br>
+      Можно посмотреть график работы и найти нужное лекарство.<br><br>
+      👉 Открыть поиск аптек
+    </div>
+  </div>
+
+  <div class="card"
+       onclick="window.open('https://apteka911.ua/map/odessa', '_blank')">
+    💊 <b>Аптека 9-1-1</b><br>
+    <div class="info">
+      Адреса аптек, график работы и наличие лекарств.<br><br>
+      👉 Посмотреть аптеки Одессы
+    </div>
+  </div>
+
+  <div class="card"
+       onclick="window.open('https://anc.ua/map/odesa/anc', '_blank')">
+    💊 <b>Аптека АНЦ</b><br>
+    <div class="info">
+      Аптеки сети АНЦ в Одессе.<br>
+      Адреса и график работы.<br><br>
+      👉 Открыть список аптек
+    </div>
+  </div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=аптека+Одесса', '_blank')">
+    🗺️ <b>Все аптеки на карте</b><br>
+    <div class="info">
+      Найти аптеку рядом с вами.<br><br>
+      👉 Открыть карту
+    </div>
+  </div>
+
+  <div class="card"
+     onclick="window.open('https://www.google.com/maps/search/?api=1&query=круглосуточная+аптека+Одесса', '_blank')">
+  🌙 <b>Круглосуточные аптеки</b><br>
+  <div class="info">
+    Найти аптеки, работающие 24/7.<br><br>
+    👉 Открыть карту
+  </div>
+</div>
+
+<div class="card">
+  🌙 <b>Аптека 9-1-1 — круглосуточно</b><br>
+  <div class="info">
+    📍 ул. Преображенская, 42<br>
+    🕐 24/7
+  </div>
+</div>
+
+<div class="card">
+  ℹ️ <b>Важно</b><br>
+  <div class="info">
+    График работы и наличие препаратов могут меняться.
+    Проверяйте информацию перед посещением аптеки.
+  </div>
+</div>
+
+</div>
+<!-- ЛАБОРАТОРИИ / АНАЛИЗЫ -->
+<div id="laboratories" class="section">
+
+  <div class="back" onclick="openSection('medicine')">← Назад</div>
+
+  <div class="section-title">🧪 Лаборатории / Анализы</div>
+
+  <div class="card"
+       onclick="window.open('https://www.synevo.ua/ru/info/centers/odesa', '_blank')">
+    🧪 <b>Синэво</b><br>
+    <div class="info">
+      Лабораторные исследования, анализы крови и мочи,
+      гормоны, витамины, ПЦР и другие исследования.<br><br>
+      ☎️ 0 800 60 55 00<br><br>
+      👉 Адреса отделений в Одессе
+    </div>
+  </div>
+
+  <div class="card"
+       onclick="window.open('https://dila.ua/contacts.html', '_blank')">
+    🧬 <b>ДІЛА</b><br>
+    <div class="info">
+      Медицинские лабораторные исследования.<br><br>
+      ☎️ 0 800 217 887<br><br>
+      👉 Найти отделение
+    </div>
+  </div>
+
+  <div class="card"
+       onclick="window.open('https://smartlab.ua/ru/address/odesa', '_blank')">
+    🔬 <b>СМАРТЛАБ</b><br>
+    <div class="info">
+      Анализы и лабораторная диагностика.
+      Отделения расположены в разных районах Одессы.<br><br>
+      ☎️ 0 800 750 070<br><br>
+      👉 Адреса отделений
+    </div>
+  </div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=лаборатории+анализы+Одесса', '_blank')">
+    🗺️ <b>Лаборатории рядом</b><br>
+    <div class="info">
+      Найти ближайший пункт сдачи анализов.<br><br>
+      👉 Открыть карту
+    </div>
+  </div>
+
+  <div class="card">
+    ℹ️ <b>Перед сдачей анализов</b><br>
+    <div class="info">
+      Уточняйте правила подготовки к конкретному исследованию,
+      время забора материала и необходимость предварительной записи
+      непосредственно в лаборатории.
+    </div>
+  </div>
+
+</div>
+<!-- СТОМАТОЛОГИИ -->
+<div id="dentistry" class="section">
+
+  <div class="back" onclick="openSection('medicine')">← Назад</div>
+
+  <div class="section-title">🦷 Стоматологии Одессы</div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=Стоматологическая+поликлиника+1+Сегедская+1+Одесса', '_blank')">
+    🦷 <b>Городская стоматологическая поликлиника №1</b><br>
+    <div class="info">
+      📍 ул. Сегедская, 1<br>
+      ☎️ (0482) 63-03-33<br>
+      🕐 08:00–21:00<br><br>
+      👉 Открыть на карте
+    </div>
+  </div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=Стоматологическая+поликлиника+3+Люстдорфская+дорога+86А+Одесса', '_blank')">
+    🦷 <b>Городская стоматологическая поликлиника №3</b><br>
+    <div class="info">
+      📍 Люстдорфская дорога, 86А<br>
+      ☎️ (0482) 66-81-04<br><br>
+      👉 Открыть на карте
+    </div>
+  </div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=Стоматологическая+поликлиника+4+Прохоровская+43+Одесса', '_blank')">
+    🦷 <b>Городская стоматологическая поликлиника №4</b><br>
+    <div class="info">
+      📍 ул. Прохоровская, 43<br>
+      ☎️ (048) 732-25-29<br>
+      🕐 Пн–Пт: 08:00–20:00<br>
+      🕐 Сб: 09:00–18:00<br><br>
+      👉 Открыть на карте
+    </div>
+  </div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=Стоматологическая+поликлиника+5+Заболотного+27+Одесса', '_blank')">
+    🦷 <b>Городская стоматологическая поликлиника №5</b><br>
+    <div class="info">
+      📍 ул. Академика Заболотного, 27<br>
+      ☎️ (048) 755-24-43<br><br>
+      👉 Открыть на карте
+    </div>
+  </div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=детская+стоматология+Одесса', '_blank')">
+    👶 <b>Детская стоматология</b><br>
+    <div class="info">
+      Найти детскую стоматологию рядом.<br><br>
+      👉 Открыть карту
+    </div>
+  </div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=стоматология+Одесса', '_blank')">
+    📍 <b>Все стоматологии рядом</b><br>
+    <div class="info">
+      Государственные и частные стоматологии Одессы.<br><br>
+      👉 Открыть карту
+    </div>
+  </div>
+
+  <div class="card">
+    ℹ️ <b>Перед посещением</b><br>
+    <div class="info">
+      Уточняйте график работы, стоимость услуг и возможность записи
+      непосредственно в выбранной стоматологии.
+    </div>
+  </div>
+
+</div>
+  <!-- ОФТАЛЬМОЛОГИ -->
+<div id="ophthalmology" class="section">
+
+  <div class="back" onclick="openSection('medicine')">← Назад</div>
+
+  <div class="section-title">👁 Офтальмологи / Окулисты</div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=офтальмолог+Одесса', '_blank')">
+    👁 <b>Офтальмологи Одессы</b><br>
+    <div class="info">
+      Врачи для диагностики зрения, заболеваний глаз
+      и подбора лечения.<br><br>
+      👉 Найти на карте
+    </div>
+  </div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=офтальмологическая+клиника+Одесса', '_blank')">
+    🏥 <b>Офтальмологические клиники</b><br>
+    <div class="info">
+      Клиники и медицинские центры Одессы,
+      специализирующиеся на заболеваниях глаз.<br><br>
+      👉 Открыть карту
+    </div>
+  </div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=детский+офтальмолог+Одесса', '_blank')">
+    👶 <b>Детские офтальмологи</b><br>
+    <div class="info">
+      Диагностика зрения и консультации офтальмолога для детей.<br><br>
+      👉 Найти на карте
+    </div>
+  </div>
+
+  <div class="card">
+    👁️ <b>Когда обращаются к офтальмологу</b><br>
+    <div class="info">
+      • ухудшение зрения<br>
+      • боль или дискомфорт в глазах<br>
+      • покраснение глаз<br>
+      • травмы глаза<br>
+      • профилактическая проверка зрения
+    </div>
+  </div>
+
+  <div class="card">
+    ℹ️ <b>Перед посещением</b><br>
+    <div class="info">
+      Уточняйте график врача и необходимость предварительной записи
+      непосредственно в выбранном медицинском учреждении.
+    </div>
+  </div>
+
+</div>
+  <!-- ЛОР-ВРАЧИ -->
+<div id="ent" class="section">
+
+  <div class="back" onclick="openSection('medicine')">← Назад</div>
+
+  <div class="section-title">👂 ЛОР-врачи</div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=ЛОР+врач+Одесса', '_blank')">
+    👂 <b>ЛОР-врачи Одессы</b><br>
+    <div class="info">
+      Найти отоларинголога рядом с вами.<br><br>
+      👉 Открыть карту
+    </div>
+  </div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=ЛОР+клиника+Одесса', '_blank')">
+    🏥 <b>ЛОР-клиники и отделения</b><br>
+    <div class="info">
+      Медицинские учреждения Одессы,
+      где принимают ЛОР-врачи.<br><br>
+      👉 Открыть карту
+    </div>
+  </div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=детский+ЛОР+Одесса', '_blank')">
+    👶 <b>Детский ЛОР</b><br>
+    <div class="info">
+      Найти отоларинголога для ребёнка.<br><br>
+      👉 Открыть карту
+    </div>
+  </div>
+
+  <div class="card">
+    🩺 <b>С чем обращаются к ЛОРу</b><br>
+    <div class="info">
+      • боль в ухе<br>
+      • снижение слуха<br>
+      • насморк и заложенность носа<br>
+           • боль в горле<br>
+      • проблемы с миндалинами<br>
+      • заболевания носа, ушей и горла
+    </div>
+  </div>
+
+  <div class="card">
+    ℹ️ <b>Перед посещением</b><br>
+    <div class="info">
+      Уточняйте график врача и возможность предварительной записи
+      непосредственно в выбранном медицинском учреждении.
+    </div>
+  </div>
+
+</div>
+  <!-- АЛЛЕРГОЛОГИ -->
+<div id="allergology" class="section">
+
+  <div class="back" onclick="openSection('medicine')">← Назад</div>
+
+  <div class="section-title">🌿 Аллергологи</div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=аллерголог+Одесса', '_blank')">
+    🌿 <b>Аллергологи Одессы</b><br>
+    <div class="info">
+      Найти врача-аллерголога рядом с вами.<br><br>
+      👉 Открыть карту
+    </div>
+  </div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=аллергологическая+клиника+Одесса', '_blank')">
+    🏥 <b>Клиники и медицинские центры</b><br>
+    <div class="info">
+      Медицинские учреждения Одессы,
+      где принимают аллергологи.<br><br>
+      👉 Открыть карту
+    </div>
+  </div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=детский+аллерголог+Одесса', '_blank')">
+    👶 <b>Детские аллергологи</b><br>
+    <div class="info">
+      Найти аллерголога для ребёнка.<br><br>
+      👉 Открыть карту
+    </div>
+  </div>
+
+  <div class="card">
+    🌸 <b>С чем обращаются к аллергологу</b><br>
+    <div class="info">
+      • аллергический насморк<br>
+      • частое чихание и слезотечение<br>
+      • кожные аллергические реакции<br>
+      • реакции на продукты или лекарства<br>
+      • сезонная аллергия<br>
+      • подозрение на аллергию
+    </div>
+  </div>
+
+  <div class="card">
+    ℹ️ <b>Перед посещением</b><br>
+    <div class="info">
+      Уточняйте график врача и возможность предварительной записи
+      непосредственно в выбранном медицинском учреждении.
+    </div>
+  </div>
+
+</div>
+  <!-- ДЕРМАТОЛОГИ -->
+<div id="dermatology" class="section">
+
+  <div class="back" onclick="openSection('medicine')">← Назад</div>
+
+  <div class="section-title">🧴 Дерматологи</div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=дерматолог+Одесса', '_blank')">
+    🧴 <b>Дерматологи Одессы</b><br>
+    <div class="info">
+      Найти врача-дерматолога рядом с вами.<br><br>
+      👉 Открыть карту
+    </div>
+  </div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=дерматологическая+клиника+Одесса', '_blank')">
+    🏥 <b>Дерматологические клиники</b><br>
+    <div class="info">
+      Медицинские учреждения Одессы,
+      где принимают дерматологи.<br><br>
+      👉 Открыть карту
+    </div>
+  </div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=детский+дерматолог+Одесса', '_blank')">
+    👶 <b>Детские дерматологи</b><br>
+    <div class="info">
+      Найти дерматолога для ребёнка.<br><br>
+      👉 Открыть карту
+    </div>
+  </div>
+
+  <div class="card">
+    🩺 <b>С чем обращаются к дерматологу</b><br>
+    <div class="info">
+      • высыпания и покраснения кожи<br>
+      • зуд и раздражение<br>
+      • акне<br>
+        • заболевания кожи<br>
+      • изменения родинок и других образований<br>
+      • проблемы с волосами и ногтями
+    </div>
+  </div>
+
+  <div class="card">
+    ℹ️ <b>Перед посещением</b><br>
+    <div class="info">
+      Уточняйте график врача и возможность предварительной записи
+      непосредственно в выбранном медицинском учреждении.
+    </div>
+  </div>
+
+</div>
+  <!-- КАРДИОЛОГИ -->
+<div id="cardiology" class="section">
+
+  <div class="back" onclick="openSection('medicine')">← Назад</div>
+
+  <div class="section-title">❤️ Кардиологи</div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=кардиолог+Одесса', '_blank')">
+    ❤️ <b>Кардиологи Одессы</b><br>
+    <div class="info">
+      Найти врача-кардиолога рядом с вами.<br><br>
+      👉 Открыть карту
+    </div>
+  </div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=кардиологический+центр+Одесса', '_blank')">
+    🏥 <b>Кардиологические центры</b><br>
+    <div class="info">
+      Медицинские учреждения Одессы,
+      где принимают кардиологи.<br><br>
+      👉 Открыть карту
+    </div>
+  </div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=детский+кардиолог+Одесса', '_blank')">
+    👶 <b>Детские кардиологи</b><br>
+    <div class="info">
+      Найти врача-кардиолога для ребёнка.<br><br>
+      👉 Открыть карту
+    </div>
+  </div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=ЭКГ+Одесса', '_blank')">
+    📈 <b>ЭКГ</b><br>
+    <div class="info">
+      Найти медицинские учреждения,
+      где можно сделать электрокардиограмму.<br><br>
+      👉 Открыть карту
+    </div>
+  </div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=УЗИ+сердца+Одесса', '_blank')">
+    🫀 <b>УЗИ сердца</b><br>
+    <div class="info">
+      Найти медицинские центры,
+      где проводят эхокардиографию.<br><br>
+      👉 Открыть карту
+    </div>
+  </div>
+
+  <div class="card">
+    🩺 <b>С чем обращаются к кардиологу</b><br>
+    <div class="info">
+      • боль или дискомфорт в области груди<br>
+      • учащённое или нерегулярное сердцебиение<br>
+      • повышенное или пониженное давление<br>
+      • одышка<br>
+      • отёки<br>
+      • профилактическое обследование сердца
+    </div>
+  </div>
+
+  <div class="card">
+    ⚠️ <b>Важно</b><br>
+    <div class="info">
+      При внезапной сильной боли в груди, выраженной одышке,
+      потере сознания или другом угрожающем жизни состоянии
+      обращайтесь за экстренной медицинской помощью.
+    </div>
+  </div>
+
+  <div class="card">
+    ℹ️ <b>Перед посещением</b><br>
+    <div class="info">
+      Уточняйте график врача и необходимость предварительной записи
+      непосредственно в выбранном медицинском учреждении.
+    </div>
+  </div>
+
+</div>
+  <!-- НЕВРОЛОГИ -->
+<div id="neurology" class="section">
+
+  <div class="back" onclick="openSection('medicine')">← Назад</div>
+
+  <div class="section-title">🧠 Неврологи</div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=невролог+Одесса', '_blank')">
+    🧠 <b>Неврологи Одессы</b><br>
+    <div class="info">
+      Найти врача-невролога рядом с вами.<br><br>
+      👉 Открыть карту
+    </div>
+  </div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=неврологическая+клиника+Одесса', '_blank')">
+    🏥 <b>Неврологические клиники и отделения</b><br>
+    <div class="info">
+      Медицинские учреждения Одессы,
+      где принимают неврологи.<br><br>
+      👉 Открыть карту
+    </div>
+  </div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=детский+невролог+Одесса', '_blank')">
+    👶 <b>Детские неврологи</b><br>
+    <div class="info">
+      Найти врача-невролога для ребёнка.<br><br>
+      👉 Открыть карту
+    </div>
+  </div>
+
+  <div class="card">
+    🩺 <b>С чем обращаются к неврологу</b><br>
+    <div class="info">
+      • частые или сильные головные боли<br>
+      • головокружение<br>
+      • онемение или покалывание в конечностях<br>
+      • боли в спине и шее<br>
+      • нарушения координации<br>
+      • тремор<br>
+      • другие нарушения со стороны нервной системы
+    </div>
+  </div>
+
+  <div class="card">
+    ⚠️ <b>Важно</b><br>
+    <div class="info">
+      При внезапной слабости или онемении одной стороны тела,
+      нарушении речи, внезапном нарушении зрения,
+      потере сознания или судорогах
+      обращайтесь за экстренной медицинской помощью.
+    </div>
+  </div>
+
+  <div class="card">
+    ℹ️ <b>Перед посещением</b><br>
+    <div class="info">
+      Уточняйте график врача и необходимость предварительной записи
+      непосредственно в выбранном медицинском учреждении.
+    </div>
+  </div>
+
+</div>
+<!-- ГИНЕКОЛОГИ -->
+<div id="gynecology" class="section">
+
+  <div class="back" onclick="openSection('medicine')">← Назад</div>
+
+  <div class="section-title">👩 Гинекологи</div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=гинеколог+Одесса', '_blank')">
+    👩 <b>Гинекологи Одессы</b><br>
+    <div class="info">
+      Найти врача-гинеколога рядом с вами.<br><br>
+      👉 Открыть карту
+    </div>
+  </div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=женская+консультация+Одесса', '_blank')">
+    🏥 <b>Женские консультации</b><br>
+    <div class="info">
+      Найти женские консультации и медицинские учреждения Одессы.<br><br>
+      👉 Открыть карту
+    </div>
+  </div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=детский+гинеколог+Одесса', '_blank')">
+    👧 <b>Детские и подростковые гинекологи</b><br>
+    <div class="info">
+      Найти специалиста для детей и подростков.<br><br>
+      👉 Открыть карту
+    </div>
+  </div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=УЗИ+гинекология+Одесса', '_blank')">
+    🩻 <b>УЗИ в гинекологии</b><br>
+    <div class="info">
+      Найти медицинские учреждения, где проводят гинекологическое УЗИ.<br><br>
+      👉 Открыть карту
+    </div>
+  </div>
+
+  <div class="card">
+    🩺 <b>С чем обращаются к гинекологу</b><br>
+    <div class="info">
+      • профилактический осмотр<br>
+      • нарушения менструального цикла<br>
+      • боли внизу живота<br>
+      • необычные выделения или дискомфорт<br>
+      • вопросы контрацепции<br>
+      • планирование беременности<br>
+      • наблюдение беременности<br>
+      • другие вопросы женского здоровья
+    </div>
+  </div>
+
+  <div class="card">
+    ℹ️ <b>Перед посещением</b><br>
+    <div class="info">
+      Уточняйте график врача, необходимость предварительной записи
+      и перечень необходимых документов непосредственно
+      в выбранном медицинском учреждении.
+    </div>
+  </div>
+
+</div>
+  <!-- УРОЛОГИ -->
+<div id="urology" class="section">
+
+  <div class="back" onclick="openSection('medicine')">← Назад</div>
+
+  <div class="section-title">👨 Урологи</div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=уролог+Одесса', '_blank')">
+    👨‍⚕️ <b>Урологи Одессы</b><br>
+    <div class="info">
+      Найти врача-уролога рядом с вами.<br><br>
+      👉 Открыть карту
+    </div>
+  </div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=урологическая+клиника+Одесса', '_blank')">
+    🏥 <b>Урологические клиники и отделения</b><br>
+    <div class="info">
+      Найти медицинские учреждения Одессы,
+      где принимают урологи.<br><br>
+      👉 Открыть карту
+    </div>
+  </div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=детский+уролог+Одесса', '_blank')">
+    👦 <b>Детские урологи</b><br>
+    <div class="info">
+      Найти врача-уролога для ребёнка.<br><br>
+      👉 Открыть карту
+    </div>
+  </div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=УЗИ+почек+мочевого+пузыря+Одесса', '_blank')">
+    🩻 <b>УЗИ почек и мочевого пузыря</b><br>
+    <div class="info">
+      Найти медицинские учреждения,
+      где проводят урологическое УЗИ.<br><br>
+      👉 Открыть карту
+    </div>
+  </div>
+
+  <div class="card">
+    🩺 <b>С чем обращаются к урологу</b><br>
+    <div class="info">
+      • боль или дискомфорт при мочеиспускании<br>
+      • частое мочеиспускание<br>
+      • боли в области почек или поясницы<br>
+      • изменения цвета или примеси в моче<br>
+      • заболевания мочевыводящих путей<br>
+      • вопросы мужского здоровья<br>
+      • профилактический осмотр
+    </div>
+  </div>
+
+  <div class="card">
+    ℹ️ <b>Перед посещением</b><br>
+    <div class="info">
+      Уточняйте график врача, необходимость предварительной записи
+      и подготовку к обследованиям непосредственно
+      в выбранном медицинском учреждении.
+    </div>
+  </div>
+
+</div>
+  <!-- ОРТОПЕДЫ / ТРАВМАТОЛОГИ -->
+<div id="orthopedics" class="section">
+
+  <div class="back" onclick="openSection('medicine')">← Назад</div>
+
+  <div class="section-title">🦴 Ортопеды / Травматологи</div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=ортопед+травматолог+Одесса', '_blank')">
+    🦴 <b>Ортопеды-травматологи Одессы</b><br>
+    <div class="info">
+      Найти врача рядом с вами.<br><br>
+      👉 Открыть карту
+    </div>
+  </div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=детский+ортопед+травматолог+Одесса', '_blank')">
+    👶 <b>Детские ортопеды-травматологи</b><br>
+    <div class="info">
+      Найти специалиста для ребёнка.<br><br>
+      👉 Открыть карту
+    </div>
+  </div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=травмпункт+Одесса', '_blank')">
+    🚑 <b>Травмпункты</b><br>
+    <div class="info">
+      Найти ближайший травмпункт в Одессе.<br><br>
+      👉 Открыть карту
+    </div>
+  </div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=рентген+Одесса', '_blank')">
+    🩻 <b>Рентген</b><br>
+    <div class="info">
+      Найти медицинские учреждения,
+      где проводят рентгенологические исследования.<br><br>
+      👉 Открыть карту
+    </div>
+  </div>
+
+  <div class="card">
+    🩺 <b>С чем обращаются к ортопеду-травматологу</b><br>
+    <div class="info">
+      • травмы и ушибы<br>
+      • растяжения и вывихи<br>
+      • подозрение на перелом<br>
+      • боли в суставах<br>
+      • боли в позвоночнике<br>
+      • ограничение движений<br>
+      • проблемы с осанкой<br>
+      • заболевания опорно-двигательного аппарата
+    </div>
+  </div>
+
+  <div class="card">
+    ⚠️ <b>При острой травме</b><br>
+    <div class="info">
+      При сильной боли, выраженной деформации конечности,
+      сильном кровотечении, потере чувствительности
+      или другом угрожающем состоянии обращайтесь
+      за экстренной медицинской помощью.
+    </div>
+  </div>
+
+  <div class="card">
+    ℹ️ <b>Перед посещением</b><br>
+    <div class="info">
+      Уточняйте график врача, необходимость предварительной записи
+      и возможность проведения обследований непосредственно
+      в выбранном медицинском учреждении.
+    </div>
+  </div>
+
+</div>
+  <!-- ТЕРАПЕВТЫ / СЕМЕЙНЫЕ ВРАЧИ -->
+<div id="familyDoctors" class="section">
+
+  <div class="back" onclick="openSection('medicine')">← Назад</div>
+
+  <div class="section-title">🩺 Терапевты / Семейные врачи</div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=семейный+врач+Одесса', '_blank')">
+    👩‍⚕️ <b>Семейные врачи Одессы</b><br>
+    <div class="info">
+      Найти семейного врача рядом с вами.<br><br>
+      👉 Открыть карту
+    </div>
+  </div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=терапевт+Одесса', '_blank')">
+    🩺 <b>Терапевты Одессы</b><br>
+    <div class="info">
+      Найти врача-терапевта рядом с вами.<br><br>
+      👉 Открыть карту
+    </div>
+  </div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=центр+первичной+медико-санитарной+помощи+Одесса', '_blank')">
+    🏥 <b>Центры первичной медицинской помощи</b><br>
+    <div class="info">
+      Найти центры и амбулатории первичной медицинской помощи.<br><br>
+      👉 Открыть карту
+    </div>
+  </div>
+
+  <div class="card">
+    🩺 <b>С чем обращаются к семейному врачу</b><br>
+    <div class="info">
+      • температура и симптомы простуды<br>
+      • кашель и боль в горле<br>
+      • головная боль и слабость<br>
+      • изменения артериального давления<br>
+      • боли различной локализации<br>
+      • профилактические осмотры<br>
+      • направление на обследования<br>
+      • направление к профильным специалистам<br>
+      • наблюдение хронических заболеваний
+    </div>
+  </div>
+
+  <div class="card">
+    📋 <b>Декларация с семейным врачом</b><br>
+    <div class="info">
+      Семейный врач является основным специалистом
+      первичной медицинской помощи.
+      Информацию о заключении декларации и доступных услугах
+      уточняйте непосредственно в выбранном медицинском учреждении.
+    </div>
+  </div>
+
+  <div class="card">
+    ℹ️ <b>Перед посещением</b><br>
+    <div class="info">
+      Уточняйте график врача, возможность записи
+      и необходимые документы непосредственно
+      в выбранном медицинском учреждении.
+    </div>
+  </div>
+
+</div>
+  <!-- ЭНДОКРИНОЛОГИ -->
+<div id="endocrinology" class="section">
+
+  <div class="back" onclick="openSection('medicine')">← Назад</div>
+
+  <div class="section-title">🧬 Эндокринологи</div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=эндокринолог+Одесса', '_blank')">
+    🧬 <b>Эндокринологи Одессы</b><br>
+    <div class="info">
+      Найти врача-эндокринолога рядом с вами.<br><br>
+      👉 Открыть карту
+    </div>
+  </div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=детский+эндокринолог+Одесса', '_blank')">
+    👶 <b>Детские эндокринологи</b><br>
+    <div class="info">
+      Найти врача-эндокринолога для ребёнка.<br><br>
+      👉 Открыть карту
+    </div>
+  </div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=УЗИ+щитовидной+железы+Одесса', '_blank')">
+    🩻 <b>УЗИ щитовидной железы</b><br>
+    <div class="info">
+      Найти медицинские учреждения,
+      где проводят УЗИ щитовидной железы.<br><br>
+      👉 Открыть карту
+    </div>
+  </div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=анализы+гормоны+Одесса', '_blank')">
+    🧪 <b>Анализы на гормоны</b><br>
+    <div class="info">
+      Найти лаборатории и пункты сдачи анализов.<br><br>
+      👉 Открыть карту
+    </div>
+  </div>
+
+  <div class="card">
+    🩺 <b>С чем обращаются к эндокринологу</b><br>
+    <div class="info">
+      • заболевания щитовидной железы<br>
+      • сахарный диабет<br>
+      • изменения уровня сахара в крови<br>
+      • необъяснимые изменения веса<br>
+      • нарушения обмена веществ<br>
+      • гормональные нарушения<br>
+      • повышенная утомляемость<br>
+      • другие заболевания эндокринной системы
+    </div>
+  </div>
+
+  <div class="card">
+    ℹ️ <b>Перед посещением</b><br>
+    <div class="info">
+      Уточняйте график врача, необходимость предварительной записи
+      и подготовку к анализам или обследованиям непосредственно
+      в выбранном медицинском учреждении.
+    </div>
+  </div>
+
+</div>
+  <!-- ГАСТРОЭНТЕРОЛОГИ -->
+<div id="gastroenterology" class="section">
+
+  <div class="back" onclick="openSection('medicine')">← Назад</div>
+
+  <div class="section-title">🍽 Гастроэнтерологи</div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=гастроэнтеролог+Одесса', '_blank')">
+    👩‍⚕️ <b>Гастроэнтерологи Одессы</b><br>
+    <div class="info">
+      Найти врача-гастроэнтеролога рядом с вами.<br><br>
+      👉 Открыть карту
+    </div>
+  </div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=детский+гастроэнтеролог+Одесса', '_blank')">
+    👶 <b>Детские гастроэнтерологи</b><br>
+    <div class="info">
+      Найти гастроэнтеролога для ребёнка.<br><br>
+      👉 Открыть карту
+    </div>
+  </div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=гастроскопия+Одесса', '_blank')">
+    🔬 <b>Гастроскопия</b><br>
+    <div class="info">
+      Найти медицинские учреждения,
+      где проводят гастроскопию.<br><br>
+      👉 Открыть карту
+    </div>
+  </div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=УЗИ+брюшной+полости+Одесса', '_blank')">
+    🩻 <b>УЗИ брюшной полости</b><br>
+    <div class="info">
+      Найти медицинские учреждения,
+      где проводят УЗИ органов брюшной полости.<br><br>
+      👉 Открыть карту
+    </div>
+  </div>
+
+  <div class="card">
+    🩺 <b>С чем обращаются к гастроэнтерологу</b><br>
+    <div class="info">
+      • боли или дискомфорт в животе<br>
+      • изжога<br>
+      • тошнота<br>
+      • вздутие живота<br>
+      • нарушения пищеварения<br>
+      • нарушения стула<br>
+      • заболевания желудка и кишечника<br>
+      • заболевания печени и желчного пузыря
+    </div>
+  </div>
+
+  <div class="card">
+    ℹ️ <b>Перед посещением</b><br>
+    <div class="info">
+      Уточняйте график врача, необходимость предварительной записи
+      и правила подготовки к обследованиям непосредственно
+      в выбранном медицинском учреждении.
+    </div>
+  </div>
+
+</div>
+  <!-- ПСИХОЛОГИ / ПСИХИАТРЫ -->
+<div id="mentalHealth" class="section">
+
+  <div class="back" onclick="openSection('medicine')">← Назад</div>
+
+  <div class="section-title">🧠 Психологи / Психиатры</div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=психолог+Одесса', '_blank')">
+    🧠 <b>Психологи Одессы</b><br>
+    <div class="info">
+      Найти психолога рядом с вами.<br><br>
+      👉 Открыть карту
+    </div>
+  </div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=психиатр+Одесса', '_blank')">
+    👨‍⚕️ <b>Психиатры Одессы</b><br>
+    <div class="info">
+      Найти врача-психиатра и медицинские учреждения.<br><br>
+      👉 Открыть карту
+    </div>
+  </div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=детский+психолог+Одесса', '_blank')">
+    👶 <b>Детские психологи</b><br>
+    <div class="info">
+      Найти специалиста для ребёнка.<br><br>
+      👉 Открыть карту
+    </div>
+  </div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=детский+психиатр+Одесса', '_blank')">
+    🧒 <b>Детские психиатры</b><br>
+    <div class="info">
+      Найти детского врача-психиатра.<br><br>
+      👉 Открыть карту
+    </div>
+  </div>
+
+  <div class="card">
+    🩺 <b>Когда обращаются за помощью</b><br>
+    <div class="info">
+      • длительная тревога или страх<br>
+      • подавленное настроение<br>
+      • проблемы со сном<br>
+      • сильный стресс<br>
+      • панические приступы<br>
+      • резкие изменения поведения<br>
+      • трудности в отношениях<br>
+      • другие проблемы с эмоциональным состоянием
+    </div>
+  </div>
+
+  <div class="card">
+    ℹ️ <b>Психолог или психиатр?</b><br>
+    <div class="info">
+      Психолог помогает работать с эмоциональными,
+      поведенческими и жизненными трудностями.<br><br>
+
+      Психиатр — врач, который занимается диагностикой
+      и лечением психических расстройств и при необходимости
+      может назначать лекарственные препараты.
+    </div>
+  </div>
+
+  <div class="card">
+    ⚠️ <b>Экстренная ситуация</b><br>
+    <div class="info">
+      Если человек представляет непосредственную опасность
+      для себя или окружающих либо состояние резко ухудшилось,
+      необходимо обращаться за экстренной медицинской помощью.
+    </div>
+  </div>
+
+  <div class="card">
+    ℹ️ <b>Перед посещением</b><br>
+    <div class="info">
+      Уточняйте график специалиста, необходимость записи
+      и условия консультации непосредственно
+      в выбранном медицинском учреждении.
+    </div>
+  </div>
+
+</div>
+  <!-- ПЕДИАТРЫ -->
+<div id="pediatrics" class="section">
+
+  <div class="back" onclick="openSection('medicine')">← Назад</div>
+
+  <div class="section-title">👶 Педиатры</div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=педиатр+Одесса', '_blank')">
+    👨‍⚕️ <b>Педиатры Одессы</b><br>
+    <div class="info">
+      Найти детского врача рядом с вами.<br><br>
+      👉 Открыть карту
+    </div>
+  </div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=детская+поликлиника+Одесса', '_blank')">
+    🏥 <b>Детские поликлиники</b><br>
+    <div class="info">
+      Найти детские поликлиники Одессы.<br><br>
+      👉 Открыть карту
+    </div>
+  </div>
+
+  <div class="card">
+    🩺 <b>С чем обращаются к педиатру</b><br>
+    <div class="info">
+      • повышение температуры<br>
+      • кашель и насморк<br>
+      • боль в горле<br>
+      • боли в животе<br>
+      • тошнота и рвота<br>
+      • сыпь и другие изменения кожи<br>
+      • нарушения пищеварения<br>
+      • профилактические осмотры<br>
+      • вопросы роста и развития ребёнка
+    </div>
+  </div>
+
+  <div class="card">
+    👶 <b>Плановый осмотр ребёнка</b><br>
+    <div class="info">
+      Педиатр оценивает состояние здоровья, рост и развитие ребёнка
+      и при необходимости направляет к профильным специалистам
+      или на обследования.
+    </div>
+  </div>
+
+  <div class="card">
+    ⚠️ <b>Важно</b><br>
+    <div class="info">
+      При затруднённом дыхании, потере сознания, судорогах,
+      тяжёлой травме или другом угрожающем жизни состоянии
+      обращайтесь за экстренной медицинской помощью.
+    </div>
+  </div>
+
+  <div class="card">
+    ℹ️ <b>Перед посещением</b><br>
+    <div class="info">
+      Уточняйте график педиатра, необходимость предварительной
+      записи и необходимые документы непосредственно
+      в выбранном медицинском учреждении.
+    </div>
+  </div>
+
+</div>
+  <!-- УЗИ / ДИАГНОСТИКА -->
+<div id="diagnostics" class="section">
+
+  <div class="back" onclick="openSection('medicine')">← Назад</div>
+
+  <div class="section-title">🩻 УЗИ / Диагностика</div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=УЗИ+Одесса', '_blank')">
+    🩻 <b>УЗИ в Одессе</b><br>
+    <div class="info">
+      Найти медицинские центры и кабинеты УЗИ.<br><br>
+      👉 Открыть карту
+    </div>
+  </div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=МРТ+Одесса', '_blank')">
+    🧲 <b>МРТ</b><br>
+    <div class="info">
+      Найти центры МРТ в Одессе.<br><br>
+      👉 Открыть карту
+    </div>
+  </div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=КТ+Одесса', '_blank')">
+    🩻 <b>КТ</b><br>
+    <div class="info">
+      Найти центры компьютерной томографии.<br><br>
+      👉 Открыть карту
+    </div>
+  </div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=рентген+Одесса', '_blank')">
+    🦴 <b>Рентген</b><br>
+    <div class="info">
+      Найти кабинеты рентгенографии в Одессе.<br><br>
+      👉 Открыть карту
+    </div>
+  </div>
+
+  <div class="card"
+       onclick="window.open('https://www.google.com/maps/search/?api=1&query=маммография+Одесса', '_blank')">
+    🩺 <b>Маммография</b><br>
+    <div class="info">
+      Найти медицинские учреждения, где проводится маммография.<br><br>
+      👉 Открыть карту
+    </div>
+  </div>
+
+  <div class="card">
+    🔎 <b>Виды диагностики</b><br>
+    <div class="info">
+      • УЗИ<br>
+      • МРТ<br>
+      • КТ<br>
+      • рентгенография<br>
+      • маммография<br>
+      • функциональная диагностика<br>
+      • другие диагностические исследования
+    </div>
+  </div>
+
+  <div class="card">
+    ℹ️ <b>Перед обследованием</b><br>
+    <div class="info">
+      Для некоторых исследований необходима специальная подготовка.
+      Уточняйте правила подготовки, противопоказания,
+      необходимость направления и предварительной записи
+      непосредственно в выбранном медицинском учреждении.
+    </div>
+  </div>
+
+</div>
 <!-- ОБРАЗОВАНИЕ -->
 
 <div id="education" class="section">
