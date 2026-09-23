@@ -131,9 +131,9 @@ h1 {
     <div class="info">Школы, сады, университеты, курсы</div>
   </div>
 
-  <div class="card">
-    🛍 Покупки
-    <div class="info">Магазины, торговые центры и рынки</div>
+  <div class="card" onclick="openSection('shopping')">
+  🛍 Покупки
+  <div class="info">Магазины, торговые центры, рынки и товары</div>
   </div>
 
   <div class="card">
@@ -2217,6 +2217,339 @@ h1 {
     </div>
   </div>
 
+</div>
+  <!-- ПОКУПКИ -->
+<div id="shopping" class="section">
+
+  <div class="back" onclick="goHome()">← Назад</div>
+
+  <div class="section-title">🛍 Покупки</div>
+
+  <div class="card" onclick="openSection('shoppingCenters')">
+    🏬 Торговые центры
+  </div>
+
+  <div class="card" onclick="openSection('supermarkets')">
+    🛒 Супермаркеты
+  </div>
+
+  <div class="card" onclick="openSection('markets')">
+    🥕 Рынки
+  </div>
+
+  <div class="card" onclick="openSection('clothes')">
+    👗 Одежда и обувь
+  </div>
+
+  <div class="card" onclick="openSection('beautyStores')">
+    💄 Красота и косметика
+  </div>
+
+  <div class="card" onclick="openSection('electronics')">
+    💻 Электроника и техника
+  </div>
+
+  <div class="card" onclick="openSection('homeStores')">
+    🏠 Товары для дома
+  </div>
+
+  <div class="card" onclick="openSection('kidsStores')">
+    🧸 Детские товары
+  </div>
+
+  <div class="card" onclick="openSection('petStores')">
+    🐾 Зоомагазины
+  </div>
+
+  <div class="card" onclick="openSection('flowersGifts')">
+    💐 Цветы и подарки
+  </div>
+
+  <div class="card" onclick="openSection('buildingStores')">
+    🔨 Строительные магазины
+  </div>
+
+  <div class="card" onclick="openSection('onlineStores')">
+    🛍 Интернет-магазины
+  </div>
+
+</div>
+  <!-- ТОРГОВЫЕ ЦЕНТРЫ -->
+<div id="shoppingCenters" class="section">
+  <div class="back" onclick="openSection('shopping')">← Покупки</div>
+  <div class="section-title">🏬 Торговые центры</div>
+
+  <div class="card" onclick="window.open('https://www.google.com/maps/search/?api=1&query=City+Center+Небесной+Сотни+2+Одесса','_blank')">
+    🏬 <b>City Center</b>
+    <div class="info">
+      📍 просп. Небесной Сотни, 2<br><br>
+      🗺 Открыть карту
+    </div>
+  </div>
+
+  <div class="card" onclick="window.open('https://www.google.com/maps/search/?api=1&query=Gagarinn+Plaza+Генуэзская+5/2+Одесса','_blank')">
+    🏬 <b>Gagarinn Plaza</b>
+    <div class="info">
+      📍 ул. Генуэзская, 5/2<br><br>
+      🗺 Открыть карту
+    </div>
+  </div>
+
+  <div class="card" onclick="window.open('https://www.google.com/maps/search/?api=1&query=Ривьера+Південна+дорога+101А+Фонтанка','_blank')">
+    🏬 <b>ТРЦ «Ривьера»</b>
+    <div class="info">
+      📍 Південна дорога, 101А, Фонтанка<br><br>
+      🗺 Открыть карту
+    </div>
+  </div>
+</div>
+
+
+<!-- СУПЕРМАРКЕТЫ -->
+<div id="supermarkets" class="section">
+  <div class="back" onclick="openSection('shopping')">← Покупки</div>
+  <div class="section-title">🛒 Супермаркеты</div>
+
+  <div class="card" onclick="window.open('https://www.google.com/maps/search/?api=1&query=Сільпо+Європейська+27/1+Одеса','_blank')">
+    🛒 <b>Сільпо</b>
+    <div class="info">
+      📍 ул. Европейская, 27/1<br><br>
+      🗺 Открыть карту
+    </div>
+  </div>
+
+  <div class="card" onclick="window.open('https://www.google.com/maps/search/?api=1&query=Таврія+В+Грецька+площа+3/4+Одеса','_blank')">
+    🛒 <b>Таврія В</b>
+    <div class="info">
+      📍 Греческая площадь, 3/4<br><br>
+      🗺 Открыть карту
+    </div>
+  </div>
+</div>
+
+
+<!-- РЫНКИ -->
+<div id="markets" class="section">
+  <div class="back" onclick="openSection('shopping')">← Покупки</div>
+  <div class="section-title">🥕 Рынки</div>
+
+  <div class="card" onclick="window.open('https://www.google.com/maps/search/?api=1&query=рынок+Привоз+Привозна+14+Одесса','_blank')">
+    🥕 <b>Рынок «Привоз»</b>
+    <div class="info">
+      📍 ул. Привозная, 14<br><br>
+      🗺 Открыть карту
+    </div>
+  </div>
+
+  <div class="card" onclick="window.open('https://www.google.com/maps/search/?api=1&query=Староконный+рынок+Розкидайлівська+31+Одеса','_blank')">
+    🛍 <b>Староконный рынок</b>
+    <div class="info">
+      📍 ул. Раскидайловская, 31<br><br>
+      🗺 Открыть карту
+    </div>
+  </div>
+</div>
+
+
+<!-- ОДЕЖДА И ОБУВЬ -->
+<div id="clothes" class="section">
+  <div class="back" onclick="openSection('shopping')">← Покупки</div>
+  <div class="section-title">👗 Одежда и обувь</div>
+
+  <div class="card" onclick="window.open('https://www.google.com/maps/search/?api=1&query=Tooposhop+Афіна+Грецька+3/4+Одеса','_blank')">
+    👗 <b>Tooposhop</b>
+    <div class="info">
+      📍 ТЦ «Афина», Греческая площадь, 3/4, 4 этаж<br><br>
+      🗺 Открыть карту
+    </div>
+  </div>
+
+  <div class="card" onclick="window.open('https://www.google.com/maps/search/?api=1&query=Korobko+brand+Грецька+площа+1а+Одеса','_blank')">
+    👟 <b>Korobko Brand</b>
+    <div class="info">
+      📍 Греческая площадь, 1А<br><br>
+      🗺 Открыть карту
+    </div>
+  </div>
+</div>
+
+
+<!-- КРАСОТА И КОСМЕТИКА -->
+<div id="beautyStores" class="section">
+  <div class="back" onclick="openSection('shopping')">← Покупки</div>
+  <div class="section-title">💄 Красота и косметика</div>
+
+  <div class="card" onclick="window.open('https://www.google.com/maps/search/?api=1&query=WOW+NAME+Академіка+Філатова+55+Одеса','_blank')">
+    💄 <b>WOW NAME</b>
+    <div class="info">
+      📍 ул. Академика Филатова, 55<br><br>
+      🗺 Открыть карту
+    </div>
+  </div>
+
+  <div class="card" onclick="window.open('https://www.google.com/maps/search/?api=1&query=WOW+NAME+Академіка+Корольова+72+Одеса','_blank')">
+    💄 <b>WOW NAME</b>
+    <div class="info">
+      📍 ул. Академика Королёва, 72<br><br>
+      🗺 Открыть карту
+    </div>
+  </div>
+</div>
+
+
+<!-- ЭЛЕКТРОНИКА -->
+<div id="electronics" class="section">
+  <div class="back" onclick="openSection('shopping')">← Покупки</div>
+  <div class="section-title">💻 Электроника и техника</div>
+
+  <div class="card" onclick="window.open('https://www.google.com/maps/search/?api=1&query=COMFY+Семафорний+провулок+4+Одеса','_blank')">
+    💻 <b>COMFY</b>
+    <div class="info">
+      📍 Семафорный переулок, 4, ТЦ «Среднефонтанский»<br><br>
+      🗺 Открыть карту
+    </div>
+  </div>
+
+  <div class="card" onclick="window.open('https://www.google.com/maps/search/?api=1&query=COMFY+Давида+Ойстраха+32+Одеса','_blank')">
+    📱 <b>COMFY</b>
+    <div class="info">
+      📍 ул. Давида Ойстраха, 32, City Center<br><br>
+      🗺 Открыть карту
+    </div>
+  </div>
+</div>
+
+
+<!-- ТОВАРЫ ДЛЯ ДОМА -->
+<div id="homeStores" class="section">
+  <div class="back" onclick="openSection('shopping')">← Покупки</div>
+  <div class="section-title">🏠 Товары для дома</div>
+
+  <div class="card" onclick="window.open('https://www.google.com/maps/search/?api=1&query=БЛИСК+ВІДРО+Канатна+26+Одеса','_blank')">
+    🏠 <b>БЛИСК&ВІДРО</b>
+    <div class="info">
+      📍 ул. Канатная, 26<br><br>
+      🗺 Открыть карту
+    </div>
+  </div>
+
+  <div class="card" onclick="window.open('https://www.google.com/maps/search/?api=1&query=ОптПрайс+Базова+17+Одеса','_blank')">
+    🏠 <b>ОптПрайс</b>
+    <div class="info">
+      📍 ул. Базовая, 17<br><br>
+      🗺 Открыть карту
+    </div>
+  </div>
+</div>
+
+
+<!-- ДЕТСКИЕ ТОВАРЫ -->
+<div id="kidsStores" class="section">
+  <div class="back" onclick="openSection('shopping')">← Покупки</div>
+  <div class="section-title">🧸 Детские товары</div>
+
+  <div class="card" onclick="window.open('https://www.google.com/maps/search/?api=1&query=Антошка+Грецька+площа+2+Одеса','_blank')">
+    🧸 <b>Антошка</b>
+    <div class="info">
+      📍 Греческая площадь, 2<br><br>
+      🗺 Открыть карту
+    </div>
+  </div>
+
+  <div class="card" onclick="window.open('https://www.google.com/maps/search/?api=1&query=Amador+Генуезька+24Б+Одеса','_blank')">
+    👶 <b>Amador</b>
+    <div class="info">
+      📍 ул. Генуэзская, 24Б<br><br>
+      🗺 Открыть карту
+    </div>
+  </div>
+</div>
+
+
+<!-- ЗООМАГАЗИНЫ -->
+<div id="petStores" class="section">
+  <div class="back" onclick="openSection('shopping')">← Покупки</div>
+  <div class="section-title">🐾 Зоомагазины</div>
+
+  <div class="card" onclick="window.open('https://www.google.com/maps/search/?api=1&query=MasterZoo+Добровольців+10/6+Одеса','_blank')">
+    🐾 <b>MasterZoo</b>
+    <div class="info">
+      📍 ул. Добровольцев, 10/6<br><br>
+      🗺 Открыть карту
+    </div>
+  </div>
+</div>
+
+
+<!-- ЦВЕТЫ И ПОДАРКИ -->
+<div id="flowersGifts" class="section">
+  <div class="back" onclick="openSection('shopping')">← Покупки</div>
+  <div class="section-title">💐 Цветы и подарки</div>
+
+  <div class="card" onclick="window.open('https://www.google.com/maps/search/?api=1&query=Botanic+Butique+Балтиморська+13а+Одеса','_blank')">
+    💐 <b>Botanic Butique</b>
+    <div class="info">
+      📍 ул. Балтиморская, 13А<br><br>
+      🗺 Открыть карту
+    </div>
+  </div>
+</div>
+
+
+<!-- СТРОИТЕЛЬНЫЕ МАГАЗИНЫ -->
+<div id="buildingStores" class="section">
+  <div class="back" onclick="openSection('shopping')">← Покупки</div>
+  <div class="section-title">🔨 Строительные магазины</div>
+
+  <div class="card" onclick="window.open('https://www.google.com/maps/search/?api=1&query=Прораб+Георгія+Липського+37+Одеса','_blank')">
+    🔨 <b>Прораб</b>
+    <div class="info">
+      📍 ул. Георгия Липского, 37<br><br>
+      🗺 Открыть карту
+    </div>
+  </div>
+
+  <div class="card" onclick="window.open('https://www.google.com/maps/search/?api=1&query=Епіцентр+7-й+км+Овідіопольської+дороги+1','_blank')">
+    🔨 <b>Эпицентр</b>
+    <div class="info">
+      📍 7-й км Овидиопольской дороги, 1, Авангард<br><br>
+      🗺 Открыть карту
+    </div>
+  </div>
+</div>
+
+
+<!-- ИНТЕРНЕТ-МАГАЗИНЫ -->
+<div id="onlineStores" class="section">
+  <div class="back" onclick="openSection('shopping')">← Покупки</div>
+  <div class="section-title">🛍 Интернет-магазины</div>
+
+  <div class="card" onclick="window.open('https://www.google.com/maps/search/?api=1&query=ROZETKA+Європейська+26+Одеса','_blank')">
+    🛍 <b>ROZETKA</b>
+    <div class="info">
+      📍 Магазин / выдача заказов<br>
+      ул. Европейская, 26<br><br>
+      🗺 Открыть карту
+    </div>
+  </div>
+
+  <div class="card" onclick="window.open('https://www.google.com/maps/search/?api=1&query=ROZETKA+Адміральський+1+Одеса','_blank')">
+    📦 <b>ROZETKA</b>
+    <div class="info">
+      📍 Магазин / выдача заказов<br>
+      просп. Адмиральский, 1<br><br>
+      🗺 Открыть карту
+    </div>
+  </div>
+
+  <div class="card" onclick="window.open('https://www.google.com/maps/search/?api=1&query=ROZETKA+Семафорний+4+Одеса','_blank')">
+    📦 <b>ROZETKA</b>
+    <div class="info">
+      📍 Магазин / выдача заказов<br>
+      Семафорный переулок, 4, ТРЦ Fontan SKY<br><br>
+      🗺 Открыть карту
+    </div>
+  </div>
 </div>
 <!-- ОБРАЗОВАНИЕ -->
 
