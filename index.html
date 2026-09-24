@@ -115,7 +115,107 @@ h1 {
 <div id="home">
 <!-- ПРИВЕТСТВИЕ -->
   <img src="file_000000009cac81f49ded68c12d9b7c86.png" alt="ОДЕССА Online" style="width:100%;height:auto;display:block;border-radius:24px;margin-bottom:18px;">
+<!-- ===== БЫСТРЫЕ ФУНКЦИИ НА ГЛАВНОЙ ===== -->
 
+<div style="margin:24px 0 30px 0;">
+
+  <div class="section-title">🔎 Поиск по справочнику</div>
+
+  <div style="
+    padding:16px;
+    border-radius:20px;
+    background:rgba(255,255,255,0.08);
+    border:1px solid rgba(255,255,255,0.15);
+    margin-bottom:18px;
+  ">
+    <input
+      id="homeSearchInput"
+      type="text"
+      placeholder="Например: суши, стоматолог, работа..."
+      style="
+        width:100%;
+        box-sizing:border-box;
+        padding:16px;
+        border:0;
+        outline:none;
+        border-radius:15px;
+        font-size:16px;
+      "
+      oninput="homeGuideSearch()"
+    >
+
+    <div id="homeSearchResults"></div>
+  </div>
+
+
+  <div class="section-title">⚡ Быстро</div>
+
+  <div style="
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+  ">
+
+    <div onclick="openSection('nearMe')"
+         style="
+           padding:18px 10px;
+           text-align:center;
+           border-radius:18px;
+           background:rgba(255,255,255,0.08);
+           border:1px solid rgba(255,255,255,0.15);
+           cursor:pointer;
+         ">
+      <div style="font-size:30px;">📍</div>
+      <div style="font-size:17px;margin-top:7px;">Рядом со мной</div>
+    </div>
+
+
+    <div onclick="openSection('weather')"
+         style="
+           padding:18px 10px;
+           text-align:center;
+           border-radius:18px;
+           background:rgba(255,255,255,0.08);
+           border:1px solid rgba(255,255,255,0.15);
+           cursor:pointer;
+         ">
+      <div style="font-size:30px;">🌤</div>
+      <div style="font-size:17px;margin-top:7px;">Погода</div>
+    </div>
+
+
+    <div onclick="openSection('currency')"
+         style="
+           padding:18px 10px;
+           text-align:center;
+           border-radius:18px;
+           background:rgba(255,255,255,0.08);
+           border:1px solid rgba(255,255,255,0.15);
+           cursor:pointer;
+         ">
+      <div style="font-size:30px;">💱</div>
+      <div style="font-size:17px;margin-top:7px;">Курс валют</div>
+    </div>
+
+
+    <div onclick="openSection('events')"
+         style="
+           padding:18px 10px;
+           text-align:center;
+           border-radius:18px;
+           background:rgba(255,255,255,0.08);
+           border:1px solid rgba(255,255,255,0.15);
+           cursor:pointer;
+         ">
+      <div style="font-size:30px;">📅</div>
+      <div style="font-size:17px;margin-top:7px;">Афиша</div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- ===== КОНЕЦ БЫСТРЫХ ФУНКЦИЙ ===== -->
   <div class="card" onclick="openSection('transport')">
     🚌 Транспорт
     <div class="info">Маршрутки, трамваи, троллейбусы, вокзалы, такси</div>
@@ -160,343 +260,7 @@ h1 {
   🚨 Важное
   <div class="info">Экстренные службы, помощь и важная информация</div>
 </div>
-<!-- ======================================= -->
-<!-- ✨ ПОЛЕЗНОЕ -->
-<!-- ======================================= -->
 
-<div class="section-title">✨ Полезное</div>
-
-<div class="card" onclick="openSection('globalSearch')">
-  🔎 Поиск по справочнику
-  <div class="info">Найти нужное в ОДЕССА Online</div>
-</div>
-
-<div class="card" onclick="openSection('favorites')">
-  ⭐ Избранное
-  <div class="info">Сохранённые места и разделы</div>
-</div>
-
-<div class="card" onclick="openSection('nearMe')">
-  📍 Рядом со мной
-  <div class="info">Найти нужное поблизости</div>
-</div>
-
-<div class="card" onclick="openSection('events')">
-  📅 Афиша
-  <div class="info">События сегодня и на выходных</div>
-</div>
-
-<div class="card" onclick="openSection('weather')">
-  🌤 Погода
-  <div class="info">Погода в Одессе</div>
-</div>
-
-<div class="card" onclick="openSection('currency')">
-  💱 Курс валют
-  <div class="info">Актуальные курсы валют</div>
-</div>
-
-<div class="card"
-     onclick="window.open('https://t.me/Diankaleksandrovna','_blank')">
-  📢 Сообщить информацию
-  <div class="info">Исправление, новое место или предложение</div>
-</div>
-
-<div class="card" onclick="openSection('collections')">
-  ❤️ Подборки Одессы
-  <div class="info">Интересные идеи и готовые подборки</div>
-</div>
-</div>
-
-<!-- ================================================== -->
-<!-- ✨ ПОЛЕЗНЫЕ ФУНКЦИИ ОДЕССА ONLINE -->
-<!-- ================================================== -->
-
-
-<!-- ================= 🔎 ПОИСК ================= -->
-
-<div id="globalSearch" class="section">
-
-  <div class="back" onclick="goHome()">← На главную</div>
-
-  <div class="section-title">🔎 Поиск по справочнику</div>
-
-  <div class="card">
-    <input
-      id="guideSearchInput"
-      type="text"
-      placeholder="Например: суши, стоматолог, работа..."
-      style="
-        width:100%;
-        box-sizing:border-box;
-        padding:14px;
-        border:1px solid #ddd;
-        border-radius:12px;
-        font-size:16px;
-      "
-      oninput="guideSearch()"
-    >
-  </div>
-
-  <div id="guideSearchResults"></div>
-
-</div>
-
-
-<!-- ================= ⭐ ИЗБРАННОЕ ================= -->
-
-<div id="favorites" class="section">
-
-  <div class="back" onclick="goHome()">← На главную</div>
-
-  <div class="section-title">⭐ Избранное</div>
-
-  <div class="card">
-    ⭐ Сохранённое
-    <div class="info">
-      Здесь будут отображаться сохранённые разделы.
-    </div>
-  </div>
-
-  <div id="favoritesList"></div>
-
-  <div class="card" onclick="clearFavorites()">
-    🗑 Очистить избранное
-    <div class="info">Удалить сохранённые разделы</div>
-  </div>
-
-</div>
-
-
-<!-- ================= 📍 РЯДОМ СО МНОЙ ================= -->
-
-<div id="nearMe" class="section">
-
-  <div class="back" onclick="goHome()">← На главную</div>
-
-  <div class="section-title">📍 Рядом со мной</div>
-
-  <div class="card"
-       onclick="nearbySearch('аптеки')">
-    💊 Аптеки рядом
-  </div>
-
-  <div class="card"
-       onclick="nearbySearch('больницы')">
-    🏥 Больницы рядом
-  </div>
-
-  <div class="card"
-       onclick="nearbySearch('кафе рестораны')">
-    🍽 Где поесть рядом
-  </div>
-
-  <div class="card"
-       onclick="nearbySearch('супермаркеты')">
-    🛒 Магазины рядом
-  </div>
-
-  <div class="card"
-       onclick="nearbySearch('банкоматы')">
-    🏧 Банкоматы рядом
-  </div>
-
-  <div class="card"
-       onclick="nearbySearch('АЗС')">
-    ⛽ АЗС рядом
-  </div>
-
-  <div class="card"
-       onclick="nearbySearch('СТО')">
-    🚗 СТО рядом
-  </div>
-
-  <div class="card"
-       onclick="nearbySearch('укрытия Одесса')">
-    🛡 Укрытия
-  </div>
-
-</div>
-
-
-<!-- ================= 📅 АФИША ================= -->
-
-<div id="events" class="section">
-
-  <div class="back" onclick="goHome()">← На главную</div>
-
-  <div class="section-title">📅 Афиша Одессы</div>
-
-  <div class="card"
-       onclick="usefulSearch('афиша Одесса сегодня')">
-    🔥 Сегодня
-    <div class="info">Что проходит сегодня в Одессе</div>
-  </div>
-
-  <div class="card"
-       onclick="usefulSearch('афиша Одесса завтра')">
-    🌅 Завтра
-    <div class="info">События на завтра</div>
-  </div>
-
-  <div class="card"
-       onclick="usefulSearch('афиша Одесса выходные')">
-    🎉 Выходные
-    <div class="info">Куда сходить на выходных</div>
-  </div>
-
-  <div class="card"
-       onclick="usefulSearch('концерты Одесса афиша')">
-    🎤 Концерты
-  </div>
-
-  <div class="card"
-       onclick="usefulSearch('театр Одесса афиша')">
-    🎭 Театр
-  </div>
-
-  <div class="card"
-       onclick="usefulSearch('выставки Одесса афиша')">
-    🖼 Выставки
-  </div>
-
-  <div class="card"
-       onclick="usefulSearch('мероприятия для детей Одесса')">
-    👨‍👩‍👧 Для детей
-  </div>
-
-</div>
-
-
-<!-- ================= 🌤 ПОГОДА ================= -->
-
-<div id="weather" class="section">
-
-  <div class="back" onclick="goHome()">← На главную</div>
-
-  <div class="section-title">🌤 Погода в Одессе</div>
-
-  <div class="card"
-       onclick="usefulSearch('погода Одесса сегодня')">
-    ☀️ Сегодня
-    <div class="info">Температура и погода сегодня</div>
-  </div>
-
-  <div class="card"
-       onclick="usefulSearch('погода Одесса завтра')">
-    🌤 Завтра
-    <div class="info">Прогноз на завтра</div>
-  </div>
-
-  <div class="card"
-       onclick="usefulSearch('погода Одесса на неделю')">
-    📆 На неделю
-    <div class="info">Прогноз на ближайшие дни</div>
-  </div>
-
-  <div class="card"
-       onclick="usefulSearch('температура моря Одесса сегодня')">
-    🌊 Температура моря
-  </div>
-
-</div>
-
-
-<!-- ================= 💱 ВАЛЮТА ================= -->
-
-<div id="currency" class="section">
-
-  <div class="back" onclick="goHome()">← На главную</div>
-
-  <div class="section-title">💱 Курс валют</div>
-
-  <div class="card"
-       onclick="usefulSearch('курс доллара к гривне сегодня Украина')">
-    💵 USD — доллар
-    <div class="info">Актуальный курс доллара</div>
-  </div>
-
-  <div class="card"
-       onclick="usefulSearch('курс евро к гривне сегодня Украина')">
-    💶 EUR — евро
-    <div class="info">Актуальный курс евро</div>
-  </div>
-
-  <div class="card"
-       onclick="usefulSearch('курс злотого к гривне сегодня')">
-    🇵🇱 PLN — злотый
-  </div>
-
-  <div class="card"
-       onclick="usefulSearch('НБУ официальный курс валют сегодня')">
-    🏦 Официальный курс НБУ
-  </div>
-
-  <div class="card"
-       onclick="usefulMap('обмен валют Одесса')">
-    📍 Обмен валют рядом
-    <div class="info">Пункты обмена на карте</div>
-  </div>
-
-</div>
-
-
-<!-- ================= ❤️ ПОДБОРКИ ================= -->
-
-<div id="collections" class="section">
-
-  <div class="back" onclick="goHome()">← На главную</div>
-
-  <div class="section-title">❤️ Подборки Одессы</div>
-
-  <div class="card"
-       onclick="openSection('food')">
-    ❤️ Романтический вечер
-    <div class="info">Перейти в «Где поесть»</div>
-  </div>
-
-  <div class="card"
-       onclick="openSection('leisure')">
-    👨‍👩‍👧 Куда сходить с детьми
-    <div class="info">Идеи в разделе «Отдых»</div>
-  </div>
-
-  <div class="card"
-       onclick="openSection('leisure')">
-    🌊 Отдых у моря
-    <div class="info">Перейти в раздел «Отдых»</div>
-  </div>
-
-  <div class="card"
-       onclick="openSection('food')">
-    ☕ Кофе и десерты
-    <div class="info">Перейти в «Где поесть»</div>
-  </div>
-
-  <div class="card"
-       onclick="openSection('leisure')">
-    🎉 Чем заняться на выходных
-    <div class="info">Перейти в раздел «Отдых»</div>
-  </div>
-
-  <div class="card"
-       onclick="openSection('shopping')">
-    🛍 За покупками
-    <div class="info">Перейти в раздел «Покупки»</div>
-  </div>
-
-  <div class="card"
-       onclick="openSection('transport')">
-    🚌 Как добраться
-    <div class="info">Перейти в раздел «Транспорт»</div>
-  </div>
-
-</div>
-
-
-<!-- ================================================== -->
-<!-- ⚙️ ФУНКЦИИ ПОЛЕЗНОГО -->
-<!-- ================================================== -->
 
 <script>
 
@@ -561,7 +325,46 @@ function guideSearch() {
 
 }
 
+function homeGuideSearch() {
+  const input = document.getElementById("homeSearchInput");
+  const results = document.getElementById("homeSearchResults");
 
+  if (!input || !results) return;
+
+  const query = input.value.toLowerCase().trim();
+  results.innerHTML = "";
+
+  if (query.length < 2) return;
+
+  const found = guideSearchData.filter(item =>
+    item.name.toLowerCase().includes(query) ||
+    item.words.toLowerCase().includes(query)
+  );
+
+  if (found.length === 0) {
+    results.innerHTML =
+      '<div class="card">' +
+      '🔎 Ничего не найдено' +
+      '<div class="info">Попробуйте написать по-другому</div>' +
+      '</div>';
+    return;
+  }
+
+  found.forEach(item => {
+    const card = document.createElement("div");
+    card.className = "card";
+
+    card.innerHTML =
+      item.name +
+      '<div class="info">Открыть раздел</div>';
+
+    card.onclick = function() {
+      openSection(item.id);
+    };
+
+    results.appendChild(card);
+  });
+  }
 /* ⭐ ИЗБРАННОЕ */
 
 function getFavorites() {
