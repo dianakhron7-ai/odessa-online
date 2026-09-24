@@ -156,7 +156,7 @@ h1 {
     gap:12px;
   ">
 
-    <div onclick="openSection('nearMe')"
+    <div onclick="openNearMe()"
          style="
            padding:18px 10px;
            text-align:center;
@@ -170,7 +170,7 @@ h1 {
     </div>
 
 
-    <div onclick="openSection('weather')"
+    <div onclick="openWeather()"
          style="
            padding:18px 10px;
            text-align:center;
@@ -184,7 +184,7 @@ h1 {
     </div>
 
 
-    <div onclick="openSection('currency')"
+    <div onclick="openCurrency()"
          style="
            padding:18px 10px;
            text-align:center;
@@ -261,7 +261,7 @@ h1 {
   <div class="info">Экстренные службы, помощь и важная информация</div>
 </div>
 
-
+</div> <!-- КОНЕЦ HOME -->
 <script>
 
 const guideSearchData = [
@@ -6760,5 +6760,30 @@ function importantMap(query) {
 <!-- ===================================================== -->
 <!-- КОНЕЦ НЕДВИЖИМОСТИ / ОТДЫХА / ВАЖНОГО -->
 <!-- ===================================================== -->
+  <script>
+function openNearMe() {
+  window.open(
+    "https://www.google.com/maps/search/?api=1&query=" +
+    encodeURIComponent("кафе рестораны аптеки магазины рядом со мной"),
+    "_blank"
+  );
+}
+
+function openWeather() {
+  window.open(
+    "https://www.google.com/search?q=" +
+    encodeURIComponent("погода Одесса сегодня"),
+    "_blank"
+  );
+}
+
+function openCurrency() {
+  window.open(
+    "https://www.google.com/search?q=" +
+    encodeURIComponent("курс валют Одесса сегодня"),
+    "_blank"
+  );
+}
+  </script>
 </body>
 </html>
