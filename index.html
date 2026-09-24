@@ -264,17 +264,53 @@ h1 {
 </div> <!-- КОНЕЦ HOME -->
 <script>
 
-const guideSearchData = [
-  {name:"🚌 Транспорт", words:"транспорт маршрутка маршрутки трамвай трамваи троллейбус автобус вокзал такси", id:"transport"},
-  {name:"🏥 Медицина", words:"медицина врач больница поликлиника аптека стоматолог офтальмолог лор анализы доктор", id:"medicine"},
-  {name:"🏫 Образование", words:"образование школа садик детский сад университет колледж курсы репетитор", id:"education"},
-  {name:"🛍 Покупки", words:"покупки магазин супермаркет рынок одежда обувь техника косметика торговый центр", id:"shopping"},
-  {name:"🍽 Где поесть", words:"еда ресторан кафе кофе суши пицца бар завтрак десерт доставка покушать", id:"food"},
-  {name:"💼 Работа", words:"работа вакансия вакансии подработка зарплата трудоустройство", id:"work"},
-  {name:"🏠 Недвижимость", words:"недвижимость квартира дом аренда снять купить продать жилье", id:"realEstate"},
-  {name:"🎉 Отдых", words:"отдых развлечения погулять парк море пляж куда сходить развлечения", id:"leisure"},
-  {name:"🚨 Важное", words:"важное тревога укрытие свет вода газ экстренный полиция пожарная помощь", id:"important"}
-];
+/* 🔎 УМНЫЙ ПОИСК ПО ВСЕМУ СПРАВОЧНИКУ */
+
+function getAllGuideSearchItems() {
+  const items = [];
+  const seen = new Set();
+
+  document.querySelectorAll(".section").forEach(section => {
+    if (!section.id) return;
+
+    section.querySelectorAll(".card").forEach(card => {
+      const text = card.innerText
+        .replace(/\s+/g, " ")
+        .trim();
+
+      if (!text) return;
+
+      const title =
+        card.cloneNode(true).querySelector(".info")?.remove?.() || null;
+
+      const cleanTitle = text.split("\n")[0].trim() || text;
+
+      const key = section.id + "|" + cleanTitle.toLowerCase();
+
+      if (seen.has(key)) return;
+      seen.add(key);
+
+      items.push({
+        name: cleanTitle,
+        text: text.toLowerCase(),
+        sectionId: section.id,
+        card: card
+      });
+    });
+  });
+
+  return items;
+}
+
+
+function normalizeGuideText(text) {
+  return String(text || "")
+    .toLowerCase()
+    .replace(/ё/g, "е")
+    .replace(/[^\p{L}\p{N}\s№-]/gu, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
 
 
 function guideSearch() {
@@ -284,87 +320,121 @@ function guideSearch() {
 
   if (!input || !results) return;
 
-  const query = input.value.toLowerCase().trim();
+  const query = normalizeGuideText(input.value);
 
   results.innerHTML = "";
 
   if (query.length < 2) return;
 
-  const found = guideSearchData.filter(item =>
-    item.name.toLowerCase().includes(query) ||
-    item.words.toLowerCase().includes(query)
-  );
+  const words = query.split(" ").filter(Boolean);
+  const allItems = getAllGuideSearchItems();
+
+  const found = allItems.filter(item => {
+
+    const text = normalizeGuideText(
+      item.name + " " + item.text
+    );
+
+    return words.every(word => text.includes(word));
+
+  });
+
 
   if (found.length === 0) {
 
     results.innerHTML =
       '<div class="card">' +
       '🔎 Ничего не найдено' +
-      '<div class="info">Попробуйте написать по-другому</div>' +
+      '<div class="info">Попробуйте написать другое слово</div>' +
       '</div>';
 
     return;
   }
 
-  found.forEach(item => {
+
+  found.slice(0, 30).forEach(item => {
 
     const card = document.createElement("div");
-
     card.className = "card";
+
     card.innerHTML =
-      item.name +
-      '<div class="info">Открыть раздел</div>';
+      "🔎 " + item.name +
+      '<div class="info">Открыть</div>';
 
     card.onclick = function() {
-      openSection(item.id);
+
+      openSection(item.sectionId);
+
+      setTimeout(() => {
+
+        try {
+          item.card.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+          });
+
+          const oldOutline = item.card.style.outline;
+
+          item.card.style.outline =
+            "3px solid rgba(255,255,255,0.8)";
+
+          setTimeout(() => {
+            item.card.style.outline = oldOutline;
+          }, 1800);
+
+        } catch (e) {}
+
+      }, 150);
+
     };
 
     results.appendChild(card);
 
   });
-
 }
 
+
+/* 🔎 ПОИСК С ГЛАВНОЙ СТРАНИЦЫ */
+
 function homeGuideSearch() {
-  const input = document.getElementById("homeSearchInput");
-  const results = document.getElementById("homeSearchResults");
 
-  if (!input || !results) return;
+  const homeInput =
+    document.getElementById("homeGuideSearchInput");
 
-  const query = input.value.toLowerCase().trim();
-  results.innerHTML = "";
+  const guideInput =
+    document.getElementById("guideSearchInput");
 
-  if (query.length < 2) return;
+  if (!homeInput) return;
 
-  const found = guideSearchData.filter(item =>
-    item.name.toLowerCase().includes(query) ||
-    item.words.toLowerCase().includes(query)
-  );
-
-  if (found.length === 0) {
-    results.innerHTML =
-      '<div class="card">' +
-      '🔎 Ничего не найдено' +
-      '<div class="info">Попробуйте написать по-другому</div>' +
-      '</div>';
-    return;
+  if (guideInput) {
+    guideInput.value = homeInput.value;
   }
 
-  found.forEach(item => {
-    const card = document.createElement("div");
-    card.className = "card";
+  guideSearch();
+}
 
-    card.innerHTML =
-      item.name +
-      '<div class="info">Открыть раздел</div>';
 
-    card.onclick = function() {
-      openSection(item.id);
-    };
+/* 🔎 ПОИСК ПРИ ВВОДЕ */
 
-    results.appendChild(card);
-  });
+document.addEventListener("input", function(e) {
+
+  if (e.target.id === "guideSearchInput") {
+    guideSearch();
   }
+
+  if (e.target.id === "homeGuideSearchInput") {
+
+    const guideInput =
+      document.getElementById("guideSearchInput");
+
+    if (guideInput) {
+      guideInput.value = e.target.value;
+    }
+
+    guideSearch();
+  }
+
+});
 /* ⭐ ИЗБРАННОЕ */
 
 function getFavorites() {
