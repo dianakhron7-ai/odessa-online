@@ -141,25 +141,25 @@ h1 {
   <div class="info">Рестораны, кафе и доставка</div>
   </div>
 
-  <div class="card">
-    💼 Работа
-    <div class="info">Вакансии и полезная информация</div>
+  <div class="card" onclick="openSection('work')">
+  💼 Работа
+  <div class="info">Вакансии, подработка и поиск работы</div>
   </div>
 
-  <div class="card">
-    🏠 Недвижимость
-    <div class="info">Аренда, продажа и жильё</div>
+  <div class="card" onclick="openSection('realEstate')">
+  🏠 Недвижимость
+  <div class="info">Аренда, продажа и жильё</div>
   </div>
 
-  <div class="card">
-    🎉 Отдых
-    <div class="info">Куда сходить и чем заняться</div>
-  </div>
+  <div class="card" onclick="openSection('leisure')">
+  🎉 Отдых
+  <div class="info">Куда сходить, развлечения и отдых в Одессе</div>
+</div>
 
-  <div class="card">
-    🚨 Важное
-    <div class="info">Экстренные службы и важные контакты</div>
-  </div>
+<div class="card" onclick="openSection('important')">
+  🚨 Важное
+  <div class="info">Экстренные службы, помощь и важная информация</div>
+</div>
 
 </div>
 
@@ -3179,6 +3179,710 @@ function foodMap(query) {
 </script>
 
 <!-- ==================== КОНЕЦ ГДЕ ПОЕСТЬ ==================== -->
+  <!-- ==================== РАБОТА ==================== -->
+
+<div id="work" class="section">
+  <div class="back" onclick="goHome()">← Назад</div>
+  <div class="section-title">💼 Работа в Одессе</div>
+
+  <div class="card" onclick="openSection('workSearch')">
+    🔎 Все вакансии
+    <div class="info">Поиск актуальных вакансий в Одессе</div>
+  </div>
+
+  <div class="card" onclick="openSection('workNoExperience')">
+    🌱 Без опыта
+    <div class="info">Работа для начинающих</div>
+  </div>
+
+  <div class="card" onclick="openSection('workPartTime')">
+    ⏰ Подработка
+    <div class="info">Частичная занятость и подработка</div>
+  </div>
+
+  <div class="card" onclick="openSection('workStudents')">
+    🎓 Для студентов
+    <div class="info">Работа и подработка студентам</div>
+  </div>
+
+  <div class="card" onclick="openSection('workRemote')">
+    🏠 Удалённая работа
+    <div class="info">Работа онлайн и из дома</div>
+  </div>
+
+  <div class="card" onclick="openSection('workRestaurants')">
+    🍽 Рестораны и гостиницы
+    <div class="info">Повара, официанты, бариста и персонал</div>
+  </div>
+
+  <div class="card" onclick="openSection('workSales')">
+    🛒 Продавцы и кассиры
+    <div class="info">Магазины, супермаркеты и торговля</div>
+  </div>
+
+  <div class="card" onclick="openSection('workDrivers')">
+    🚗 Водители и курьеры
+    <div class="info">Водители, такси и доставка</div>
+  </div>
+
+  <div class="card" onclick="openSection('workWarehouse')">
+    📦 Склады и логистика
+    <div class="info">Кладовщики, комплектовщики и грузчики</div>
+  </div>
+
+  <div class="card" onclick="openSection('workConstruction')">
+    🏗 Строительство и ремонт
+    <div class="info">Мастера и рабочие специальности</div>
+  </div>
+
+  <div class="card" onclick="openSection('workProduction')">
+    🏭 Производство
+    <div class="info">Предприятия, фабрики и производство</div>
+  </div>
+
+  <div class="card" onclick="openSection('workBeauty')">
+    💇 Красота и спорт
+    <div class="info">Салоны красоты, мастера и фитнес</div>
+  </div>
+
+  <div class="card" onclick="openSection('workMedicine')">
+    🏥 Медицина и аптеки
+    <div class="info">Врачи, медсёстры и фармацевты</div>
+  </div>
+
+  <div class="card" onclick="openSection('workEducation')">
+    📚 Образование
+    <div class="info">Учителя, воспитатели и преподаватели</div>
+  </div>
+
+  <div class="card" onclick="openSection('workOffice')">
+    🏢 Офис и call-центр
+    <div class="info">Менеджеры, операторы и администраторы</div>
+  </div>
+
+  <div class="card" onclick="openSection('workIT')">
+    💻 IT и Digital
+    <div class="info">IT, дизайн, маркетинг и интернет</div>
+  </div>
+
+  <div class="card" onclick="openSection('workCleaning')">
+    🧹 Уборка и домашний персонал
+    <div class="info">Клининг, уборка и помощь по дому</div>
+  </div>
+
+  <div class="card" onclick="openSection('workSecurity')">
+    🛡 Охрана
+    <div class="info">Охранники и безопасность</div>
+  </div>
+
+  <div class="card" onclick="openSection('workSea')">
+    ⚓ Работа для моряков
+    <div class="info">Морские вакансии и крюинг</div>
+  </div>
+</div>
+
+<!-- ==================== КОНЕЦ РАБОТЫ ==================== -->
+  <!-- ==================== СОДЕРЖИМОЕ РАЗДЕЛА РАБОТА ==================== -->
+
+
+<!-- ВСЕ ВАКАНСИИ -->
+
+<div id="workSearch" class="section">
+  <div class="back" onclick="openSection('work')">← Работа</div>
+  <div class="section-title">🔎 Все вакансии</div>
+
+  <div class="card" onclick="workLink('https://www.work.ua/jobs-odesa/')">
+    💼 Work.ua
+    <div class="info">Все вакансии в Одессе</div>
+  </div>
+
+  <div class="card" onclick="workLink('https://robota.ua/zapros/odessa')">
+    💼 robota.ua
+    <div class="info">Актуальные вакансии в Одессе</div>
+  </div>
+
+  <div class="card" onclick="workSearchGoogle('вакансии Одесса сегодня')">
+    🔎 Свежие вакансии
+    <div class="info">Поиск новых предложений</div>
+  </div>
+
+  <div class="card" onclick="workSearchGoogle('работа Одесса вакансии')">
+    📋 Другие вакансии
+    <div class="info">Расширенный поиск работы</div>
+  </div>
+</div>
+
+
+<!-- БЕЗ ОПЫТА -->
+
+<div id="workNoExperience" class="section">
+  <div class="back" onclick="openSection('work')">← Работа</div>
+  <div class="section-title">🌱 Без опыта</div>
+
+  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa без опыта')">
+    💼 Work.ua
+    <div class="info">Работа без опыта</div>
+  </div>
+
+  <div class="card" onclick="workSearchGoogle('site:robota.ua Одесса без опыта')">
+    💼 robota.ua
+    <div class="info">Вакансии для начинающих</div>
+  </div>
+
+  <div class="card" onclick="workSearchGoogle('стажировка Одесса работа')">
+    🎯 Стажировки
+    <div class="info">Получить первый опыт</div>
+  </div>
+
+  <div class="card" onclick="workSearchGoogle('работа с обучением Одесса')">
+    📚 С обучением
+    <div class="info">Вакансии с обучением на месте</div>
+  </div>
+</div>
+
+
+<!-- ПОДРАБОТКА -->
+
+<div id="workPartTime" class="section">
+  <div class="back" onclick="openSection('work')">← Работа</div>
+  <div class="section-title">⏰ Подработка</div>
+
+  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa подработка')">
+    💼 Work.ua
+    <div class="info">Подработка в Одессе</div>
+  </div>
+
+  <div class="card" onclick="workLink('https://robota.ua/zapros/podrabotka/odessa')">
+    💼 robota.ua
+    <div class="info">Предложения подработки</div>
+  </div>
+
+  <div class="card" onclick="workSearchGoogle('работа неполный день Одесса')">
+    🕐 Неполный день
+    <div class="info">Работа на несколько часов</div>
+  </div>
+
+  <div class="card" onclick="workSearchGoogle('работа выходного дня Одесса')">
+    📅 На выходные
+    <div class="info">Дополнительная работа</div>
+  </div>
+</div>
+
+
+<!-- СТУДЕНТАМ -->
+
+<div id="workStudents" class="section">
+  <div class="back" onclick="openSection('work')">← Работа</div>
+  <div class="section-title">🎓 Для студентов</div>
+
+  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa студент')">
+    🎓 Работа студентам
+    <div class="info">Вакансии на Work.ua</div>
+  </div>
+
+  <div class="card" onclick="workSearchGoogle('site:robota.ua Одесса студент работа')">
+    💼 robota.ua
+    <div class="info">Работа для студентов</div>
+  </div>
+
+  <div class="card" onclick="workSearchGoogle('подработка студент Одесса')">
+    ⏰ Подработка
+    <div class="info">Совмещать работу с учёбой</div>
+  </div>
+
+  <div class="card" onclick="workSearchGoogle('стажировка студент Одесса')">
+    🌱 Стажировки
+    <div class="info">Начало карьеры</div>
+  </div>
+</div>
+
+
+<!-- УДАЛЁННАЯ РАБОТА -->
+
+<div id="workRemote" class="section">
+  <div class="back" onclick="openSection('work')">← Работа</div>
+  <div class="section-title">🏠 Удалённая работа</div>
+
+  <div class="card" onclick="workSearchGoogle('site:work.ua удаленная работа Украина')">
+    💻 Work.ua
+    <div class="info">Удалённые вакансии</div>
+  </div>
+
+  <div class="card" onclick="workSearchGoogle('site:robota.ua удаленная работа Украина')">
+    💼 robota.ua
+    <div class="info">Работа из дома</div>
+  </div>
+
+  <div class="card" onclick="workSearchGoogle('remote вакансии Украина')">
+    🌐 Remote
+    <div class="info">Работа онлайн</div>
+  </div>
+
+  <div class="card" onclick="workSearchGoogle('фриланс вакансии Украина удаленно')">
+    🖥 Фриланс
+    <div class="info">Проекты и удалённая занятость</div>
+  </div>
+</div>
+
+
+<!-- РЕСТОРАНЫ И ГОСТИНИЦЫ -->
+
+<div id="workRestaurants" class="section">
+  <div class="back" onclick="openSection('work')">← Работа</div>
+  <div class="section-title">🍽 Рестораны и гостиницы</div>
+
+  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa повар')">
+    👨‍🍳 Повара
+    <div class="info">Вакансии поваров</div>
+  </div>
+
+  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa официант')">
+    🍽 Официанты
+    <div class="info">Работа в ресторанах и кафе</div>
+  </div>
+
+  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa бариста')">
+    ☕ Бариста
+    <div class="info">Работа в кофейнях</div>
+  </div>
+
+  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa бармен')">
+    🍹 Бармены
+    <div class="info">Бары и рестораны</div>
+  </div>
+
+  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa администратор ресторан')">
+    👩‍💼 Администраторы
+    <div class="info">Рестораны и гостиницы</div>
+  </div>
+
+  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa гостиница')">
+    🏨 Гостиницы
+    <div class="info">Работа в отелях Одессы</div>
+  </div>
+</div>
+
+
+<!-- ПРОДАВЦЫ -->
+
+<div id="workSales" class="section">
+  <div class="back" onclick="openSection('work')">← Работа</div>
+  <div class="section-title">🛒 Продавцы и кассиры</div>
+
+  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa продавец')">
+    🛍 Продавец
+    <div class="info">Магазины и торговые сети</div>
+  </div>
+
+  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa кассир')">
+    💳 Кассир
+    <div class="info">Магазины и супермаркеты</div>
+  </div>
+
+  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa продавец консультант')">
+    👗 Продавец-консультант
+    <div class="info">Одежда, обувь и другие товары</div>
+  </div>
+
+  <div class="card" onclick="workSearchGoogle('site:robota.ua Одесса продавец кассир')">
+    💼 Все вакансии
+    <div class="info">Продажи и торговля</div>
+  </div>
+</div>
+
+
+<!-- ВОДИТЕЛИ И КУРЬЕРЫ -->
+
+<div id="workDrivers" class="section">
+  <div class="back" onclick="openSection('work')">← Работа</div>
+  <div class="section-title">🚗 Водители и курьеры</div>
+
+  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa водитель')">
+    🚗 Водитель
+    <div class="info">Вакансии водителей</div>
+  </div>
+
+  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa водитель экспедитор')">
+    🚚 Водитель-экспедитор
+    <div class="info">Доставка товаров</div>
+  </div>
+
+  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa курьер')">
+    🛵 Курьер
+    <div class="info">Доставка заказов</div>
+  </div>
+
+  <div class="card" onclick="workSearchGoogle('работа водитель такси Одесса')">
+    🚕 Такси
+    <div class="info">Работа водителем такси</div>
+  </div>
+</div>
+
+
+<!-- СКЛАДЫ -->
+
+<div id="workWarehouse" class="section">
+  <div class="back" onclick="openSection('work')">← Работа</div>
+  <div class="section-title">📦 Склады и логистика</div>
+
+  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa кладовщик')">
+    📦 Кладовщик
+    <div class="info">Работа на складах</div>
+  </div>
+
+  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa комплектовщик')">
+    📋 Комплектовщик
+    <div class="info">Сбор заказов</div>
+  </div>
+
+  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa грузчик')">
+    💪 Грузчик
+    <div class="info">Погрузка и разгрузка</div>
+  </div>
+
+  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa логист')">
+    🚛 Логистика
+    <div class="info">Логисты и диспетчеры</div>
+  </div>
+</div>
+
+
+<!-- СТРОИТЕЛЬСТВО -->
+
+<div id="workConstruction" class="section">
+  <div class="back" onclick="openSection('work')">← Работа</div>
+  <div class="section-title">🏗 Строительство и ремонт</div>
+
+  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa строитель')">
+    🏗 Строители
+    <div class="info">Строительные вакансии</div>
+  </div>
+
+  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa электрик')">
+    ⚡ Электрики
+    <div class="info">Монтаж и обслуживание</div>
+  </div>
+
+  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa сантехник')">
+    🔧 Сантехники
+    <div class="info">Ремонт и обслуживание</div>
+  </div>
+
+  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa сварщик')">
+    🔥 Сварщики
+    <div class="info">Сварочные работы</div>
+  </div>
+
+  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa разнорабочий')">
+    👷 Разнорабочие
+    <div class="info">Работа на объектах</div>
+  </div>
+</div>
+
+
+<!-- ПРОИЗВОДСТВО -->
+
+<div id="workProduction" class="section">
+  <div class="back" onclick="openSection('work')">← Работа</div>
+  <div class="section-title">🏭 Производство</div>
+
+  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa производство')">
+    🏭 Все вакансии
+    <div class="info">Работа на производстве</div>
+  </div>
+
+  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa оператор производства')">
+    ⚙️ Оператор
+    <div class="info">Производственные линии</div>
+  </div>
+
+  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa упаковщик')">
+    📦 Упаковщик
+    <div class="info">Упаковка продукции</div>
+  </div>
+
+  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa рабочий производство')">
+    👷 Рабочий
+    <div class="info">Рабочие специальности</div>
+  </div>
+</div>
+
+
+<!-- КРАСОТА И СПОРТ -->
+
+<div id="workBeauty" class="section">
+  <div class="back" onclick="openSection('work')">← Работа</div>
+  <div class="section-title">💇 Красота и спорт</div>
+
+  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa парикмахер')">
+    💇 Парикмахеры
+    <div class="info">Салоны красоты</div>
+  </div>
+
+  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa мастер маникюра')">
+    💅 Мастера маникюра
+    <div class="info">Nail-вакансии</div>
+  </div>
+
+  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa косметолог')">
+    💆 Косметологи
+    <div class="info">Косметология и уход</div>
+  </div>
+
+  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa тренер фитнес')">
+    🏋️ Фитнес-тренеры
+    <div class="info">Спортзалы и фитнес-клубы</div>
+  </div>
+
+  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa администратор салона')">
+    👩‍💼 Администраторы
+    <div class="info">Салоны и студии</div>
+  </div>
+</div>
+
+
+<!-- МЕДИЦИНА -->
+
+<div id="workMedicine" class="section">
+  <div class="back" onclick="openSection('work')">← Работа</div>
+  <div class="section-title">🏥 Медицина и аптеки</div>
+
+  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa врач')">
+    👩‍⚕️ Врачи
+    <div class="info">Медицинские вакансии</div>
+  </div>
+
+  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa медсестра')">
+    🩺 Медсёстры
+    <div class="info">Больницы и клиники</div>
+  </div>
+
+  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa фармацевт')">
+    💊 Фармацевты
+    <div class="info">Работа в аптеках</div>
+  </div>
+
+  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa стоматолог')">
+    🦷 Стоматология
+    <div class="info">Стоматологи и ассистенты</div>
+  </div>
+
+  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa медицина фармацевтика')">
+    🏥 Все медицинские
+    <div class="info">Клиники, лаборатории и аптеки</div>
+  </div>
+</div>
+
+
+<!-- ОБРАЗОВАНИЕ -->
+
+<div id="workEducation" class="section">
+  <div class="back" onclick="openSection('work')">← Работа</div>
+  <div class="section-title">📚 Работа в образовании</div>
+
+  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa учитель')">
+    👩‍🏫 Учителя
+    <div class="info">Школы и учебные заведения</div>
+  </div>
+
+  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa воспитатель')">
+    🧸 Воспитатели
+    <div class="info">Детские сады и центры</div>
+  </div>
+
+  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa преподаватель')">
+    📖 Преподаватели
+    <div class="info">Курсы и учебные центры</div>
+  </div>
+
+  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa репетитор')">
+    ✏️ Репетиторы
+    <div class="info">Индивидуальное обучение</div>
+  </div>
+</div>
+
+
+<!-- ОФИС -->
+
+<div id="workOffice" class="section">
+  <div class="back" onclick="openSection('work')">← Работа</div>
+  <div class="section-title">🏢 Офис и call-центр</div>
+
+  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa администратор')">
+    👩‍💼 Администратор
+    <div class="info">Офисные вакансии</div>
+  </div>
+
+  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa менеджер')">
+    📊 Менеджер
+    <div class="info">Продажи и работа с клиентами</div>
+  </div>
+
+  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa оператор call центр')">
+    🎧 Call-центр
+    <div class="info">Операторы контакт-центра</div>
+  </div>
+
+  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa секретарь')">
+    🗂 Секретарь
+    <div class="info">Офис и администрация</div>
+  </div>
+
+  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa бухгалтер')">
+    💰 Бухгалтер
+    <div class="info">Бухгалтерия и финансы</div>
+  </div>
+</div>
+
+
+<!-- IT -->
+
+<div id="workIT" class="section">
+  <div class="back" onclick="openSection('work')">← Работа</div>
+  <div class="section-title">💻 IT и Digital</div>
+
+  <div class="card" onclick="workSearchGoogle('IT вакансии Одесса Work.ua')">
+    💻 IT-вакансии
+    <div class="info">Работа в IT</div>
+  </div>
+
+  <div class="card" onclick="workSearchGoogle('developer вакансии Одесса')">
+    👨‍💻 Разработчики
+    <div class="info">Frontend, Backend и другие направления</div>
+  </div>
+
+  <div class="card" onclick="workSearchGoogle('дизайнер вакансии Одесса')">
+    🎨 Дизайн
+    <div class="info">Графический и веб-дизайн</div>
+  </div>
+
+  <div class="card" onclick="workSearchGoogle('SMM вакансии Одесса')">
+    📱 SMM
+    <div class="info">Социальные сети и контент</div>
+  </div>
+
+  <div class="card" onclick="workSearchGoogle('маркетолог вакансии Одесса')">
+    📈 Маркетинг
+    <div class="info">Digital и реклама</div>
+  </div>
+
+  <div class="card" onclick="workSearchGoogle('QA вакансии Одесса')">
+    🧪 QA
+    <div class="info">Тестирование ПО</div>
+  </div>
+</div>
+
+
+<!-- УБОРКА -->
+
+<div id="workCleaning" class="section">
+  <div class="back" onclick="openSection('work')">← Работа</div>
+  <div class="section-title">🧹 Уборка и домашний персонал</div>
+
+  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa уборщица')">
+    🧹 Уборка
+    <div class="info">Офисы, магазины и заведения</div>
+  </div>
+
+  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa клинер')">
+    🧽 Клинер
+    <div class="info">Клининговые вакансии</div>
+  </div>
+
+  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa горничная')">
+    🏨 Горничная
+    <div class="info">Отели и апартаменты</div>
+  </div>
+
+  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa няня')">
+    👶 Няня
+    <div class="info">Работа с детьми</div>
+  </div>
+</div>
+
+
+<!-- ОХРАНА -->
+
+<div id="workSecurity" class="section">
+  <div class="back" onclick="openSection('work')">← Работа</div>
+  <div class="section-title">🛡 Охрана</div>
+
+  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa охранник')">
+    🛡 Охранник
+    <div class="info">Магазины, офисы и объекты</div>
+  </div>
+
+  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa безопасность')">
+    🔐 Безопасность
+    <div class="info">Службы безопасности</div>
+  </div>
+
+  <div class="card" onclick="workSearchGoogle('site:robota.ua Одесса охранник')">
+    💼 robota.ua
+    <div class="info">Другие вакансии охраны</div>
+  </div>
+</div>
+
+
+<!-- МОРЯКИ -->
+
+<div id="workSea" class="section">
+  <div class="back" onclick="openSection('work')">← Работа</div>
+  <div class="section-title">⚓ Работа для моряков</div>
+
+  <div class="card" onclick="workSearchGoogle('вакансии морякам Одесса crewing')">
+    ⚓ Морские вакансии
+    <div class="info">Поиск актуальных предложений</div>
+  </div>
+
+  <div class="card" onclick="workSearchGoogle('E-Crewing Odessa вакансии')">
+    🚢 E-Crewing
+    <div class="info">Крюинговые вакансии</div>
+  </div>
+
+  <div class="card" onclick="workSearchGoogle('Anglo Eastern Ukraine Одесса вакансии морякам')">
+    🚢 Anglo-Eastern Ukraine
+    <div class="info">Работа для моряков</div>
+  </div>
+
+  <div class="card" onclick="workSearchGoogle('Yialos Manning Services Одесса вакансии')">
+    🚢 Yialos Manning Services
+    <div class="info">Морской персонал</div>
+  </div>
+
+  <div class="card" onclick="workSearchGoogle('Admiral Crew Management Одесса вакансии')">
+    🚢 Admiral Crew Management
+    <div class="info">Крюинг в Одессе</div>
+  </div>
+
+  <div class="card" onclick="workSearchGoogle('Aqua Navigation Crew Одесса вакансии')">
+    🚢 Aqua-Navigation
+    <div class="info">Морские вакансии</div>
+  </div>
+
+  <div class="card" onclick="workSearchGoogle('Ismira Odessa вакансии')">
+    🚢 Ismira Odessa
+    <div class="info">Работа на судах</div>
+  </div>
+</div>
+
+
+<!-- ==================== ФУНКЦИИ РАБОТЫ ==================== -->
+
+<script>
+function workLink(url) {
+  window.open(url, "_blank");
+}
+
+function workSearchGoogle(query) {
+  window.open(
+    "https://www.google.com/search?q=" + encodeURIComponent(query),
+    "_blank"
+  );
+}
+</script>
+
+<!-- ==================== КОНЕЦ СОДЕРЖИМОГО РАБОТЫ ==================== -->
   <!-- ОБРАЗОВАНИЕ -->
 
 <div id="education" class="section">
@@ -4806,6 +5510,851 @@ function openTrolley(number) {
 }
 
     </script>
+<!-- ===================================================== -->
+<!-- 🏠 НЕДВИЖИМОСТЬ -->
+<!-- ===================================================== -->
 
+<div id="realEstate" class="section">
+  <div class="back" onclick="goHome()">← Назад</div>
+  <div class="section-title">🏠 Недвижимость в Одессе</div>
+
+  <div class="card" onclick="openSection('rentApartment')">
+    🔑 Снять квартиру
+    <div class="info">Долгосрочная аренда квартир</div>
+  </div>
+
+  <div class="card" onclick="openSection('buyApartment')">
+    🏢 Купить квартиру
+    <div class="info">Продажа квартир в Одессе</div>
+  </div>
+
+  <div class="card" onclick="openSection('rentHouse')">
+    🏡 Аренда дома
+    <div class="info">Дома, коттеджи и таунхаусы</div>
+  </div>
+
+  <div class="card" onclick="openSection('buyHouse')">
+    🏘 Купить дом
+    <div class="info">Продажа домов</div>
+  </div>
+
+  <div class="card" onclick="openSection('rooms')">
+    🛏 Комнаты
+    <div class="info">Аренда и продажа комнат</div>
+  </div>
+
+  <div class="card" onclick="openSection('dailyRent')">
+    🌊 Посуточная аренда
+    <div class="info">Квартиры и жильё на несколько дней</div>
+  </div>
+
+  <div class="card" onclick="openSection('newBuildings')">
+    🏗 Новостройки
+    <div class="info">Новые жилые комплексы Одессы</div>
+  </div>
+
+  <div class="card" onclick="openSection('commercialEstate')">
+    🏪 Коммерческая недвижимость
+    <div class="info">Офисы, магазины, склады и помещения</div>
+  </div>
+
+  <div class="card" onclick="openSection('landPlots')">
+    🌳 Земельные участки
+    <div class="info">Продажа земли и участков</div>
+  </div>
+
+  <div class="card" onclick="openSection('garages')">
+    🚗 Гаражи и паркоместа
+    <div class="info">Продажа и аренда</div>
+  </div>
+
+  <div class="card" onclick="openSection('estateAgencies')">
+    🏢 Агентства недвижимости
+    <div class="info">Риелторы и агентства Одессы</div>
+  </div>
+</div>
+
+
+<!-- СНЯТЬ КВАРТИРУ -->
+
+<div id="rentApartment" class="section">
+  <div class="back" onclick="openSection('realEstate')">← Недвижимость</div>
+  <div class="section-title">🔑 Снять квартиру</div>
+
+  <div class="card" onclick="estateSearch('аренда квартиры Одесса OLX')">
+    🏠 OLX
+    <div class="info">Объявления об аренде квартир</div>
+  </div>
+
+  <div class="card" onclick="estateSearch('аренда квартиры Одесса DIM.RIA')">
+    🏢 DIM.RIA
+    <div class="info">Квартиры в долгосрочную аренду</div>
+  </div>
+
+  <div class="card" onclick="estateSearch('аренда квартиры Одесса ЛУН')">
+    🔎 ЛУН
+    <div class="info">Поиск жилья в Одессе</div>
+  </div>
+
+  <div class="card" onclick="estateSearch('снять квартиру Одесса без посредников')">
+    👤 Без посредников
+    <div class="info">Поиск объявлений от владельцев</div>
+  </div>
+</div>
+
+
+<!-- КУПИТЬ КВАРТИРУ -->
+
+<div id="buyApartment" class="section">
+  <div class="back" onclick="openSection('realEstate')">← Недвижимость</div>
+  <div class="section-title">🏢 Купить квартиру</div>
+
+  <div class="card" onclick="estateSearch('купить квартиру Одесса DIM.RIA')">
+    🏢 DIM.RIA
+    <div class="info">Продажа квартир</div>
+  </div>
+
+  <div class="card" onclick="estateSearch('купить квартиру Одесса OLX')">
+    🏠 OLX
+    <div class="info">Объявления о продаже</div>
+  </div>
+
+  <div class="card" onclick="estateSearch('квартиры Одесса продажа ЛУН')">
+    🔎 ЛУН
+    <div class="info">Квартиры и жилые комплексы</div>
+  </div>
+
+  <div class="card" onclick="estateSearch('купить квартиру Одесса вторичный рынок')">
+    🏙 Вторичный рынок
+    <div class="info">Квартиры от владельцев и агентств</div>
+  </div>
+</div>
+
+
+<!-- АРЕНДА ДОМА -->
+
+<div id="rentHouse" class="section">
+  <div class="back" onclick="openSection('realEstate')">← Недвижимость</div>
+  <div class="section-title">🏡 Аренда дома</div>
+
+  <div class="card" onclick="estateSearch('аренда дома Одесса долгосрочно')">
+    🏡 Дома
+    <div class="info">Долгосрочная аренда домов</div>
+  </div>
+
+  <div class="card" onclick="estateSearch('аренда коттеджа Одесса')">
+    🏘 Коттеджи
+    <div class="info">Аренда коттеджей</div>
+  </div>
+
+  <div class="card" onclick="estateSearch('аренда таунхауса Одесса')">
+    🏠 Таунхаусы
+    <div class="info">Предложения по Одессе</div>
+  </div>
+</div>
+
+
+<!-- КУПИТЬ ДОМ -->
+
+<div id="buyHouse" class="section">
+  <div class="back" onclick="openSection('realEstate')">← Недвижимость</div>
+  <div class="section-title">🏘 Купить дом</div>
+
+  <div class="card" onclick="estateSearch('купить дом Одесса DIM.RIA')">
+    🏡 DIM.RIA
+    <div class="info">Дома на продажу</div>
+  </div>
+
+  <div class="card" onclick="estateSearch('купить дом Одесса OLX')">
+    🏠 OLX
+    <div class="info">Объявления о продаже домов</div>
+  </div>
+
+  <div class="card" onclick="estateSearch('купить таунхаус Одесса')">
+    🏘 Таунхаусы
+    <div class="info">Продажа таунхаусов</div>
+  </div>
+</div>
+
+
+<!-- КОМНАТЫ -->
+
+<div id="rooms" class="section">
+  <div class="back" onclick="openSection('realEstate')">← Недвижимость</div>
+  <div class="section-title">🛏 Комнаты</div>
+
+  <div class="card" onclick="estateSearch('снять комнату Одесса')">
+    🔑 Снять комнату
+    <div class="info">Долгосрочная аренда</div>
+  </div>
+
+  <div class="card" onclick="estateSearch('купить комнату Одесса')">
+    🏠 Купить комнату
+    <div class="info">Объявления о продаже</div>
+  </div>
+
+  <div class="card" onclick="estateSearch('подселение Одесса комната')">
+    👥 Подселение
+    <div class="info">Совместная аренда жилья</div>
+  </div>
+</div>
+
+
+<!-- ПОСУТОЧНО -->
+
+<div id="dailyRent" class="section">
+  <div class="back" onclick="openSection('realEstate')">← Недвижимость</div>
+  <div class="section-title">🌊 Посуточная аренда</div>
+
+  <div class="card" onclick="estateSearch('квартира посуточно Одесса')">
+    🏠 Квартиры
+    <div class="info">Жильё на несколько дней</div>
+  </div>
+
+  <div class="card" onclick="estateSearch('апартаменты Одесса посуточно')">
+    🌊 Апартаменты
+    <div class="info">Посуточная аренда</div>
+  </div>
+
+  <div class="card" onclick="estateSearch('дом посуточно Одесса')">
+    🏡 Дома
+    <div class="info">Дома для краткосрочной аренды</div>
+  </div>
+</div>
+
+
+<!-- НОВОСТРОЙКИ -->
+
+<div id="newBuildings" class="section">
+  <div class="back" onclick="openSection('realEstate')">← Недвижимость</div>
+  <div class="section-title">🏗 Новостройки</div>
+
+  <div class="card" onclick="estateSearch('новостройки Одесса ЛУН')">
+    🏗 ЛУН
+    <div class="info">Каталог новостроек</div>
+  </div>
+
+  <div class="card" onclick="estateSearch('новостройки Одесса DIM.RIA')">
+    🏢 DIM.RIA
+    <div class="info">Новые жилые комплексы</div>
+  </div>
+
+  <div class="card" onclick="estateSearch('жилые комплексы Одесса новостройки')">
+    🌆 Все ЖК
+    <div class="info">Поиск жилых комплексов Одессы</div>
+  </div>
+</div>
+
+
+<!-- КОММЕРЧЕСКАЯ -->
+
+<div id="commercialEstate" class="section">
+  <div class="back" onclick="openSection('realEstate')">← Недвижимость</div>
+  <div class="section-title">🏪 Коммерческая недвижимость</div>
+
+  <div class="card" onclick="estateSearch('аренда офиса Одесса')">🏢 Офисы</div>
+  <div class="card" onclick="estateSearch('аренда магазина помещение Одесса')">🛍 Торговые помещения</div>
+  <div class="card" onclick="estateSearch('аренда склад Одесса')">📦 Склады</div>
+  <div class="card" onclick="estateSearch('коммерческая недвижимость Одесса продажа')">💰 Продажа помещений</div>
+</div>
+
+
+<!-- ЗЕМЛЯ -->
+
+<div id="landPlots" class="section">
+  <div class="back" onclick="openSection('realEstate')">← Недвижимость</div>
+  <div class="section-title">🌳 Земельные участки</div>
+
+  <div class="card" onclick="estateSearch('земельный участок Одесса продажа')">🌳 Все участки</div>
+  <div class="card" onclick="estateSearch('участок под строительство Одесса')">🏡 Под строительство</div>
+  <div class="card" onclick="estateSearch('земля Одесса область продажа')">📍 Одесса и область</div>
+</div>
+
+
+<!-- ГАРАЖИ -->
+
+<div id="garages" class="section">
+  <div class="back" onclick="openSection('realEstate')">← Недвижимость</div>
+  <div class="section-title">🚗 Гаражи и паркоместа</div>
+
+  <div class="card" onclick="estateSearch('гараж Одесса продажа')">🚗 Купить гараж</div>
+  <div class="card" onclick="estateSearch('гараж Одесса аренда')">🔑 Арендовать гараж</div>
+  <div class="card" onclick="estateSearch('паркоместо Одесса продажа аренда')">🅿️ Паркоместа</div>
+</div>
+
+
+<!-- АГЕНТСТВА -->
+
+<div id="estateAgencies" class="section">
+  <div class="back" onclick="openSection('realEstate')">← Недвижимость</div>
+  <div class="section-title">🏢 Агентства недвижимости</div>
+
+  <div class="card" onclick="estateMap('агентства недвижимости Одесса')">
+    🏢 Все агентства
+    <div class="info">Показать агентства на карте</div>
+  </div>
+
+  <div class="card" onclick="estateMap('риелтор Одесса')">
+    👤 Риелторы
+    <div class="info">Специалисты по недвижимости</div>
+  </div>
+</div>
+
+
+<!-- ===================================================== -->
+<!-- 🎉 ОТДЫХ -->
+<!-- ===================================================== -->
+
+<div id="leisure" class="section">
+  <div class="back" onclick="goHome()">← Назад</div>
+  <div class="section-title">🎉 Отдых в Одессе</div>
+
+  <div class="card" onclick="openSection('beaches')">🏖 Пляжи</div>
+  <div class="card" onclick="openSection('parks')">🌳 Парки и прогулки</div>
+  <div class="card" onclick="openSection('attractions')">📍 Достопримечательности</div>
+  <div class="card" onclick="openSection('museums')">🏛 Музеи</div>
+  <div class="card" onclick="openSection('theaters')">🎭 Театры</div>
+  <div class="card" onclick="openSection('cinemas')">🎬 Кинотеатры</div>
+  <div class="card" onclick="openSection('clubs')">🎵 Клубы и ночная жизнь</div>
+  <div class="card" onclick="openSection('concerts')">🎤 Концерты</div>
+  <div class="card" onclick="openSection('events')">🎉 Афиша и мероприятия</div>
+  <div class="card" onclick="openSection('kidsFun')">👨‍👩‍👧 Отдых с детьми</div>
+  <div class="card" onclick="openSection('entertainment')">🎯 Развлечения</div>
+  <div class="card" onclick="openSection('questRooms')">🔐 Квест-комнаты</div>
+  <div class="card" onclick="openSection('bowling')">🎳 Боулинг и бильярд</div>
+  <div class="card" onclick="openSection('spa')">💆 SPA и сауны</div>
+  <div class="card" onclick="openSection('fitness')">🏋️ Спорт и фитнес</div>
+  <div class="card" onclick="openSection('excursions')">🚌 Экскурсии</div>
+  <div class="card" onclick="openSection('photoPlaces')">📸 Места для фото</div>
+</div>
+
+
+<div id="beaches" class="section">
+  <div class="back" onclick="openSection('leisure')">← Отдых</div>
+  <div class="section-title">🏖 Пляжи</div>
+
+  <div class="card" onclick="leisureMap('Ланжерон Одесса')">🏖 Ланжерон</div>
+  <div class="card" onclick="leisureMap('Отрада пляж Одесса')">🌊 Отрада</div>
+  <div class="card" onclick="leisureMap('Аркадия пляж Одесса')">🏖 Аркадия</div>
+  <div class="card" onclick="leisureMap('Дельфин пляж Одесса')">🌊 Дельфин</div>
+  <div class="card" onclick="leisureMap('Золотой берег пляж Одесса')">🏖 Золотой берег</div>
+  <div class="card" onclick="leisureMap('Лузановка пляж Одесса')">🌊 Лузановка</div>
+</div>
+
+
+<div id="parks" class="section">
+  <div class="back" onclick="openSection('leisure')">← Отдых</div>
+  <div class="section-title">🌳 Парки и прогулки</div>
+
+  <div class="card" onclick="leisureMap('Парк Шевченко Одесса')">🌳 Парк Шевченко</div>
+  <div class="card" onclick="leisureMap('Стамбульский парк Одесса')">🌿 Стамбульский парк</div>
+  <div class="card" onclick="leisureMap('Греческий парк Одесса')">🌿 Греческий парк</div>
+  <div class="card" onclick="leisureMap('Дендропарк Победы Одесса')">🌳 Парк Победы</div>
+  <div class="card" onclick="leisureMap('Трасса здоровья Одесса')">🚶 Трасса здоровья</div>
+</div>
+
+
+<div id="attractions" class="section">
+  <div class="back" onclick="openSection('leisure')">← Отдых</div>
+  <div class="section-title">📍 Достопримечательности</div>
+
+  <div class="card" onclick="leisureMap('Потемкинская лестница Одесса')">🪜 Потёмкинская лестница</div>
+  <div class="card" onclick="leisureMap('Приморский бульвар Одесса')">🌊 Приморский бульвар</div>
+  <div class="card" onclick="leisureMap('Дерибасовская улица Одесса')">🏙 Дерибасовская</div>
+  <div class="card" onclick="leisureMap('Пассаж Одесса')">🏛 Пассаж</div>
+  <div class="card" onclick="leisureMap('Воронцовская колоннада Одесса')">🏛 Воронцовская колоннада</div>
+  <div class="card" onclick="leisureMap('Дом с одной стеной Одесса')">🏠 Дом с одной стеной</div>
+</div>
+
+
+<div id="museums" class="section">
+  <div class="back" onclick="openSection('leisure')">← Отдых</div>
+  <div class="section-title">🏛 Музеи</div>
+
+  <div class="card" onclick="leisureMap('Археологический музей Одесса')">🏺 Археологический музей</div>
+  <div class="card" onclick="leisureMap('Музей западного и восточного искусства Одесса')">🖼 Западного и восточного искусства</div>
+  <div class="card" onclick="leisureMap('Одесский художественный музей')">🎨 Художественный музей</div>
+  <div class="card" onclick="leisureMap('Литературный музей Одесса')">📚 Литературный музей</div>
+  <div class="card" onclick="leisureMap('Музей интересной науки Одесса')">🔬 Музей интересной науки</div>
+</div>
+
+
+<div id="theaters" class="section">
+  <div class="back" onclick="openSection('leisure')">← Отдых</div>
+  <div class="section-title">🎭 Театры</div>
+
+  <div class="card" onclick="leisureMap('Одесский национальный академический театр оперы и балета')">🎭 Оперный театр</div>
+  <div class="card" onclick="leisureMap('Украинский театр Одесса')">🎭 Украинский театр</div>
+  <div class="card" onclick="leisureMap('Театр музыкальной комедии Одесса')">🎶 Музыкальная комедия</div>
+  <div class="card" onclick="leisureMap('Театр юного зрителя Одесса')">🎭 ТЮЗ</div>
+</div>
+
+
+<div id="cinemas" class="section">
+  <div class="back" onclick="openSection('leisure')">← Отдых</div>
+  <div class="section-title">🎬 Кинотеатры</div>
+
+  <div class="card" onclick="leisureMap('кинотеатр Одесса')">
+    🎬 Все кинотеатры
+    <div class="info">Показать на карте</div>
+  </div>
+
+  <div class="card" onclick="leisureSearch('афиша кино Одесса сегодня')">
+    🎟 Афиша кино
+    <div class="info">Что идёт сегодня</div>
+  </div>
+</div>
+
+
+<div id="clubs" class="section">
+  <div class="back" onclick="openSection('leisure')">← Отдых</div>
+  <div class="section-title">🎵 Клубы и ночная жизнь</div>
+
+  <div class="card" onclick="leisureMap('ночные клубы Одесса')">🎵 Ночные клубы</div>
+  <div class="card" onclick="leisureMap('караоке Одесса')">🎤 Караоке</div>
+  <div class="card" onclick="leisureMap('лаунж бар Одесса')">🍸 Lounge-бары</div>
+</div>
+
+
+<div id="concerts" class="section">
+  <div class="back" onclick="openSection('leisure')">← Отдых</div>
+  <div class="section-title">🎤 Концерты</div>
+
+  <div class="card" onclick="leisureSearch('концерты Одесса сегодня')">🎤 Сегодня</div>
+  <div class="card" onclick="leisureSearch('концерты Одесса афиша')">🎫 Афиша концертов</div>
+  <div class="card" onclick="leisureSearch('билеты концерты Одесса')">🎟 Билеты</div>
+</div>
+
+
+<div id="events" class="section">
+  <div class="back" onclick="openSection('leisure')">← Отдых</div>
+  <div class="section-title">🎉 Афиша и мероприятия</div>
+
+  <div class="card" onclick="leisureSearch('Одесса афиша сегодня мероприятия')">📅 Сегодня</div>
+  <div class="card" onclick="leisureSearch('Одесса афиша выходные')">🎉 На выходных</div>
+  <div class="card" onclick="leisureSearch('Одесса мероприятия детям')">👨‍👩‍👧 Детям</div>
+  <div class="card" onclick="leisureSearch('Одесса выставки афиша')">🖼 Выставки</div>
+</div>
+
+
+<div id="kidsFun" class="section">
+  <div class="back" onclick="openSection('leisure')">← Отдых</div>
+  <div class="section-title">👨‍👩‍👧 Отдых с детьми</div>
+
+  <div class="card" onclick="leisureMap('детские развлекательные центры Одесса')">🎠 Развлекательные центры</div>
+  <div class="card" onclick="leisureMap('детские игровые комнаты Одесса')">🧸 Игровые комнаты</div>
+  <div class="card" onclick="leisureMap('зоопарк Одесса')">🦁 Зоопарк</div>
+  <div class="card" onclick="leisureMap('аквапарк Одесса')">🌊 Аквапарки</div>
+</div>
+
+
+<div id="entertainment" class="section">
+  <div class="back" onclick="openSection('leisure')">← Отдых</div>
+  <div class="section-title">🎯 Развлечения</div>
+
+  <div class="card" onclick="leisureMap('развлекательные центры Одесса')">🎯 Развлекательные центры</div>
+  <div class="card" onclick="leisureMap('VR клуб Одесса')">🥽 VR-клубы</div>
+  <div class="card" onclick="leisureMap('картинг Одесса')">🏎 Картинг</div>
+  <div class="card" onclick="leisureMap('роллердром Одесса')">🛼 Роллердромы</div>
+</div>
+
+
+<div id="questRooms" class="section">
+  <div class="back" onclick="openSection('leisure')">← Отдых</div>
+  <div class="section-title">🔐 Квест-комнаты</div>
+
+  <div class="card" onclick="leisureMap('квест комнаты Одесса')">
+    🔐 Все квесты
+    <div class="info">Показать квест-комнаты на карте</div>
+  </div>
+</div>
+
+
+<div id="bowling" class="section">
+  <div class="back" onclick="openSection('leisure')">← Отдых</div>
+  <div class="section-title">🎳 Боулинг и бильярд</div>
+
+  <div class="card" onclick="leisureMap('боулинг Одесса')">🎳 Боулинг</div>
+  <div class="card" onclick="leisureMap('бильярд Одесса')">🎱 Бильярд</div>
+</div>
+
+
+<div id="spa" class="section">
+  <div class="back" onclick="openSection('leisure')">← Отдых</div>
+  <div class="section-title">💆 SPA и сауны</div>
+
+  <div class="card" onclick="leisureMap('SPA Одесса')">💆 SPA</div>
+  <div class="card" onclick="leisureMap('сауна Одесса')">🔥 Сауны</div>
+  <div class="card" onclick="leisureMap('баня Одесса')">🧖 Бани</div>
+  <div class="card" onclick="leisureMap('массаж Одесса')">💆 Массаж</div>
+</div>
+
+
+<div id="fitness" class="section">
+  <div class="back" onclick="openSection('leisure')">← Отдых</div>
+  <div class="section-title">🏋️ Спорт и фитнес</div>
+
+  <div class="card" onclick="leisureMap('фитнес клуб Одесса')">🏋️ Фитнес-клубы</div>
+  <div class="card" onclick="leisureMap('тренажерный зал Одесса')">💪 Тренажёрные залы</div>
+  <div class="card" onclick="leisureMap('бассейн Одесса')">🏊 Бассейны</div>
+  <div class="card" onclick="leisureMap('теннис Одесса')">🎾 Теннис</div>
+</div>
+
+
+<div id="excursions" class="section">
+  <div class="back" onclick="openSection('leisure')">← Отдых</div>
+  <div class="section-title">🚌 Экскурсии</div>
+
+  <div class="card" onclick="leisureSearch('экскурсии по Одессе')">🚶 Пешие экскурсии</div>
+  <div class="card" onclick="leisureSearch('автобусные экскурсии Одесса')">🚌 Автобусные экскурсии</div>
+  <div class="card" onclick="leisureSearch('экскурсия катакомбы Одесса')">🔦 Катакомбы</div>
+</div>
+
+
+<div id="photoPlaces" class="section">
+  <div class="back" onclick="openSection('leisure')">← Отдых</div>
+  <div class="section-title">📸 Красивые места для фото</div>
+
+  <div class="card" onclick="leisureMap('Приморский бульвар Одесса')">🌊 Приморский бульвар</div>
+  <div class="card" onclick="leisureMap('Воронцовская колоннада Одесса')">🏛 Воронцовская колоннада</div>
+  <div class="card" onclick="leisureMap('Стамбульский парк Одесса')">🌿 Стамбульский парк</div>
+  <div class="card" onclick="leisureMap('Одесский Пассаж')">🏛 Пассаж</div>
+  <div class="card" onclick="leisureMap('Ланжерон Одесса')">🌅 Ланжерон</div>
+</div>
+
+
+<!-- ===================================================== -->
+<!-- 🚨 ВАЖНОЕ -->
+<!-- ===================================================== -->
+
+<div id="important" class="section">
+  <div class="back" onclick="goHome()">← Назад</div>
+  <div class="section-title">🚨 Важное</div>
+
+  <div class="card" onclick="openSection('emergency')">🆘 Экстренные службы</div>
+  <div class="card" onclick="openSection('shelters')">🛡 Укрытия</div>
+  <div class="card" onclick="openSection('alerts')">🚨 Воздушная тревога</div>
+  <div class="card" onclick="openSection('powerOutages')">💡 Отключения света</div>
+  <div class="card" onclick="openSection('waterOutages')">💧 Отключения воды</div>
+  <div class="card" onclick="openSection('gasEmergency')">🔥 Газовая служба</div>
+  <div class="card" onclick="openSection('policeInfo')">👮 Полиция</div>
+  <div class="card" onclick="openSection('ambulanceInfo')">🚑 Скорая помощь</div>
+  <div class="card" onclick="openSection('rescueService')">🚒 Спасатели</div>
+  <div class="card" onclick="openSection('hospitalsEmergency')">🏥 Больницы и травмпункты</div>
+  <div class="card" onclick="openSection('pharmacies24')">💊 Круглосуточные аптеки</div>
+  <div class="card" onclick="openSection('lostFound')">🔎 Потеряно / найдено</div>
+  <div class="card" onclick="openSection('documents')">📄 Документы и госуслуги</div>
+  <div class="card" onclick="openSection('helpCenters')">🤝 Центры помощи</div>
+  <div class="card" onclick="openSection('usefulPhones')">☎️ Полезные телефоны</div>
+</div>
+
+
+<div id="emergency" class="section">
+  <div class="back" onclick="openSection('important')">← Важное</div>
+  <div class="section-title">🆘 Экстренные службы</div>
+
+  <div class="card" onclick="window.location.href='tel:112'">
+    🆘 112
+    <div class="info">Единый номер экстренной помощи</div>
+  </div>
+
+  <div class="card" onclick="window.location.href='tel:101'">
+    🚒 101
+    <div class="info">Пожарная и спасательная служба</div>
+  </div>
+
+  <div class="card" onclick="window.location.href='tel:102'">
+    👮 102
+    <div class="info">Полиция</div>
+  </div>
+
+  <div class="card" onclick="window.location.href='tel:103'">
+    🚑 103
+    <div class="info">Экстренная медицинская помощь</div>
+  </div>
+
+  <div class="card" onclick="window.location.href='tel:104'">
+    🔥 104
+    <div class="info">Аварийная газовая служба</div>
+  </div>
+</div>
+
+
+<div id="shelters" class="section">
+  <div class="back" onclick="openSection('important')">← Важное</div>
+  <div class="section-title">🛡 Укрытия</div>
+
+  <div class="card" onclick="importantSearch('официальная карта укрытий Одесса')">
+    🗺 Карта укрытий
+    <div class="info">Найти официальную актуальную карту</div>
+  </div>
+
+  <div class="card" onclick="importantMap('укрытие Одесса')">
+    📍 Укрытия рядом
+    <div class="info">Поиск на карте</div>
+  </div>
+</div>
+
+
+<div id="alerts" class="section">
+  <div class="back" onclick="openSection('important')">← Важное</div>
+  <div class="section-title">🚨 Воздушная тревога</div>
+
+  <div class="card" onclick="importantSearch('официальная карта воздушных тревог Украина')">
+    🚨 Карта тревог
+    <div class="info">Актуальная информация о тревогах</div>
+  </div>
+
+  <div class="card" onclick="importantSearch('Одесская область воздушная тревога официальный Telegram')">
+    📢 Официальные сообщения
+    <div class="info">Найти официальные источники</div>
+  </div>
+</div>
+
+
+<div id="powerOutages" class="section">
+  <div class="back" onclick="openSection('important')">← Важное</div>
+  <div class="section-title">💡 Отключения света</div>
+
+  <div class="card" onclick="importantSearch('ДТЭК Одесские электросети отключения официальный сайт')">
+    ⚡ Проверить отключение
+    <div class="info">Актуальная информация ДТЭК</div>
+  </div>
+
+  <div class="card" onclick="importantSearch('ДТЭК Одесса график отключений сегодня')">
+    📅 Графики
+    <div class="info">Поиск актуального графика</div>
+  </div>
+</div>
+
+
+<div id="waterOutages" class="section">
+  <div class="back" onclick="openSection('important')">← Важное</div>
+  <div class="section-title">💧 Отключения воды</div>
+
+  <div class="card" onclick="importantSearch('Инфоксводоканал Одесса отключение воды официальный')">
+    💧 Инфоксводоканал
+    <div class="info">Информация об авариях и отключениях</div>
+  </div>
+</div>
+
+
+<div id="gasEmergency" class="section">
+  <div class="back" onclick="openSection('important')">← Важное</div>
+  <div class="section-title">🔥 Газовая служба</div>
+
+  <div class="card" onclick="window.location.href='tel:104'">
+    ☎️ Позвонить 104
+    <div class="info">Аварийная газовая служба</div>
+  </div>
+
+  <div class="card" onclick="importantSearch('газовая служба Одесса официальный сайт')">
+    ℹ️ Информация
+    <div class="info">Официальные контакты и сообщения</div>
+  </div>
+</div>
+
+
+<div id="policeInfo" class="section">
+  <div class="back" onclick="openSection('important')">← Важное</div>
+  <div class="section-title">👮 Полиция</div>
+
+  <div class="card" onclick="window.location.href='tel:102'">
+    ☎️ Позвонить 102
+    <div class="info">Экстренный вызов полиции</div>
+  </div>
+
+  <div class="card" onclick="importantMap('отделение полиции Одесса')">
+    📍 Отделения полиции
+    <div class="info">Показать на карте</div>
+  </div>
+</div>
+
+
+<div id="ambulanceInfo" class="section">
+  <div class="back" onclick="openSection('important')">← Важное</div>
+  <div class="section-title">🚑 Скорая помощь</div>
+
+  <div class="card" onclick="window.location.href='tel:103'">
+    ☎️ Позвонить 103
+    <div class="info">Экстренная медицинская помощь</div>
+  </div>
+
+  <div class="card" onclick="window.location.href='tel:112'">
+    🆘 Позвонить 112
+    <div class="info">Единый номер экстренной помощи</div>
+  </div>
+</div>
+
+
+<div id="rescueService" class="section">
+  <div class="back" onclick="openSection('important')">← Важное</div>
+  <div class="section-title">🚒 Спасатели</div>
+
+  <div class="card" onclick="window.location.href='tel:101'">
+    ☎️ Позвонить 101
+    <div class="info">Пожарная и спасательная служба</div>
+  </div>
+
+  <div class="card" onclick="window.location.href='tel:112'">
+    🆘 Позвонить 112
+    <div class="info">Единый номер экстренной помощи</div>
+  </div>
+</div>
+
+
+<div id="hospitalsEmergency" class="section">
+  <div class="back" onclick="openSection('important')">← Важное</div>
+  <div class="section-title">🏥 Больницы и травмпункты</div>
+
+  <div class="card" onclick="importantMap('травмпункт Одесса')">
+    🩹 Травмпункты
+    <div class="info">Показать на карте</div>
+  </div>
+
+  <div class="card" onclick="importantMap('больница Одесса')">
+    🏥 Больницы
+    <div class="info">Показать на карте</div>
+  </div>
+
+  <div class="card" onclick="importantMap('детская больница Одесса')">
+    👶 Детские больницы
+    <div class="info">Показать на карте</div>
+  </div>
+</div>
+
+
+<div id="pharmacies24" class="section">
+  <div class="back" onclick="openSection('important')">← Важное</div>
+  <div class="section-title">💊 Круглосуточные аптеки</div>
+
+  <div class="card" onclick="importantMap('круглосуточная аптека Одесса')">
+    💊 Найти аптеку
+    <div class="info">Круглосуточные аптеки на карте</div>
+  </div>
+</div>
+
+
+<div id="lostFound" class="section">
+  <div class="back" onclick="openSection('important')">← Важное</div>
+  <div class="section-title">🔎 Потеряно / найдено</div>
+
+  <div class="card" onclick="importantSearch('потеряно найдено Одесса')">
+    🔎 Потерянные вещи
+    <div class="info">Поиск объявлений</div>
+  </div>
+
+  <div class="card" onclick="importantSearch('найдена собака кошка Одесса')">
+    🐾 Животные
+    <div class="info">Потерянные и найденные животные</div>
+  </div>
+</div>
+
+
+<div id="documents" class="section">
+  <div class="back" onclick="openSection('important')">← Важное</div>
+  <div class="section-title">📄 Документы и госуслуги</div>
+
+  <div class="card" onclick="importantSearch('ЦНАП Одесса официальный сайт')">
+    🏢 ЦНАП
+    <div class="info">Административные услуги</div>
+  </div>
+
+  <div class="card" onclick="importantSearch('Дія государственные услуги официальный сайт')">
+    📱 Дія
+    <div class="info">Государственные услуги онлайн</div>
+  </div>
+
+  <div class="card" onclick="importantMap('ЦНАП Одесса')">
+    📍 ЦНАП на карте
+    <div class="info">Найти ближайший центр</div>
+  </div>
+</div>
+
+
+<div id="helpCenters" class="section">
+  <div class="back" onclick="openSection('important')">← Важное</div>
+  <div class="section-title">🤝 Центры помощи</div>
+
+  <div class="card" onclick="importantMap('гуманитарная помощь Одесса')">
+    🤝 Гуманитарная помощь
+    <div class="info">Центры помощи на карте</div>
+  </div>
+
+  <div class="card" onclick="importantSearch('социальная помощь Одесса официальный')">
+    🏢 Социальная помощь
+    <div class="info">Городские и государственные службы</div>
+  </div>
+
+  <div class="card" onclick="importantMap('центр социальной помощи Одесса')">
+    📍 Центры на карте
+    <div class="info">Найти ближайший</div>
+  </div>
+</div>
+
+
+<div id="usefulPhones" class="section">
+  <div class="back" onclick="openSection('important')">← Важное</div>
+  <div class="section-title">☎️ Полезные телефоны</div>
+
+  <div class="card" onclick="window.location.href='tel:112'">🆘 112 — Экстренная помощь</div>
+  <div class="card" onclick="window.location.href='tel:101'">🚒 101 — Спасатели</div>
+  <div class="card" onclick="window.location.href='tel:102'">👮 102 — Полиция</div>
+  <div class="card" onclick="window.location.href='tel:103'">🚑 103 — Скорая помощь</div>
+  <div class="card" onclick="window.location.href='tel:104'">🔥 104 — Газовая служба</div>
+</div>
+
+
+<!-- ===================================================== -->
+<!-- ФУНКЦИИ ДЛЯ НЕДВИЖИМОСТИ / ОТДЫХА / ВАЖНОГО -->
+<!-- ===================================================== -->
+
+<script>
+function estateSearch(query) {
+  window.open(
+    "https://www.google.com/search?q=" + encodeURIComponent(query),
+    "_blank"
+  );
+}
+
+function estateMap(query) {
+  window.open(
+    "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(query),
+    "_blank"
+  );
+}
+
+function leisureSearch(query) {
+  window.open(
+    "https://www.google.com/search?q=" + encodeURIComponent(query),
+    "_blank"
+  );
+}
+
+function leisureMap(query) {
+  window.open(
+    "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(query),
+    "_blank"
+  );
+}
+
+function importantSearch(query) {
+  window.open(
+    "https://www.google.com/search?q=" + encodeURIComponent(query),
+    "_blank"
+  );
+}
+
+function importantMap(query) {
+  window.open(
+    "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(query),
+    "_blank"
+  );
+}
+</script>
+
+<!-- ===================================================== -->
+<!-- КОНЕЦ НЕДВИЖИМОСТИ / ОТДЫХА / ВАЖНОГО -->
+<!-- ===================================================== -->
 </body>
 </html>
