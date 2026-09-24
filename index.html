@@ -3285,602 +3285,367 @@ function foodMap(query) {
   <!-- ==================== СОДЕРЖИМОЕ РАЗДЕЛА РАБОТА ==================== -->
 
 
-<!-- ВСЕ ВАКАНСИИ -->
+<!-- ================================================== -->
+<!-- 💼 РАБОТА — НОВОЕ СОДЕРЖИМОЕ -->
+<!-- ================================================== -->
+
+
+<!-- 🔎 ВСЕ ВАКАНСИИ -->
 
 <div id="workSearch" class="section">
   <div class="back" onclick="openSection('work')">← Работа</div>
   <div class="section-title">🔎 Все вакансии</div>
 
-  <div class="card" onclick="workLink('https://www.work.ua/jobs-odesa/')">
-    💼 Work.ua
-    <div class="info">Все вакансии в Одессе</div>
+  <div class="card" onclick="jobSearch('свежие вакансии Одесса')">
+    🔎 Все свежие вакансии
+    <div class="info">Работа в Одессе</div>
   </div>
 
-  <div class="card" onclick="workLink('https://robota.ua/zapros/odessa')">
-    💼 robota.ua
-    <div class="info">Актуальные вакансии в Одессе</div>
+  <div class="card" onclick="jobSearch('срочно требуется Одесса работа')">
+    🔥 Срочно требуются
+    <div class="info">Срочные предложения работодателей</div>
   </div>
 
-  <div class="card" onclick="workSearchGoogle('вакансии Одесса сегодня')">
-    🔎 Свежие вакансии
-    <div class="info">Поиск новых предложений</div>
-  </div>
-
-  <div class="card" onclick="workSearchGoogle('работа Одесса вакансии')">
-    📋 Другие вакансии
-    <div class="info">Расширенный поиск работы</div>
+  <div class="card" onclick="jobSearch('работа Одесса прямой работодатель')">
+    👤 Прямые работодатели
+    <div class="info">Вакансии без посредников</div>
   </div>
 </div>
 
 
-<!-- БЕЗ ОПЫТА -->
+<!-- 🌱 БЕЗ ОПЫТА -->
 
 <div id="workNoExperience" class="section">
   <div class="back" onclick="openSection('work')">← Работа</div>
   <div class="section-title">🌱 Без опыта</div>
 
-  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa без опыта')">
-    💼 Work.ua
-    <div class="info">Работа без опыта</div>
+  <div class="card" onclick="jobSearch('работа без опыта Одесса')">
+    🌱 Без опыта
+    <div class="info">Для начинающих</div>
   </div>
 
-  <div class="card" onclick="workSearchGoogle('site:robota.ua Одесса без опыта')">
-    💼 robota.ua
-    <div class="info">Вакансии для начинающих</div>
-  </div>
-
-  <div class="card" onclick="workSearchGoogle('стажировка Одесса работа')">
-    🎯 Стажировки
-    <div class="info">Получить первый опыт</div>
-  </div>
-
-  <div class="card" onclick="workSearchGoogle('работа с обучением Одесса')">
+  <div class="card" onclick="jobSearch('работа с обучением Одесса')">
     📚 С обучением
-    <div class="info">Вакансии с обучением на месте</div>
+    <div class="info">Обучение на рабочем месте</div>
+  </div>
+
+  <div class="card" onclick="jobSearch('стажировка Одесса оплачиваемая')">
+    🎯 Стажировки
+    <div class="info">Начало карьеры</div>
+  </div>
+
+  <div class="card" onclick="jobSearch('помощник работа без опыта Одесса')">
+    🤝 Помощник
+    <div class="info">Начальные позиции</div>
   </div>
 </div>
 
 
-<!-- ПОДРАБОТКА -->
+<!-- ⏰ ПОДРАБОТКА -->
 
 <div id="workPartTime" class="section">
   <div class="back" onclick="openSection('work')">← Работа</div>
   <div class="section-title">⏰ Подработка</div>
 
-  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa подработка')">
-    💼 Work.ua
-    <div class="info">Подработка в Одессе</div>
+  <div class="card" onclick="jobSearch('подработка Одесса ежедневная оплата')">
+    💵 Ежедневная оплата
   </div>
 
-  <div class="card" onclick="workLink('https://robota.ua/zapros/podrabotka/odessa')">
-    💼 robota.ua
-    <div class="info">Предложения подработки</div>
-  </div>
-
-  <div class="card" onclick="workSearchGoogle('работа неполный день Одесса')">
+  <div class="card" onclick="jobSearch('работа неполный день Одесса')">
     🕐 Неполный день
-    <div class="info">Работа на несколько часов</div>
   </div>
 
-  <div class="card" onclick="workSearchGoogle('работа выходного дня Одесса')">
+  <div class="card" onclick="jobSearch('работа выходного дня Одесса')">
     📅 На выходные
-    <div class="info">Дополнительная работа</div>
+  </div>
+
+  <div class="card" onclick="jobSearch('вечерняя подработка Одесса')">
+    🌙 Вечерняя подработка
   </div>
 </div>
 
 
-<!-- СТУДЕНТАМ -->
+<!-- 🎓 ДЛЯ СТУДЕНТОВ -->
 
 <div id="workStudents" class="section">
   <div class="back" onclick="openSection('work')">← Работа</div>
   <div class="section-title">🎓 Для студентов</div>
 
-  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa студент')">
+  <div class="card" onclick="jobSearch('работа студентам Одесса')">
     🎓 Работа студентам
-    <div class="info">Вакансии на Work.ua</div>
   </div>
 
-  <div class="card" onclick="workSearchGoogle('site:robota.ua Одесса студент работа')">
-    💼 robota.ua
-    <div class="info">Работа для студентов</div>
+  <div class="card" onclick="jobSearch('подработка студентам Одесса')">
+    ⏰ Гибкий график
   </div>
 
-  <div class="card" onclick="workSearchGoogle('подработка студент Одесса')">
-    ⏰ Подработка
-    <div class="info">Совмещать работу с учёбой</div>
+  <div class="card" onclick="jobSearch('вечерняя работа студентам Одесса')">
+    🌙 После учёбы
   </div>
 
-  <div class="card" onclick="workSearchGoogle('стажировка студент Одесса')">
+  <div class="card" onclick="jobSearch('стажировка студент Одесса')">
     🌱 Стажировки
-    <div class="info">Начало карьеры</div>
   </div>
 </div>
 
 
-<!-- УДАЛЁННАЯ РАБОТА -->
+<!-- 💻 УДАЛЁННАЯ РАБОТА -->
 
 <div id="workRemote" class="section">
   <div class="back" onclick="openSection('work')">← Работа</div>
-  <div class="section-title">🏠 Удалённая работа</div>
+  <div class="section-title">💻 Удалённая работа</div>
 
-  <div class="card" onclick="workSearchGoogle('site:work.ua удаленная работа Украина')">
-    💻 Work.ua
-    <div class="info">Удалённые вакансии</div>
+  <div class="card" onclick="jobSearch('удаленная работа оператор Украина')">
+    🎧 Оператор
   </div>
 
-  <div class="card" onclick="workSearchGoogle('site:robota.ua удаленная работа Украина')">
-    💼 robota.ua
-    <div class="info">Работа из дома</div>
+  <div class="card" onclick="jobSearch('удаленная работа менеджер Украина')">
+    👩‍💼 Менеджер
   </div>
 
-  <div class="card" onclick="workSearchGoogle('remote вакансии Украина')">
-    🌐 Remote
-    <div class="info">Работа онлайн</div>
+  <div class="card" onclick="jobSearch('удаленная работа SMM Украина')">
+    📱 SMM
   </div>
 
-  <div class="card" onclick="workSearchGoogle('фриланс вакансии Украина удаленно')">
-    🖥 Фриланс
-    <div class="info">Проекты и удалённая занятость</div>
+  <div class="card" onclick="jobSearch('удаленная работа контент менеджер Украина')">
+    ✍️ Контент-менеджер
+  </div>
+
+  <div class="card" onclick="jobSearch('удаленная работа поддержка клиентов Украина')">
+    💬 Поддержка клиентов
   </div>
 </div>
 
 
-<!-- РЕСТОРАНЫ И ГОСТИНИЦЫ -->
+<!-- 🍽 РЕСТОРАНЫ И ГОСТИНИЦЫ -->
 
 <div id="workRestaurants" class="section">
   <div class="back" onclick="openSection('work')">← Работа</div>
   <div class="section-title">🍽 Рестораны и гостиницы</div>
 
-  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa повар')">
-    👨‍🍳 Повара
-    <div class="info">Вакансии поваров</div>
-  </div>
-
-  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa официант')">
-    🍽 Официанты
-    <div class="info">Работа в ресторанах и кафе</div>
-  </div>
-
-  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa бариста')">
-    ☕ Бариста
-    <div class="info">Работа в кофейнях</div>
-  </div>
-
-  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa бармен')">
-    🍹 Бармены
-    <div class="info">Бары и рестораны</div>
-  </div>
-
-  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa администратор ресторан')">
-    👩‍💼 Администраторы
-    <div class="info">Рестораны и гостиницы</div>
-  </div>
-
-  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa гостиница')">
-    🏨 Гостиницы
-    <div class="info">Работа в отелях Одессы</div>
-  </div>
+  <div class="card" onclick="jobSearch('вакансия повар Одесса')">👨‍🍳 Повар</div>
+  <div class="card" onclick="jobSearch('вакансия помощник повара Одесса')">🔪 Помощник повара</div>
+  <div class="card" onclick="jobSearch('вакансия официант Одесса')">🍽 Официант</div>
+  <div class="card" onclick="jobSearch('вакансия бариста Одесса')">☕ Бариста</div>
+  <div class="card" onclick="jobSearch('вакансия бармен Одесса')">🍹 Бармен</div>
+  <div class="card" onclick="jobSearch('вакансия администратор ресторана Одесса')">👩‍💼 Администратор</div>
+  <div class="card" onclick="jobSearch('вакансия горничная Одесса')">🛏 Горничная</div>
+  <div class="card" onclick="jobSearch('вакансия посудомойщица Одесса')">🧽 Посудомойщица</div>
+  <div class="card" onclick="jobSearch('вакансия пекарь Одесса')">🥐 Пекарь</div>
+  <div class="card" onclick="jobSearch('вакансия кондитер Одесса')">🍰 Кондитер</div>
 </div>
 
 
-<!-- ПРОДАВЦЫ -->
+<!-- 🛒 ПРОДАВЦЫ И КАССИРЫ -->
 
 <div id="workSales" class="section">
   <div class="back" onclick="openSection('work')">← Работа</div>
   <div class="section-title">🛒 Продавцы и кассиры</div>
 
-  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa продавец')">
-    🛍 Продавец
-    <div class="info">Магазины и торговые сети</div>
-  </div>
-
-  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa кассир')">
-    💳 Кассир
-    <div class="info">Магазины и супермаркеты</div>
-  </div>
-
-  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa продавец консультант')">
-    👗 Продавец-консультант
-    <div class="info">Одежда, обувь и другие товары</div>
-  </div>
-
-  <div class="card" onclick="workSearchGoogle('site:robota.ua Одесса продавец кассир')">
-    💼 Все вакансии
-    <div class="info">Продажи и торговля</div>
-  </div>
+  <div class="card" onclick="jobSearch('вакансия продавец Одесса')">🛍 Продавец</div>
+  <div class="card" onclick="jobSearch('вакансия кассир Одесса')">💳 Кассир</div>
+  <div class="card" onclick="jobSearch('вакансия продавец консультант Одесса')">👗 Продавец-консультант</div>
+  <div class="card" onclick="jobSearch('вакансия товаровед Одесса')">📋 Товаровед</div>
+  <div class="card" onclick="jobSearch('вакансия мерчендайзер Одесса')">🛒 Мерчендайзер</div>
+  <div class="card" onclick="jobSearch('вакансия администратор магазина Одесса')">👩‍💼 Администратор магазина</div>
 </div>
 
 
-<!-- ВОДИТЕЛИ И КУРЬЕРЫ -->
+<!-- 🚗 ВОДИТЕЛИ И КУРЬЕРЫ -->
 
 <div id="workDrivers" class="section">
   <div class="back" onclick="openSection('work')">← Работа</div>
   <div class="section-title">🚗 Водители и курьеры</div>
 
-  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa водитель')">
-    🚗 Водитель
-    <div class="info">Вакансии водителей</div>
-  </div>
-
-  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa водитель экспедитор')">
-    🚚 Водитель-экспедитор
-    <div class="info">Доставка товаров</div>
-  </div>
-
-  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa курьер')">
-    🛵 Курьер
-    <div class="info">Доставка заказов</div>
-  </div>
-
-  <div class="card" onclick="workSearchGoogle('работа водитель такси Одесса')">
-    🚕 Такси
-    <div class="info">Работа водителем такси</div>
-  </div>
+  <div class="card" onclick="jobSearch('вакансия водитель Одесса')">🚗 Водитель</div>
+  <div class="card" onclick="jobSearch('работа водитель такси Одесса')">🚕 Водитель такси</div>
+  <div class="card" onclick="jobSearch('вакансия водитель экспедитор Одесса')">🚚 Водитель-экспедитор</div>
+  <div class="card" onclick="jobSearch('вакансия курьер Одесса')">🛵 Курьер</div>
+  <div class="card" onclick="jobSearch('вакансия автокурьер Одесса')">🚙 Курьер на авто</div>
+  <div class="card" onclick="jobSearch('вакансия водитель грузового авто Одесса')">🚛 Водитель грузового авто</div>
 </div>
 
 
-<!-- СКЛАДЫ -->
+<!-- 📦 СКЛАДЫ И ЛОГИСТИКА -->
 
 <div id="workWarehouse" class="section">
   <div class="back" onclick="openSection('work')">← Работа</div>
   <div class="section-title">📦 Склады и логистика</div>
 
-  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa кладовщик')">
-    📦 Кладовщик
-    <div class="info">Работа на складах</div>
-  </div>
-
-  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa комплектовщик')">
-    📋 Комплектовщик
-    <div class="info">Сбор заказов</div>
-  </div>
-
-  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa грузчик')">
-    💪 Грузчик
-    <div class="info">Погрузка и разгрузка</div>
-  </div>
-
-  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa логист')">
-    🚛 Логистика
-    <div class="info">Логисты и диспетчеры</div>
-  </div>
+  <div class="card" onclick="jobSearch('вакансия кладовщик Одесса')">📦 Кладовщик</div>
+  <div class="card" onclick="jobSearch('вакансия комплектовщик Одесса')">📋 Комплектовщик</div>
+  <div class="card" onclick="jobSearch('вакансия упаковщик Одесса')">📦 Упаковщик</div>
+  <div class="card" onclick="jobSearch('вакансия грузчик Одесса')">💪 Грузчик</div>
+  <div class="card" onclick="jobSearch('вакансия логист Одесса')">🚛 Логист</div>
+  <div class="card" onclick="jobSearch('вакансия диспетчер логист Одесса')">🎧 Диспетчер</div>
 </div>
 
 
-<!-- СТРОИТЕЛЬСТВО -->
+<!-- 🏗 СТРОИТЕЛЬСТВО -->
 
 <div id="workConstruction" class="section">
   <div class="back" onclick="openSection('work')">← Работа</div>
   <div class="section-title">🏗 Строительство и ремонт</div>
 
-  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa строитель')">
-    🏗 Строители
-    <div class="info">Строительные вакансии</div>
-  </div>
-
-  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa электрик')">
-    ⚡ Электрики
-    <div class="info">Монтаж и обслуживание</div>
-  </div>
-
-  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa сантехник')">
-    🔧 Сантехники
-    <div class="info">Ремонт и обслуживание</div>
-  </div>
-
-  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa сварщик')">
-    🔥 Сварщики
-    <div class="info">Сварочные работы</div>
-  </div>
-
-  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa разнорабочий')">
-    👷 Разнорабочие
-    <div class="info">Работа на объектах</div>
-  </div>
+  <div class="card" onclick="jobSearch('вакансия строитель Одесса')">👷 Строитель</div>
+  <div class="card" onclick="jobSearch('вакансия разнорабочий Одесса')">🧱 Разнорабочий</div>
+  <div class="card" onclick="jobSearch('вакансия электрик Одесса')">⚡ Электрик</div>
+  <div class="card" onclick="jobSearch('вакансия сантехник Одесса')">🔧 Сантехник</div>
+  <div class="card" onclick="jobSearch('вакансия сварщик Одесса')">🔥 Сварщик</div>
+  <div class="card" onclick="jobSearch('вакансия маляр штукатур Одесса')">🎨 Маляр-штукатур</div>
+  <div class="card" onclick="jobSearch('вакансия плиточник Одесса')">🔲 Плиточник</div>
 </div>
 
 
-<!-- ПРОИЗВОДСТВО -->
+<!-- 🏭 ПРОИЗВОДСТВО -->
 
 <div id="workProduction" class="section">
   <div class="back" onclick="openSection('work')">← Работа</div>
   <div class="section-title">🏭 Производство</div>
 
-  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa производство')">
-    🏭 Все вакансии
-    <div class="info">Работа на производстве</div>
-  </div>
-
-  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa оператор производства')">
-    ⚙️ Оператор
-    <div class="info">Производственные линии</div>
-  </div>
-
-  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa упаковщик')">
-    📦 Упаковщик
-    <div class="info">Упаковка продукции</div>
-  </div>
-
-  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa рабочий производство')">
-    👷 Рабочий
-    <div class="info">Рабочие специальности</div>
-  </div>
+  <div class="card" onclick="jobSearch('рабочий производство Одесса вакансия')">👷 Рабочий производства</div>
+  <div class="card" onclick="jobSearch('оператор производственной линии Одесса вакансия')">⚙️ Оператор линии</div>
+  <div class="card" onclick="jobSearch('фасовщик Одесса вакансия')">📦 Фасовщик</div>
+  <div class="card" onclick="jobSearch('швея Одесса вакансия')">🧵 Швея</div>
+  <div class="card" onclick="jobSearch('технолог производство Одесса вакансия')">🏭 Технолог</div>
 </div>
 
 
-<!-- КРАСОТА И СПОРТ -->
+<!-- 💇 КРАСОТА И СПОРТ -->
 
 <div id="workBeauty" class="section">
   <div class="back" onclick="openSection('work')">← Работа</div>
   <div class="section-title">💇 Красота и спорт</div>
 
-  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa парикмахер')">
-    💇 Парикмахеры
-    <div class="info">Салоны красоты</div>
-  </div>
-
-  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa мастер маникюра')">
-    💅 Мастера маникюра
-    <div class="info">Nail-вакансии</div>
-  </div>
-
-  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa косметолог')">
-    💆 Косметологи
-    <div class="info">Косметология и уход</div>
-  </div>
-
-  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa тренер фитнес')">
-    🏋️ Фитнес-тренеры
-    <div class="info">Спортзалы и фитнес-клубы</div>
-  </div>
-
-  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa администратор салона')">
-    👩‍💼 Администраторы
-    <div class="info">Салоны и студии</div>
-  </div>
+  <div class="card" onclick="jobSearch('парикмахер Одесса вакансия')">💇 Парикмахер</div>
+  <div class="card" onclick="jobSearch('мастер маникюра Одесса вакансия')">💅 Мастер маникюра</div>
+  <div class="card" onclick="jobSearch('бровист Одесса вакансия')">✨ Бровист</div>
+  <div class="card" onclick="jobSearch('косметолог Одесса вакансия')">💆 Косметолог</div>
+  <div class="card" onclick="jobSearch('массажист Одесса вакансия')">🤲 Массажист</div>
+  <div class="card" onclick="jobSearch('фитнес тренер Одесса вакансия')">🏋️ Фитнес-тренер</div>
 </div>
 
 
-<!-- МЕДИЦИНА -->
+<!-- 🏥 МЕДИЦИНА -->
 
 <div id="workMedicine" class="section">
   <div class="back" onclick="openSection('work')">← Работа</div>
   <div class="section-title">🏥 Медицина и аптеки</div>
 
-  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa врач')">
-    👩‍⚕️ Врачи
-    <div class="info">Медицинские вакансии</div>
-  </div>
-
-  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa медсестра')">
-    🩺 Медсёстры
-    <div class="info">Больницы и клиники</div>
-  </div>
-
-  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa фармацевт')">
-    💊 Фармацевты
-    <div class="info">Работа в аптеках</div>
-  </div>
-
-  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa стоматолог')">
-    🦷 Стоматология
-    <div class="info">Стоматологи и ассистенты</div>
-  </div>
-
-  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa медицина фармацевтика')">
-    🏥 Все медицинские
-    <div class="info">Клиники, лаборатории и аптеки</div>
-  </div>
+  <div class="card" onclick="jobSearch('врач Одесса вакансия')">👩‍⚕️ Врач</div>
+  <div class="card" onclick="jobSearch('медсестра Одесса вакансия')">🩺 Медсестра</div>
+  <div class="card" onclick="jobSearch('санитарка Одесса вакансия')">🏥 Санитарка</div>
+  <div class="card" onclick="jobSearch('фармацевт Одесса вакансия')">💊 Фармацевт</div>
+  <div class="card" onclick="jobSearch('стоматолог Одесса вакансия')">🦷 Стоматолог</div>
+  <div class="card" onclick="jobSearch('ассистент стоматолога Одесса вакансия')">🦷 Ассистент стоматолога</div>
+  <div class="card" onclick="jobSearch('администратор клиники Одесса вакансия')">👩‍💼 Администратор клиники</div>
 </div>
 
 
-<!-- ОБРАЗОВАНИЕ -->
+<!-- 📚 ОБРАЗОВАНИЕ -->
 
 <div id="workEducation" class="section">
   <div class="back" onclick="openSection('work')">← Работа</div>
-  <div class="section-title">📚 Работа в образовании</div>
+  <div class="section-title">📚 Образование</div>
 
-  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa учитель')">
-    👩‍🏫 Учителя
-    <div class="info">Школы и учебные заведения</div>
-  </div>
-
-  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa воспитатель')">
-    🧸 Воспитатели
-    <div class="info">Детские сады и центры</div>
-  </div>
-
-  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa преподаватель')">
-    📖 Преподаватели
-    <div class="info">Курсы и учебные центры</div>
-  </div>
-
-  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa репетитор')">
-    ✏️ Репетиторы
-    <div class="info">Индивидуальное обучение</div>
-  </div>
+  <div class="card" onclick="jobSearch('учитель Одесса вакансия')">👩‍🏫 Учитель</div>
+  <div class="card" onclick="jobSearch('воспитатель Одесса вакансия')">🧸 Воспитатель</div>
+  <div class="card" onclick="jobSearch('преподаватель Одесса вакансия')">📖 Преподаватель</div>
+  <div class="card" onclick="jobSearch('репетитор Одесса работа')">✏️ Репетитор</div>
+  <div class="card" onclick="jobSearch('няня Одесса вакансия')">👶 Няня</div>
+  <div class="card" onclick="jobSearch('логопед Одесса вакансия')">🗣 Логопед</div>
 </div>
 
 
-<!-- ОФИС -->
+<!-- 🏢 ОФИС -->
 
 <div id="workOffice" class="section">
   <div class="back" onclick="openSection('work')">← Работа</div>
   <div class="section-title">🏢 Офис и call-центр</div>
 
-  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa администратор')">
-    👩‍💼 Администратор
-    <div class="info">Офисные вакансии</div>
-  </div>
-
-  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa менеджер')">
-    📊 Менеджер
-    <div class="info">Продажи и работа с клиентами</div>
-  </div>
-
-  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa оператор call центр')">
-    🎧 Call-центр
-    <div class="info">Операторы контакт-центра</div>
-  </div>
-
-  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa секретарь')">
-    🗂 Секретарь
-    <div class="info">Офис и администрация</div>
-  </div>
-
-  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa бухгалтер')">
-    💰 Бухгалтер
-    <div class="info">Бухгалтерия и финансы</div>
-  </div>
+  <div class="card" onclick="jobSearch('офис менеджер Одесса вакансия')">🏢 Офис-менеджер</div>
+  <div class="card" onclick="jobSearch('администратор офис Одесса вакансия')">👩‍💼 Администратор</div>
+  <div class="card" onclick="jobSearch('оператор call центра Одесса вакансия')">🎧 Оператор call-центра</div>
+  <div class="card" onclick="jobSearch('менеджер по продажам Одесса вакансия')">📊 Менеджер по продажам</div>
+  <div class="card" onclick="jobSearch('бухгалтер Одесса вакансия')">💰 Бухгалтер</div>
+  <div class="card" onclick="jobSearch('секретарь Одесса вакансия')">📋 Секретарь</div>
 </div>
 
 
-<!-- IT -->
+<!-- 💻 IT И DIGITAL -->
 
 <div id="workIT" class="section">
   <div class="back" onclick="openSection('work')">← Работа</div>
   <div class="section-title">💻 IT и Digital</div>
 
-  <div class="card" onclick="workSearchGoogle('IT вакансии Одесса Work.ua')">
-    💻 IT-вакансии
-    <div class="info">Работа в IT</div>
-  </div>
-
-  <div class="card" onclick="workSearchGoogle('developer вакансии Одесса')">
-    👨‍💻 Разработчики
-    <div class="info">Frontend, Backend и другие направления</div>
-  </div>
-
-  <div class="card" onclick="workSearchGoogle('дизайнер вакансии Одесса')">
-    🎨 Дизайн
-    <div class="info">Графический и веб-дизайн</div>
-  </div>
-
-  <div class="card" onclick="workSearchGoogle('SMM вакансии Одесса')">
-    📱 SMM
-    <div class="info">Социальные сети и контент</div>
-  </div>
-
-  <div class="card" onclick="workSearchGoogle('маркетолог вакансии Одесса')">
-    📈 Маркетинг
-    <div class="info">Digital и реклама</div>
-  </div>
-
-  <div class="card" onclick="workSearchGoogle('QA вакансии Одесса')">
-    🧪 QA
-    <div class="info">Тестирование ПО</div>
-  </div>
+  <div class="card" onclick="jobSearch('Frontend Developer Одесса вакансии')">💻 Frontend Developer</div>
+  <div class="card" onclick="jobSearch('Backend Developer Одесса вакансии')">🖥 Backend Developer</div>
+  <div class="card" onclick="jobSearch('QA tester Одесса вакансии')">🧪 QA / Тестировщик</div>
+  <div class="card" onclick="jobSearch('UI UX дизайнер Одесса вакансии')">🎨 UI/UX дизайнер</div>
+  <div class="card" onclick="jobSearch('SMM менеджер Одесса вакансии')">📱 SMM-менеджер</div>
+  <div class="card" onclick="jobSearch('маркетолог Одесса вакансии')">📈 Маркетолог</div>
+  <div class="card" onclick="jobSearch('контент менеджер Одесса вакансии')">✍️ Контент-менеджер</div>
 </div>
 
 
-<!-- УБОРКА -->
+<!-- 🧹 УБОРКА -->
 
 <div id="workCleaning" class="section">
   <div class="back" onclick="openSection('work')">← Работа</div>
   <div class="section-title">🧹 Уборка и домашний персонал</div>
 
-  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa уборщица')">
-    🧹 Уборка
-    <div class="info">Офисы, магазины и заведения</div>
-  </div>
-
-  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa клинер')">
-    🧽 Клинер
-    <div class="info">Клининговые вакансии</div>
-  </div>
-
-  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa горничная')">
-    🏨 Горничная
-    <div class="info">Отели и апартаменты</div>
-  </div>
-
-  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa няня')">
-    👶 Няня
-    <div class="info">Работа с детьми</div>
-  </div>
+  <div class="card" onclick="jobSearch('уборщица Одесса вакансия')">🧹 Уборщица</div>
+  <div class="card" onclick="jobSearch('клинер Одесса вакансия')">🧽 Клинер</div>
+  <div class="card" onclick="jobSearch('домработница Одесса вакансия')">🏠 Домработница</div>
+  <div class="card" onclick="jobSearch('горничная Одесса вакансия')">🛏 Горничная</div>
+  <div class="card" onclick="jobSearch('помощница по дому Одесса вакансия')">🏡 Помощница по дому</div>
 </div>
 
 
-<!-- ОХРАНА -->
+<!-- 🛡 ОХРАНА -->
 
 <div id="workSecurity" class="section">
   <div class="back" onclick="openSection('work')">← Работа</div>
   <div class="section-title">🛡 Охрана</div>
 
-  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa охранник')">
-    🛡 Охранник
-    <div class="info">Магазины, офисы и объекты</div>
-  </div>
-
-  <div class="card" onclick="workSearchGoogle('site:work.ua/jobs-odesa безопасность')">
-    🔐 Безопасность
-    <div class="info">Службы безопасности</div>
-  </div>
-
-  <div class="card" onclick="workSearchGoogle('site:robota.ua Одесса охранник')">
-    💼 robota.ua
-    <div class="info">Другие вакансии охраны</div>
-  </div>
+  <div class="card" onclick="jobSearch('охранник Одесса вакансия')">🛡 Охранник</div>
+  <div class="card" onclick="jobSearch('сторож Одесса вакансия')">🔐 Сторож</div>
+  <div class="card" onclick="jobSearch('контролер охрана Одесса вакансия')">👮 Контролёр</div>
+  <div class="card" onclick="jobSearch('служба безопасности Одесса вакансия')">🔒 Служба безопасности</div>
 </div>
 
 
-<!-- МОРЯКИ -->
+<!-- ⚓ РАБОТА ДЛЯ МОРЯКОВ -->
 
 <div id="workSea" class="section">
   <div class="back" onclick="openSection('work')">← Работа</div>
   <div class="section-title">⚓ Работа для моряков</div>
 
-  <div class="card" onclick="workSearchGoogle('вакансии морякам Одесса crewing')">
-    ⚓ Морские вакансии
-    <div class="info">Поиск актуальных предложений</div>
-  </div>
-
-  <div class="card" onclick="workSearchGoogle('E-Crewing Odessa вакансии')">
-    🚢 E-Crewing
-    <div class="info">Крюинговые вакансии</div>
-  </div>
-
-  <div class="card" onclick="workSearchGoogle('Anglo Eastern Ukraine Одесса вакансии морякам')">
-    🚢 Anglo-Eastern Ukraine
-    <div class="info">Работа для моряков</div>
-  </div>
-
-  <div class="card" onclick="workSearchGoogle('Yialos Manning Services Одесса вакансии')">
-    🚢 Yialos Manning Services
-    <div class="info">Морской персонал</div>
-  </div>
-
-  <div class="card" onclick="workSearchGoogle('Admiral Crew Management Одесса вакансии')">
-    🚢 Admiral Crew Management
-    <div class="info">Крюинг в Одессе</div>
-  </div>
-
-  <div class="card" onclick="workSearchGoogle('Aqua Navigation Crew Одесса вакансии')">
-    🚢 Aqua-Navigation
-    <div class="info">Морские вакансии</div>
-  </div>
-
-  <div class="card" onclick="workSearchGoogle('Ismira Odessa вакансии')">
-    🚢 Ismira Odessa
-    <div class="info">Работа на судах</div>
-  </div>
+  <div class="card" onclick="jobSearch('капитан судна вакансии Одесса crewing')">👨‍✈️ Капитан</div>
+  <div class="card" onclick="jobSearch('старший помощник вакансии Одесса crewing')">⚓ Старший помощник</div>
+  <div class="card" onclick="jobSearch('матрос вакансии Одесса crewing')">⚓ Матрос</div>
+  <div class="card" onclick="jobSearch('моторист вакансии Одесса crewing')">⚙️ Моторист</div>
+  <div class="card" onclick="jobSearch('судовой механик вакансии Одесса crewing')">🔧 Механик</div>
+  <div class="card" onclick="jobSearch('электромеханик судно вакансии Одесса crewing')">⚡ Электромеханик</div>
+  <div class="card" onclick="jobSearch('судовой повар вакансии Одесса crewing')">👨‍🍳 Судовой повар</div>
+  <div class="card" onclick="jobSearch('морские вакансии Одесса crewing')">🚢 Все морские вакансии</div>
 </div>
 
 
-<!-- ==================== ФУНКЦИИ РАБОТЫ ==================== -->
+<!-- ================================================== -->
+<!-- ФУНКЦИЯ ПОИСКА -->
+<!-- ================================================== -->
 
 <script>
-function workLink(url) {
-  window.open(url, "_blank");
-}
-
-function workSearchGoogle(query) {
+function jobSearch(query) {
   window.open(
     "https://www.google.com/search?q=" + encodeURIComponent(query),
     "_blank"
   );
 }
 </script>
+
+<!-- ================= КОНЕЦ РАБОТЫ ================= -->
 
 <!-- ==================== КОНЕЦ СОДЕРЖИМОГО РАБОТЫ ==================== -->
   <!-- ОБРАЗОВАНИЕ -->
