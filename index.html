@@ -264,137 +264,116 @@ h1 {
 </div> <!-- КОНЕЦ HOME -->
 <script>
 
-/* 🔎 УМНЫЙ ПОИСК ПО ВСЕМУ СПРАВОЧНИКУ */
+/* 🔎 ПОИСК ПО ВСЕМ КНОПКАМ СПРАВОЧНИКА */
 
-function getAllGuideSearchItems() {
+function normalizeSearchText(text) {
+  return String(text || "")
+    .toLowerCase()
+    .replace(/ё/g, "е")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function getGuideSearchItems() {
   const items = [];
   const seen = new Set();
 
-  document.querySelectorAll(".section").forEach(section => {
-    if (!section.id) return;
+  document.querySelectorAll("[onclick]").forEach(el => {
 
-    section.querySelectorAll(".card").forEach(card => {
-      const text = card.innerText
-        .replace(/\s+/g, " ")
-        .trim();
+    const rawText = el.innerText || el.textContent || "";
+    const text = rawText.replace(/\s+/g, " ").trim();
 
-      if (!text) return;
+    if (!text) return;
 
-      const title =
-        card.cloneNode(true).querySelector(".info")?.remove?.() || null;
+    const onclick = el.getAttribute("onclick");
+    if (!onclick) return;
 
-      const cleanTitle = text.split("\n")[0].trim() || text;
+    /* Не добавляем огромные контейнеры */
+    if (text.length > 250) return;
 
-      const key = section.id + "|" + cleanTitle.toLowerCase();
+    const key = text.toLowerCase() + "|" + onclick;
 
-      if (seen.has(key)) return;
-      seen.add(key);
+    if (seen.has(key)) return;
+    seen.add(key);
 
-      items.push({
-        name: cleanTitle,
-        text: text.toLowerCase(),
-        sectionId: section.id,
-        card: card
-      });
+    items.push({
+      name: text,
+      searchText: normalizeSearchText(text),
+      element: el,
+      onclick: onclick
     });
   });
 
   return items;
 }
 
-
-function normalizeGuideText(text) {
-  return String(text || "")
-    .toLowerCase()
-    .replace(/ё/g, "е")
-    .replace(/[^\p{L}\p{N}\s№-]/gu, " ")
-    .replace(/\s+/g, " ")
-    .trim();
-}
-
-
 function guideSearch() {
 
-  const input = document.getElementById("guideSearchInput");
-  const results = document.getElementById("guideSearchResults");
+  const input =
+    document.getElementById("guideSearchInput") ||
+    document.getElementById("homeGuideSearchInput");
+
+  const results =
+    document.getElementById("guideSearchResults") ||
+    document.getElementById("homeGuideSearchResults");
 
   if (!input || !results) return;
 
-  const query = normalizeGuideText(input.value);
+  const query = normalizeSearchText(input.value);
 
   results.innerHTML = "";
 
   if (query.length < 2) return;
 
   const words = query.split(" ").filter(Boolean);
-  const allItems = getAllGuideSearchItems();
 
-  const found = allItems.filter(item => {
-
-    const text = normalizeGuideText(
-      item.name + " " + item.text
+  const found = getGuideSearchItems().filter(item => {
+    return words.every(word =>
+      item.searchText.includes(word)
     );
-
-    return words.every(word => text.includes(word));
-
   });
 
-
   if (found.length === 0) {
-
     results.innerHTML =
       '<div class="card">' +
       '🔎 Ничего не найдено' +
-      '<div class="info">Попробуйте написать другое слово</div>' +
+      '<div class="info">Попробуйте другое слово</div>' +
       '</div>';
-
     return;
   }
 
+  found.slice(0, 50).forEach(item => {
 
-  found.slice(0, 30).forEach(item => {
+    const resultCard = document.createElement("div");
+    resultCard.className = "card";
 
-    const card = document.createElement("div");
-    card.className = "card";
+    let title = item.name;
 
-    card.innerHTML =
-      "🔎 " + item.name +
+    if (title.length > 100) {
+      title = title.substring(0, 100) + "…";
+    }
+
+    resultCard.innerHTML =
+      "🔎 " + title +
       '<div class="info">Открыть</div>';
 
-    card.onclick = function() {
+    resultCard.onclick = function() {
 
-      openSection(item.sectionId);
-
-      setTimeout(() => {
-
+      try {
+        item.element.click();
+      } catch (e) {
         try {
-          item.card.scrollIntoView({
-            behavior: "smooth",
-            block: "center"
-          });
-
-          const oldOutline = item.card.style.outline;
-
-          item.card.style.outline =
-            "3px solid rgba(255,255,255,0.8)";
-
-          setTimeout(() => {
-            item.card.style.outline = oldOutline;
-          }, 1800);
-
-        } catch (e) {}
-
-      }, 150);
-
+          new Function(item.onclick)();
+        } catch (err) {}
+      }
     };
 
-    results.appendChild(card);
-
+    results.appendChild(resultCard);
   });
 }
 
 
-/* 🔎 ПОИСК С ГЛАВНОЙ СТРАНИЦЫ */
+/* 🔎 ПОИСК С ГЛАВНОЙ */
 
 function homeGuideSearch() {
 
@@ -414,23 +393,14 @@ function homeGuideSearch() {
 }
 
 
-/* 🔎 ПОИСК ПРИ ВВОДЕ */
+/* 🔎 АВТОПОИСК ПРИ ВВОДЕ */
 
 document.addEventListener("input", function(e) {
 
-  if (e.target.id === "guideSearchInput") {
-    guideSearch();
-  }
-
-  if (e.target.id === "homeGuideSearchInput") {
-
-    const guideInput =
-      document.getElementById("guideSearchInput");
-
-    if (guideInput) {
-      guideInput.value = e.target.value;
-    }
-
+  if (
+    e.target.id === "guideSearchInput" ||
+    e.target.id === "homeGuideSearchInput"
+  ) {
     guideSearch();
   }
 
