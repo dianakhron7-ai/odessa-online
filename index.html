@@ -6043,35 +6043,66 @@ function estateMapNew(query) {
 </div>
 
 
-<!-- ===================================================== -->
+<!-- ====================================== -->
 <!-- 🚨 ВАЖНОЕ -->
-<!-- ===================================================== -->
+<!-- ====================================== -->
 
 <div id="important" class="section">
+
   <div class="back" onclick="goHome()">← Назад</div>
   <div class="section-title">🚨 Важное</div>
 
-  <div class="card" onclick="openSection('emergency')">🆘 Экстренные службы</div>
-  <div class="card" onclick="openSection('shelters')">🛡 Укрытия</div>
-  <div class="card" onclick="openSection('alerts')">🚨 Воздушная тревога</div>
-  <div class="card" onclick="openSection('powerOutages')">💡 Отключения света</div>
-  <div class="card" onclick="openSection('waterOutages')">💧 Отключения воды</div>
-  <div class="card" onclick="openSection('gasEmergency')">🔥 Газовая служба</div>
-  <div class="card" onclick="openSection('policeInfo')">👮 Полиция</div>
-  <div class="card" onclick="openSection('ambulanceInfo')">🚑 Скорая помощь</div>
-  <div class="card" onclick="openSection('rescueService')">🚒 Спасатели</div>
-  <div class="card" onclick="openSection('hospitalsEmergency')">🏥 Больницы и травмпункты</div>
-  <div class="card" onclick="openSection('pharmacies24')">💊 Круглосуточные аптеки</div>
-  <div class="card" onclick="openSection('lostFound')">🔎 Потеряно / найдено</div>
-  <div class="card" onclick="openSection('documents')">📄 Документы и госуслуги</div>
-  <div class="card" onclick="openSection('helpCenters')">🤝 Центры помощи</div>
-  <div class="card" onclick="openSection('usefulPhones')">☎️ Полезные телефоны</div>
+  <div class="card" onclick="openSection('emergencyNumbers')">
+    🆘 Экстренные номера
+    <div class="info">Пожарная, полиция, скорая, газовая служба и 112</div>
+  </div>
+
+  <div class="card" onclick="openSection('airAlerts')">
+    🚨 Воздушная тревога
+    <div class="info">Информация о тревогах и безопасности</div>
+  </div>
+
+  <div class="card" onclick="openSection('shelters')">
+    🛡 Укрытия
+    <div class="info">Найти ближайшее укрытие в Одессе</div>
+  </div>
+
+  <div class="card" onclick="openSection('electricityInfo')">
+    ⚡ Электроэнергия
+    <div class="info">Отключения света и актуальная информация</div>
+  </div>
+
+  <div class="card" onclick="openSection('waterInfo')">
+    💧 Водоснабжение
+    <div class="info">Отключения воды и аварийные работы</div>
+  </div>
+
+  <div class="card" onclick="openSection('gasInfo')">
+    🔥 Газ
+    <div class="info">Аварийная газовая служба и безопасность</div>
+  </div>
+
+  <div class="card" onclick="openSection('dangerInfo')">
+    ☢️ Опасные ситуации
+    <div class="info">Радиационная, химическая и другая опасность</div>
+  </div>
+
+  <div class="card" onclick="openSection('officialInfo')">
+    📢 Официальные сообщения
+    <div class="info">Важная информация для жителей Одессы</div>
+  </div>
+
 </div>
 
 
-<div id="emergency" class="section">
-  <div class="back" onclick="openSection('important')">← Важное</div>
-  <div class="section-title">🆘 Экстренные службы</div>
+<!-- ====================================== -->
+<!-- 🆘 ЭКСТРЕННЫЕ НОМЕРА -->
+<!-- ====================================== -->
+
+<div id="emergencyNumbers" class="section">
+
+  <div class="back" onclick="openSection('important')">← Назад</div>
+  <div class="section-title">🆘 Экстренные номера</div>
 
   <div class="card" onclick="window.location.href='tel:112'">
     🆘 112
@@ -6080,7 +6111,7 @@ function estateMapNew(query) {
 
   <div class="card" onclick="window.location.href='tel:101'">
     🚒 101
-    <div class="info">Пожарная и спасательная служба</div>
+    <div class="info">Пожарно-спасательная служба</div>
   </div>
 
   <div class="card" onclick="window.location.href='tel:102'">
@@ -6097,232 +6128,212 @@ function estateMapNew(query) {
     🔥 104
     <div class="info">Аварийная газовая служба</div>
   </div>
+
 </div>
 
 
-<div id="shelters" class="section">
-  <div class="back" onclick="openSection('important')">← Важное</div>
-  <div class="section-title">🛡 Укрытия</div>
+<!-- ====================================== -->
+<!-- 🚨 ВОЗДУШНАЯ ТРЕВОГА -->
+<!-- ====================================== -->
 
-  <div class="card" onclick="importantSearch('официальная карта укрытий Одесса')">
-    🗺 Карта укрытий
-    <div class="info">Найти официальную актуальную карту</div>
-  </div>
+<div id="airAlerts" class="section">
 
-  <div class="card" onclick="importantMap('укрытие Одесса')">
-    📍 Укрытия рядом
-    <div class="info">Поиск на карте</div>
-  </div>
-</div>
-
-
-<div id="alerts" class="section">
-  <div class="back" onclick="openSection('important')">← Важное</div>
+  <div class="back" onclick="openSection('important')">← Назад</div>
   <div class="section-title">🚨 Воздушная тревога</div>
 
-  <div class="card" onclick="importantSearch('официальная карта воздушных тревог Украина')">
-    🚨 Карта тревог
-    <div class="info">Актуальная информация о тревогах</div>
+  <div class="card"
+       onclick="window.open('https://map.ukrainealarm.com/','_blank')">
+    🗺 Карта воздушных тревог
+    <div class="info">Посмотреть текущие тревоги в Украине</div>
   </div>
 
-  <div class="card" onclick="importantSearch('Одесская область воздушная тревога официальный Telegram')">
-    📢 Официальные сообщения
-    <div class="info">Найти официальные источники</div>
+  <div class="card"
+       onclick="importantSearchNew('повітряна тривога Одеська область офіційно')">
+    📢 Информация по Одесской области
+    <div class="info">Найти последние официальные сообщения</div>
   </div>
+
 </div>
 
 
-<div id="powerOutages" class="section">
-  <div class="back" onclick="openSection('important')">← Важное</div>
-  <div class="section-title">💡 Отключения света</div>
+<!-- ====================================== -->
+<!-- 🛡 УКРЫТИЯ -->
+<!-- ====================================== -->
 
-  <div class="card" onclick="importantSearch('ДТЭК Одесские электросети отключения официальный сайт')">
-    ⚡ Проверить отключение
-    <div class="info">Актуальная информация ДТЭК</div>
+<div id="shelters" class="section">
+
+  <div class="back" onclick="openSection('important')">← Назад</div>
+  <div class="section-title">🛡 Укрытия</div>
+
+  <div class="card"
+       onclick="importantMapNew('укрытия Одесса')">
+    📍 Укрытия на карте
+    <div class="info">Найти укрытия рядом</div>
   </div>
 
-  <div class="card" onclick="importantSearch('ДТЭК Одесса график отключений сегодня')">
-    📅 Графики
-    <div class="info">Поиск актуального графика</div>
+  <div class="card"
+       onclick="importantSearchNew('официальная карта укрытий Одесса')">
+    🗺 Карта укрытий Одессы
+    <div class="info">Поиск официальной информации</div>
   </div>
+
 </div>
 
 
-<div id="waterOutages" class="section">
-  <div class="back" onclick="openSection('important')">← Важное</div>
-  <div class="section-title">💧 Отключения воды</div>
+<!-- ====================================== -->
+<!-- ⚡ ЭЛЕКТРОЭНЕРГИЯ -->
+<!-- ====================================== -->
 
-  <div class="card" onclick="importantSearch('Инфоксводоканал Одесса отключение воды официальный')">
-    💧 Инфоксводоканал
-    <div class="info">Информация об авариях и отключениях</div>
+<div id="electricityInfo" class="section">
+
+  <div class="back" onclick="openSection('important')">← Назад</div>
+  <div class="section-title">⚡ Электроэнергия</div>
+
+  <div class="card"
+       onclick="importantSearchNew('ДТЕК Одесские электросети отключения официальный сайт')">
+    💡 Отключения света
+    <div class="info">Проверить актуальную информацию</div>
   </div>
+
+  <div class="card"
+       onclick="importantSearchNew('ДТЕК Одесские электросети график отключений')">
+    🗓 Графики отключений
+    <div class="info">Проверить действующие графики</div>
+  </div>
+
 </div>
 
 
-<div id="gasEmergency" class="section">
-  <div class="back" onclick="openSection('important')">← Важное</div>
-  <div class="section-title">🔥 Газовая служба</div>
+<!-- ====================================== -->
+<!-- 💧 ВОДОСНАБЖЕНИЕ -->
+<!-- ====================================== -->
+
+<div id="waterInfo" class="section">
+
+  <div class="back" onclick="openSection('important')">← Назад</div>
+  <div class="section-title">💧 Водоснабжение</div>
+
+  <div class="card"
+       onclick="importantSearchNew('Инфоксводоканал Одесса отключение воды официальный')">
+    🚰 Отключения воды
+    <div class="info">Проверить аварийные и плановые работы</div>
+  </div>
+
+  <div class="card"
+       onclick="importantSearchNew('Инфоксводоканал Одесса аварийная служба официальный')">
+    🛠 Аварийная информация
+    <div class="info">Информация водоканала</div>
+  </div>
+
+</div>
+
+
+<!-- ====================================== -->
+<!-- 🔥 ГАЗ -->
+<!-- ====================================== -->
+
+<div id="gasInfo" class="section">
+
+  <div class="back" onclick="openSection('important')">← Назад</div>
+  <div class="section-title">🔥 Газ</div>
 
   <div class="card" onclick="window.location.href='tel:104'">
-    ☎️ Позвонить 104
+    ☎️ 104
     <div class="info">Аварийная газовая служба</div>
   </div>
 
-  <div class="card" onclick="importantSearch('газовая служба Одесса официальный сайт')">
-    ℹ️ Информация
-    <div class="info">Официальные контакты и сообщения</div>
+  <div class="card"
+       onclick="importantSearchNew('газ Одесса аварийные работы официальный сайт')">
+    🛠 Аварийные работы
+    <div class="info">Проверить актуальную информацию</div>
   </div>
+
 </div>
 
 
-<div id="policeInfo" class="section">
-  <div class="back" onclick="openSection('important')">← Важное</div>
-  <div class="section-title">👮 Полиция</div>
+<!-- ====================================== -->
+<!-- ☢️ ОПАСНЫЕ СИТУАЦИИ -->
+<!-- ====================================== -->
 
-  <div class="card" onclick="window.location.href='tel:102'">
-    ☎️ Позвонить 102
-    <div class="info">Экстренный вызов полиции</div>
+<div id="dangerInfo" class="section">
+
+  <div class="back" onclick="openSection('important')">← Назад</div>
+  <div class="section-title">☢️ Опасные ситуации</div>
+
+  <div class="card"
+       onclick="importantSearchNew('ДСНС радіаційна небезпека що робити')">
+    ☢️ Радиационная опасность
+    <div class="info">Инструкции службы спасения</div>
   </div>
 
-  <div class="card" onclick="importantMap('отделение полиции Одесса')">
-    📍 Отделения полиции
-    <div class="info">Показать на карте</div>
-  </div>
-</div>
-
-
-<div id="ambulanceInfo" class="section">
-  <div class="back" onclick="openSection('important')">← Важное</div>
-  <div class="section-title">🚑 Скорая помощь</div>
-
-  <div class="card" onclick="window.location.href='tel:103'">
-    ☎️ Позвонить 103
-    <div class="info">Экстренная медицинская помощь</div>
+  <div class="card"
+       onclick="importantSearchNew('ДСНС хімічна небезпека що робити')">
+    ☣️ Химическая опасность
+    <div class="info">Правила действий при угрозе</div>
   </div>
 
   <div class="card" onclick="window.location.href='tel:112'">
-    🆘 Позвонить 112
-    <div class="info">Единый номер экстренной помощи</div>
+    🆘 Срочная помощь — 112
+    <div class="info">Единый экстренный номер</div>
   </div>
+
 </div>
 
 
-<div id="rescueService" class="section">
-  <div class="back" onclick="openSection('important')">← Важное</div>
-  <div class="section-title">🚒 Спасатели</div>
+<!-- ====================================== -->
+<!-- 📢 ОФИЦИАЛЬНЫЕ СООБЩЕНИЯ -->
+<!-- ====================================== -->
 
-  <div class="card" onclick="window.location.href='tel:101'">
-    ☎️ Позвонить 101
-    <div class="info">Пожарная и спасательная служба</div>
+<div id="officialInfo" class="section">
+
+  <div class="back" onclick="openSection('important')">← Назад</div>
+  <div class="section-title">📢 Официальные сообщения</div>
+
+  <div class="card"
+       onclick="importantSearchNew('Одеська міська рада офіційний сайт новини')">
+    🏛 Одесский городской совет
+    <div class="info">Официальные сообщения города</div>
   </div>
 
-  <div class="card" onclick="window.location.href='tel:112'">
-    🆘 Позвонить 112
-    <div class="info">Единый номер экстренной помощи</div>
+  <div class="card"
+       onclick="importantSearchNew('Одеська обласна військова адміністрація офіційно')">
+    📢 Одесская областная администрация
+    <div class="info">Важные сообщения по области</div>
   </div>
+
+  <div class="card"
+       onclick="importantSearchNew('ДСНС Одеська область офіційно')">
+    🚒 ГСЧС Одесской области
+    <div class="info">Предупреждения и чрезвычайные ситуации</div>
+  </div>
+
 </div>
 
 
-<div id="hospitalsEmergency" class="section">
-  <div class="back" onclick="openSection('important')">← Важное</div>
-  <div class="section-title">🏥 Больницы и травмпункты</div>
+<!-- ====================================== -->
+<!-- ФУНКЦИИ РАЗДЕЛА ВАЖНОЕ -->
+<!-- ====================================== -->
 
-  <div class="card" onclick="importantMap('травмпункт Одесса')">
-    🩹 Травмпункты
-    <div class="info">Показать на карте</div>
-  </div>
+<script>
 
-  <div class="card" onclick="importantMap('больница Одесса')">
-    🏥 Больницы
-    <div class="info">Показать на карте</div>
-  </div>
+function importantSearchNew(query) {
+  window.open(
+    "https://www.google.com/search?q=" + encodeURIComponent(query),
+    "_blank"
+  );
+}
 
-  <div class="card" onclick="importantMap('детская больница Одесса')">
-    👶 Детские больницы
-    <div class="info">Показать на карте</div>
-  </div>
-</div>
+function importantMapNew(query) {
+  window.open(
+    "https://www.google.com/maps/search/?api=1&query=" +
+    encodeURIComponent(query),
+    "_blank"
+  );
+}
 
+</script>
 
-<div id="pharmacies24" class="section">
-  <div class="back" onclick="openSection('important')">← Важное</div>
-  <div class="section-title">💊 Круглосуточные аптеки</div>
-
-  <div class="card" onclick="importantMap('круглосуточная аптека Одесса')">
-    💊 Найти аптеку
-    <div class="info">Круглосуточные аптеки на карте</div>
-  </div>
-</div>
-
-
-<div id="lostFound" class="section">
-  <div class="back" onclick="openSection('important')">← Важное</div>
-  <div class="section-title">🔎 Потеряно / найдено</div>
-
-  <div class="card" onclick="importantSearch('потеряно найдено Одесса')">
-    🔎 Потерянные вещи
-    <div class="info">Поиск объявлений</div>
-  </div>
-
-  <div class="card" onclick="importantSearch('найдена собака кошка Одесса')">
-    🐾 Животные
-    <div class="info">Потерянные и найденные животные</div>
-  </div>
-</div>
-
-
-<div id="documents" class="section">
-  <div class="back" onclick="openSection('important')">← Важное</div>
-  <div class="section-title">📄 Документы и госуслуги</div>
-
-  <div class="card" onclick="importantSearch('ЦНАП Одесса официальный сайт')">
-    🏢 ЦНАП
-    <div class="info">Административные услуги</div>
-  </div>
-
-  <div class="card" onclick="importantSearch('Дія государственные услуги официальный сайт')">
-    📱 Дія
-    <div class="info">Государственные услуги онлайн</div>
-  </div>
-
-  <div class="card" onclick="importantMap('ЦНАП Одесса')">
-    📍 ЦНАП на карте
-    <div class="info">Найти ближайший центр</div>
-  </div>
-</div>
-
-
-<div id="helpCenters" class="section">
-  <div class="back" onclick="openSection('important')">← Важное</div>
-  <div class="section-title">🤝 Центры помощи</div>
-
-  <div class="card" onclick="importantMap('гуманитарная помощь Одесса')">
-    🤝 Гуманитарная помощь
-    <div class="info">Центры помощи на карте</div>
-  </div>
-
-  <div class="card" onclick="importantSearch('социальная помощь Одесса официальный')">
-    🏢 Социальная помощь
-    <div class="info">Городские и государственные службы</div>
-  </div>
-
-  <div class="card" onclick="importantMap('центр социальной помощи Одесса')">
-    📍 Центры на карте
-    <div class="info">Найти ближайший</div>
-  </div>
-</div>
-
-
-<div id="usefulPhones" class="section">
-  <div class="back" onclick="openSection('important')">← Важное</div>
-  <div class="section-title">☎️ Полезные телефоны</div>
-
-  <div class="card" onclick="window.location.href='tel:112'">🆘 112 — Экстренная помощь</div>
-  <div class="card" onclick="window.location.href='tel:101'">🚒 101 — Спасатели</div>
-  <div class="card" onclick="window.location.href='tel:102'">👮 102 — Полиция</div>
-  <div class="card" onclick="window.location.href='tel:103'">🚑 103 — Скорая помощь</div>
-  <div class="card" onclick="window.location.href='tel:104'">🔥 104 — Газовая служба</div>
-</div>
+<!-- =============== КОНЕЦ ВАЖНОГО =============== -->
 
 
 <!-- ===================================================== -->
