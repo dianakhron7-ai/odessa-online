@@ -5276,10 +5276,12 @@ function openTrolley(number) {
 
     </script>
 <!-- ===================================================== -->
+<!-- ================================================== -->
 <!-- 🏠 НЕДВИЖИМОСТЬ -->
-<!-- ===================================================== -->
+<!-- ================================================== -->
 
 <div id="realEstate" class="section">
+
   <div class="back" onclick="goHome()">← Назад</div>
   <div class="section-title">🏠 Недвижимость в Одессе</div>
 
@@ -5290,27 +5292,27 @@ function openTrolley(number) {
 
   <div class="card" onclick="openSection('buyApartment')">
     🏢 Купить квартиру
-    <div class="info">Продажа квартир в Одессе</div>
+    <div class="info">Квартиры на продажу</div>
+  </div>
+
+  <div class="card" onclick="openSection('dailyApartment')">
+    🛏 Посуточная аренда
+    <div class="info">Квартиры на сутки и короткий срок</div>
   </div>
 
   <div class="card" onclick="openSection('rentHouse')">
-    🏡 Аренда дома
-    <div class="info">Дома, коттеджи и таунхаусы</div>
+    🏡 Снять дом
+    <div class="info">Дома, дачи и коттеджи</div>
   </div>
 
   <div class="card" onclick="openSection('buyHouse')">
-    🏘 Купить дом
-    <div class="info">Продажа домов</div>
+    🏠 Купить дом
+    <div class="info">Продажа домов и коттеджей</div>
   </div>
 
-  <div class="card" onclick="openSection('rooms')">
-    🛏 Комнаты
-    <div class="info">Аренда и продажа комнат</div>
-  </div>
-
-  <div class="card" onclick="openSection('dailyRent')">
-    🌊 Посуточная аренда
-    <div class="info">Квартиры и жильё на несколько дней</div>
+  <div class="card" onclick="openSection('rentRoom')">
+    🚪 Комнаты
+    <div class="info">Аренда комнат и подселение</div>
   </div>
 
   <div class="card" onclick="openSection('newBuildings')">
@@ -5323,250 +5325,503 @@ function openTrolley(number) {
     <div class="info">Офисы, магазины, склады и помещения</div>
   </div>
 
-  <div class="card" onclick="openSection('landPlots')">
+  <div class="card" onclick="openSection('landEstate')">
     🌳 Земельные участки
-    <div class="info">Продажа земли и участков</div>
+    <div class="info">Продажа и аренда земли</div>
   </div>
 
-  <div class="card" onclick="openSection('garages')">
-    🚗 Гаражи и паркоместа
+  <div class="card" onclick="openSection('garageEstate')">
+    🚗 Гаражи и паркинги
     <div class="info">Продажа и аренда</div>
   </div>
 
-  <div class="card" onclick="openSection('estateAgencies')">
-    🏢 Агентства недвижимости
-    <div class="info">Риелторы и агентства Одессы</div>
+  <div class="card" onclick="openSection('estateDistricts')">
+    📍 По районам Одессы
+    <div class="info">Искать жильё в нужном районе</div>
   </div>
+
+  <div class="card" onclick="openSection('estateAgencies')">
+    🤝 Агентства и риелторы
+    <div class="info">Помощь с поиском недвижимости</div>
+  </div>
+
 </div>
 
 
-<!-- СНЯТЬ КВАРТИРУ -->
+<!-- ================================================== -->
+<!-- 🔑 СНЯТЬ КВАРТИРУ -->
+<!-- ================================================== -->
 
 <div id="rentApartment" class="section">
+
   <div class="back" onclick="openSection('realEstate')">← Недвижимость</div>
   <div class="section-title">🔑 Снять квартиру</div>
 
-  <div class="card" onclick="estateSearch('аренда квартиры Одесса OLX')">
-    🏠 OLX
-    <div class="info">Объявления об аренде квартир</div>
-  </div>
-
-  <div class="card" onclick="estateSearch('аренда квартиры Одесса DIM.RIA')">
-    🏢 DIM.RIA
-    <div class="info">Квартиры в долгосрочную аренду</div>
-  </div>
-
-  <div class="card" onclick="estateSearch('аренда квартиры Одесса ЛУН')">
-    🔎 ЛУН
-    <div class="info">Поиск жилья в Одессе</div>
-  </div>
-
-  <div class="card" onclick="estateSearch('снять квартиру Одесса без посредников')">
-    👤 Без посредников
-    <div class="info">Поиск объявлений от владельцев</div>
-  </div>
-</div>
-
-
-<!-- КУПИТЬ КВАРТИРУ -->
-
-<div id="buyApartment" class="section">
-  <div class="back" onclick="openSection('realEstate')">← Недвижимость</div>
-  <div class="section-title">🏢 Купить квартиру</div>
-
-  <div class="card" onclick="estateSearch('купить квартиру Одесса DIM.RIA')">
-    🏢 DIM.RIA
-    <div class="info">Продажа квартир</div>
-  </div>
-
-  <div class="card" onclick="estateSearch('купить квартиру Одесса OLX')">
-    🏠 OLX
-    <div class="info">Объявления о продаже</div>
-  </div>
-
-  <div class="card" onclick="estateSearch('квартиры Одесса продажа ЛУН')">
-    🔎 ЛУН
-    <div class="info">Квартиры и жилые комплексы</div>
-  </div>
-
-  <div class="card" onclick="estateSearch('купить квартиру Одесса вторичный рынок')">
-    🏙 Вторичный рынок
-    <div class="info">Квартиры от владельцев и агентств</div>
-  </div>
-</div>
-
-
-<!-- АРЕНДА ДОМА -->
-
-<div id="rentHouse" class="section">
-  <div class="back" onclick="openSection('realEstate')">← Недвижимость</div>
-  <div class="section-title">🏡 Аренда дома</div>
-
-  <div class="card" onclick="estateSearch('аренда дома Одесса долгосрочно')">
-    🏡 Дома
-    <div class="info">Долгосрочная аренда домов</div>
-  </div>
-
-  <div class="card" onclick="estateSearch('аренда коттеджа Одесса')">
-    🏘 Коттеджи
-    <div class="info">Аренда коттеджей</div>
-  </div>
-
-  <div class="card" onclick="estateSearch('аренда таунхауса Одесса')">
-    🏠 Таунхаусы
-    <div class="info">Предложения по Одессе</div>
-  </div>
-</div>
-
-
-<!-- КУПИТЬ ДОМ -->
-
-<div id="buyHouse" class="section">
-  <div class="back" onclick="openSection('realEstate')">← Недвижимость</div>
-  <div class="section-title">🏘 Купить дом</div>
-
-  <div class="card" onclick="estateSearch('купить дом Одесса DIM.RIA')">
-    🏡 DIM.RIA
-    <div class="info">Дома на продажу</div>
-  </div>
-
-  <div class="card" onclick="estateSearch('купить дом Одесса OLX')">
-    🏠 OLX
-    <div class="info">Объявления о продаже домов</div>
-  </div>
-
-  <div class="card" onclick="estateSearch('купить таунхаус Одесса')">
-    🏘 Таунхаусы
-    <div class="info">Продажа таунхаусов</div>
-  </div>
-</div>
-
-
-<!-- КОМНАТЫ -->
-
-<div id="rooms" class="section">
-  <div class="back" onclick="openSection('realEstate')">← Недвижимость</div>
-  <div class="section-title">🛏 Комнаты</div>
-
-  <div class="card" onclick="estateSearch('снять комнату Одесса')">
-    🔑 Снять комнату
+  <div class="card" onclick="estateSearchNew('снять однокомнатную квартиру Одесса долгосрочно')">
+    1️⃣ 1-комнатная
     <div class="info">Долгосрочная аренда</div>
   </div>
 
-  <div class="card" onclick="estateSearch('купить комнату Одесса')">
-    🏠 Купить комнату
-    <div class="info">Объявления о продаже</div>
+  <div class="card" onclick="estateSearchNew('снять двухкомнатную квартиру Одесса долгосрочно')">
+    2️⃣ 2-комнатная
+    <div class="info">Долгосрочная аренда</div>
   </div>
 
-  <div class="card" onclick="estateSearch('подселение Одесса комната')">
-    👥 Подселение
-    <div class="info">Совместная аренда жилья</div>
+  <div class="card" onclick="estateSearchNew('снять трехкомнатную квартиру Одесса долгосрочно')">
+    3️⃣ 3-комнатная
+    <div class="info">Долгосрочная аренда</div>
   </div>
+
+  <div class="card" onclick="estateSearchNew('снять четырехкомнатную квартиру Одесса долгосрочно')">
+    4️⃣ 4+ комнат
+    <div class="info">Большие квартиры</div>
+  </div>
+
+  <div class="card" onclick="estateSearchNew('снять квартиру Одесса от хозяина без посредников')">
+    👤 От хозяина
+    <div class="info">Поиск объявлений без посредников</div>
+  </div>
+
+  <div class="card" onclick="estateSearchNew('снять квартиру Одесса можно с животными')">
+    🐕 С животными
+    <div class="info">Жильё, где разрешены питомцы</div>
+  </div>
+
+  <div class="card" onclick="estateSearchNew('снять квартиру Одесса с мебелью техникой')">
+    🛋 С мебелью
+    <div class="info">Готовые к заселению квартиры</div>
+  </div>
+
 </div>
 
 
-<!-- ПОСУТОЧНО -->
+<!-- ================================================== -->
+<!-- 🏢 КУПИТЬ КВАРТИРУ -->
+<!-- ================================================== -->
 
-<div id="dailyRent" class="section">
+<div id="buyApartment" class="section">
+
   <div class="back" onclick="openSection('realEstate')">← Недвижимость</div>
-  <div class="section-title">🌊 Посуточная аренда</div>
+  <div class="section-title">🏢 Купить квартиру</div>
 
-  <div class="card" onclick="estateSearch('квартира посуточно Одесса')">
-    🏠 Квартиры
-    <div class="info">Жильё на несколько дней</div>
+  <div class="card" onclick="estateSearchNew('купить однокомнатную квартиру Одесса')">
+    1️⃣ 1-комнатная
   </div>
 
-  <div class="card" onclick="estateSearch('апартаменты Одесса посуточно')">
-    🌊 Апартаменты
-    <div class="info">Посуточная аренда</div>
+  <div class="card" onclick="estateSearchNew('купить двухкомнатную квартиру Одесса')">
+    2️⃣ 2-комнатная
   </div>
 
-  <div class="card" onclick="estateSearch('дом посуточно Одесса')">
-    🏡 Дома
-    <div class="info">Дома для краткосрочной аренды</div>
+  <div class="card" onclick="estateSearchNew('купить трехкомнатную квартиру Одесса')">
+    3️⃣ 3-комнатная
   </div>
+
+  <div class="card" onclick="estateSearchNew('купить четырехкомнатную квартиру Одесса')">
+    4️⃣ 4+ комнат
+  </div>
+
+  <div class="card" onclick="estateSearchNew('купить квартиру Одесса вторичный рынок')">
+    🏙 Вторичный рынок
+  </div>
+
+  <div class="card" onclick="estateSearchNew('купить квартиру Одесса от владельца без посредников')">
+    👤 От владельца
+  </div>
+
+  <div class="card" onclick="estateSearchNew('купить квартиру Одесса с ремонтом')">
+    🔑 С ремонтом
+  </div>
+
+  <div class="card" onclick="estateSearchNew('купить квартиру Одесса под ремонт')">
+    🔨 Под ремонт
+  </div>
+
 </div>
 
 
-<!-- НОВОСТРОЙКИ -->
+<!-- ================================================== -->
+<!-- 🛏 ПОСУТОЧНАЯ АРЕНДА -->
+<!-- ================================================== -->
+
+<div id="dailyApartment" class="section">
+
+  <div class="back" onclick="openSection('realEstate')">← Недвижимость</div>
+  <div class="section-title">🛏 Посуточная аренда</div>
+
+  <div class="card" onclick="estateSearchNew('квартира посуточно Одесса центр')">
+    🏛 В центре
+  </div>
+
+  <div class="card" onclick="estateSearchNew('квартира посуточно Одесса Аркадия')">
+    🌊 Аркадия
+  </div>
+
+  <div class="card" onclick="estateSearchNew('квартира посуточно Одесса возле моря')">
+    🏖 Возле моря
+  </div>
+
+  <div class="card" onclick="estateSearchNew('однокомнатная квартира посуточно Одесса')">
+    1️⃣ 1-комнатная
+  </div>
+
+  <div class="card" onclick="estateSearchNew('двухкомнатная квартира посуточно Одесса')">
+    2️⃣ 2-комнатная
+  </div>
+
+  <div class="card" onclick="estateSearchNew('квартира Одесса почасово')">
+    ⏰ Почасово
+  </div>
+
+</div>
+
+
+<!-- ================================================== -->
+<!-- 🏡 СНЯТЬ ДОМ -->
+<!-- ================================================== -->
+
+<div id="rentHouse" class="section">
+
+  <div class="back" onclick="openSection('realEstate')">← Недвижимость</div>
+  <div class="section-title">🏡 Снять дом</div>
+
+  <div class="card" onclick="estateSearchNew('снять частный дом Одесса долгосрочно')">
+    🏠 Частный дом
+  </div>
+
+  <div class="card" onclick="estateSearchNew('снять коттедж Одесса долгосрочно')">
+    🏡 Коттедж
+  </div>
+
+  <div class="card" onclick="estateSearchNew('снять часть дома Одесса долгосрочно')">
+    🚪 Часть дома
+  </div>
+
+  <div class="card" onclick="estateSearchNew('снять дом Одесса возле моря')">
+    🌊 Дом возле моря
+  </div>
+
+  <div class="card" onclick="estateSearchNew('снять дом Одесса с двором')">
+    🌳 Дом с двором
+  </div>
+
+  <div class="card" onclick="estateSearchNew('снять дом Одесса от хозяина')">
+    👤 От хозяина
+  </div>
+
+</div>
+
+
+<!-- ================================================== -->
+<!-- 🏠 КУПИТЬ ДОМ -->
+<!-- ================================================== -->
+
+<div id="buyHouse" class="section">
+
+  <div class="back" onclick="openSection('realEstate')">← Недвижимость</div>
+  <div class="section-title">🏠 Купить дом</div>
+
+  <div class="card" onclick="estateSearchNew('купить частный дом Одесса')">
+    🏠 Частный дом
+  </div>
+
+  <div class="card" onclick="estateSearchNew('купить коттедж Одесса')">
+    🏡 Коттедж
+  </div>
+
+  <div class="card" onclick="estateSearchNew('купить таунхаус Одесса')">
+    🏘 Таунхаус
+  </div>
+
+  <div class="card" onclick="estateSearchNew('купить часть дома Одесса')">
+    🚪 Часть дома
+  </div>
+
+  <div class="card" onclick="estateSearchNew('купить дом Одесса возле моря')">
+    🌊 Возле моря
+  </div>
+
+  <div class="card" onclick="estateSearchNew('купить дом Одесса от хозяина')">
+    👤 От хозяина
+  </div>
+
+</div>
+
+
+<!-- ================================================== -->
+<!-- 🚪 КОМНАТЫ -->
+<!-- ================================================== -->
+
+<div id="rentRoom" class="section">
+
+  <div class="back" onclick="openSection('realEstate')">← Недвижимость</div>
+  <div class="section-title">🚪 Комнаты</div>
+
+  <div class="card" onclick="estateSearchNew('снять комнату Одесса долгосрочно')">
+    🔑 Снять комнату
+  </div>
+
+  <div class="card" onclick="estateSearchNew('снять комнату Одесса без посредников')">
+    👤 Без посредников
+  </div>
+
+  <div class="card" onclick="estateSearchNew('подселение Одесса квартира')">
+    👥 Подселение
+  </div>
+
+  <div class="card" onclick="estateSearchNew('комната студенту Одесса аренда')">
+    🎓 Для студентов
+  </div>
+
+  <div class="card" onclick="estateSearchNew('купить комнату Одесса')">
+    💰 Купить комнату
+  </div>
+
+</div>
+
+
+<!-- ================================================== -->
+<!-- 🏗 НОВОСТРОЙКИ -->
+<!-- ================================================== -->
 
 <div id="newBuildings" class="section">
+
   <div class="back" onclick="openSection('realEstate')">← Недвижимость</div>
   <div class="section-title">🏗 Новостройки</div>
 
-  <div class="card" onclick="estateSearch('новостройки Одесса ЛУН')">
-    🏗 ЛУН
-    <div class="info">Каталог новостроек</div>
+  <div class="card" onclick="estateSearchNew('новостройки Одесса квартиры от застройщика')">
+    🏗 Все новостройки
   </div>
 
-  <div class="card" onclick="estateSearch('новостройки Одесса DIM.RIA')">
-    🏢 DIM.RIA
-    <div class="info">Новые жилые комплексы</div>
+  <div class="card" onclick="estateSearchNew('готовые новостройки Одесса сданные дома')">
+    🔑 Сданные дома
   </div>
 
-  <div class="card" onclick="estateSearch('жилые комплексы Одесса новостройки')">
-    🌆 Все ЖК
-    <div class="info">Поиск жилых комплексов Одессы</div>
+  <div class="card" onclick="estateSearchNew('строящиеся жилые комплексы Одесса')">
+    🚧 Строящиеся ЖК
   </div>
+
+  <div class="card" onclick="estateSearchNew('квартира от застройщика Одесса без посредников')">
+    🏢 От застройщика
+  </div>
+
+  <div class="card" onclick="estateSearchNew('новостройка Одесса рассрочка квартира')">
+    💳 Рассрочка
+  </div>
+
+  <div class="card" onclick="estateSearchNew('новостройка Одесса возле моря')">
+    🌊 Возле моря
+  </div>
+
 </div>
 
 
-<!-- КОММЕРЧЕСКАЯ -->
+<!-- ================================================== -->
+<!-- 🏪 КОММЕРЧЕСКАЯ НЕДВИЖИМОСТЬ -->
+<!-- ================================================== -->
 
 <div id="commercialEstate" class="section">
+
   <div class="back" onclick="openSection('realEstate')">← Недвижимость</div>
   <div class="section-title">🏪 Коммерческая недвижимость</div>
 
-  <div class="card" onclick="estateSearch('аренда офиса Одесса')">🏢 Офисы</div>
-  <div class="card" onclick="estateSearch('аренда магазина помещение Одесса')">🛍 Торговые помещения</div>
-  <div class="card" onclick="estateSearch('аренда склад Одесса')">📦 Склады</div>
-  <div class="card" onclick="estateSearch('коммерческая недвижимость Одесса продажа')">💰 Продажа помещений</div>
+  <div class="card" onclick="estateSearchNew('аренда офиса Одесса')">
+    🏢 Офисы
+  </div>
+
+  <div class="card" onclick="estateSearchNew('аренда магазина торгового помещения Одесса')">
+    🛍 Магазины
+  </div>
+
+  <div class="card" onclick="estateSearchNew('аренда склад Одесса')">
+    📦 Склады
+  </div>
+
+  <div class="card" onclick="estateSearchNew('аренда помещения под кафе Одесса')">
+    ☕ Под кафе или ресторан
+  </div>
+
+  <div class="card" onclick="estateSearchNew('аренда помещения под салон красоты Одесса')">
+    💇 Под салон красоты
+  </div>
+
+  <div class="card" onclick="estateSearchNew('купить коммерческую недвижимость Одесса')">
+    💰 Купить помещение
+  </div>
+
 </div>
 
 
-<!-- ЗЕМЛЯ -->
+<!-- ================================================== -->
+<!-- 🌳 ЗЕМЕЛЬНЫЕ УЧАСТКИ -->
+<!-- ================================================== -->
 
-<div id="landPlots" class="section">
+<div id="landEstate" class="section">
+
   <div class="back" onclick="openSection('realEstate')">← Недвижимость</div>
   <div class="section-title">🌳 Земельные участки</div>
 
-  <div class="card" onclick="estateSearch('земельный участок Одесса продажа')">🌳 Все участки</div>
-  <div class="card" onclick="estateSearch('участок под строительство Одесса')">🏡 Под строительство</div>
-  <div class="card" onclick="estateSearch('земля Одесса область продажа')">📍 Одесса и область</div>
+  <div class="card" onclick="estateSearchNew('купить земельный участок Одесса под строительство')">
+    🏠 Под строительство
+  </div>
+
+  <div class="card" onclick="estateSearchNew('купить участок Одесса под бизнес')">
+    🏪 Под бизнес
+  </div>
+
+  <div class="card" onclick="estateSearchNew('купить участок Одесса возле моря')">
+    🌊 Возле моря
+  </div>
+
+  <div class="card" onclick="estateSearchNew('купить дачный участок Одесса')">
+    🌿 Дачный участок
+  </div>
+
+  <div class="card" onclick="estateSearchNew('аренда земельного участка Одесса')">
+    🔑 Аренда земли
+  </div>
+
 </div>
 
 
-<!-- ГАРАЖИ -->
+<!-- ================================================== -->
+<!-- 🚗 ГАРАЖИ И ПАРКИНГИ -->
+<!-- ================================================== -->
 
-<div id="garages" class="section">
+<div id="garageEstate" class="section">
+
   <div class="back" onclick="openSection('realEstate')">← Недвижимость</div>
-  <div class="section-title">🚗 Гаражи и паркоместа</div>
+  <div class="section-title">🚗 Гаражи и паркинги</div>
 
-  <div class="card" onclick="estateSearch('гараж Одесса продажа')">🚗 Купить гараж</div>
-  <div class="card" onclick="estateSearch('гараж Одесса аренда')">🔑 Арендовать гараж</div>
-  <div class="card" onclick="estateSearch('паркоместо Одесса продажа аренда')">🅿️ Паркоместа</div>
+  <div class="card" onclick="estateSearchNew('купить гараж Одесса')">
+    🚗 Купить гараж
+  </div>
+
+  <div class="card" onclick="estateSearchNew('аренда гаража Одесса')">
+    🔑 Снять гараж
+  </div>
+
+  <div class="card" onclick="estateSearchNew('купить паркоместо Одесса')">
+    🅿️ Купить паркоместо
+  </div>
+
+  <div class="card" onclick="estateSearchNew('аренда паркоместа Одесса')">
+    🅿️ Аренда паркоместа
+  </div>
+
+  <div class="card" onclick="estateSearchNew('подземный паркинг Одесса аренда')">
+    🏢 Подземный паркинг
+  </div>
+
 </div>
 
 
-<!-- АГЕНТСТВА -->
+<!-- ================================================== -->
+<!-- 📍 ПО РАЙОНАМ -->
+<!-- ================================================== -->
+
+<div id="estateDistricts" class="section">
+
+  <div class="back" onclick="openSection('realEstate')">← Недвижимость</div>
+  <div class="section-title">📍 Недвижимость по районам</div>
+
+  <div class="card" onclick="estateSearchNew('недвижимость Приморский район Одесса')">
+    🌊 Приморский район
+  </div>
+
+  <div class="card" onclick="estateSearchNew('недвижимость Киевский район Одесса')">
+    🏙 Киевский район
+  </div>
+
+  <div class="card" onclick="estateSearchNew('недвижимость Хаджибейский район Одесса')">
+    🏘 Хаджибейский район
+  </div>
+
+  <div class="card" onclick="estateSearchNew('недвижимость Пересыпский район Одесса')">
+    🏢 Пересыпский район
+  </div>
+
+  <div class="card" onclick="estateSearchNew('недвижимость Аркадия Одесса')">
+    🏖 Аркадия
+  </div>
+
+  <div class="card" onclick="estateSearchNew('недвижимость Таирова Одесса')">
+    🏘 Таирова
+  </div>
+
+  <div class="card" onclick="estateSearchNew('недвижимость Черемушки Одесса')">
+    🌳 Черёмушки
+  </div>
+
+  <div class="card" onclick="estateSearchNew('недвижимость Молдаванка Одесса')">
+    🏠 Молдаванка
+  </div>
+
+  <div class="card" onclick="estateSearchNew('недвижимость центр Одессы')">
+    🏛 Центр
+  </div>
+
+  <div class="card" onclick="estateSearchNew('недвижимость Большой Фонтан Одесса')">
+    🌊 Большой Фонтан
+  </div>
+
+</div>
+
+
+<!-- ================================================== -->
+<!-- 🤝 АГЕНТСТВА И РИЕЛТОРЫ -->
+<!-- ================================================== -->
 
 <div id="estateAgencies" class="section">
-  <div class="back" onclick="openSection('realEstate')">← Недвижимость</div>
-  <div class="section-title">🏢 Агентства недвижимости</div>
 
-  <div class="card" onclick="estateMap('агентства недвижимости Одесса')">
-    🏢 Все агентства
+  <div class="back" onclick="openSection('realEstate')">← Недвижимость</div>
+  <div class="section-title">🤝 Агентства и риелторы</div>
+
+  <div class="card" onclick="estateMapNew('агентства недвижимости Одесса')">
+    🏢 Агентства недвижимости
     <div class="info">Показать агентства на карте</div>
   </div>
 
-  <div class="card" onclick="estateMap('риелтор Одесса')">
+  <div class="card" onclick="estateMapNew('риелтор Одесса')">
     👤 Риелторы
     <div class="info">Специалисты по недвижимости</div>
   </div>
+
+  <div class="card" onclick="estateMapNew('оценка недвижимости Одесса')">
+    💰 Оценка недвижимости
+    <div class="info">Специалисты по оценке жилья</div>
+  </div>
+
+  <div class="card" onclick="estateSearchNew('нотариус недвижимость Одесса оформление сделки')">
+    📑 Оформление сделки
+    <div class="info">Нотариусы и оформление недвижимости</div>
+  </div>
+
 </div>
 
 
-<!-- ===================================================== -->
+<!-- ================================================== -->
+<!-- ФУНКЦИИ НЕДВИЖИМОСТИ -->
+<!-- ================================================== -->
+
+<script>
+
+function estateSearchNew(query) {
+  window.open(
+    "https://www.google.com/search?q=" + encodeURIComponent(query),
+    "_blank"
+  );
+}
+
+function estateMapNew(query) {
+  window.open(
+    "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(query),
+    "_blank"
+  );
+}
+
+</script>
+
+<!-- =============== КОНЕЦ НЕДВИЖИМОСТИ =============== -->
 <!-- 🎉 ОТДЫХ -->
 <!-- ===================================================== -->
 
