@@ -1427,6 +1427,148 @@ body.section-open .section{
   box-shadow:0 6px 18px rgba(125,0,0,.38) !important;
 }
 
+
+/* ===== АНИМАЦИЯ НАЖАТИЯ НА КАРТОЧКИ ===== */
+.card,
+.live-card,
+.section .card{
+  transition:transform .14s ease, box-shadow .14s ease, filter .14s ease !important;
+  -webkit-tap-highlight-color:transparent !important;
+}
+.card:active,
+.live-card:active,
+.section .card:active{
+  transform:scale(.965) !important;
+  filter:brightness(1.08) !important;
+  box-shadow:0 3px 10px rgba(0,0,0,.25) !important;
+}
+
+/* ===== ПЛАВАЮЩАЯ КНОПКА "НАВЕРХ" ===== */
+.scroll-top-btn{
+  position:fixed !important;
+  right:18px !important;
+  bottom:24px !important;
+  z-index:9999 !important;
+  display:none;
+  align-items:center !important;
+  justify-content:center !important;
+  min-width:52px !important;
+  height:52px !important;
+  padding:0 14px !important;
+  border:1px solid rgba(255,255,255,.38) !important;
+  border-radius:26px !important;
+  background:rgba(16,24,36,.94) !important;
+  color:#fff !important;
+  font-size:24px !important;
+  font-weight:800 !important;
+  box-shadow:0 7px 22px rgba(0,0,0,.38) !important;
+  backdrop-filter:blur(9px) !important;
+  cursor:pointer !important;
+  -webkit-tap-highlight-color:transparent !important;
+  transition:transform .14s ease, opacity .18s ease !important;
+}
+.scroll-top-btn.show{
+  display:flex !important;
+}
+.scroll-top-btn:active{
+  transform:scale(.91) !important;
+}
+
+
+/* ===== ТРАНСПОРТНЫЕ МАРШРУТЫ: ЖЁЛТЫЕ НОМЕРА + ГЕОЛОКАЦИЯ ===== */
+.transport-route-card{
+  display:grid !important;
+  grid-template-columns:48px minmax(0,1fr) 38px 20px !important;
+  align-items:center !important;
+  gap:10px !important;
+  padding:13px 12px !important;
+  min-height:76px !important;
+}
+.route-badge{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  width:46px !important;
+  height:46px !important;
+  border-radius:13px !important;
+  background:linear-gradient(145deg,#ffd82f,#f3b900) !important;
+  color:#111 !important;
+  font-size:20px !important;
+  font-weight:900 !important;
+  box-shadow:0 4px 12px rgba(0,0,0,.28) !important;
+}
+.route-text{
+  min-width:0 !important;
+  display:flex !important;
+  flex-direction:column !important;
+  gap:5px !important;
+  color:#fff !important;
+}
+.route-text b{
+  font-size:15px !important;
+  line-height:1.25 !important;
+}
+.route-text small{
+  color:rgba(235,240,247,.72) !important;
+  font-size:12px !important;
+  line-height:1.2 !important;
+}
+.route-map-btn{
+  width:36px !important;
+  height:42px !important;
+  padding:0 !important;
+  border:0 !important;
+  border-radius:18px !important;
+  background:transparent !important;
+  color:#fff !important;
+  font-size:25px !important;
+  box-shadow:none !important;
+  cursor:pointer !important;
+  -webkit-tap-highlight-color:transparent !important;
+}
+.route-map-btn:active{
+  transform:scale(.88) !important;
+}
+.route-chevron{
+  color:rgba(255,255,255,.82) !important;
+  font-size:30px !important;
+  font-weight:300 !important;
+  line-height:1 !important;
+}
+
+/* Стрелка справа у внутренних кнопок-переходов */
+.section .card.section-nav-card{
+  position:relative !important;
+  padding-right:44px !important;
+}
+.section .card.section-nav-card::after{
+  content:"›";
+  position:absolute;
+  right:16px;
+  top:50%;
+  transform:translateY(-50%);
+  color:rgba(255,255,255,.82);
+  font-size:30px;
+  font-weight:300;
+}
+
+
+/* ===== ФИНАЛ: ЖЁЛТЫЙ ТОЛЬКО НОМЕР ТРАНСПОРТА ===== */
+.transport-route-card{
+  background:linear-gradient(145deg,rgba(18,25,36,.97),rgba(10,16,26,.96)) !important;
+  border:1px solid rgba(255,255,255,.16) !important;
+  color:#fff !important;
+}
+.transport-route-card .route-badge{
+  background:linear-gradient(145deg,#ffe13b,#f4b900) !important;
+  color:#111 !important;
+  border:0 !important;
+  font-weight:900 !important;
+}
+.transport-route-card .route-map-btn{
+  background:transparent !important;
+}
+
 </style>
 </head>
 
@@ -6530,9 +6672,19 @@ const routeList = document.getElementById("routeList");
 odessaRoutes.forEach(route => {
   const button = document.createElement("div");
   button.className = "card";
+  button.className = "card transport-route-card";
   button.innerHTML =
-    "🚐 <b>№ " + route.n + "</b><br>" +
-    "<small>" + route.a + " → " + route.b + "</small>";
+    '<span class="route-badge">' + route.n + '</span>' +
+    '<span class="route-text"><b>' + route.a + ' → ' + route.b + '</b>' +
+    '<small>' + route.hours + '</small></span>' +
+    '<button class="route-map-btn" type="button" aria-label="Открыть на карте">📍</button>' +
+    '<span class="route-chevron">›</span>';
+
+  button.querySelector(".route-map-btn").onclick = function (e) {
+    e.stopPropagation();
+    window.open("https://www.google.com/maps/search/?api=1&query=" +
+      encodeURIComponent("маршрутка " + route.n + " Одесса " + route.a + " " + route.b), "_blank");
+  };
 
   button.onclick = function () {
     openRoute(route.n);
@@ -6780,9 +6932,19 @@ odessaTrams.forEach(tram => {
 
   button.className = "card";
 
+  button.className = "card transport-route-card";
   button.innerHTML =
-    "🚋 <b>№ " + tram.n + "</b><br>" +
-    "<small>" + tram.a + " → " + tram.b + "</small>";
+    '<span class="route-badge">' + tram.n + '</span>' +
+    '<span class="route-text"><b>' + tram.a + ' → ' + tram.b + '</b>' +
+    '<small>' + tram.hours + '</small></span>' +
+    '<button class="route-map-btn" type="button" aria-label="Открыть на карте">📍</button>' +
+    '<span class="route-chevron">›</span>';
+
+  button.querySelector(".route-map-btn").onclick = function (e) {
+    e.stopPropagation();
+    window.open("https://www.google.com/maps/search/?api=1&query=" +
+      encodeURIComponent("трамвай " + tram.n + " Одесса " + tram.a + " " + tram.b), "_blank");
+  };
 
   button.onclick = function () {
     openTram(tram.n);
@@ -6919,9 +7081,19 @@ odessaTrolleys.forEach(trolley => {
 
   button.className = "card";
 
+  button.className = "card transport-route-card";
   button.innerHTML =
-    "🚎 <b>№ " + trolley.n + "</b><br>" +
-    "<small>" + trolley.a + " → " + trolley.b + "</small>";
+    '<span class="route-badge">' + trolley.n + '</span>' +
+    '<span class="route-text"><b>' + trolley.a + ' → ' + trolley.b + '</b>' +
+    '<small>' + trolley.hours + '</small></span>' +
+    '<button class="route-map-btn" type="button" aria-label="Открыть на карте">📍</button>' +
+    '<span class="route-chevron">›</span>';
+
+  button.querySelector(".route-map-btn").onclick = function (e) {
+    e.stopPropagation();
+    window.open("https://www.google.com/maps/search/?api=1&query=" +
+      encodeURIComponent("троллейбус " + trolley.n + " Одесса " + trolley.a + " " + trolley.b), "_blank");
+  };
 
   button.onclick = function () {
     openTrolley(trolley.n);
@@ -8219,6 +8391,51 @@ document.addEventListener("DOMContentLoaded", function () {
         goHome();
       });
       section.appendChild(btn);
+    }
+  });
+});
+</script>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  let topBtn = document.getElementById("scrollTopBtn");
+
+  if (!topBtn) {
+    topBtn = document.createElement("button");
+    topBtn.id = "scrollTopBtn";
+    topBtn.className = "scroll-top-btn";
+    topBtn.type = "button";
+    topBtn.setAttribute("aria-label", "Наверх");
+    topBtn.innerHTML = "↑";
+    document.body.appendChild(topBtn);
+  }
+
+  topBtn.addEventListener("click", function () {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  });
+
+  function updateTopButton() {
+    const sectionOpen = document.body.classList.contains("section-open");
+    if (sectionOpen && window.scrollY > 420) {
+      topBtn.classList.add("show");
+    } else {
+      topBtn.classList.remove("show");
+    }
+  }
+
+  window.addEventListener("scroll", updateTopButton, { passive: true });
+  updateTopButton();
+});
+</script>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll(".section .card").forEach(function(card) {
+    const clickCode = card.getAttribute("onclick") || "";
+    if (clickCode.includes("openSection(") && !card.classList.contains("transport-route-card")) {
+      card.classList.add("section-nav-card");
     }
   });
 });
