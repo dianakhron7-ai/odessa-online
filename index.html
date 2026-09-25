@@ -1236,6 +1236,20 @@ body.section-open .section{
   grid-row:3 !important;
 }
 
+
+/* ===== РОВНЫЕ ОТСТУПЫ МЕЖДУ ВСЕМИ КНОПКАМИ ===== */
+/* Убираем принудительную строку у первых двух разделов */
+#home > .card[onclick*="'transport'"],
+#home > .card[onclick*="'medicine'"]{
+  grid-row:auto !important;
+}
+
+/* Все карточки разделов идут подряд с одинаковым расстоянием */
+#home{
+  row-gap:16px !important;
+  column-gap:16px !important;
+}
+
 </style>
 </head>
 
