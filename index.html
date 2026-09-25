@@ -1116,6 +1116,126 @@ body.section-open .section{
   text-shadow:0 2px 9px rgba(0,0,0,.60) !important;
 }
 
+
+/* ===== FINAL FIX: НАЗВАНИЕ + ПОИСК ===== */
+.header{
+  padding-top:14px !important;
+  padding-bottom:12px !important;
+}
+.header .home-title{
+  margin:0 0 3px !important;
+  text-align:center !important;
+  white-space:nowrap !important;
+  line-height:1.15 !important;
+}
+.header .home-title .odessa,
+.header .home-title .online{
+  display:inline !important;
+  font-family:"Segoe Script","Brush Script MT","Snell Roundhand","Apple Chancery",cursive !important;
+  font-size:30px !important;
+  font-weight:400 !important;
+  font-style:italic !important;
+  letter-spacing:.25px !important;
+  color:#fff !important;
+  text-shadow:0 2px 9px rgba(0,0,0,.65) !important;
+}
+.header .home-title .online{
+  margin-left:8px !important;
+}
+.header .subtitle{
+  margin:3px 0 0 !important;
+  text-align:center !important;
+  font-size:13px !important;
+  color:rgba(255,255,255,.82) !important;
+  text-shadow:0 2px 7px rgba(0,0,0,.55) !important;
+}
+
+/* weather + currency = first row */
+#home .weather-card{
+  grid-column:1 !important;
+  grid-row:1 !important;
+}
+#home .currency-card{
+  grid-column:2 !important;
+  grid-row:1 !important;
+}
+
+/* Search = its own full-width row below weather/currency */
+#home .home-search{
+  display:block !important;
+  grid-column:1 / -1 !important;
+  grid-row:2 !important;
+  width:100% !important;
+  box-sizing:border-box !important;
+  margin:14px 0 16px !important;
+  padding:0 !important;
+  visibility:visible !important;
+  opacity:1 !important;
+  position:relative !important;
+  z-index:10 !important;
+  background:transparent !important;
+  border:0 !important;
+}
+#home .home-search-title{
+  display:block !important;
+  margin:0 6px 10px !important;
+  font-family:"Segoe Script","Brush Script MT","Snell Roundhand","Apple Chancery",cursive !important;
+  font-size:21px !important;
+  font-weight:400 !important;
+  font-style:italic !important;
+  line-height:1.2 !important;
+  color:#fff !important;
+  text-align:left !important;
+  text-shadow:0 2px 7px rgba(0,0,0,.65) !important;
+}
+#home .home-search-title::before{
+  content:"🔎  " !important;
+  font-family:Arial,sans-serif !important;
+  font-style:normal !important;
+}
+#home .home-search-box{
+  display:block !important;
+  width:100% !important;
+  box-sizing:border-box !important;
+  padding:10px !important;
+  border-radius:23px !important;
+  background:rgba(255,255,255,.10) !important;
+  border:1px solid rgba(255,255,255,.24) !important;
+}
+#home #homeSearchInput{
+  display:block !important;
+  width:100% !important;
+  height:58px !important;
+  box-sizing:border-box !important;
+  padding:0 20px !important;
+  border:0 !important;
+  outline:none !important;
+  border-radius:18px !important;
+  background:#fff !important;
+  color:#222 !important;
+  font-size:17px !important;
+}
+#home #homeSearchInput::placeholder{
+  color:#777 !important;
+  opacity:1 !important;
+}
+#home #homeSearchResults{
+  width:100% !important;
+  box-sizing:border-box !important;
+}
+#home #homeSearchResults:not(:empty){
+  margin-top:9px !important;
+  padding:8px !important;
+  border-radius:18px !important;
+  background:rgba(12,18,28,.97) !important;
+}
+
+/* first category row after search */
+#home > .card[onclick*="'transport'"],
+#home > .card[onclick*="'medicine'"]{
+  grid-row:3 !important;
+}
+
 </style>
 </head>
 
@@ -1150,6 +1270,7 @@ body.section-open .section{
       <div id="odessaCurrencyNow" class="live-info">$ / € • загрузка…</div>
     </div>
     <div class="live-arrow">›</div>
+  </div>
 
   <div class="home-search">
     <div class="home-search-title">Поиск по справочнику</div>
@@ -1159,8 +1280,6 @@ body.section-open .section{
         oninput="homeGuideSearch()">
       <div id="homeSearchResults"></div>
     </div>
-  </div>
-
   </div>
 
   <div class="card" onclick="openSection('transport')">
