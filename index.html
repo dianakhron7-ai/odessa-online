@@ -1647,6 +1647,37 @@ body.section-open .section{
   text-shadow:0 2px 7px rgba(0,0,0,.7) !important;
 }
 
+
+/* ===== ИЗБРАННОЕ — КНОПКА ВНИЗУ РЯДОМ С «ВАЖНОЕ» ===== */
+#home .favorites-main-card{
+  min-height:86px !important;
+}
+#home .favorites-main-card .fav-heart-main{
+  font-size:31px !important;
+}
+#home .favorites-main-card .fav-count{
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  min-width:20px !important;
+  height:20px !important;
+  padding:0 6px !important;
+  margin-left:5px !important;
+  border-radius:10px !important;
+  background:#e83d55 !important;
+  color:#fff !important;
+  font-size:11px !important;
+  font-weight:800 !important;
+}
+#home .favorites-panel{
+  grid-column:1/-1 !important;
+  order:9998 !important;
+  margin:0 0 14px !important;
+}
+#home .home-signature{
+  order:9999 !important;
+}
+
 </style>
 </head>
 
@@ -8703,6 +8734,67 @@ document.addEventListener("DOMContentLoaded", function(){
     sig.textContent="Одесса рядом — всё нужное в одном месте ♡";
     home.appendChild(sig);
   }
+});
+</script>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+  const home=document.getElementById("home");
+  const panel=document.getElementById("favoritesPanel");
+  if(!home || !panel) return;
+
+  // Remove panel from the top; it will open only when the Favorites card is tapped.
+  panel.classList.remove("has-items");
+  panel.style.display="none";
+
+  // Find "Важное" main card.
+  const important=Array.from(home.querySelectorAll(":scope > .card")).find(function(c){
+    return (c.getAttribute("onclick")||"").includes("'important'");
+  });
+
+  if(important && !home.querySelector(".favorites-main-card")){
+    const fav=document.createElement("div");
+    fav.className="card favorites-main-card";
+    fav.innerHTML=
+      '<div class="icon fav-heart-main">❤️</div>'+
+      '<div class="card-text"><b>Избранное <span class="fav-count">0</span></b>'+
+      '<small>Сохранённые места и записи</small></div>'+
+      '<div class="arrow">›</div>';
+
+    important.insertAdjacentElement("afterend",fav);
+
+    fav.addEventListener("click",function(){
+      const items=JSON.parse(localStorage.getItem("odessaFavorites")||"[]");
+      const list=panel.querySelector(".favorites-list");
+      list.innerHTML="";
+      items.forEach(function(item){
+        const d=document.createElement("div");
+        d.className="favorite-saved-item";
+        d.textContent="❤️ "+item.title;
+        list.appendChild(d);
+      });
+      if(!items.length){
+        list.innerHTML='<div class="favorite-saved-item">Пока ничего не добавлено ❤️</div>';
+      }
+      panel.style.display="block";
+      panel.classList.add("has-items");
+      panel.scrollIntoView({behavior:"smooth",block:"start"});
+    });
+  }
+
+  function updateFavCount(){
+    let items=[];
+    try{items=JSON.parse(localStorage.getItem("odessaFavorites")||"[]");}catch(e){}
+    const count=home.querySelector(".fav-count");
+    if(count) count.textContent=items.length;
+  }
+  updateFavCount();
+
+  // Refresh badge after any heart click.
+  document.querySelectorAll(".favorite-btn").forEach(function(btn){
+    btn.addEventListener("click",function(){setTimeout(updateFavCount,20);});
+  });
 });
 </script>
 
