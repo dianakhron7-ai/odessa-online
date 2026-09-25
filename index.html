@@ -780,6 +780,46 @@ body{
   }
 }
 
+
+/* ===== ФИНАЛ: ПОГОДА/КУРС СВЕРХУ + МАЛЕНЬКИЕ ===== */
+#home .weather-card,
+#home .currency-card{
+  min-height:82px !important;
+  height:82px !important;
+  padding:10px 24px 9px 48px !important;
+  border-radius:18px !important;
+}
+#home .weather-card .live-icon,
+#home .currency-card .live-icon{
+  left:8px !important;
+  width:34px !important;
+  font-size:29px !important;
+}
+#home .weather-card .live-title,
+#home .currency-card .live-title{
+  font-size:14px !important;
+  line-height:1.05 !important;
+}
+#home .weather-card .live-info,
+#home .currency-card .live-info{
+  font-size:10.5px !important;
+  line-height:1.2 !important;
+  margin-top:4px !important;
+}
+#home .weather-card .live-arrow,
+#home .currency-card .live-arrow{
+  font-size:21px !important;
+  right:7px !important;
+}
+
+/* Когда открыт раздел — он отдельным экраном, главная под ним не видна */
+body.section-open #home{
+  display:none !important;
+}
+body.section-open .section{
+  margin-top:0 !important;
+}
+
 </style>
 </head>
 
@@ -799,16 +839,6 @@ body{
 
   <div class="hero-space" aria-hidden="true"></div>
 
-  <div class="home-search">
-    <div class="home-search-title">🔎 Поиск по справочнику</div>
-    <div class="home-search-box">
-      <input id="homeSearchInput" type="text"
-        placeholder="Например: суши, стоматолог, работа..."
-        oninput="homeGuideSearch()">
-      <div id="homeSearchResults"></div>
-    </div>
-  </div>
-
   <div class="live-card weather-card" onclick="openWeather()">
     <div class="live-icon">🌤️</div>
     <div class="live-copy">
@@ -825,6 +855,17 @@ body{
       <div id="odessaCurrencyNow" class="live-info">$ / € • загрузка…</div>
     </div>
     <div class="live-arrow">›</div>
+
+  <div class="home-search">
+    <div class="home-search-title">🔎 Поиск по справочнику</div>
+    <div class="home-search-box">
+      <input id="homeSearchInput" type="text"
+        placeholder="Например: суши, стоматолог, работа..."
+        oninput="homeGuideSearch()">
+      <div id="homeSearchResults"></div>
+    </div>
+  </div>
+
   </div>
 
   <div class="card" onclick="openSection('transport')">
@@ -5717,25 +5758,39 @@ if (tg) {
 }
 
 function openSection(id) {
-  document.getElementById("home").style.display = "none";
+  const home = document.getElementById("home");
+  const target = document.getElementById(id);
+
+  if (!target) {
+    console.error("Раздел не найден:", id);
+    return;
+  }
+
+  home.style.setProperty("display", "none", "important");
+  document.body.classList.add("section-open");
 
   document.querySelectorAll(".section").forEach(section => {
-    section.style.display = "none";
+    section.style.setProperty("display", "none", "important");
   });
 
-  document.getElementById(id).style.display = "block";
+  target.style.setProperty("display", "block", "important");
 
-  window.scrollTo(0,0);
+  requestAnimationFrame(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  });
 }
 
 function goHome() {
   document.querySelectorAll(".section").forEach(section => {
-    section.style.display = "none";
+    section.style.setProperty("display", "none", "important");
   });
 
-  document.getElementById("home").style.display = "block";
+  document.body.classList.remove("section-open");
+  document.getElementById("home").style.setProperty("display", "grid", "important");
 
-  window.scrollTo(0,0);
+  requestAnimationFrame(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  });
 }
 const odessaRoutes = [
   {n:"4", a:"ВТЦ на Среднефонтанской", b:"6 км Овидиопольской дороги",
