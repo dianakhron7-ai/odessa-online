@@ -2021,6 +2021,122 @@ body.section-open .section{
   line-height:1 !important;
 }
 
+
+/* ===== ОКОНЧАТЕЛЬНЫЙ ФИКС ИЗБРАННОГО ===== */
+#home > .favorites-main-card{
+  display:grid !important;
+  grid-template-columns:50px minmax(0,1fr) 16px !important;
+  gap:7px !important;
+  padding:15px 10px !important;
+  overflow:hidden !important;
+}
+#home > .favorites-main-card .fav-icon-clean{
+  width:50px !important;
+  font-size:35px !important;
+  line-height:1 !important;
+  text-align:center !important;
+}
+#home > .favorites-main-card .fav-text-clean{
+  min-width:0 !important;
+  overflow:hidden !important;
+}
+#home > .favorites-main-card .fav-title-clean{
+  margin:0 0 7px !important;
+  color:#fff !important;
+  font-size:14px !important;
+  line-height:1.15 !important;
+  font-weight:800 !important;
+  white-space:nowrap !important;
+}
+#home > .favorites-main-card .fav-desc-clean{
+  color:rgba(235,240,247,.78) !important;
+  font-size:11.5px !important;
+  line-height:1.35 !important;
+  white-space:normal !important;
+  word-break:normal !important;
+  overflow-wrap:normal !important;
+}
+#home > .favorites-main-card .fav-arrow-clean{
+  width:16px !important;
+  font-size:25px !important;
+  line-height:1 !important;
+  color:#fff !important;
+  text-align:center !important;
+}
+
+/* Список избранного */
+#favoritesPanel{
+  box-sizing:border-box !important;
+  width:100% !important;
+}
+#favoritesPanel .favorite-saved-item{
+  word-break:normal !important;
+  overflow-wrap:anywhere !important;
+}
+
+
+/* ===== ИЗБРАННОЕ: КОМПАКТНАЯ КНОПКА + ОТДЕЛЬНЫЙ ЭКРАН ===== */
+#home > .favorites-main-card{
+  display:grid !important;
+  grid-template-columns:42px minmax(0,1fr) 14px !important;
+  gap:6px !important;
+  padding:14px 9px !important;
+  overflow:hidden !important;
+}
+#home > .favorites-main-card .fav-icon-screen{
+  font-size:31px !important;
+  line-height:1 !important;
+  text-align:center !important;
+}
+#home > .favorites-main-card .fav-main-text{
+  min-width:0 !important;
+}
+#home > .favorites-main-card .fav-main-title{
+  color:#fff !important;
+  font-size:13.5px !important;
+  font-weight:800 !important;
+  line-height:1.1 !important;
+  white-space:nowrap !important;
+}
+#home > .favorites-main-card .fav-main-desc{
+  margin-top:6px !important;
+  color:rgba(235,240,247,.76) !important;
+  font-size:10.5px !important;
+  line-height:1.3 !important;
+}
+#home > .favorites-main-card .fav-main-arrow{
+  font-size:23px !important;
+  color:#fff !important;
+  text-align:center !important;
+}
+
+/* Отдельный экран Избранное */
+#favoritesScreen{
+  display:none;
+}
+#favoritesScreen .favorites-screen-list{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+#favoritesScreen .favorite-screen-item{
+  padding:15px 16px;
+  border-radius:20px;
+  background:rgba(12,19,29,.95);
+  border:1px solid rgba(255,255,255,.14);
+  color:#fff;
+  font-size:14px;
+  line-height:1.35;
+  box-shadow:0 5px 16px rgba(0,0,0,.24);
+}
+#favoritesScreen .favorites-empty{
+  padding:22px 16px;
+  text-align:center;
+  border-radius:20px;
+  background:rgba(12,19,29,.92);
+  color:rgba(255,255,255,.8);
+}
+
 </style>
 </head>
 
@@ -9186,6 +9302,149 @@ document.addEventListener("DOMContentLoaded", function(){
       '<div class="fav-desc-final">Сохранённые<br>места и записи</div>' +
     '</div>' +
     '<div class="fav-arrow-final">›</div>';
+});
+</script>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+  const favCard=document.querySelector("#home > .favorites-main-card");
+  const panel=document.getElementById("favoritesPanel");
+  if(!favCard) return;
+
+  /* Пересобираем карточку максимально компактно */
+  favCard.innerHTML =
+    '<div class="fav-icon-clean">❤️</div>' +
+    '<div class="fav-text-clean">' +
+      '<div class="fav-title-clean">Избранное</div>' +
+      '<div class="fav-desc-clean">Сохранённые места<br>и записи</div>' +
+    '</div>' +
+    '<div class="fav-arrow-clean">›</div>';
+
+  /* Удаляем старые повреждённые записи типа undefined */
+  function cleanFavorites(){
+    let arr=[];
+    try { arr=JSON.parse(localStorage.getItem("odessaFavorites")||"[]"); } catch(e){}
+    if(!Array.isArray(arr)) arr=[];
+    arr=arr.filter(function(x){
+      return x && typeof x.title==="string" &&
+             x.title.trim() &&
+             x.title.trim().toLowerCase()!=="undefined";
+    });
+    localStorage.setItem("odessaFavorites",JSON.stringify(arr));
+    return arr;
+  }
+
+  function renderCleanFavorites(){
+    if(!panel) return;
+    const arr=cleanFavorites();
+    const list=panel.querySelector(".favorites-list");
+    if(!list) return;
+    list.innerHTML="";
+    if(!arr.length){
+      list.innerHTML='<div class="favorite-saved-item">Пока ничего не добавлено ❤️</div>';
+      return;
+    }
+    arr.forEach(function(item){
+      const d=document.createElement("div");
+      d.className="favorite-saved-item";
+      d.textContent="❤️ "+item.title.trim();
+      list.appendChild(d);
+    });
+  }
+
+  cleanFavorites();
+
+  /* При открытии Избранного показываем только нормальные записи */
+  favCard.addEventListener("click",function(){
+    renderCleanFavorites();
+    if(panel){
+      panel.style.display="block";
+      panel.classList.add("has-items");
+      setTimeout(function(){
+        panel.scrollIntoView({behavior:"smooth",block:"start"});
+      },30);
+    }
+  });
+});
+</script>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+  const home=document.getElementById("home");
+  const favCard=document.querySelector("#home > .favorites-main-card");
+  const oldPanel=document.getElementById("favoritesPanel");
+  if(!home || !favCard) return;
+
+  /* Старый раскрывающийся блок внизу больше не показываем */
+  if(oldPanel){
+    oldPanel.style.setProperty("display","none","important");
+    oldPanel.classList.remove("has-items");
+  }
+
+  /* Компактная карточка — слово помещается полностью */
+  favCard.innerHTML =
+    '<div class="fav-icon-screen">❤️</div>'+
+    '<div class="fav-main-text">'+
+      '<div class="fav-main-title">Избранное</div>'+
+      '<div class="fav-main-desc">Сохранённые<br>места и записи</div>'+
+    '</div>'+
+    '<div class="fav-main-arrow">›</div>';
+
+  /* Создаём отдельный внутренний раздел */
+  let screen=document.getElementById("favoritesScreen");
+  if(!screen){
+    screen=document.createElement("div");
+    screen.id="favoritesScreen";
+    screen.className="section";
+    screen.innerHTML =
+      '<button class="back-btn" type="button" onclick="goBackOneLevel()">← Назад</button>'+
+      '<h2>❤️ Избранное</h2>'+
+      '<div class="favorites-screen-list"></div>'+
+      '<button class="bottom-back-btn" type="button" onclick="goBackOneLevel()">← Назад</button>';
+    document.body.appendChild(screen);
+  }
+
+  function getFavorites(){
+    let arr=[];
+    try{ arr=JSON.parse(localStorage.getItem("odessaFavorites")||"[]"); }catch(e){}
+    if(!Array.isArray(arr)) arr=[];
+    arr=arr.filter(x => x && typeof x.title==="string" && x.title.trim() && x.title.trim().toLowerCase()!=="undefined");
+    localStorage.setItem("odessaFavorites",JSON.stringify(arr));
+    return arr;
+  }
+
+  function renderFavorites(){
+    const list=screen.querySelector(".favorites-screen-list");
+    const arr=getFavorites();
+    list.innerHTML="";
+    if(!arr.length){
+      list.innerHTML='<div class="favorites-empty">Пока ничего не добавлено ❤️</div>';
+      return;
+    }
+    arr.forEach(function(item){
+      const d=document.createElement("div");
+      d.className="favorite-screen-item";
+      d.textContent="❤️ "+item.title.trim();
+      list.appendChild(d);
+    });
+  }
+
+  /* Убираем все старые обработчики карточки клонированием */
+  const cleanCard=favCard.cloneNode(true);
+  favCard.parentNode.replaceChild(cleanCard,favCard);
+
+  cleanCard.addEventListener("click",function(){
+    renderFavorites();
+    if(oldPanel){
+      oldPanel.style.setProperty("display","none","important");
+    }
+    /* открываем как нормальный раздел */
+    if(typeof openSection==="function"){
+      openSection("favoritesScreen");
+    }
+  });
 });
 </script>
 
