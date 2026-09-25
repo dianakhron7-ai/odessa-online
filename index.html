@@ -1678,6 +1678,118 @@ body.section-open .section{
   order:9999 !important;
 }
 
+
+/* ===== ВАЖНОЕ + ИЗБРАННОЕ: ОДИН РЯД, КАК ОСТАЛЬНЫЕ КНОПКИ ===== */
+#home > .card[onclick*="'important'"],
+#home > .favorites-main-card{
+  width:auto !important;
+  min-width:0 !important;
+  min-height:86px !important;
+  margin:0 !important;
+  grid-column:auto !important;
+  justify-self:stretch !important;
+  align-self:stretch !important;
+}
+
+/* Важное слева, Избранное справа */
+#home > .card[onclick*="'important'"]{
+  grid-column:1 !important;
+}
+#home > .favorites-main-card{
+  grid-column:2 !important;
+}
+
+/* Не позволяем старому стилю центрировать Важное на всю строку */
+#home > .card[onclick*="'important'"],
+#home > .favorites-main-card{
+  max-width:none !important;
+}
+
+
+/* ===== ФИНАЛЬНО: ВАЖНОЕ + ИЗБРАННОЕ СТРОГО В ОДНОМ РЯДУ ===== */
+
+/* Убираем старое центрирование "Важное" и фиксируем обе карточки */
+#home > .card[onclick*="'important'"],
+#home > .favorites-main-card{
+  grid-row:auto !important;
+  width:100% !important;
+  max-width:none !important;
+  min-width:0 !important;
+  min-height:0 !important;
+  height:auto !important;
+  margin:0 !important;
+  justify-self:stretch !important;
+  align-self:stretch !important;
+  box-sizing:border-box !important;
+}
+
+/* Важное — левая колонка */
+#home > .card[onclick*="'important'"]{
+  grid-column:1 !important;
+}
+
+/* Избранное — правая колонка */
+#home > .favorites-main-card{
+  grid-column:2 !important;
+}
+
+/* Избранное выглядит точно как остальные карточки */
+#home > .favorites-main-card{
+  display:flex !important;
+  flex-direction:row !important;
+  align-items:center !important;
+  justify-content:flex-start !important;
+  text-align:left !important;
+  padding:16px 30px 16px 14px !important;
+  border-radius:24px !important;
+}
+#home > .favorites-main-card .fav-heart-main{
+  flex:0 0 auto !important;
+  width:64px !important;
+  margin:0 10px 0 0 !important;
+  text-align:center !important;
+  font-size:43px !important;
+}
+#home > .favorites-main-card .card-text{
+  min-width:0 !important;
+  flex:1 1 auto !important;
+}
+#home > .favorites-main-card .card-text b{
+  display:block !important;
+  font-size:17px !important;
+  line-height:1.15 !important;
+  margin:0 0 6px !important;
+  white-space:nowrap !important;
+}
+#home > .favorites-main-card .card-text small{
+  display:block !important;
+  font-size:12px !important;
+  line-height:1.3 !important;
+  color:rgba(235,240,247,.76) !important;
+}
+#home > .favorites-main-card .arrow{
+  position:absolute !important;
+  right:13px !important;
+  top:50% !important;
+  transform:translateY(-50%) !important;
+  font-size:27px !important;
+}
+
+/* Счётчик маленький рядом с названием, а не отдельной строкой */
+#home > .favorites-main-card .fav-count{
+  display:inline-flex !important;
+  vertical-align:middle !important;
+  margin-left:4px !important;
+  transform:translateY(-1px) !important;
+}
+
+/* Фирменная подпись остаётся после последнего ряда */
+#home .home-signature{
+  grid-column:1 / -1 !important;
+  width:100% !important;
+  margin-top:8px !important;
+}
+
 </style>
 </head>
 
