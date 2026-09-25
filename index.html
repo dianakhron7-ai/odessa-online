@@ -1790,6 +1790,96 @@ body.section-open .section{
   margin-top:8px !important;
 }
 
+
+/* ===== ИЗБРАННОЕ: ТОЧНО КАК КАРТОЧКА "ВАЖНОЕ" ===== */
+#home > .favorites-main-card{
+  position:relative !important;
+  display:grid !important;
+  grid-template-columns:72px minmax(0,1fr) 20px !important;
+  align-items:center !important;
+  gap:8px !important;
+  width:100% !important;
+  height:100% !important;
+  min-height:0 !important;
+  padding:16px 12px !important;
+  box-sizing:border-box !important;
+  overflow:hidden !important;
+  text-align:left !important;
+}
+
+#home > .favorites-main-card .fav-heart-main{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  width:72px !important;
+  height:auto !important;
+  margin:0 !important;
+  font-size:49px !important;
+  line-height:1 !important;
+}
+
+#home > .favorites-main-card .card-text{
+  display:block !important;
+  min-width:0 !important;
+  width:auto !important;
+  overflow:hidden !important;
+}
+
+#home > .favorites-main-card .card-text b{
+  display:block !important;
+  margin:0 0 7px !important;
+  padding:0 !important;
+  font-size:17px !important;
+  line-height:1.15 !important;
+  font-weight:800 !important;
+  white-space:nowrap !important;
+  overflow:hidden !important;
+  text-overflow:ellipsis !important;
+}
+
+#home > .favorites-main-card .card-text small{
+  display:block !important;
+  margin:0 !important;
+  padding:0 !important;
+  font-size:12.5px !important;
+  line-height:1.35 !important;
+  font-weight:400 !important;
+  color:rgba(235,240,247,.76) !important;
+  white-space:normal !important;
+  overflow:visible !important;
+}
+
+#home > .favorites-main-card .fav-count{
+  display:inline-flex !important;
+  min-width:18px !important;
+  height:18px !important;
+  padding:0 5px !important;
+  margin-left:4px !important;
+  border-radius:9px !important;
+  font-size:10px !important;
+  vertical-align:middle !important;
+}
+
+#home > .favorites-main-card .arrow{
+  position:static !important;
+  display:block !important;
+  width:20px !important;
+  margin:0 !important;
+  padding:0 !important;
+  transform:none !important;
+  font-size:28px !important;
+  line-height:1 !important;
+  text-align:center !important;
+  color:rgba(255,255,255,.85) !important;
+}
+
+/* Важное и Избранное одинаковой высоты */
+#home > .card[onclick*="'important'"],
+#home > .favorites-main-card{
+  min-height:170px !important;
+  height:170px !important;
+}
+
 </style>
 </head>
 
