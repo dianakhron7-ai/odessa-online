@@ -820,14 +820,154 @@ body.section-open .section{
   margin-top:0 !important;
 }
 
+
+/* ===== ФИНАЛЬНАЯ РАСКЛАДКА ГЛАВНОЙ ===== */
+#home .weather-card{ grid-column:1 !important; grid-row:1 !important; }
+#home .currency-card{ grid-column:2 !important; grid-row:1 !important; }
+
+#home .home-search{
+  display:block !important;
+  grid-column:1 / -1 !important;
+  grid-row:2 !important;
+  width:100% !important;
+  margin:2px 0 4px !important;
+  visibility:visible !important;
+  opacity:1 !important;
+}
+#home .home-search-title{
+  display:block !important;
+  font-size:19px !important;
+  font-weight:800 !important;
+  margin:0 0 7px 5px !important;
+}
+#home .home-search-box{
+  display:block !important;
+  padding:6px !important;
+  border-radius:20px !important;
+}
+#home #homeSearchInput{
+  display:block !important;
+  width:100% !important;
+  box-sizing:border-box !important;
+  padding:14px 16px !important;
+  font-size:15px !important;
+  border-radius:16px !important;
+}
+#home #homeSearchResults{
+  display:block;
+  grid-column:1/-1 !important;
+}
+
+/* Главные разделы начинаются после поиска */
+#home > .card[onclick*="'transport'"]{grid-row:3 !important;}
+#home > .card[onclick*="'medicine'"]{grid-row:3 !important;}
+
+/* ===== ВНУТРЕННИЕ РАЗДЕЛЫ: ТЁМНЫЕ КАРТОЧКИ ===== */
+.section{
+  color:#fff !important;
+  background:transparent !important;
+}
+.section > .card,
+.section .card{
+  background:linear-gradient(145deg,rgba(18,25,36,.96),rgba(10,16,26,.94)) !important;
+  color:#fff !important;
+  border:1px solid rgba(255,255,255,.18) !important;
+  box-shadow:0 6px 18px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.06) !important;
+}
+.section .card .info,
+.section .info{
+  color:rgba(235,240,247,.78) !important;
+}
+.section h1,.section h2,.section h3,.section .section-title{
+  color:#fff !important;
+}
+
+
+/* ===== КРАСИВОЕ НАЗВАНИЕ ОДЕССА Online ===== */
+#home .brand-title,
+#home .home-title{
+  margin:18px 0 2px !important;
+  text-align:center !important;
+  line-height:1 !important;
+  letter-spacing:.5px !important;
+  text-shadow:0 3px 12px rgba(0,0,0,.65) !important;
+}
+#home .brand-title .odessa,
+#home .home-title .odessa{
+  display:block !important;
+  font-family:Georgia,"Times New Roman",serif !important;
+  font-size:34px !important;
+  font-weight:800 !important;
+  letter-spacing:2px !important;
+  color:#fff !important;
+}
+#home .brand-title .online,
+#home .home-title .online{
+  display:block !important;
+  margin-top:2px !important;
+  font-family:"Brush Script MT","Segoe Script","Comic Sans MS",cursive !important;
+  font-size:29px !important;
+  font-weight:500 !important;
+  letter-spacing:1px !important;
+  color:#fff !important;
+}
+#home .brand-subtitle,
+#home .home-subtitle{
+  margin:7px 0 18px !important;
+  text-align:center !important;
+  font-size:13px !important;
+  font-weight:500 !important;
+  letter-spacing:.4px !important;
+  color:rgba(255,255,255,.82) !important;
+  text-shadow:0 2px 7px rgba(0,0,0,.7) !important;
+}
+
+
+/* ===== ИЗЯЩНОЕ НЕКРУПНОЕ НАЗВАНИЕ ===== */
+#home .brand-title,
+#home .home-title{
+  margin:12px 0 3px !important;
+  text-align:center !important;
+  line-height:1.05 !important;
+  text-shadow:0 2px 9px rgba(0,0,0,.58) !important;
+}
+#home .brand-title .odessa,
+#home .home-title .odessa{
+  display:inline !important;
+  font-family:"Segoe Script","Brush Script MT","Snell Roundhand","Apple Chancery",cursive !important;
+  font-size:24px !important;
+  font-weight:500 !important;
+  font-style:italic !important;
+  letter-spacing:.5px !important;
+  color:#fff !important;
+}
+#home .brand-title .online,
+#home .home-title .online{
+  display:inline !important;
+  margin-left:7px !important;
+  font-family:"Segoe Script","Brush Script MT","Snell Roundhand","Apple Chancery",cursive !important;
+  font-size:22px !important;
+  font-weight:400 !important;
+  font-style:italic !important;
+  letter-spacing:.3px !important;
+  color:rgba(255,255,255,.94) !important;
+}
+#home .brand-subtitle,
+#home .home-subtitle{
+  margin:5px 0 12px !important;
+  font-size:11.5px !important;
+  font-style:italic !important;
+  letter-spacing:.25px !important;
+  color:rgba(255,255,255,.76) !important;
+}
+
 </style>
 </head>
 
 <body>
 
 <div class="header">
-  <div class="logo">🌊</div>
-  <h1>ОДЕССА Online</h1>
+  <div class="home-title"><span class="odessa">ОДЕССА</span><span class="online">Online</span></div>
   <div class="subtitle">Городской справочник Одессы</div>
 </div>
 
