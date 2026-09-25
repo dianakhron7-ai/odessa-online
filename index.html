@@ -2161,6 +2161,33 @@ body.section-open .section{
   transform:scale(.94) !important;
 }
 
+
+/* ===== ЕДИНАЯ КНОПКА КОПИРОВАНИЯ ВЕЗДЕ ===== */
+.universal-copy-btn{
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  width:38px !important;
+  height:38px !important;
+  padding:0 !important;
+  border:0 !important;
+  border-radius:19px !important;
+  background:rgba(255,255,255,.11) !important;
+  color:#fff !important;
+  font-size:19px !important;
+  cursor:pointer !important;
+  box-shadow:none !important;
+  -webkit-tap-highlight-color:transparent !important;
+}
+.universal-copy-btn:active{transform:scale(.91) !important;}
+.transport-route-card .item-tools{
+  display:flex !important;
+  gap:8px !important;
+  align-items:center !important;
+  margin-top:10px !important;
+  grid-column:1 / 3 !important;
+}
+
 </style>
 </head>
 
@@ -9551,6 +9578,109 @@ document.addEventListener("DOMContentLoaded", function(){
       card.appendChild(tools);
     }
   });
+});
+</script>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+
+  function toastCopy(){
+    let toast=document.getElementById("universalCopyToast");
+    if(!toast){
+      toast=document.createElement("div");
+      toast.id="universalCopyToast";
+      toast.className="favorites-toast";
+      document.body.appendChild(toast);
+    }
+    toast.textContent="📋 Текст скопирован";
+    toast.classList.add("show");
+    clearTimeout(window.__universalCopyTimer);
+    window.__universalCopyTimer=setTimeout(()=>toast.classList.remove("show"),1600);
+  }
+
+  async function doCopy(value){
+    try{
+      await navigator.clipboard.writeText(value);
+    }catch(e){
+      const ta=document.createElement("textarea");
+      ta.value=value;
+      ta.style.position="fixed";
+      ta.style.opacity="0";
+      document.body.appendChild(ta);
+      ta.focus(); ta.select();
+      document.execCommand("copy");
+      ta.remove();
+    }
+    toastCopy();
+  }
+
+  function cleanText(card){
+    const clone=card.cloneNode(true);
+    clone.querySelectorAll(
+      "button,.item-tools,.favorite-btn,.copy-address-btn,.copy-all-text-btn,.universal-copy-btn,.route-map-btn,.route-chevron,.arrow"
+    ).forEach(el=>el.remove());
+    return (clone.innerText || clone.textContent || "")
+      .replace(/\s+/g," ")
+      .trim();
+  }
+
+  function addCopyButtons(){
+    document.querySelectorAll(".section .card").forEach(function(card){
+      const onclick=card.getAttribute("onclick") || "";
+
+      /* Кнопки, которые только открывают следующий раздел, не копируем */
+      if(onclick.includes("openSection(") && !card.classList.contains("transport-route-card")) return;
+
+      /* Удаляем старые/дублирующиеся кнопки копирования */
+      card.querySelectorAll(".copy-address-btn,.copy-all-text-btn,.universal-copy-btn").forEach(el=>el.remove());
+
+      const value=cleanText(card);
+      if(!value) return;
+
+      let tools=card.querySelector(".item-tools");
+      if(!tools){
+        tools=document.createElement("div");
+        tools.className="item-tools";
+        card.appendChild(tools);
+      }
+
+      const btn=document.createElement("button");
+      btn.type="button";
+      btn.className="universal-copy-btn";
+      btn.innerHTML="📋";
+      btn.setAttribute("aria-label","Скопировать текст");
+      btn.addEventListener("click",function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        doCopy(cleanText(card));
+      });
+      tools.appendChild(btn);
+    });
+  }
+
+  /* Сразу после загрузки */
+  addCopyButtons();
+
+  /* Динамические маршрутки/трамваи/троллейбусы могут дорисовываться позже */
+  const observer=new MutationObserver(function(mutations){
+    let need=false;
+    for(const m of mutations){
+      if(m.addedNodes && m.addedNodes.length){ need=true; break; }
+    }
+    if(need){
+      clearTimeout(window.__copyObserverTimer);
+      window.__copyObserverTimer=setTimeout(addCopyButtons,80);
+    }
+  });
+
+  document.querySelectorAll(".section").forEach(section=>{
+    observer.observe(section,{childList:true,subtree:true});
+  });
+
+  /* Дополнительная проверка после полной дорисовки */
+  setTimeout(addCopyButtons,300);
+  setTimeout(addCopyButtons,1000);
 });
 </script>
 
