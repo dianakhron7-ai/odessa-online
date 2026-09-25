@@ -186,6 +186,177 @@ h1 {
   #home .card .info { font-size: 14px; }
 }
 
+
+/* ===== ГЛАВНАЯ: ТОЧНО ПО ВЫБРАННОМУ ОБРАЗЦУ ===== */
+#home.home-reference{
+  display:grid !important;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr) !important;
+  gap:12px !important;
+  padding:0 14px 28px !important;
+  max-width:760px;
+  margin:0 auto;
+}
+#home .hero-space{
+  grid-column:1/-1;
+  height:330px;
+}
+#home .home-search{
+  grid-column:1/-1;
+}
+#home .home-search-title{
+  font-family:"Trebuchet MS","Segoe UI",Arial,sans-serif;
+  font-size:31px;
+  font-weight:800;
+  color:#fff;
+  margin:2px 4px 14px;
+  text-shadow:0 2px 8px rgba(0,0,0,.35);
+}
+#home .home-search-box{
+  padding:12px;
+  border-radius:25px;
+  background:rgba(16,24,35,.55);
+  border:1px solid rgba(255,255,255,.28);
+  box-shadow:0 8px 24px rgba(0,0,0,.20);
+  backdrop-filter:blur(13px);
+  -webkit-backdrop-filter:blur(13px);
+}
+#home #homeSearchInput{
+  width:100%;
+  box-sizing:border-box;
+  border:0;
+  outline:0;
+  border-radius:20px;
+  padding:18px 20px;
+  font-size:18px;
+  background:rgba(255,255,255,.96);
+  color:#20242a;
+}
+#home #homeSearchResults:empty{display:none;}
+#home #homeSearchResults:not(:empty){margin-top:10px;}
+
+#home .live-card,
+#home > .card{
+  position:relative;
+  box-sizing:border-box;
+  min-width:0;
+  min-height:132px;
+  border-radius:25px !important;
+  border:1px solid rgba(255,255,255,.25) !important;
+  background:rgba(7,17,29,.83) !important;
+  box-shadow:0 10px 26px rgba(0,0,0,.26) !important;
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  color:#fff;
+  cursor:pointer;
+}
+#home .live-card{
+  display:grid;
+  grid-template-columns:64px minmax(0,1fr) 18px;
+  align-items:center;
+  gap:8px;
+  padding:18px 14px;
+}
+#home .live-icon{font-size:46px;line-height:1;text-align:center;}
+#home .live-title{
+  font-family:"Trebuchet MS","Segoe UI",Arial,sans-serif;
+  font-size:22px;
+  line-height:1.08;
+  font-weight:800;
+  margin-bottom:7px;
+}
+#home .live-info{
+  font-family:"Segoe UI",Arial,sans-serif;
+  font-size:14px !important;
+  line-height:1.35;
+  color:rgba(236,244,251,.86) !important;
+}
+#home .live-arrow,
+#home .card-arrow{
+  font-family:Arial,sans-serif;
+  font-size:36px;
+  font-weight:300;
+  color:rgba(255,255,255,.92);
+  line-height:1;
+}
+#home > .card{
+  display:grid !important;
+  grid-template-columns:48px minmax(0,1fr) 18px;
+  grid-template-rows:auto auto;
+  column-gap:8px;
+  align-content:center;
+  padding:18px 13px !important;
+  margin:0 !important;
+  width:100% !important;
+}
+#home > .card .card-icon{
+  grid-column:1;
+  grid-row:1/3;
+  align-self:start;
+  font-size:36px;
+  line-height:1.1;
+  text-align:center;
+}
+#home > .card .card-title{
+  grid-column:2;
+  grid-row:1;
+  font-family:"Trebuchet MS","Segoe UI",Arial,sans-serif;
+  font-size:21px;
+  line-height:1.08;
+  font-weight:800;
+}
+#home > .card .info{
+  grid-column:2;
+  grid-row:2;
+  margin-top:8px !important;
+  font-family:"Segoe UI",Arial,sans-serif;
+  font-size:14px !important;
+  line-height:1.35 !important;
+  font-weight:400 !important;
+  color:rgba(235,243,250,.82) !important;
+}
+#home > .card .card-arrow{
+  grid-column:3;
+  grid-row:1/3;
+  align-self:center;
+}
+#home > .important-home{
+  grid-column:1/-1 !important;
+  width:calc(50% - 6px) !important;
+  justify-self:center !important;
+}
+#home .home-footer{
+  grid-column:1/-1;
+  text-align:center;
+  padding:17px 0 4px;
+  color:rgba(225,236,245,.72);
+  font-size:14px;
+}
+
+/* Background is the clean Odessa image only; no fake UI/text is baked into it. */
+body{
+  background:
+    linear-gradient(rgba(4,18,30,.14),rgba(4,16,27,.48)),
+    url("odessa_clean_bg.jpg") center top / cover fixed no-repeat !important;
+}
+
+@media (max-width:430px){
+  #home.home-reference{gap:10px !important;padding:0 12px 24px !important;}
+  #home .hero-space{height:285px;}
+  #home .home-search-title{font-size:28px;margin-bottom:12px;}
+  #home #homeSearchInput{font-size:16px;padding:17px 16px;}
+  #home .live-card,#home > .card{min-height:122px;border-radius:22px !important;}
+  #home .live-card{grid-template-columns:52px minmax(0,1fr) 15px;padding:15px 11px;}
+  #home .live-icon{font-size:39px;}
+  #home .live-title{font-size:19px;}
+  #home .live-info{font-size:12.5px !important;}
+  #home > .card{grid-template-columns:38px minmax(0,1fr) 14px;padding:15px 10px !important;}
+  #home > .card .card-icon{font-size:30px;}
+  #home > .card .card-title{font-size:18px;}
+  #home > .card .info{font-size:12.5px !important;}
+  #home .live-arrow,#home .card-arrow{font-size:30px;}
+  #home > .important-home{width:calc(50% - 5px) !important;}
+}
+
 </style>
 </head>
 
@@ -201,157 +372,93 @@ h1 {
 
 <!-- ГЛАВНОЕ МЕНЮ -->
 
-<div id="home">
-<!-- ПРИВЕТСТВИЕ -->
-  <img src="file_000000009cac81f49ded68c12d9b7c86.png" alt="ОДЕССА Online" style="width:100%;height:auto;display:block;border-radius:24px;margin-bottom:18px;">
-<!-- ===== БЫСТРЫЕ ФУНКЦИИ НА ГЛАВНОЙ ===== -->
+<div id="home" class="home-reference">
 
-<div style="margin:24px 0 30px 0;">
+  <div class="hero-space" aria-hidden="true"></div>
 
-  <div class="section-title">🔎 Поиск по справочнику</div>
-
-  <div style="
-    padding:16px;
-    border-radius:20px;
-    background:rgba(255,255,255,0.08);
-    border:1px solid rgba(255,255,255,0.15);
-    margin-bottom:18px;
-  ">
-    <input
-      id="homeSearchInput"
-      type="text"
-      placeholder="Например: суши, стоматолог, работа..."
-      style="
-        width:100%;
-        box-sizing:border-box;
-        padding:16px;
-        border:0;
-        outline:none;
-        border-radius:15px;
-        font-size:16px;
-      "
-      oninput="homeGuideSearch()"
-    >
-
-    <div id="homeSearchResults"></div>
+  <div class="home-search">
+    <div class="home-search-title">🔎 Поиск по справочнику</div>
+    <div class="home-search-box">
+      <input id="homeSearchInput" type="text"
+        placeholder="Например: суши, стоматолог, работа..."
+        oninput="homeGuideSearch()">
+      <div id="homeSearchResults"></div>
+    </div>
   </div>
 
-
-  <div class="section-title">⚡ Быстро</div>
-
-  <div style="
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:12px;
-  ">
-
-    <div onclick="openNearMe()"
-         style="
-           padding:18px 10px;
-           text-align:center;
-           border-radius:18px;
-           background:rgba(255,255,255,0.08);
-           border:1px solid rgba(255,255,255,0.15);
-           cursor:pointer;
-         ">
-      <div style="font-size:30px;">📍</div>
-      <div style="font-size:17px;margin-top:7px;">Рядом со мной</div>
+  <div class="live-card weather-card" onclick="openWeather()">
+    <div class="live-icon">🌤️</div>
+    <div class="live-copy">
+      <div class="live-title">Погода</div>
+      <div id="odessaWeatherNow" class="live-info">Одесса • загрузка…</div>
     </div>
-
-
-    <div onclick="openWeather()"
-         style="
-           padding:18px 10px;
-           text-align:center;
-           border-radius:18px;
-           background:rgba(255,255,255,0.08);
-           border:1px solid rgba(255,255,255,0.15);
-           cursor:pointer;
-         ">
-      <div style="font-size:30px;">🌤</div>
-      <div style="font-size:17px;margin-top:7px;">Погода</div>
-      <div id="odessaWeatherNow" style="font-size:14px;margin-top:6px;color:#b9d9ec;">Одесса • загрузка…</div>
-    </div>
-
-
-    <div onclick="openCurrency()"
-         style="
-           padding:18px 10px;
-           text-align:center;
-           border-radius:18px;
-           background:rgba(255,255,255,0.08);
-           border:1px solid rgba(255,255,255,0.15);
-           cursor:pointer;
-         ">
-      <div style="font-size:30px;">💱</div>
-      <div style="font-size:17px;margin-top:7px;">Курс валют</div>
-      <div id="odessaCurrencyNow" style="font-size:13px;margin-top:6px;color:#b9d9ec;line-height:1.35;">$ / € • загрузка…</div>
-    </div>
-
-
-    <div onclick="openSection('events')"
-         style="
-           padding:18px 10px;
-           text-align:center;
-           border-radius:18px;
-           background:rgba(255,255,255,0.08);
-           border:1px solid rgba(255,255,255,0.15);
-           cursor:pointer;
-         ">
-      <div style="font-size:30px;">📅</div>
-      <div style="font-size:17px;margin-top:7px;">Афиша</div>
-    </div>
-
+    <div class="live-arrow">›</div>
   </div>
 
-</div>
+  <div class="live-card currency-card" onclick="openCurrency()">
+    <div class="live-icon">🪙</div>
+    <div class="live-copy">
+      <div class="live-title">Курс валют</div>
+      <div id="odessaCurrencyNow" class="live-info">$ / € • загрузка…</div>
+    </div>
+    <div class="live-arrow">›</div>
+  </div>
 
-<!-- ===== КОНЕЦ БЫСТРЫХ ФУНКЦИЙ ===== -->
   <div class="card" onclick="openSection('transport')">
-    🚌 Транспорт
+    <span class="card-icon">🚌</span><span class="card-title">Транспорт</span>
     <div class="info">Маршрутки, трамваи, троллейбусы, вокзалы, такси</div>
+    <span class="card-arrow">›</span>
   </div>
 
   <div class="card" onclick="openSection('medicine')">
-    🏥 Медицина
+    <span class="card-icon">🏥</span><span class="card-title">Медицина</span>
     <div class="info">Больницы, поликлиники, аптеки, врачи</div>
+    <span class="card-arrow">›</span>
   </div>
 
   <div class="card" onclick="openSection('education')">
-    🏫 Образование
+    <span class="card-icon">🏫</span><span class="card-title">Образование</span>
     <div class="info">Школы, сады, университеты, курсы</div>
+    <span class="card-arrow">›</span>
   </div>
 
   <div class="card" onclick="openSection('shopping')">
-  🛍 Покупки
-  <div class="info">Магазины, торговые центры, рынки и товары</div>
+    <span class="card-icon">🛍️</span><span class="card-title">Покупки</span>
+    <div class="info">Магазины, торговые центры, рынки и товары</div>
+    <span class="card-arrow">›</span>
   </div>
 
   <div class="card" onclick="openSection('food')">
-  🍽 Где поесть
-  <div class="info">Рестораны, кафе и доставка</div>
+    <span class="card-icon">🍽️</span><span class="card-title">Где поесть</span>
+    <div class="info">Рестораны, кафе и доставка</div>
+    <span class="card-arrow">›</span>
   </div>
 
   <div class="card" onclick="openSection('work')">
-  💼 Работа
-  <div class="info">Вакансии, подработка и поиск работы</div>
+    <span class="card-icon">💼</span><span class="card-title">Работа</span>
+    <div class="info">Вакансии, подработка и поиск работы</div>
+    <span class="card-arrow">›</span>
   </div>
 
   <div class="card" onclick="openSection('realEstate')">
-  🏠 Недвижимость
-  <div class="info">Аренда, продажа и жильё</div>
+    <span class="card-icon">🏠</span><span class="card-title">Недвижимость</span>
+    <div class="info">Аренда, продажа и жильё</div>
+    <span class="card-arrow">›</span>
   </div>
 
   <div class="card" onclick="openSection('leisure')">
-  🎉 Отдых
-  <div class="info">Куда сходить, развлечения и отдых в Одессе</div>
-</div>
+    <span class="card-icon">🎉</span><span class="card-title">Отдых</span>
+    <div class="info">Куда сходить, развлечения и отдых в Одессе</div>
+    <span class="card-arrow">›</span>
+  </div>
 
-<div class="card" onclick="openSection('important')">
-  🚨 Важное
-  <div class="info">Экстренные службы, помощь и важная информация</div>
-</div>
+  <div class="card important-home" onclick="openSection('important')">
+    <span class="card-icon">🚨</span><span class="card-title">Важное</span>
+    <div class="info">Экстренные службы, помощь и важная информация</div>
+    <span class="card-arrow">›</span>
+  </div>
 
+  <div class="home-footer">ОДЕССА Online • городской справочник</div>
 </div> <!-- КОНЕЦ HOME -->
 <script>
 
