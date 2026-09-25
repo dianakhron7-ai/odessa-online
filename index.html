@@ -1250,6 +1250,147 @@ body.section-open .section{
   column-gap:16px !important;
 }
 
+
+/* ===== ФИНАЛЬНЫЕ ПРАВКИ: ШАПКА, ОТСТУПЫ, НАЗАД ===== */
+
+/* Делаем название и подзаголовок заметнее */
+.header{
+  padding-top:20px !important;
+  padding-bottom:22px !important;
+}
+.header .home-title{
+  margin:0 0 9px !important;
+}
+.header .home-title .odessa,
+.header .home-title .online{
+  font-size:32px !important;
+  color:#fff !important;
+  text-shadow:0 3px 12px rgba(0,0,0,.85), 0 0 2px rgba(0,0,0,.8) !important;
+}
+.header .subtitle{
+  display:inline-block !important;
+  margin:3px auto 0 !important;
+  padding:7px 15px !important;
+  border-radius:18px !important;
+  background:rgba(9,16,27,.52) !important;
+  border:1px solid rgba(255,255,255,.18) !important;
+  color:#fff !important;
+  font-size:14px !important;
+  font-weight:600 !important;
+  letter-spacing:.2px !important;
+  text-shadow:0 2px 6px rgba(0,0,0,.8) !important;
+}
+
+/* Погоду и курс опускаем ниже от названия */
+#home{
+  padding-top:18px !important;
+}
+
+/* Поиск ещё немного ниже от погоды/курса */
+#home .home-search{
+  margin-top:25px !important;
+  margin-bottom:18px !important;
+}
+
+/* Верхняя кнопка Назад внутри разделов — заметная */
+.section .back,
+.section .back-btn,
+.section button[onclick="goHome()"],
+.section [onclick="goHome()"]{
+  display:inline-flex !important;
+  align-items:center !important;
+  gap:7px !important;
+  padding:10px 16px !important;
+  margin:8px 0 16px !important;
+  border-radius:20px !important;
+  background:rgba(255,255,255,.16) !important;
+  border:1px solid rgba(255,255,255,.35) !important;
+  color:#fff !important;
+  font-weight:700 !important;
+  box-shadow:0 5px 16px rgba(0,0,0,.25) !important;
+  backdrop-filter:blur(8px) !important;
+}
+
+/* Нижняя кнопка Назад, которую добавляем в каждый раздел */
+.section .bottom-back-btn{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:8px !important;
+  width:calc(100% - 24px) !important;
+  max-width:420px !important;
+  margin:26px auto 24px !important;
+  padding:14px 18px !important;
+  border-radius:24px !important;
+  border:1px solid rgba(255,255,255,.34) !important;
+  background:rgba(13,21,33,.94) !important;
+  color:#fff !important;
+  font-size:16px !important;
+  font-weight:750 !important;
+  box-shadow:0 7px 20px rgba(0,0,0,.32) !important;
+  cursor:pointer !important;
+}
+
+
+/* ===== КРАСНЫЕ АКЦЕНТЫ ВО ВСЕХ ВНУТРЕННИХ РАЗДЕЛАХ ===== */
+
+/* Любая верхняя кнопка/ссылка "Назад" */
+.section .back,
+.section .back-btn,
+.section button[onclick="goHome()"],
+.section [onclick="goHome()"]{
+  background:linear-gradient(135deg,#d92d2d,#a91515) !important;
+  border:1px solid rgba(255,255,255,.40) !important;
+  color:#fff !important;
+  font-size:16px !important;
+  font-weight:800 !important;
+  text-shadow:0 1px 3px rgba(0,0,0,.35) !important;
+  box-shadow:0 6px 18px rgba(130,0,0,.38) !important;
+}
+
+/* Нижняя "Назад" тоже красная и заметная */
+.section .bottom-back-btn{
+  background:linear-gradient(135deg,#d92d2d,#a91515) !important;
+  border:1px solid rgba(255,255,255,.40) !important;
+  color:#fff !important;
+  font-size:17px !important;
+  font-weight:800 !important;
+  text-shadow:0 1px 3px rgba(0,0,0,.35) !important;
+  box-shadow:0 7px 20px rgba(130,0,0,.42) !important;
+}
+
+/* Название открытого раздела — красная выделенная плашка */
+.section > h1:first-of-type,
+.section > h2:first-of-type,
+.section > .section-title:first-of-type{
+  display:block !important;
+  width:fit-content !important;
+  max-width:calc(100% - 24px) !important;
+  margin:10px auto 18px !important;
+  padding:9px 18px !important;
+  border-radius:18px !important;
+  background:linear-gradient(135deg,#d92d2d,#a91515) !important;
+  border:1px solid rgba(255,255,255,.32) !important;
+  color:#fff !important;
+  font-weight:800 !important;
+  text-align:center !important;
+  text-shadow:0 2px 4px rgba(0,0,0,.35) !important;
+  box-shadow:0 6px 18px rgba(130,0,0,.35) !important;
+}
+
+
+/* ===== КНОПКИ НАЗАД — ЗЕЛЁНЫЕ ===== */
+.section .back,
+.section .back-btn,
+.section button[onclick="goHome()"],
+.section [onclick="goHome()"],
+.section .bottom-back-btn{
+  background:linear-gradient(135deg,#2e9f55,#176b38) !important;
+  border:1px solid rgba(255,255,255,.42) !important;
+  color:#fff !important;
+  box-shadow:0 6px 18px rgba(10,90,45,.40) !important;
+}
+
 </style>
 </head>
 
@@ -8029,5 +8170,23 @@ setInterval(loadOdessaCurrency, 60 * 60 * 1000);
 
 
 </script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll(".section").forEach(function(section) {
+    if (!section.querySelector(".bottom-back-btn")) {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "bottom-back-btn";
+      btn.innerHTML = "← &nbsp; Назад";
+      btn.addEventListener("click", function () {
+        goHome();
+      });
+      section.appendChild(btn);
+    }
+  });
+});
+</script>
+
 </body>
 </html>
