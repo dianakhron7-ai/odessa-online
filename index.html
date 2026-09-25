@@ -8441,5 +8441,66 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script>
 
+
+<script>
+(function () {
+  const originalOpenSection = window.openSection;
+  const originalGoHome = window.goHome;
+  const historyStack = [];
+
+  function visibleSectionId() {
+    const sections = Array.from(document.querySelectorAll(".section"));
+    const visible = sections.find(function (s) {
+      return getComputedStyle(s).display !== "none";
+    });
+    return visible ? visible.id : null;
+  }
+
+  window.openSection = function (id) {
+    const current = visibleSectionId();
+
+    if (current && current !== id) {
+      historyStack.push(current);
+    } else if (!current && document.body.classList.contains("section-open")) {
+      historyStack.push("__home__");
+    }
+
+    originalOpenSection(id);
+  };
+
+  window.goBackOneLevel = function () {
+    const previous = historyStack.pop();
+
+    if (previous && previous !== "__home__") {
+      // Open parent without adding the current child back into history.
+      originalOpenSection(previous);
+    } else {
+      historyStack.length = 0;
+      originalGoHome();
+    }
+  };
+
+  // Existing goHome remains a true "go to main menu" action if used elsewhere.
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".section").forEach(function(section) {
+      // Top back controls
+      section.querySelectorAll(".back, .back-btn, [onclick='goHome()'], [onclick='goHome();']").forEach(function(btn) {
+        btn.setAttribute("onclick", "goBackOneLevel()");
+      });
+
+      // Bottom back controls created by earlier code.
+      const bottom = section.querySelector(".bottom-back-btn");
+      if (bottom) {
+        const replacement = bottom.cloneNode(true);
+        bottom.parentNode.replaceChild(replacement, bottom);
+        replacement.addEventListener("click", function () {
+          goBackOneLevel();
+        });
+      }
+    });
+  });
+})();
+</script>
+
 </body>
 </html>
