@@ -550,6 +550,236 @@ body{
   #home > .card .info{font-size:11.5px !important;}
 }
 
+
+/* ===== КОМПАКТНЫЕ КНОПКИ: 2 В РЯД, БЕЗ РАЗРЫВА СЛОВ ===== */
+#home .live-card,
+#home > .card{
+  min-height:104px !important;
+  height:auto !important;
+}
+
+#home > .card{
+  grid-template-columns:42px minmax(0,1fr) 12px !important;
+  padding:12px 8px !important;
+  column-gap:6px !important;
+}
+
+#home > .card .card-icon{
+  font-size:34px !important;
+  transform:none !important;
+}
+
+#home > .card .card-icon::after{
+  font-size:36px !important;
+}
+
+#home > .card .card-title{
+  font-size:16px !important;
+  line-height:1.12 !important;
+  word-break:normal !important;
+  overflow-wrap:normal !important;
+  hyphens:none !important;
+  white-space:normal !important;
+}
+
+#home > .card .info{
+  font-size:11.5px !important;
+  line-height:1.28 !important;
+  word-break:normal !important;
+  overflow-wrap:normal !important;
+  hyphens:none !important;
+  margin-top:5px !important;
+}
+
+#home .live-card{
+  min-height:104px !important;
+  grid-template-columns:44px minmax(0,1fr) 12px !important;
+  padding:12px 8px !important;
+  column-gap:6px !important;
+}
+
+#home .live-icon{
+  font-size:36px !important;
+}
+
+#home .live-title{
+  font-size:16px !important;
+  line-height:1.12 !important;
+  white-space:normal !important;
+  word-break:normal !important;
+}
+
+#home .live-info{
+  font-size:11.5px !important;
+  line-height:1.25 !important;
+  white-space:normal !important;
+  word-break:normal !important;
+}
+
+#home .live-arrow,
+#home .card-arrow{
+  font-size:26px !important;
+}
+
+/* Длинные названия — чуть компактнее, но целыми словами */
+#home > .card[onclick*="'realEstate'"] .card-title{
+  font-size:14px !important;
+  letter-spacing:-.25px !important;
+}
+#home > .card[onclick*="'education'"] .card-title{
+  font-size:14.5px !important;
+}
+#home > .card[onclick*="'medicine'"] .card-title{
+  font-size:15px !important;
+}
+
+/* Важное остаётся по центру */
+#home > .important-home{
+  width:56% !important;
+  min-height:104px !important;
+}
+
+@media(max-width:380px){
+  #home > .card{
+    grid-template-columns:36px minmax(0,1fr) 10px !important;
+    padding:10px 7px !important;
+  }
+  #home > .card .card-icon::after{font-size:31px !important;}
+  #home > .card .card-title{font-size:14px !important;}
+  #home > .card .info{font-size:10.5px !important;}
+  #home .live-card{
+    grid-template-columns:38px minmax(0,1fr) 10px !important;
+  }
+}
+
+
+/* ===== ИСПРАВЛЕНИЕ: КОМПАКТНЫЕ ШИРОКИЕ КАРТОЧКИ БЕЗ ПЕРЕНОСА ПО СЛОГАМ ===== */
+#home.home-reference{
+  grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  gap:9px !important;
+  padding-left:10px !important;
+  padding-right:10px !important;
+}
+
+#home > .card{
+  position:relative !important;
+  display:block !important;
+  min-height:112px !important;
+  height:112px !important;
+  padding:14px 27px 12px 58px !important;
+  overflow:hidden !important;
+  border-radius:21px !important;
+}
+
+/* Большая картинка слева, как на образце */
+#home > .card .card-icon{
+  position:absolute !important;
+  left:10px !important;
+  top:50% !important;
+  transform:translateY(-50%) !important;
+  width:42px !important;
+  text-align:center !important;
+  line-height:1 !important;
+}
+#home > .card .card-icon::after{
+  font-size:36px !important;
+}
+
+/* Названия — целыми словами */
+#home > .card .card-title,
+#home > .card[onclick*="'realEstate'"] .card-title,
+#home > .card[onclick*="'education'"] .card-title,
+#home > .card[onclick*="'medicine'"] .card-title{
+  display:block !important;
+  font-size:14px !important;
+  line-height:1.12 !important;
+  font-weight:800 !important;
+  letter-spacing:-.15px !important;
+  word-break:keep-all !important;
+  overflow-wrap:normal !important;
+  hyphens:none !important;
+}
+
+/* Описание максимум 3 строки — карточки не растягиваются */
+#home > .card .info{
+  display:-webkit-box !important;
+  -webkit-box-orient:vertical !important;
+  -webkit-line-clamp:3 !important;
+  overflow:hidden !important;
+  margin-top:7px !important;
+  font-size:11px !important;
+  line-height:1.28 !important;
+  word-break:normal !important;
+  overflow-wrap:normal !important;
+  hyphens:none !important;
+}
+
+/* Стрелка у правого края */
+#home > .card .card-arrow{
+  position:absolute !important;
+  right:8px !important;
+  top:50% !important;
+  transform:translateY(-50%) !important;
+  font-size:25px !important;
+}
+
+/* Погода и курс — такие же компактные */
+#home .live-card{
+  position:relative !important;
+  display:block !important;
+  min-height:112px !important;
+  height:112px !important;
+  padding:14px 25px 12px 58px !important;
+  overflow:hidden !important;
+  border-radius:21px !important;
+}
+#home .live-icon{
+  position:absolute !important;
+  left:10px !important;
+  top:50% !important;
+  transform:translateY(-50%) !important;
+  width:42px !important;
+  font-size:36px !important;
+  text-align:center !important;
+}
+#home .live-title{
+  font-size:15px !important;
+  line-height:1.1 !important;
+  font-weight:800 !important;
+  word-break:keep-all !important;
+}
+#home .live-info{
+  margin-top:6px !important;
+  font-size:11px !important;
+  line-height:1.28 !important;
+}
+#home .live-arrow{
+  position:absolute !important;
+  right:8px !important;
+  top:50% !important;
+  transform:translateY(-50%) !important;
+  font-size:25px !important;
+}
+
+/* Важное по центру, такой же высоты */
+#home > .important-home{
+  grid-column:1/-1 !important;
+  width:calc(50% - 5px) !important;
+  min-height:112px !important;
+  height:112px !important;
+  justify-self:center !important;
+}
+
+/* Не допускаем огромных старых правил на маленьком экране */
+@media(max-width:430px){
+  #home > .card,
+  #home .live-card,
+  #home > .important-home{
+    min-height:112px !important;
+    height:112px !important;
+  }
+}
+
 </style>
 </head>
 
