@@ -961,6 +961,161 @@ body.section-open .section{
   color:rgba(255,255,255,.76) !important;
 }
 
+
+/* ===== ПОИСК КАК НА ОБРАЗЦЕ ===== */
+#home .home-search{
+  grid-column:1 / -1 !important;
+  width:100% !important;
+  display:block !important;
+  margin:18px 0 14px !important;
+  padding:0 !important;
+  visibility:visible !important;
+  opacity:1 !important;
+  background:transparent !important;
+  border:0 !important;
+}
+#home .home-search-title{
+  display:block !important;
+  margin:0 4px 14px !important;
+  font-size:27px !important;
+  line-height:1.15 !important;
+  font-weight:800 !important;
+  color:#fff !important;
+  text-align:left !important;
+  text-shadow:0 2px 8px rgba(0,0,0,.65) !important;
+}
+#home .home-search-title::before{
+  content:"🔎 ";
+}
+#home .home-search-box{
+  display:block !important;
+  width:100% !important;
+  box-sizing:border-box !important;
+  padding:14px !important;
+  border-radius:24px !important;
+  background:rgba(255,255,255,.08) !important;
+  border:1px solid rgba(255,255,255,.22) !important;
+  box-shadow:none !important;
+}
+#home #homeSearchInput{
+  display:block !important;
+  width:100% !important;
+  box-sizing:border-box !important;
+  min-height:64px !important;
+  padding:0 22px !important;
+  border:0 !important;
+  outline:0 !important;
+  border-radius:20px !important;
+  background:#fff !important;
+  color:#222 !important;
+  font-size:18px !important;
+  font-weight:400 !important;
+}
+#home #homeSearchInput::placeholder{
+  color:#777 !important;
+  opacity:1 !important;
+}
+#home #homeSearchResults{
+  width:100% !important;
+  grid-column:1 / -1 !important;
+  margin-top:8px !important;
+}
+
+/* Название сверху — изящно, не крупно */
+#home .brand-title,
+#home .home-title{
+  margin:10px 0 2px !important;
+  text-align:center !important;
+  white-space:nowrap !important;
+}
+#home .brand-title .odessa,
+#home .home-title .odessa,
+#home .brand-title .online,
+#home .home-title .online{
+  display:inline !important;
+  font-family:"Segoe Script","Brush Script MT","Apple Chancery",cursive !important;
+  font-size:22px !important;
+  font-weight:400 !important;
+  font-style:italic !important;
+  letter-spacing:.4px !important;
+}
+
+
+/* ===== ФИНАЛЬНОЕ ИЗЯЩНОЕ ОФОРМЛЕНИЕ ===== */
+
+/* Название: небольшое, тонкое, курсивное */
+#home .brand-title,
+#home .home-title{
+  margin:9px 0 2px !important;
+  text-align:center !important;
+  white-space:nowrap !important;
+  line-height:1.15 !important;
+  text-shadow:0 2px 7px rgba(0,0,0,.55) !important;
+}
+#home .brand-title .odessa,
+#home .home-title .odessa,
+#home .brand-title .online,
+#home .home-title .online{
+  display:inline !important;
+  font-family:"Segoe Script","Brush Script MT","Snell Roundhand","Apple Chancery",cursive !important;
+  font-size:20px !important;
+  font-weight:400 !important;
+  font-style:italic !important;
+  letter-spacing:.25px !important;
+  color:rgba(255,255,255,.96) !important;
+}
+#home .brand-title .online,
+#home .home-title .online{
+  margin-left:6px !important;
+}
+
+/* Поиск: заголовок тоже изящный, а не огромный */
+#home .home-search{
+  margin:13px 0 13px !important;
+}
+#home .home-search-title{
+  display:block !important;
+  margin:0 6px 9px !important;
+  font-family:"Segoe Script","Brush Script MT","Snell Roundhand","Apple Chancery",cursive !important;
+  font-size:19px !important;
+  line-height:1.2 !important;
+  font-weight:400 !important;
+  font-style:italic !important;
+  letter-spacing:.2px !important;
+  color:rgba(255,255,255,.96) !important;
+  text-shadow:0 2px 7px rgba(0,0,0,.55) !important;
+}
+#home .home-search-title::before{
+  content:"🔎  " !important;
+  font-family:Arial,sans-serif !important;
+  font-style:normal !important;
+}
+#home .home-search-box{
+  padding:9px !important;
+  border-radius:21px !important;
+}
+#home #homeSearchInput{
+  min-height:54px !important;
+  border-radius:17px !important;
+  padding:0 18px !important;
+  font-size:16px !important;
+}
+
+
+/* ОДЕССА Online — крупнее, но изящно */
+#home .brand-title .odessa,
+#home .home-title .odessa,
+#home .brand-title .online,
+#home .home-title .online{
+  font-family:"Segoe Script","Brush Script MT","Snell Roundhand","Apple Chancery",cursive !important;
+  font-size:30px !important;
+  font-weight:400 !important;
+  font-style:italic !important;
+  letter-spacing:.35px !important;
+  color:#fff !important;
+  text-shadow:0 2px 9px rgba(0,0,0,.60) !important;
+}
+
 </style>
 </head>
 
@@ -997,7 +1152,7 @@ body.section-open .section{
     <div class="live-arrow">›</div>
 
   <div class="home-search">
-    <div class="home-search-title">🔎 Поиск по справочнику</div>
+    <div class="home-search-title">Поиск по справочнику</div>
     <div class="home-search-box">
       <input id="homeSearchInput" type="text"
         placeholder="Например: суши, стоматолог, работа..."
