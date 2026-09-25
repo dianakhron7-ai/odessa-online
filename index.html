@@ -10250,5 +10250,56 @@ document.addEventListener('DOMContentLoaded', function(){
 })();
 </script>
 
+
+<style id="ABSOLUTE_FINAL_REFERENCE_FIX">
+/* Final override: title modeled on the supplied reference */
+#home.ox-home .ox-hero{height:365px!important;position:relative!important;overflow:hidden!important}
+#home.ox-home .ox-brand{position:absolute!important;top:92px!important;left:50%!important;transform:translateX(-50%)!important;width:100%!important;text-align:center!important;z-index:12!important}
+#home.ox-home .ox-logo{font-family:Impact,"Arial Black",Arial,sans-serif!important;font-size:76px!important;line-height:.82!important;font-style:normal!important;font-weight:900!important;letter-spacing:1px!important;color:#fff!important;-webkit-text-stroke:2px #087ac8!important;text-shadow:0 2px 0 #d8f6ff,0 5px 0 #40b9ef,0 9px 0 #096ba9,0 13px 0 #063e78,0 17px 18px rgba(0,0,0,.72),0 0 8px #4edfff!important;filter:none!important;white-space:nowrap!important}
+#home.ox-home .ox-logo i{display:block!important;width:max-content!important;margin:-1px auto 0!important;font-family:"Brush Script MT","Segoe Script","URW Chancery L",cursive!important;font-size:66px!important;line-height:.9!important;font-weight:500!important;font-style:italic!important;letter-spacing:-2px!important;color:#f8ffff!important;-webkit-text-stroke:0!important;text-shadow:0 0 2px #fff,0 0 5px #b8ffff,0 0 10px #36edff,0 0 18px #00aef5,0 4px 7px rgba(0,0,0,.8)!important;transform:rotate(-4deg)!important}
+#home.ox-home .ox-logo i::after{content:"⚓"!important;display:inline-block!important;margin-left:8px!important;font-family:Arial,sans-serif!important;font-size:.50em!important;font-style:normal!important;color:#ffd735!important;-webkit-text-stroke:1px #9a5c00!important;text-shadow:0 2px 0 #8d5200,0 0 6px #ffe56b!important;transform:rotate(8deg)!important}
+#home.ox-home .ox-slogan{display:inline-block!important;margin-top:7px!important;padding:8px 34px 10px!important;min-width:64%!important;border-radius:6px 22px 7px 20px!important;background:linear-gradient(90deg,#ffd326 0%,#ffea58 48%,#ffd126 100%)!important;color:#111923!important;font-family:"Brush Script MT","Segoe Script",cursive!important;font-size:30px!important;line-height:1!important;font-weight:700!important;font-style:italic!important;box-shadow:0 6px 13px rgba(0,0,0,.36)!important;transform:rotate(-1deg)!important}
+#home.ox-home .ox-slogan::after{content:" ♡"!important;font-style:normal!important;font-weight:900!important}
+/* Telegram button: keep a real link above every decorative layer */
+#home.ox-home .ox-telegram-link{display:grid!important;position:relative!important;z-index:2147483647!important;pointer-events:auto!important;touch-action:manipulation!important;text-decoration:none!important;-webkit-tap-highlight-color:transparent!important}
+#home.ox-home .ox-telegram-link::after{content:"";position:absolute;inset:0;z-index:20;pointer-events:none}
+#home.ox-home .ox-telegram-link>*{pointer-events:none!important}
+@media(max-width:430px){
+ #home.ox-home .ox-hero{height:350px!important}
+ #home.ox-home .ox-brand{top:96px!important}
+ #home.ox-home .ox-logo{font-size:61px!important;letter-spacing:0!important;-webkit-text-stroke:1.5px #087ac8!important}
+ #home.ox-home .ox-logo i{font-size:56px!important}
+ #home.ox-home .ox-slogan{font-size:25px!important;padding:8px 28px 9px!important;min-width:66%!important}
+}
+</style>
+<script id="ABSOLUTE_TELEGRAM_LINK_FIX">
+(function(){
+ const WEB='https://t.me/odessaonline1';
+ const APP='tg://resolve?domain=odessaonline1';
+ function openTelegram(e){
+   if(e){ e.preventDefault(); e.stopPropagation(); }
+   try{
+     if(window.Telegram && window.Telegram.WebApp && typeof window.Telegram.WebApp.openTelegramLink==='function'){
+       window.Telegram.WebApp.openTelegramLink(WEB);
+       return false;
+     }
+   }catch(_e){}
+   /* In an ordinary browser/WebView, try Telegram's app scheme, then web fallback. */
+   try{ window.location.href=APP; }catch(_e){}
+   setTimeout(function(){ try{ window.location.href=WEB; }catch(_e){} },650);
+   return false;
+ }
+ function bind(){
+   document.querySelectorAll('a.ox-telegram-link').forEach(function(a){
+     a.href=WEB;
+     a.removeAttribute('target');
+     a.onclick=openTelegram;
+     a.addEventListener('touchend',openTelegram,{passive:false});
+   });
+ }
+ if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',bind,{once:true}); else bind();
+})();
+</script>
+
 </body>
 </html>
