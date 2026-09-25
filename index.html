@@ -2621,6 +2621,44 @@ html, body{
 @media(max-width:430px){#home.ox-home .ox-text b{font-size:17px !important;}#home.ox-home .ox-text small{font-size:10.5px !important;}}
 </style>
 
+
+<style id="USER_WIDE_REFERENCE_FINAL_20260925">
+/* Финальный вид по последнему референсу */
+html,body{margin:0!important;padding:0!important;width:100%!important;min-height:100%!important;overflow-x:hidden!important;background:#03101d!important;}
+.container{padding:0!important;margin:0!important;width:100%!important;max-width:none!important;}
+#home.ox-home{width:100%!important;max-width:100%!important;margin:0!important;padding:0 10px 0!important;box-sizing:border-box!important;min-height:0!important;background:transparent!important;}
+/* немного ниже и шире: поиск */
+#home .ox-search{width:100%!important;height:64px!important;margin:12px 0 12px!important;border-radius:30px!important;padding:0 10px 0 18px!important;box-shadow:0 0 8px #20d6ff,0 7px 18px rgba(0,0,0,.35)!important;}
+#home .ox-search>span{font-size:37px!important;margin-right:12px!important;}
+#home .ox-search input{font-size:18px!important;height:50px!important;}
+#home .ox-search>button{width:48px!important;height:48px!important;font-size:28px!important;}
+/* карточки шире и чуть выше */
+#home .ox-grid{width:100%!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important;margin:0!important;}
+#home .ox-tile{width:100%!important;height:132px!important;border-radius:22px!important;background-image:linear-gradient(0deg,rgba(0,16,42,.70) 0%,rgba(0,16,42,.10) 62%),var(--bg)!important;background-size:cover!important;background-position:center!important;border-width:2px!important;box-shadow:0 0 7px currentColor,0 7px 16px rgba(0,0,0,.32)!important;}
+#home .ox-symbol{left:14px!important;top:12px!important;font-size:30px!important;}
+#home .ox-text{left:14px!important;right:38px!important;bottom:12px!important;}
+#home .ox-text b{font-size:19px!important;line-height:1.08!important;}
+#home .ox-text small{font-size:12px!important;margin-top:5px!important;}
+#home .ox-tile>em{right:12px!important;bottom:43px!important;font-size:34px!important;}
+/* Убираем кнопку группы и нижнюю навигацию */
+#home .ox-telegram,#home .ox-nav{display:none!important;}
+/* красивый низ вместо пустого места */
+#home .odessa-elegant-footer{width:calc(100% + 20px)!important;margin:12px -10px 0!important;min-height:205px!important;padding:34px 24px 26px!important;display:flex!important;align-items:center!important;justify-content:center!important;position:relative!important;text-align:center!important;background:linear-gradient(180deg,rgba(1,27,52,.20),rgba(1,14,29,.30)),url('odessa_clean_bg.jpg') center 76%/cover no-repeat!important;border-top:1px solid rgba(58,214,255,.28)!important;overflow:hidden!important;}
+#home .footer-script{font-family:'Segoe Script','Brush Script MT','Comic Sans MS',cursive!important;font-style:italic!important;font-size:28px!important;line-height:1.28!important;font-weight:500!important;color:#ffe0a0!important;text-shadow:0 2px 4px #000,0 0 14px rgba(255,188,65,.35)!important;transform:rotate(-2deg)!important;}
+#home .footer-anchor{position:absolute!important;right:13%!important;bottom:24px!important;font-size:38px!important;color:#ffc84a!important;text-shadow:0 2px 5px #000!important;}
+body:has(#home.ox-home:not([style*="display: none"])) .footer{display:none!important;}
+@media(max-width:430px){
+ #home.ox-home{padding-left:7px!important;padding-right:7px!important;}
+ #home .ox-search{height:60px!important;margin-top:11px!important;margin-bottom:10px!important;}
+ #home .ox-search input{font-size:16px!important;}
+ #home .ox-grid{gap:8px!important;}
+ #home .ox-tile{height:118px!important;border-radius:19px!important;}
+ #home .ox-text b{font-size:16px!important;}
+ #home .ox-text small{font-size:10px!important;}
+ #home .odessa-elegant-footer{width:calc(100% + 14px)!important;margin-left:-7px!important;margin-right:-7px!important;min-height:180px!important;padding:28px 18px 22px!important;}
+ #home .footer-script{font-size:23px!important;}
+}
+</style>
 </head>
 
 <body>
@@ -2657,6 +2695,10 @@ html, body{
   </div>
   <button type="button" class="ox-telegram ox-telegram-link" onclick="return openOdessaTelegramGroup(event)" aria-label="Открыть группу ОДЕССА Online в Telegram"><span class="tg-plane">➤</span><span><b>Наша группа</b><small>Присоединяйтесь к жителям Одессы</small></span><em>›</em></button>
   <nav class="ox-nav"><button onclick="window.scrollTo({top:0,behavior:'smooth'})">⌂<small>Главная</small></button><button onclick="document.getElementById('homeSearchInput').focus()">⌕<small>Поиск</small></button><button onclick="showFavorites&&showFavorites()">☆<small>Избранное</small></button><button onclick="openSection('important')">●<small>Ещё</small></button></nav>
+  <div class="odessa-elegant-footer" aria-hidden="true">
+    <div class="footer-script">Одесса — город,<br>в который хочется возвращаться ♡</div>
+    <div class="footer-anchor">⚓</div>
+  </div>
 </div> <!-- КОНЕЦ HOME -->
 <script>
 
