@@ -270,220 +270,126 @@ function searchNormalize(text) {
   return String(text || "")
     .toLowerCase()
     .replace(/ё/g, "е")
-    .replace(/[^\p{L}\p{N}]+/gu, " ")
+    .replace(/[^\p{L}\p{N}№]+/gu, " ")
     .replace(/\s+/g, " ")
     .trim();
 }
 
-
-/* СОБИРАЕМ ВСЕ КНОПКИ И КАРТОЧКИ */
-
 function buildGuideSearchIndex() {
-
   const items = [];
   const seen = new Set();
 
-  document.querySelectorAll(".section").forEach(function(section) {
+  /* Все карточки во всех разделах, включая вложенные */
+  document.querySelectorAll(".section .card").forEach(function(card) {
+    const section = card.closest(".section");
+    if (!section || !section.id) return;
 
-    if (!section.id) return;
+    const text = (card.innerText || card.textContent || "")
+      .replace(/\s+/g, " ")
+      .trim();
+    if (!text) return;
 
-    section.querySelectorAll(".card").forEach(function(card) {
+    const normalized = searchNormalize(text);
+    if (!normalized) return;
 
-      let text = card.innerText || card.textContent || "";
+    const onclick = card.getAttribute("onclick") || "";
+    const key = section.id + "|" + normalized + "|" + onclick;
+    if (seen.has(key)) return;
+    seen.add(key);
 
-      text = text
-        .replace(/\s+/g, " ")
-        .trim();
-
-      if (!text) return;
-
-      const normalized = searchNormalize(text);
-
-      if (!normalized) return;
-
-      const key = section.id + "|" + normalized;
-
-      if (seen.has(key)) return;
-
-      seen.add(key);
-
-      items.push({
-        title: text,
-        searchText: normalized,
-        sectionId: section.id,
-        element: card
-      });
-
+    items.push({
+      title: text,
+      searchText: normalized,
+      sectionId: section.id,
+      element: card,
+      clickable: !!onclick
     });
-
   });
 
   return items;
 }
 
-
-/* ОСНОВНОЙ ПОИСК */
-
 function guideSearch() {
-
-  const input =
-    document.getElementById("guideSearchInput") ||
-    document.getElementById("homeGuideSearchInput");
-
-  const results =
-    document.getElementById("guideSearchResults") ||
-    document.getElementById("homeGuideSearchResults");
-
+  const input = document.getElementById("homeSearchInput");
+  const results = document.getElementById("homeSearchResults");
   if (!input || !results) return;
 
   const query = searchNormalize(input.value);
-
   results.innerHTML = "";
-
-  if (query.length < 2) {
-    return;
-  }
+  if (query.length < 2) return;
 
   const words = query.split(" ").filter(Boolean);
-
-  const allItems = buildGuideSearchIndex();
-
-  const found = allItems.filter(function(item) {
-
+  const found = buildGuideSearchIndex().filter(function(item) {
     return words.every(function(word) {
       return item.searchText.includes(word);
     });
-
   });
 
-
-  /* НИЧЕГО НЕ НАЙДЕНО */
-
   if (found.length === 0) {
-
     results.innerHTML =
-      '<div class="card">' +
-      '🔎 Ничего не найдено' +
-      '<div class="info">Попробуйте написать другое слово</div>' +
-      '</div>';
-
+      '<div class="card">🔎 Ничего не найдено' +
+      '<div class="info">Попробуйте другое слово</div></div>';
     return;
   }
 
-
-  /* ВЫВОДИМ РЕЗУЛЬТАТЫ */
-
   found.slice(0, 100).forEach(function(item) {
-
     const resultCard = document.createElement("div");
-
     resultCard.className = "card";
 
-    resultCard.innerHTML =
-      '<div>' + escapeSearchHtml(item.title) + '</div>' +
-      '<div class="info">Нажмите, чтобы открыть</div>';
+    const title = item.title.length > 160
+      ? item.title.slice(0, 160) + "…"
+      : item.title;
 
+    const titleDiv = document.createElement("div");
+    titleDiv.textContent = title;
+    resultCard.appendChild(titleDiv);
+
+    const info = document.createElement("div");
+    info.className = "info";
+    info.textContent = "Нажмите, чтобы открыть";
+    resultCard.appendChild(info);
 
     resultCard.onclick = function() {
+      input.value = "";
+      results.innerHTML = "";
 
-      openSearchResult(item);
+      /* Если найденная карточка — настоящая кнопка, нажимаем её.
+         Так Кардиологи откроют cardiology, Трамваи — tramvai и т.д. */
+      if (item.clickable) {
+        item.element.click();
+        return;
+      }
 
+      /* Обычная информационная карточка: открываем её раздел */
+      openSection(item.sectionId);
+      setTimeout(function() {
+        item.element.scrollIntoView({behavior: "smooth", block: "center"});
+      }, 100);
     };
 
-
     results.appendChild(resultCard);
-
   });
-
 }
 
-
-/* ОТКРЫВАЕМ НАЙДЕННЫЙ РЕЗУЛЬТАТ */
-
-function openSearchResult(item) {
-
-  document.querySelectorAll(".section").forEach(function(section) {
-    section.style.display = "none";
-  });
-
-  const home = document.getElementById("home");
-
-  if (home) {
-    home.style.display = "none";
-  }
-
-
-  const section = document.getElementById(item.sectionId);
-
-  if (!section) return;
-
-  section.style.display = "block";
-
-
-  setTimeout(function() {
-
-    if (item.element) {
-
-      item.element.scrollIntoView({
-        behavior: "smooth",
-        block: "center"
-      });
-
-    }
-
-  }, 150);
-
+/* Поле на главной вызывает именно эту функцию */
+function homeGuideSearch() {
+  guideSearch();
 }
 
-
-/* БЕЗОПАСНЫЙ ВЫВОД ТЕКСТА */
-
-function escapeSearchHtml(text) {
-
-  const div = document.createElement("div");
-
-  div.textContent = text;
-
-  return div.innerHTML;
-
-}
-
-
-/* АВТОМАТИЧЕСКИЙ ПОИСК ПРИ ВВОДЕ */
-
+/* Дополнительно поддерживаем ввод и Enter */
 document.addEventListener("input", function(event) {
-
-  if (
-    event.target.id === "guideSearchInput" ||
-    event.target.id === "homeGuideSearchInput"
-  ) {
-
+  if (event.target && event.target.id === "homeSearchInput") {
     guideSearch();
-
   }
-
 });
-
-
-/* ПОИСК ПО ENTER */
 
 document.addEventListener("keydown", function(event) {
-
-  if (
-    event.key === "Enter" &&
-    (
-      event.target.id === "guideSearchInput" ||
-      event.target.id === "homeGuideSearchInput"
-    )
-  ) {
-
+  if (event.key === "Enter" && event.target && event.target.id === "homeSearchInput") {
     event.preventDefault();
-
     guideSearch();
-
   }
-
 });
+
 /* ⭐ ИЗБРАННОЕ */
 
 function getFavorites() {
