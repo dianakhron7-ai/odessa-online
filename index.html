@@ -1960,6 +1960,67 @@ body.section-open .section{
   vertical-align:middle !important;
 }
 
+
+/* ===== ФИНАЛЬНЫЙ ФИКС ИЗБРАННОГО — БЕЗ ОБРЕЗАНИЯ ===== */
+#home > .favorites-main-card{
+  position:relative !important;
+  display:grid !important;
+  grid-template-columns:64px minmax(0,1fr) 18px !important;
+  gap:8px !important;
+  align-items:center !important;
+  width:100% !important;
+  height:170px !important;
+  min-height:170px !important;
+  padding:16px 12px !important;
+  box-sizing:border-box !important;
+  overflow:hidden !important;
+}
+#home > .favorites-main-card .fav-icon-final{
+  width:64px !important;
+  text-align:center !important;
+  font-size:42px !important;
+  line-height:1 !important;
+}
+#home > .favorites-main-card .fav-content-final{
+  min-width:0 !important;
+  width:100% !important;
+  overflow:visible !important;
+}
+#home > .favorites-main-card .fav-title-final{
+  display:block !important;
+  width:100% !important;
+  margin:0 0 8px !important;
+  padding:0 !important;
+  color:#fff !important;
+  font-size:15px !important;
+  line-height:1.15 !important;
+  font-weight:800 !important;
+  white-space:nowrap !important;
+  word-break:keep-all !important;
+  overflow:visible !important;
+  text-overflow:clip !important;
+}
+#home > .favorites-main-card .fav-desc-final{
+  display:block !important;
+  width:100% !important;
+  margin:0 !important;
+  padding:0 !important;
+  color:rgba(235,240,247,.78) !important;
+  font-size:12px !important;
+  line-height:1.35 !important;
+  font-weight:400 !important;
+  white-space:normal !important;
+  word-break:normal !important;
+  overflow-wrap:normal !important;
+}
+#home > .favorites-main-card .fav-arrow-final{
+  width:18px !important;
+  text-align:center !important;
+  color:rgba(255,255,255,.88) !important;
+  font-size:27px !important;
+  line-height:1 !important;
+}
+
 </style>
 </head>
 
@@ -9108,6 +9169,23 @@ document.addEventListener("DOMContentLoaded", function(){
       },30);
     });
   });
+});
+</script>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+  const fav=document.querySelector("#home > .favorites-main-card");
+  if(!fav) return;
+
+  /* Простая разметка без счётчика возле названия — поэтому текст точно помещается */
+  fav.innerHTML =
+    '<div class="fav-icon-final">❤️</div>' +
+    '<div class="fav-content-final">' +
+      '<div class="fav-title-final">Избранное</div>' +
+      '<div class="fav-desc-final">Сохранённые<br>места и записи</div>' +
+    '</div>' +
+    '<div class="fav-arrow-final">›</div>';
 });
 </script>
 
