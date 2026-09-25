@@ -1569,6 +1569,84 @@ body.section-open .section{
   background:transparent !important;
 }
 
+
+/* ===== ИЗБРАННОЕ + КОПИРОВАНИЕ + УВЕДОМЛЕНИЕ ===== */
+.favorite-btn,.copy-address-btn{
+  border:0 !important;
+  background:rgba(255,255,255,.10) !important;
+  color:#fff !important;
+  border-radius:16px !important;
+  min-width:34px !important;
+  height:34px !important;
+  padding:0 9px !important;
+  font-size:18px !important;
+  cursor:pointer !important;
+  box-shadow:none !important;
+}
+.favorite-btn.active{ color:#ff4d67 !important; background:rgba(255,255,255,.15) !important; }
+.item-tools{
+  display:flex !important;
+  gap:7px !important;
+  align-items:center !important;
+  margin-top:9px !important;
+}
+.favorites-toast{
+  position:fixed !important;
+  left:50% !important;
+  bottom:88px !important;
+  transform:translate(-50%,18px) !important;
+  z-index:10000 !important;
+  padding:11px 17px !important;
+  border-radius:20px !important;
+  background:rgba(12,22,18,.96) !important;
+  border:1px solid rgba(99,220,137,.48) !important;
+  color:#fff !important;
+  font-size:14px !important;
+  font-weight:700 !important;
+  box-shadow:0 8px 24px rgba(0,0,0,.35) !important;
+  opacity:0 !important;
+  pointer-events:none !important;
+  transition:opacity .2s ease,transform .2s ease !important;
+  white-space:nowrap !important;
+}
+.favorites-toast.show{opacity:1 !important;transform:translate(-50%,0) !important;}
+
+.favorites-panel{
+  display:none;
+  grid-column:1/-1 !important;
+  width:100% !important;
+  box-sizing:border-box !important;
+  margin:4px 0 14px !important;
+  padding:13px !important;
+  border-radius:20px !important;
+  background:rgba(12,19,29,.94) !important;
+  border:1px solid rgba(255,255,255,.16) !important;
+}
+.favorites-panel.has-items{display:block !important;}
+.favorites-panel h3{margin:0 0 9px !important;color:#fff !important;font-size:16px !important;}
+.favorite-saved-item{
+  padding:9px 10px !important;
+  margin-top:6px !important;
+  border-radius:13px !important;
+  background:rgba(255,255,255,.07) !important;
+  color:#fff !important;
+  font-size:13px !important;
+}
+
+/* Фирменная подпись внизу главной */
+.home-signature{
+  grid-column:1/-1 !important;
+  width:100% !important;
+  text-align:center !important;
+  padding:25px 10px 30px !important;
+  box-sizing:border-box !important;
+  font-family:"Segoe Script","Brush Script MT","Apple Chancery",cursive !important;
+  font-style:italic !important;
+  font-size:16px !important;
+  color:rgba(255,255,255,.88) !important;
+  text-shadow:0 2px 7px rgba(0,0,0,.7) !important;
+}
+
 </style>
 </head>
 
@@ -8500,6 +8578,132 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 })();
+</script>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+  const home = document.getElementById("home");
+  if(!home) return;
+
+  // Toast
+  let toast = document.getElementById("favoritesToast");
+  if(!toast){
+    toast=document.createElement("div");
+    toast.id="favoritesToast";
+    toast.className="favorites-toast";
+    document.body.appendChild(toast);
+  }
+  let toastTimer;
+  function showToast(msg){
+    clearTimeout(toastTimer);
+    toast.textContent=msg;
+    toast.classList.add("show");
+    toastTimer=setTimeout(()=>toast.classList.remove("show"),1800);
+  }
+
+  // Favorites panel on home
+  let panel=document.getElementById("favoritesPanel");
+  if(!panel){
+    panel=document.createElement("div");
+    panel.id="favoritesPanel";
+    panel.className="favorites-panel";
+    panel.innerHTML="<h3>❤️ Избранное</h3><div class='favorites-list'></div>";
+    const firstCategory=home.querySelector(".card");
+    home.insertBefore(panel, firstCategory || null);
+  }
+
+  function loadFavs(){
+    try{return JSON.parse(localStorage.getItem("odessaFavorites")||"[]");}
+    catch(e){return [];}
+  }
+  function saveFavs(a){localStorage.setItem("odessaFavorites",JSON.stringify(a));}
+  function renderFavs(){
+    const favs=loadFavs(), list=panel.querySelector(".favorites-list");
+    list.innerHTML="";
+    favs.forEach(f=>{
+      const d=document.createElement("div");
+      d.className="favorite-saved-item";
+      d.textContent="❤️ "+f.title;
+      list.appendChild(d);
+    });
+    panel.classList.toggle("has-items",favs.length>0);
+  }
+  renderFavs();
+
+  // Add tools only to useful leaf/detail cards, not navigation cards.
+  document.querySelectorAll(".section .card").forEach(function(card,index){
+    const onclick=card.getAttribute("onclick")||"";
+    if(onclick.includes("openSection(")) return;
+    if(card.querySelector(".item-tools")) return;
+
+    const raw=(card.innerText||"").trim().replace(/\s+/g," ");
+    if(!raw) return;
+    const title=raw.slice(0,110);
+    const key="fav-"+index+"-"+title;
+
+    const tools=document.createElement("div");
+    tools.className="item-tools";
+
+    const heart=document.createElement("button");
+    heart.type="button";
+    heart.className="favorite-btn";
+    heart.innerHTML="♡";
+    heart.setAttribute("aria-label","В избранное");
+
+    let favs=loadFavs();
+    if(favs.some(f=>f.key===key)){heart.classList.add("active");heart.innerHTML="♥";}
+
+    heart.addEventListener("click",function(e){
+      e.stopPropagation();
+      let arr=loadFavs();
+      const pos=arr.findIndex(f=>f.key===key);
+      if(pos>=0){
+        arr.splice(pos,1);
+        heart.classList.remove("active"); heart.innerHTML="♡";
+        showToast("Удалено из избранного");
+      }else{
+        arr.push({key:key,title:title});
+        heart.classList.add("active"); heart.innerHTML="♥";
+        showToast("❤️ Добавлено в избранное");
+      }
+      saveFavs(arr); renderFavs();
+    });
+    tools.appendChild(heart);
+
+    // Copy button appears where card text looks like it contains an address.
+    const looksLikeAddress=/(ул\.|улиц|вул\.|вулиц|просп|пров\.|переул|дорога|площад|пл\.|бульвар|шоссе|Одесса,|Одеса,)/i.test(raw);
+    if(looksLikeAddress){
+      const copy=document.createElement("button");
+      copy.type="button";
+      copy.className="copy-address-btn";
+      copy.innerHTML="📋";
+      copy.setAttribute("aria-label","Скопировать адрес");
+      copy.addEventListener("click",async function(e){
+        e.stopPropagation();
+        try{
+          await navigator.clipboard.writeText(raw);
+          showToast("📋 Адрес скопирован");
+        }catch(err){
+          const ta=document.createElement("textarea");
+          ta.value=raw; document.body.appendChild(ta); ta.select();
+          document.execCommand("copy"); ta.remove();
+          showToast("📋 Адрес скопирован");
+        }
+      });
+      tools.appendChild(copy);
+    }
+    card.appendChild(tools);
+  });
+
+  // Signature at the very bottom of home
+  if(!home.querySelector(".home-signature")){
+    const sig=document.createElement("div");
+    sig.className="home-signature";
+    sig.textContent="Одесса рядом — всё нужное в одном месте ♡";
+    home.appendChild(sig);
+  }
+});
 </script>
 
 </body>
