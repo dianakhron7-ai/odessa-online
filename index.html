@@ -9619,7 +9619,7 @@ function updatePremiumClock(){const d=new Date();const days=['Воскресен
 setInterval(updatePremiumClock,1000);document.addEventListener('DOMContentLoaded',updatePremiumClock);
 function openOdessaTelegramGroup(){
   /* Временная безопасная точка входа: администратор группы. Когда будет публичная ссылка группы, заменить только эту строку. */
-  const url='https://t.me/Diankaleksandrovna';
+  const url='https://t.me/odessaonline1';
   try{if(window.Telegram&&Telegram.WebApp&&Telegram.WebApp.openTelegramLink){Telegram.WebApp.openTelegramLink(url);return;}}catch(e){}
   window.open(url,'_blank');
 }
@@ -9639,6 +9639,101 @@ function openOdessaTelegramGroup(){
 .telegram-group-button small{display:block;margin-top:3px;font-size:12px;color:rgba(255,255,255,.86)}
 .telegram-group-button .tg-arrow{margin-left:auto;font-size:31px;line-height:1}
 .telegram-group-button:active{transform:scale(.98)}
+</style>
+
+
+<style>
+/* ===== FINAL REFERENCE LAYOUT — like supplied Izmail mockup ===== */
+#home.home-reference{
+  display:grid!important;
+  grid-template-columns:repeat(6,minmax(0,1fr))!important;
+  gap:12px!important;
+  max-width:980px!important;
+  margin:0 auto!important;
+  padding:14px 16px 34px!important;
+  border-radius:0!important;
+  background:linear-gradient(180deg,rgba(1,17,40,.10),rgba(0,18,43,.88))!important;
+}
+#home .premium-topbar{grid-column:1/-1!important;min-height:300px!important;padding:24px!important;border-radius:0!important;background:transparent!important;border:0!important;box-shadow:none!important;}
+#home .premium-brand{max-width:68%!important}
+#home .premium-kicker{font-size:16px!important;padding:8px 12px!important;border-radius:12px!important;background:rgba(2,25,62,.78)!important;box-shadow:0 0 18px rgba(60,215,255,.32)!important}
+#home .premium-logo{font-size:48px!important;margin-top:14px!important}
+#home .premium-slogan{font-size:29px!important}
+#home .premium-datetime b{font-size:36px!important}
+#home .premium-datetime span{font-size:15px!important}
+
+/* three compact info cards in one row */
+#home .weather-card,#home .currency-card,#home .shelter-card{
+  grid-column:span 2!important;
+  min-height:96px!important;height:96px!important;
+  padding:14px 34px 12px 62px!important;
+  border-radius:22px!important;
+  margin:0!important;
+  position:relative!important;
+}
+#home .shelter-card{grid-column:span 2!important}
+#home .weather-card .live-icon,#home .currency-card .live-icon,#home .shelter-card .live-icon{left:12px!important;width:42px!important;font-size:38px!important}
+#home .weather-card .live-title,#home .currency-card .live-title,#home .shelter-card .live-title{font-size:17px!important}
+#home .weather-card .live-info,#home .currency-card .live-info,#home .shelter-card .live-info{font-size:12px!important;line-height:1.2!important}
+
+/* search full width directly below */
+#home .home-search{grid-column:1/-1!important;margin:0!important;padding:8px 12px!important;border-radius:24px!important;min-height:76px!important;display:flex!important;align-items:center!important}
+#home .home-search-title{display:none!important}
+#home .home-search-box{width:100%!important;padding:0!important;background:transparent!important;border:0!important}
+#home #homeSearchInput{height:58px!important;min-height:58px!important;border-radius:20px!important;font-size:17px!important;padding-left:54px!important}
+
+/* every main section = exactly two equal image buttons per row */
+#home > .card{
+  grid-column:span 3!important;
+  width:100%!important;
+  min-width:0!important;
+  height:164px!important;min-height:164px!important;
+  margin:0!important;
+  padding:20px 42px 18px 18px!important;
+  border-radius:24px!important;
+  background-size:cover!important;
+  background-position:center!important;
+  border:1.5px solid rgba(90,220,255,.62)!important;
+  box-shadow:0 10px 28px rgba(0,0,0,.34),inset 0 0 0 1px rgba(255,255,255,.08)!important;
+}
+#home > .card::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(1,15,38,.88) 0%,rgba(2,18,42,.56) 48%,rgba(0,10,28,.16) 100%);pointer-events:none}
+#home > .card > *{position:relative;z-index:1}
+#home > .card .card-icon{font-size:42px!important;position:static!important;display:block!important;width:auto!important;transform:none!important;text-align:left!important;margin-bottom:8px!important}
+#home > .card .card-icon::after{font-size:42px!important}
+#home > .card .card-title{font-size:22px!important;line-height:1.08!important;font-weight:900!important;display:block!important;text-shadow:0 3px 9px #000!important}
+#home > .card .info{font-size:13px!important;line-height:1.25!important;margin-top:7px!important;display:block!important;-webkit-line-clamp:unset!important;text-shadow:0 2px 7px #000!important}
+#home > .card .card-arrow{right:13px!important;top:50%!important;font-size:36px!important;position:absolute!important;transform:translateY(-50%)!important}
+#home > .important-home{grid-column:span 3!important;width:100%!important;height:164px!important;min-height:164px!important;justify-self:stretch!important}
+
+/* Telegram group = wide bar like reference */
+#home .telegram-group-card{grid-column:1/-1!important;min-height:88px!important;margin-top:2px!important;border-radius:24px!important;padding:14px 18px!important}
+#home .home-footer{grid-column:1/-1!important}
+
+@media(max-width:600px){
+ #home.home-reference{gap:8px!important;padding:8px 9px 24px!important}
+ #home .premium-topbar{min-height:235px!important;padding:12px 8px!important}
+ #home .premium-kicker{font-size:10px!important;padding:5px 7px!important}
+ #home .premium-logo{font-size:30px!important;margin-top:8px!important}
+ #home .premium-slogan{font-size:18px!important}
+ #home .premium-datetime b{font-size:24px!important}
+ #home .premium-datetime span{font-size:10px!important}
+ #home .weather-card,#home .currency-card,#home .shelter-card{height:78px!important;min-height:78px!important;padding:10px 20px 9px 39px!important;border-radius:17px!important}
+ #home .weather-card .live-icon,#home .currency-card .live-icon,#home .shelter-card .live-icon{left:5px!important;width:31px!important;font-size:27px!important}
+ #home .weather-card .live-title,#home .currency-card .live-title,#home .shelter-card .live-title{font-size:12px!important;white-space:nowrap!important}
+ #home .weather-card .live-info,#home .currency-card .live-info,#home .shelter-card .live-info{font-size:9px!important;line-height:1.12!important;margin-top:4px!important}
+ #home .weather-card .live-arrow,#home .currency-card .live-arrow,#home .shelter-card .live-arrow{font-size:20px!important;right:5px!important}
+ #home .home-search{min-height:62px!important;padding:6px 8px!important;border-radius:18px!important}
+ #home #homeSearchInput{height:50px!important;min-height:50px!important;border-radius:16px!important;font-size:14px!important;padding-left:44px!important}
+ #home .home-search-box:before{left:13px!important;top:7px!important;font-size:27px!important}
+ #home > .card,#home > .important-home{height:124px!important;min-height:124px!important;padding:12px 27px 11px 11px!important;border-radius:18px!important}
+ #home > .card .card-icon{font-size:30px!important;margin-bottom:5px!important}
+ #home > .card .card-icon::after{font-size:30px!important}
+ #home > .card .card-title,#home > .card[onclick*="'realEstate'"] .card-title,#home > .card[onclick*="'education'"] .card-title,#home > .card[onclick*="'medicine'"] .card-title{font-size:14px!important;line-height:1.08!important;letter-spacing:-.1px!important}
+ #home > .card .info{font-size:9.5px!important;line-height:1.2!important;margin-top:5px!important;max-height:34px!important;overflow:hidden!important}
+ #home > .card .card-arrow{right:7px!important;font-size:25px!important}
+ #home .telegram-group-card{min-height:72px!important;padding:10px 12px!important;grid-template-columns:40px 1fr 40px!important}
+ #home .tg-people{font-size:29px!important}.tg-copy b{font-size:14px!important}.tg-copy span{font-size:9.5px!important}.tg-plane{width:38px!important;height:38px!important;font-size:21px!important}
+}
 </style>
 
 </body>
