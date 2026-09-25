@@ -10301,6 +10301,51 @@ body.section-open .container{max-width:650px!important;padding:10px 16px 40px!im
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',build);else build();
 })();
 </script>
+
+<!-- ONE-TAP TELEGRAM GROUP FIX -->
+<style id="ONE_TAP_GROUP_STYLE">
+#home .ox-telegram-link{cursor:pointer!important;touch-action:manipulation!important;-webkit-user-select:none!important;user-select:none!important;-webkit-touch-callout:none!important;}
+#home .ox-telegram-link *{pointer-events:none!important;}
+</style>
+<script id="ONE_TAP_GROUP_FIX">
+(function(){
+  var WEB='https://t.me/odessaonline1';
+  var APP='tg://resolve?domain=odessaonline1';
+  function openNow(e){
+    if(e){e.preventDefault();e.stopPropagation();if(e.stopImmediatePropagation)e.stopImmediatePropagation();}
+    try{
+      if(window.Telegram && window.Telegram.WebApp && typeof window.Telegram.WebApp.openTelegramLink==='function'){
+        window.Telegram.WebApp.openTelegramLink(WEB);
+        return false;
+      }
+    }catch(_e){}
+    window.location.href=APP;
+    setTimeout(function(){ if(document.visibilityState==='visible') window.location.href=WEB; },700);
+    return false;
+  }
+  function fix(){
+    document.querySelectorAll('.ox-telegram-link').forEach(function(old){
+      var el=old;
+      if(old.tagName==='A'){
+        el=document.createElement('div');
+        for(var i=0;i<old.attributes.length;i++){
+          var a=old.attributes[i];
+          if(a.name!=='href' && a.name!=='target' && a.name!=='onclick') el.setAttribute(a.name,a.value);
+        }
+        el.innerHTML=old.innerHTML;
+        old.replaceWith(el);
+      }
+      el.setAttribute('role','button');
+      el.setAttribute('tabindex','0');
+      el.removeAttribute('href');
+      el.onclick=openNow;
+      el.oncontextmenu=function(e){e.preventDefault();return false;};
+      el.onkeydown=function(e){if(e.key==='Enter'||e.key===' '){openNow(e);}};
+    });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',fix); else fix();
+})();
+</script>
 </body>
 </html>
 
@@ -10563,5 +10608,41 @@ function openOdessaTelegramGroup(e){
     });
   }
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',bind); else bind();
+})();
+</script>
+
+<!-- FINAL USER FIX 2026-09-25: full-height reference + clean live clock -->
+<style id="USER_FINAL_1817_FIX">
+html,body{min-height:100%;background:#06131f!important}
+#home .fx-stage{min-height:0!important;height:auto!important;background:#06131f!important;overflow:hidden!important;margin:0!important;padding:0!important}
+#home .fx-stage>img{width:100%!important;height:auto!important;display:block!important}
+/* Completely cover the baked-in clock/date/location, then draw the live values above it. */
+#home .fx-clock-mask{
+ right:0!important;top:0!important;width:31.5%!important;height:9.6%!important;
+ border-radius:0 0 0 20px!important;
+ background:linear-gradient(90deg,rgba(8,26,45,.72),rgba(8,26,45,.97) 35%,#081a2d 100%)!important;
+ box-shadow:none!important;
+}
+#home .fx-clock{right:2.4%!important;top:1.0%!important;width:27.5%!important;z-index:26!important}
+#home .fx-clock strong{font-size:clamp(27px,6.1vw,48px)!important}
+#home .fx-clock span,#home .fx-clock small{font-size:clamp(10px,2.35vw,18px)!important}
+/* Remove the empty dark tail on tall phone screens by extending the Odessa image area naturally. */
+#home .fx-stage::after{content:none!important;display:none!important}
+#home{margin-bottom:0!important;padding-bottom:0!important}
+body{min-height:0!important;height:auto!important}
+</style>
+<script id="USER_FINAL_TIMEZONE_FIX">
+(function(){
+ function liveOdessaClock(){
+   var n=new Date();
+   var time=n.toLocaleTimeString('ru-RU',{timeZone:'Europe/Kyiv',hour:'2-digit',minute:'2-digit',hour12:false});
+   var ds=n.toLocaleDateString('ru-RU',{timeZone:'Europe/Kyiv',day:'numeric',month:'long'});
+   var wd=n.toLocaleDateString('ru-RU',{timeZone:'Europe/Kyiv',weekday:'long'});
+   wd=wd.charAt(0).toUpperCase()+wd.slice(1);
+   var a=document.querySelector('.fx-clock strong'),b=document.querySelector('.fx-clock span');
+   if(a)a.textContent=time;if(b)b.textContent=ds+', '+wd;
+ }
+ document.addEventListener('DOMContentLoaded',function(){setTimeout(liveOdessaClock,50);setInterval(liveOdessaClock,1000);});
+ if(document.readyState!=='loading'){setTimeout(liveOdessaClock,50);setInterval(liveOdessaClock,1000);}
 })();
 </script>
