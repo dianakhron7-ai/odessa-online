@@ -2137,6 +2137,30 @@ body.section-open .section{
   color:rgba(255,255,255,.8);
 }
 
+
+/* ===== КОПИРОВАНИЕ ТЕКСТА НА ВСЕХ КОНЕЧНЫХ КАРТОЧКАХ ===== */
+.copy-all-text-btn{
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:5px !important;
+  min-height:32px !important;
+  margin-top:8px !important;
+  padding:6px 10px !important;
+  border:0 !important;
+  border-radius:15px !important;
+  background:rgba(255,255,255,.11) !important;
+  color:#fff !important;
+  font-size:12px !important;
+  font-weight:700 !important;
+  cursor:pointer !important;
+  box-shadow:none !important;
+  -webkit-tap-highlight-color:transparent !important;
+}
+.copy-all-text-btn:active{
+  transform:scale(.94) !important;
+}
+
 </style>
 </head>
 
@@ -9443,6 +9467,88 @@ document.addEventListener("DOMContentLoaded", function(){
     /* открываем как нормальный раздел */
     if(typeof openSection==="function"){
       openSection("favoritesScreen");
+    }
+  });
+});
+</script>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+
+  function showCopyToast(message){
+    let toast=document.getElementById("copyUniversalToast");
+    if(!toast){
+      toast=document.createElement("div");
+      toast.id="copyUniversalToast";
+      toast.className="favorites-toast";
+      document.body.appendChild(toast);
+    }
+    toast.textContent=message;
+    toast.classList.add("show");
+    clearTimeout(window.__copyToastTimer);
+    window.__copyToastTimer=setTimeout(function(){
+      toast.classList.remove("show");
+    },1600);
+  }
+
+  async function copyText(value){
+    try{
+      await navigator.clipboard.writeText(value);
+    }catch(e){
+      const ta=document.createElement("textarea");
+      ta.value=value;
+      ta.style.position="fixed";
+      ta.style.opacity="0";
+      document.body.appendChild(ta);
+      ta.focus();
+      ta.select();
+      document.execCommand("copy");
+      ta.remove();
+    }
+    showCopyToast("📋 Текст скопирован");
+  }
+
+  document.querySelectorAll(".section .card").forEach(function(card){
+    const onclick=card.getAttribute("onclick") || "";
+
+    /* Это кнопка-переход в следующий раздел — здесь копирование не нужно */
+    if(onclick.includes("openSection(")) return;
+    if(card.classList.contains("transport-route-card")) return;
+    if(card.querySelector(".copy-all-text-btn")) return;
+
+    const clone=card.cloneNode(true);
+    clone.querySelectorAll("button,.item-tools,.copy-address-btn,.favorite-btn,.route-map-btn,.copy-all-text-btn").forEach(function(el){
+      el.remove();
+    });
+
+    const value=(clone.innerText || clone.textContent || "")
+      .replace(/\s+/g," ")
+      .trim();
+
+    if(!value) return;
+
+    const btn=document.createElement("button");
+    btn.type="button";
+    btn.className="copy-all-text-btn";
+    btn.innerHTML="📋 Скопировать";
+
+    btn.addEventListener("click",function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      copyText(value);
+    });
+
+    let tools=card.querySelector(".item-tools");
+    if(tools){
+      /* Удаляем старую адресную кнопку, чтобы не было двух кнопок копирования */
+      tools.querySelectorAll(".copy-address-btn").forEach(function(old){old.remove();});
+      tools.appendChild(btn);
+    }else{
+      tools=document.createElement("div");
+      tools.className="item-tools";
+      tools.appendChild(btn);
+      card.appendChild(tools);
     }
   });
 });
