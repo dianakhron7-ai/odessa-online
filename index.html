@@ -1880,6 +1880,86 @@ body.section-open .section{
   height:170px !important;
 }
 
+
+/* ===== ЖЁСТКИЙ ФИКС КАРТОЧКИ ИЗБРАННОЕ ===== */
+#home > .favorites-main-card{
+  position:relative !important;
+  display:flex !important;
+  flex-direction:row !important;
+  align-items:center !important;
+  width:100% !important;
+  height:170px !important;
+  min-height:170px !important;
+  padding:16px 38px 16px 14px !important;
+  margin:0 !important;
+  box-sizing:border-box !important;
+  overflow:hidden !important;
+  text-align:left !important;
+}
+#home > .favorites-main-card .fav-icon-fixed{
+  flex:0 0 72px !important;
+  width:72px !important;
+  margin-right:10px !important;
+  font-size:46px !important;
+  line-height:1 !important;
+  text-align:center !important;
+}
+#home > .favorites-main-card .fav-body-fixed{
+  flex:1 1 auto !important;
+  min-width:0 !important;
+  width:calc(100% - 82px) !important;
+  overflow:visible !important;
+}
+#home > .favorites-main-card .fav-title-fixed{
+  display:block !important;
+  width:100% !important;
+  margin:0 0 8px !important;
+  padding:0 !important;
+  color:#fff !important;
+  font-size:16px !important;
+  line-height:1.15 !important;
+  font-weight:800 !important;
+  white-space:nowrap !important;
+  overflow:visible !important;
+  text-overflow:clip !important;
+}
+#home > .favorites-main-card .fav-desc-fixed{
+  display:block !important;
+  width:100% !important;
+  margin:0 !important;
+  padding:0 !important;
+  color:rgba(235,240,247,.78) !important;
+  font-size:12px !important;
+  line-height:1.35 !important;
+  font-weight:400 !important;
+  white-space:normal !important;
+  word-break:normal !important;
+  overflow-wrap:normal !important;
+}
+#home > .favorites-main-card .fav-arrow-fixed{
+  position:absolute !important;
+  right:13px !important;
+  top:50% !important;
+  transform:translateY(-50%) !important;
+  color:rgba(255,255,255,.88) !important;
+  font-size:28px !important;
+  line-height:1 !important;
+}
+#home > .favorites-main-card .fav-count-fixed{
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  min-width:18px !important;
+  height:18px !important;
+  padding:0 5px !important;
+  margin-left:4px !important;
+  border-radius:10px !important;
+  background:#e83d55 !important;
+  color:#fff !important;
+  font-size:10px !important;
+  vertical-align:middle !important;
+}
+
 </style>
 </head>
 
@@ -8996,6 +9076,37 @@ document.addEventListener("DOMContentLoaded", function(){
   // Refresh badge after any heart click.
   document.querySelectorAll(".favorite-btn").forEach(function(btn){
     btn.addEventListener("click",function(){setTimeout(updateFavCount,20);});
+  });
+});
+</script>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+  const fav = document.querySelector("#home > .favorites-main-card");
+  if(!fav) return;
+
+  let items=[];
+  try { items=JSON.parse(localStorage.getItem("odessaFavorites")||"[]"); } catch(e){}
+
+  fav.innerHTML =
+    '<div class="fav-icon-fixed">❤️</div>' +
+    '<div class="fav-body-fixed">' +
+      '<div class="fav-title-fixed">Избранное <span class="fav-count-fixed">'+items.length+'</span></div>' +
+      '<div class="fav-desc-fixed">Сохранённые места<br>и записи</div>' +
+    '</div>' +
+    '<div class="fav-arrow-fixed">›</div>';
+
+  // Keep counter synced after favorite heart clicks.
+  document.querySelectorAll(".favorite-btn").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      setTimeout(function(){
+        let a=[];
+        try { a=JSON.parse(localStorage.getItem("odessaFavorites")||"[]"); } catch(e){}
+        const c=fav.querySelector(".fav-count-fixed");
+        if(c) c.textContent=a.length;
+      },30);
+    });
   });
 });
 </script>
