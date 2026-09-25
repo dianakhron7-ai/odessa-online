@@ -357,6 +357,199 @@ body{
   #home > .important-home{width:calc(50% - 5px) !important;}
 }
 
+
+/* ===== ФИНАЛЬНАЯ МОБИЛЬНАЯ ПРАВКА ГЛАВНОЙ ===== */
+
+/* Убираем слишком большой пустой верх и поднимаем поиск */
+#home .hero-space{
+  height:105px !important;
+}
+
+/* Карточки: нормальные пропорции и текст не вылезает */
+#home .live-card,
+#home > .card{
+  min-height:150px !important;
+  overflow:hidden !important;
+}
+
+#home > .card{
+  grid-template-columns:42px minmax(0,1fr) 16px !important;
+  padding:17px 12px !important;
+  column-gap:8px !important;
+}
+
+#home > .card .card-icon{
+  font-size:31px !important;
+}
+
+#home > .card .card-title{
+  font-size:18px !important;
+  line-height:1.12 !important;
+  overflow-wrap:anywhere;
+  word-break:normal;
+  hyphens:auto;
+}
+
+#home > .card .info{
+  font-size:13.5px !important;
+  line-height:1.38 !important;
+  overflow-wrap:anywhere;
+  word-break:normal;
+}
+
+/* Длинные названия получают чуть больше места */
+#home > .card[onclick*="realEstate"] .card-title{
+  font-size:16px !important;
+  letter-spacing:-.2px;
+}
+#home > .card[onclick*="realEstate"]{
+  grid-template-columns:38px minmax(0,1fr) 14px !important;
+}
+
+/* Важное — аккуратная центральная карточка */
+#home > .important-home{
+  width:56% !important;
+  min-height:145px !important;
+}
+
+/* Убираем дублирующийся нижний текст, если старый footer остался вне новой главной */
+#home .home-footer{
+  margin-top:2px !important;
+}
+
+@media (max-width:430px){
+  #home.home-reference{
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr) !important;
+    gap:10px !important;
+    padding:0 12px 22px !important;
+  }
+  #home .hero-space{
+    height:80px !important;
+  }
+  #home .home-search-title{
+    font-size:26px !important;
+    line-height:1.1 !important;
+  }
+  #home .live-card{
+    min-height:126px !important;
+  }
+  #home > .card{
+    min-height:142px !important;
+    grid-template-columns:36px minmax(0,1fr) 13px !important;
+    padding:15px 9px !important;
+    column-gap:7px !important;
+  }
+  #home > .card .card-icon{
+    font-size:28px !important;
+  }
+  #home > .card .card-title{
+    font-size:17px !important;
+  }
+  #home > .card .info{
+    font-size:12.5px !important;
+    line-height:1.35 !important;
+  }
+  #home > .card[onclick*="realEstate"]{
+    grid-template-columns:32px minmax(0,1fr) 12px !important;
+  }
+  #home > .card[onclick*="realEstate"] .card-title{
+    font-size:14.5px !important;
+    letter-spacing:-.35px !important;
+  }
+  #home > .important-home{
+    width:58% !important;
+    min-height:142px !important;
+  }
+}
+
+
+/* ===== ФИНАЛЬНЫЙ ВИД КАК НА ОБРАЗЦЕ ===== */
+#home.home-reference{
+  gap:10px !important;
+  padding:0 12px 24px !important;
+}
+#home .hero-space{height:36px !important;}
+#home .home-search-title{display:none !important;}
+#home .home-search-box{
+  padding:8px !important;
+  border-radius:26px !important;
+  background:rgba(30,20,18,.45) !important;
+}
+#home #homeSearchInput{
+  border-radius:21px !important;
+  padding:17px 18px !important;
+}
+#home .live-card,#home > .card{
+  min-height:126px !important;
+  border-radius:22px !important;
+  background:linear-gradient(145deg,rgba(20,27,38,.94),rgba(11,17,27,.90)) !important;
+  border:1px solid rgba(255,255,255,.25) !important;
+  box-shadow:0 7px 20px rgba(0,0,0,.30), inset 0 1px 0 rgba(255,255,255,.08) !important;
+}
+#home > .card{
+  grid-template-columns:58px minmax(0,1fr) 15px !important;
+  padding:14px 10px !important;
+  column-gap:7px !important;
+}
+#home > .card .card-icon{
+  font-size:44px !important;
+  filter:drop-shadow(0 5px 5px rgba(0,0,0,.35));
+  transform:scale(1.05);
+  align-self:center !important;
+}
+#home > .card .card-title{
+  font-size:18px !important;
+  line-height:1.08 !important;
+  font-weight:800 !important;
+}
+#home > .card .info{
+  font-size:12.5px !important;
+  line-height:1.3 !important;
+  margin-top:7px !important;
+}
+#home .live-card{
+  grid-template-columns:64px minmax(0,1fr) 15px !important;
+  padding:14px 10px !important;
+}
+#home .live-icon{
+  font-size:48px !important;
+  filter:drop-shadow(0 5px 5px rgba(0,0,0,.35));
+}
+#home .live-title{font-size:19px !important;}
+#home .live-info{font-size:13px !important;}
+#home .live-arrow,#home .card-arrow{font-size:31px !important;}
+#home > .important-home{
+  width:58% !important;
+  min-height:126px !important;
+}
+#home .home-footer{padding-top:12px !important;}
+
+/* Exact icon choices matching the visual language of the reference */
+#home > .card[onclick*="'transport'"] .card-icon{font-size:0 !important;}
+#home > .card[onclick*="'transport'"] .card-icon::after{content:"🚌";font-size:46px;}
+#home > .card[onclick*="'medicine'"] .card-icon{font-size:0 !important;}
+#home > .card[onclick*="'medicine'"] .card-icon::after{content:"❤️‍🩹";font-size:45px;}
+#home > .card[onclick*="'education'"] .card-icon{font-size:0 !important;}
+#home > .card[onclick*="'education'"] .card-icon::after{content:"🎓";font-size:46px;}
+#home > .card[onclick*="'shopping'"] .card-icon{font-size:0 !important;}
+#home > .card[onclick*="'shopping'"] .card-icon::after{content:"🛍️";font-size:45px;}
+#home > .card[onclick*="'food'"] .card-icon{font-size:0 !important;}
+#home > .card[onclick*="'food'"] .card-icon::after{content:"🍴";font-size:46px;}
+#home > .card[onclick*="'work'"] .card-icon{font-size:0 !important;}
+#home > .card[onclick*="'work'"] .card-icon::after{content:"💼";font-size:45px;}
+#home > .card[onclick*="'realEstate'"] .card-icon{font-size:0 !important;}
+#home > .card[onclick*="'realEstate'"] .card-icon::after{content:"🏠";font-size:45px;}
+#home > .card[onclick*="'leisure'"] .card-icon{font-size:0 !important;}
+#home > .card[onclick*="'leisure'"] .card-icon::after{content:"🏖️";font-size:45px;}
+#home > .card[onclick*="'important'"] .card-icon{font-size:0 !important;}
+#home > .card[onclick*="'important'"] .card-icon::after{content:"🚨";font-size:45px;}
+
+@media(max-width:380px){
+  #home > .card{grid-template-columns:50px minmax(0,1fr) 13px !important;}
+  #home > .card .card-title{font-size:16px !important;}
+  #home > .card .info{font-size:11.5px !important;}
+}
+
 </style>
 </head>
 
@@ -5279,7 +5472,7 @@ function jobSearch(query) {
 
 </div>
 <div class="footer">
-ОДЕССА Online • городской справочник
+
 </div>
 
 </div>
