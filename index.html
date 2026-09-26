@@ -2726,14 +2726,19 @@ function buildGuideSearchIndex() {
   const items = [];
   const seen = new Set();
 
-  document.querySelectorAll('.section .card').forEach(function(card) {
+  document.querySelectorAll('.section .card, .section .service-company').forEach(function(card) {
     const section = card.closest('.section');
     if (!section || !section.id) return;
 
     const title = searchTitleFromCard(card);
     if (!title) return;
 
-    const searchText = searchNormalize(title);
+    const sectionTitle = section.querySelector('.section-title');
+    const searchText = searchNormalize([
+      card.innerText || card.textContent || '',
+      sectionTitle ? (sectionTitle.innerText || sectionTitle.textContent || '') : '',
+      card.getAttribute('data-search') || ''
+    ].join(' '));
     if (!searchText) return;
 
     const onclick = card.getAttribute('onclick') || '';
@@ -9039,19 +9044,19 @@ function estateMapNew(query) {
   <div class="back" onclick="goHome()">← Назад</div>
   <div class="section-title">🛠 Услуги и мастера</div>
 
-  <div class="card" onclick="window.open('https://www.google.com/maps/search/?api=1&query=сантехник+Одесса','_blank')">
+  <div class="card" onclick="openSection('servicePlumbing')">
     🔧 Сантехники
     <div class="info">Ремонт труб, кранов и сантехники</div>
   </div>
-  <div class="card" onclick="window.open('https://www.google.com/maps/search/?api=1&query=электрик+Одесса','_blank')">
+  <div class="card" onclick="openSection('serviceElectric')">
     ⚡ Электрики
     <div class="info">Электромонтаж и ремонт электрики</div>
   </div>
-  <div class="card" onclick="window.open('https://www.google.com/maps/search/?api=1&query=ремонт+техники+Одесса','_blank')">
+  <div class="card" onclick="openSection('serviceAppliances')">
     🛠 Ремонт техники
     <div class="info">Мастера по ремонту бытовой техники</div>
   </div>
-  <div class="card" onclick="window.open('https://www.google.com/maps/search/?api=1&query=клининг+Одесса','_blank')">
+  <div class="card" onclick="openSection('serviceCleaning')">
     🧹 Уборка и клининг
     <div class="info">Уборка квартир, домов и офисов</div>
   </div>
@@ -9064,6 +9069,7 @@ function estateMapNew(query) {
     <div class="info">Отделочные работы и мастера по ремонту</div>
   </div>
   <div class="card" onclick="openSection('serviceHandyman')">🧰 Муж на час<div class="info">Сборка мебели, мелкий ремонт и монтаж</div></div>
+  <div class="card" onclick="openSection('serviceClimate')">❄️ Кондиционеры<div class="info">Монтаж, чистка, заправка и ремонт</div></div>
   <div class="card" onclick="openSection('serviceRenovation')">🏠 Ремонт квартир<div class="info">Строительные компании и ремонт под ключ</div></div>
   <div class="card" onclick="openSection('serviceComputers')">💻 Компьютеры и ноутбуки<div class="info">Диагностика, настройка и ремонт техники</div></div>
   <div class="card" onclick="openSection('servicePhones')">📱 Ремонт телефонов<div class="info">Сервисные центры и ремонт электроники</div></div>
@@ -10900,6 +10906,10 @@ body:not(.section-open) .header{display:none!important}
 #home .ref-hit{display:block!important;position:absolute!important;z-index:30!important;border:0!important;background:transparent!important;margin:0!important;padding:0!important;cursor:pointer!important;touch-action:manipulation!important;-webkit-tap-highlight-color:transparent!important}
 #home .ref-search{display:block!important;position:absolute!important;z-index:40!important;left:4.8%!important;top:35.75%!important;width:90.5%!important;height:5.0%!important;border:0!important;outline:0!important;background:transparent!important;color:#fff!important;caret-color:#fff!important;padding:0 10% 0 8%!important;box-sizing:border-box!important;font:600 clamp(13px,3.1vw,22px) Arial,sans-serif!important}
 #home .ref-search::placeholder{color:transparent!important}
+#home .ref-search-results{display:block!important;position:absolute!important;z-index:90!important;left:4.8%!important;top:41%!important;width:90.5%!important;max-height:35%!important;overflow-y:auto!important;margin:0!important;padding:8px!important;box-sizing:border-box!important;background:rgba(4,31,58,.98)!important;border:1px solid #37d9ff!important;border-radius:16px!important;box-shadow:0 16px 34px rgba(0,0,0,.52)!important;line-height:1.3!important}
+#home .ref-search-results:empty{display:none!important}
+#home .ref-search-results .card{display:block!important;margin:5px 0!important;padding:10px 12px!important;background:rgba(255,255,255,.1)!important;border:1px solid rgba(255,255,255,.16)!important;border-radius:11px!important;color:#fff!important;font:700 14px/1.3 Arial,sans-serif!important;cursor:pointer!important}
+#home .ref-search-results .info{display:block!important;margin-top:3px!important;color:#bfefff!important;font:400 12px/1.3 Arial,sans-serif!important}
 #home .ref-clock-mask{display:block!important;position:absolute!important;z-index:20!important;right:0!important;top:0!important;width:31%!important;height:9.7%!important;background:linear-gradient(90deg,rgba(12,24,31,.72),rgba(7,19,28,.94) 40%,rgba(5,17,26,.98))!important;border-radius:0 0 0 18px!important}
 #home .ref-clock{display:block!important;position:absolute!important;z-index:25!important;right:2.1%!important;top:1.35%!important;width:28.5%!important;text-align:right!important;color:#fff!important;line-height:1.08!important;font-family:Arial,sans-serif!important;text-shadow:0 2px 5px #000!important}
 #home .ref-clock strong{display:block!important;font-size:clamp(29px,7.1vw,54px)!important;font-weight:900!important}
@@ -10923,6 +10933,7 @@ body.section-open .container{max-width:650px!important;padding:10px 16px 40px!im
    var mask=document.createElement('div');mask.className='ref-clock-mask';st.appendChild(mask);
    var cl=document.createElement('div');cl.className='ref-clock';cl.innerHTML='<strong></strong><span></span><small>📍 Одесса, Украина 🇺🇦</small>';st.appendChild(cl);
    var s=document.createElement('input');s.type='search';s.id='homeSearchInput';s.className='ref-search';s.setAttribute('aria-label','Поиск по справочнику');s.oninput=function(){if(typeof window.homeGuideSearch==='function')window.homeGuideSearch();};s.onkeydown=function(e){if(e.key==='Enter'&&typeof window.homeGuideSearch==='function'){e.preventDefault();window.homeGuideSearch();}};st.appendChild(s);
+   var searchResults=document.createElement('div');searchResults.id='homeSearchResults';searchResults.className='ref-search-results';searchResults.setAttribute('aria-live','polite');st.appendChild(searchResults);
    hit(st,2.0,28.0,34.5,7.2,function(){if(typeof window.openWeather==='function')window.openWeather();},'Погода');
    hit(st,37.2,28.0,28.2,7.2,function(){if(typeof window.openCurrency==='function')window.openCurrency();},'Курс валют');
    hit(st,66.0,28.0,32.0,7.2,function(){window.open('https://www.google.com/maps/search/'+encodeURIComponent('укрытия Одесса'),'_blank');},'Укрытия Одессы');
