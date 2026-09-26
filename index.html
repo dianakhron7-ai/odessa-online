@@ -10416,7 +10416,7 @@ body.section-open .container{max-width:650px!important;padding:10px 16px 40px!im
    hit(st,3.3,88.4,93.3,9.3,openGroup);
    home.appendChild(st);updateClock();setInterval(updateClock,1000);
  }
- if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',build);else build();
+ /* Disabled duplicate first renderer: the final reference renderer below is the only home initializer. */
 })();
 </script>
 
