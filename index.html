@@ -9063,12 +9063,60 @@ function estateMapNew(query) {
     🏗 Строительство и ремонт
     <div class="info">Отделочные работы и мастера по ремонту</div>
   </div>
+  <div class="card" onclick="openSection('serviceHandyman')">🧰 Муж на час<div class="info">Сборка мебели, мелкий ремонт и монтаж</div></div>
+  <div class="card" onclick="openSection('serviceRenovation')">🏠 Ремонт квартир<div class="info">Строительные компании и ремонт под ключ</div></div>
+  <div class="card" onclick="openSection('serviceComputers')">💻 Компьютеры и ноутбуки<div class="info">Диагностика, настройка и ремонт техники</div></div>
+  <div class="card" onclick="openSection('servicePhones')">📱 Ремонт телефонов<div class="info">Сервисные центры и ремонт электроники</div></div>
+  <div class="card" onclick="openSection('serviceFurniture')">🪑 Мебельные мастера<div class="info">Сборка, ремонт и перетяжка мебели</div></div>
 </div>
 
 
 <!-- ====================================== -->
 <!-- 🚨 ВАЖНОЕ -->
 <!-- ====================================== -->
+
+<style>
+.service-company{margin:12px 0;padding:16px;border:1px solid rgba(55,214,255,.5);border-radius:16px;background:linear-gradient(145deg,#102a43,#071a2e);box-shadow:0 7px 20px rgba(0,0,0,.25);color:#fff}
+.service-company h3{margin:0 0 7px;color:#55e5ff;font-size:20px}.service-company p{margin:0 0 13px;line-height:1.45;color:#e7f2ff}.service-actions{display:flex;flex-wrap:wrap;gap:8px}.service-actions a,.service-actions button{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:9px 12px;border:0;border-radius:11px;background:#0d8dcc;color:#fff!important;text-decoration:none;font:700 14px Arial;cursor:pointer}.service-actions a:first-child{background:#16a05d}
+</style>
+
+<div id="servicePlumbing" class="section"><div class="back" onclick="openSection('services')">← Все услуги</div><div class="section-title">🔧 Сантехники Одессы</div>
+<div class="service-company"><h3>Fix-Man</h3><p>Ремонт сантехники, трубы, краны, ванны и бойлеры.</p><div class="service-actions"><a href="tel:+380980556028">📞 098 055 60 28</a><button onclick="findMaster('Fix-Man сантехник Одесса')">📍 Карта</button></div></div>
+<div class="service-company"><h3>СантехникСервис</h3><p>Установка оборудования, устранение протечек и засоров.</p><div class="service-actions"><a href="https://santehnikservice.od.ua/" target="_blank">🌐 Сайт</a><button onclick="findMaster('СантехникСервис Одесса')">📍 Карта</button></div></div>
+<div class="service-company"><h3>Plumber Одесса</h3><p>Вызов мастера и ремонт сантехники с гарантией.</p><div class="service-actions"><button onclick="findMaster('Plumber сантехник Одесса')">📍 Карта</button></div></div></div>
+
+<div id="serviceElectric" class="section"><div class="back" onclick="openSection('services')">← Все услуги</div><div class="section-title">⚡ Электрики Одессы</div>
+<div class="service-company"><h3>Электрон — электрик 24/7</h3><p>Аварийный вызов, проводка, розетки и электрощиты.</p><div class="service-actions"><a href="tel:+380932801243">📞 093 280 12 43</a><button onclick="findMaster('Электрон электрик Одесса')">📍 Карта</button></div></div>
+<div class="service-company"><h3>ElectricPro</h3><p>Замена автоматов, замыканий и ремонт проводки.</p><div class="service-actions"><button onclick="findMaster('ElectricPro Одесса')">📍 Карта</button></div></div>
+<div class="service-company"><h3>Электрик-Одесса</h3><p>Монтаж освещения, розеток и электрощитов.</p><div class="service-actions"><button onclick="findMaster('Электрик-Одесса компания')">📍 Карта</button></div></div></div>
+
+<div id="serviceAppliances" class="section"><div class="back" onclick="openSection('services')">← Все услуги</div><div class="section-title">🔌 Ремонт бытовой техники</div>
+<div class="service-company"><h3>L&amp;B Electronics</h3><p>Стиральные машины, холодильники, духовки и бойлеры.</p><div class="service-actions"><a href="tel:+380984403993">📞 098 440 39 93</a><button onclick="findMaster('L&B Electronics Одесса')">📍 Карта</button></div></div>
+<div class="service-company"><h3>Одесса-Ремонт</h3><p>Выездной ремонт холодильников и стиральных машин.</p><div class="service-actions"><button onclick="findMaster('Одесса-Ремонт сервисный центр')">📍 Карта</button></div></div>
+<div class="service-company"><h3>iMASTER</h3><p>Диагностика и ремонт бытовой техники на дому.</p><div class="service-actions"><button onclick="findMaster('iMASTER Одесса сервис')">📍 Карта</button></div></div></div>
+
+<div id="serviceClimate" class="section"><div class="back" onclick="openSection('services')">← Все услуги</div><div class="section-title">❄️ Кондиционеры</div>
+<div class="service-company"><h3>Oasis Plus</h3><p>Чистка, заправка, монтаж и ремонт кондиционеров.</p><div class="service-actions"><a href="tel:+380980215151">📞 098 021 51 51</a><button onclick="findMaster('Oasis Plus Одесса')">📍 Карта</button></div></div>
+<div class="service-company"><h3>КлиматСпецСервис</h3><p>Обслуживание и ремонт климатической техники.</p><div class="service-actions"><button onclick="findMaster('КлиматСпецСервис Одесса')">📍 Карта</button></div></div>
+<div class="service-company"><h3>Ваш Климат</h3><p>Монтаж, профилактика и сервис кондиционеров.</p><div class="service-actions"><button onclick="findMaster('Ваш Климат Одесса')">📍 Карта</button></div></div></div>
+
+<div id="serviceHandyman" class="section"><div class="back" onclick="openSection('services')">← Все услуги</div><div class="section-title">🧰 Муж на час</div>
+<div class="service-company"><h3>Мастер на дом</h3><p>Мелкий ремонт, сборка мебели, карнизы, полки и техника.</p><div class="service-actions"><a href="https://housemaster.od.ua/ru/" target="_blank">🌐 Сайт</a><button onclick="findMaster('Мастер на дом Одесса')">📍 Карта</button></div></div>
+<div class="service-company"><h3>Муж на час — muj-na-chas</h3><p>Крепёж, сборка, сантехнические и электрические работы.</p><div class="service-actions"><a href="https://muj-na-chas.com.ua/" target="_blank">🌐 Сайт</a><button onclick="findMaster('Муж на час Одесса')">📍 Карта</button></div></div>
+<div class="service-company"><h3>РЕМА СЕРВИС</h3><p>Срочный мастер на дом во всех районах Одессы.</p><div class="service-actions"><button onclick="findMaster('РЕМА СЕРВИС Одесса')">📍 Карта</button></div></div></div>
+
+<div id="serviceRenovation" class="section"><div class="back" onclick="openSection('services')">← Все услуги</div><div class="section-title">🏠 Ремонт квартир</div>
+<div class="service-company"><h3>ОДСК</h3><p>Ремонт квартир под ключ и отделочные работы.</p><div class="service-actions"><button onclick="findMaster('ОДСК Одесса')">📍 Карта</button></div></div><div class="service-company"><h3>Артель</h3><p>Ремонт квартир, офисов и коттеджей.</p><div class="service-actions"><button onclick="findMaster('Артель ремонт Одесса')">📍 Карта</button></div></div><div class="service-company"><h3>МЕГАСТРОЙ</h3><p>Комплексный ремонт домов, квартир и офисов.</p><div class="service-actions"><button onclick="findMaster('МЕГАСТРОЙ Одесса ремонт')">📍 Карта</button></div></div></div>
+
+<div id="serviceComputers" class="section"><div class="back" onclick="openSection('services')">← Все услуги</div><div class="section-title">💻 Компьютеры и ноутбуки</div><div class="service-company"><h3>Express Service</h3><p>Ремонт компьютеров, ноутбуков и планшетов.</p><div class="service-actions"><button onclick="findMaster('Express Service Одесса ремонт')">📍 Карта</button></div></div><div class="service-company"><h3>Торренс</h3><p>Настройка компьютеров и диагностика неисправностей.</p><div class="service-actions"><button onclick="findMaster('Торренс компьютерный сервис Одесса')">📍 Карта</button></div></div><div class="service-company"><h3>ITMSFT Service</h3><p>Компьютеры, оргтехника, мониторы и приставки.</p><div class="service-actions"><button onclick="findMaster('ITMSFT Service Одесса')">📍 Карта</button></div></div></div>
+
+<div id="servicePhones" class="section"><div class="back" onclick="openSection('services')">← Все услуги</div><div class="section-title">📱 Ремонт телефонов</div><div class="service-company"><h3>InTeh</h3><p>Ремонт телефонов, планшетов, ноутбуков и электроники.</p><div class="service-actions"><button onclick="findMaster('InTeh сервисный центр Одесса')">📍 Карта</button></div></div><div class="service-company"><h3>Express Service Mobile</h3><p>Диагностика и ремонт смартфонов и планшетов.</p><div class="service-actions"><button onclick="findMaster('Express Service телефоны Одесса')">📍 Карта</button></div></div><div class="service-company"><h3>ITMSFT Mobile</h3><p>Ремонт мобильных устройств и электроники.</p><div class="service-actions"><button onclick="findMaster('ITMSFT ремонт телефонов Одесса')">📍 Карта</button></div></div></div>
+
+<div id="serviceCleaning" class="section"><div class="back" onclick="openSection('services')">← Все услуги</div><div class="section-title">🧹 Уборка и клининг</div><div class="service-company"><h3>O.D.CLEANING</h3><p>Уборка домов и квартир, химчистка мебели и текстиля.</p><div class="service-actions"><button onclick="findMaster('O.D.CLEANING Одесса')">📍 Карта</button></div></div><div class="service-company"><h3>CLEAN'OK</h3><p>Клининг после ремонта и химчистка помещений.</p><div class="service-actions"><button onclick="findMaster('CLEAN OK Одесса клининг')">📍 Карта</button></div></div><div class="service-company"><h3>Procleaning</h3><p>Уборка квартир, домов и офисов.</p><div class="service-actions"><button onclick="findMaster('Procleaning Одесса')">📍 Карта</button></div></div></div>
+
+<div id="serviceFurniture" class="section"><div class="back" onclick="openSection('services')">← Все услуги</div><div class="section-title">🪑 Мебельные мастера</div><div class="service-company"><h3>Мебельный мастер Одесса</h3><p>Сборка, ремонт, регулировка и установка мебели.</p><div class="service-actions"><button onclick="findMaster('мебельный мастер Одесса')">📍 Карта</button></div></div><div class="service-company"><h3>Перетяжка мебели</h3><p>Перетяжка диванов, кресел и стульев.</p><div class="service-actions"><button onclick="findMaster('перетяжка мебели Одесса')">📍 Карта</button></div></div><div class="service-company"><h3>Сборка мебели на дому</h3><p>Сборка шкафов, кухонь и офисной мебели.</p><div class="service-actions"><button onclick="findMaster('сборка мебели Одесса')">📍 Карта</button></div></div></div>
+
+<script>function findMaster(query){window.open('https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(query),'_blank');}</script>
 
 <div id="important" class="section">
 
