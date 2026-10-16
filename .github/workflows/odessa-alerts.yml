@@ -1,0 +1,56 @@
+name: Odessa Alerts 20s
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - 'scripts/odessa-alerts.mjs'
+      - '.github/workflows/odessa-alerts.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: odessa-alerts-20s
+  cancel-in-progress: false
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 17
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Watch Odessa alerts every 20 seconds
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: '-1004426768141'
+          ALERT_SOURCE: 'trevoga_odessa_novini_novosti'
+          CHECK_INTERVAL_MS: '20000'
+          RUN_FOR_MS: '840000'
+        run: node scripts/odessa-alerts.mjs
+
+      - name: Save alert state
+        if: always()
+        run: |
+          if git diff --quiet -- data/odessa-alert-state.json; then
+            echo "No alert state changes"
+            exit 0
+          fi
+          git config user.name "odessa-alert-bot"
+          git config user.email "odessa-alert-bot@users.noreply.github.com"
+          git add data/odessa-alert-state.json
+          git commit -m "Update Odessa alert state"
+          git pull --rebase origin main
+          git push
