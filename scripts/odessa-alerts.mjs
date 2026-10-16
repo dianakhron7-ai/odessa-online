@@ -3,7 +3,7 @@ import path from 'node:path';
 
 const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 const CHAT_ID = process.env.TELEGRAM_CHAT_ID || '-1004426768141';
-const SOURCES = (process.env.ALERT_SOURCES || 'trevoga_odessa_novini_novosti,odessa_inform,odessagolovna')
+const SOURCES = (process.env.ALERT_SOURCES || 'odessagolovna')
   .split(',')
   .map(s => s.trim().replace(/^@/, ''))
   .filter(Boolean);
@@ -18,7 +18,9 @@ const CITY_RE = /(?:^|[^а-яіїєґa-z])(одеса|одесс[ауы]|м\.?\s
 const ALERT_RE = /(повітряна\s+тривога|воздушн(?:ая|ой)\s+тревог|тривога\s+в\s+одесі|тревога\s+в\s+одессе)/i;
 const CLEAR_RE = /(відбій(?:\s+повітряної)?\s+тривоги|отбой(?:\s+воздушной)?\s+тревоги|відбій\b|отбой\b)/i;
 const THREAT_RE = /(шахед|shahed|бпла|дрон|ракета|ракетн|балістик|баллистик|каб\b|керован.*авіабомб|управляем.*авиабомб|реактивн|крилат.*ракет|крылат.*ракет)/i;
-const AD_RE = /(реклам|промокод|розіграш|розыгрыш|донат|збір\s*(?:коштів|грошей)|сбор\s*(?:средств|денег)|підписуй|подписыв|підтримайте\s+канал|поддержите\s+канал|monobank|privat24|paypal)/i;
+const LIVE_CUE_RE = /(загроз|угроз|ціл(?:ь|і|ей)|цел(?:ь|и|ей)|курс|напрям|направлен|рухає|рухают|движ|лет(?:ить|ят|ит)?|летить|прямує|прямують|йде|ид[её]т|в\s+сторон|у\s+бік|на\s+одес|до\s+одес|над\s+одес|в\s+район|увага|внимание|пуск|зліт|взл[её]т|заходить|наближа|приближа)/i;
+const NEWS_NOISE_RE = /(новин|новост|загин|погиб|поран|ранен|постраждал|пострад|наслідк|последств|внаслідок|в\s+результат|пошкоджен|поврежден|зруйн|разруш|знищен|уничтожен|дснс|поліці|полици|суд|затриман|задержан|рятувальник|спасател|ліквідувал|ликвидировал|комунальник|коммунальник)/i;
+const AD_RE = /(реклам|промокод|розіграш|розыгрыш|донат|збір\s*(?:коштів|грошей)|сбор\s*(?:средств|денег)|підписуй|подписыв|підтримайте\s+канал|поддержите\s+канал|monobank|privat24|paypal|банка|банку)/i;
 const SERVICE_RE = /(змінив.*фото|изменил.*фото|змінив.*назв|изменил.*назв|joined the group|left the group|channel title)/i;
 const SOURCE_PROMO_RE = /(моніторинг\s+одеса|мониторинг\s+одесса|підписат|подписат|сайт\s*\||youtube|instagram|tiktok|facebook|whatsapp|viber|з\s+питань\s+реклами|по\s+вопросам\s+рекламы|співпрац|сотрудничеств)/i;
 
@@ -86,25 +88,14 @@ function parseTelegramPage(html, source) {
     const date = Date.parse(stamp);
 
     if (!text || !Number.isFinite(date)) continue;
-    out.push({
-      source,
-      id: Number(post[2]),
-      date,
-      text,
-      image: safePhoto(decodeHtml(photoRaw)),
-    });
+    out.push({ source, id: Number(post[2]), date, text, image: safePhoto(decodeHtml(photoRaw)) });
   }
 
   return out.sort((a, b) => a.id - b.id);
 }
 
 function defaultState() {
-  return {
-    initializedBySource: {},
-    lastIdBySource: {},
-    lastStatus: null,
-    recentSent: [],
-  };
+  return { initializedBySource: {}, lastIdBySource: {}, lastStatus: null, recentSent: [] };
 }
 
 function readState() {
@@ -115,14 +106,6 @@ function readState() {
     state.lastIdBySource = data.lastIdBySource && typeof data.lastIdBySource === 'object' ? data.lastIdBySource : {};
     state.lastStatus = data.lastStatus === 'alert' || data.lastStatus === 'clear' ? data.lastStatus : null;
     state.recentSent = Array.isArray(data.recentSent) ? data.recentSent : [];
-
-    // Compatibility with the old single-source state.
-    if (data.initialized && Number(data.lastId || 0) > 0) {
-      const legacySource = 'trevoga_odessa_novini_novosti';
-      state.initializedBySource[legacySource] = true;
-      state.lastIdBySource[legacySource] = Number(data.lastId);
-    }
-
     return state;
   } catch {
     return defaultState();
@@ -137,9 +120,16 @@ function writeState(state) {
 
 function kindOf(text) {
   if (CLEAR_RE.test(text)) return 'clear';
-  if (THREAT_RE.test(text)) return 'threat';
   if (ALERT_RE.test(text)) return 'alert';
+  if (THREAT_RE.test(text)) return 'threat';
   return null;
+}
+
+function isLiveRadarPost(text, kind) {
+  if (!kind) return false;
+  if (AD_RE.test(text) || SERVICE_RE.test(text) || NEWS_NOISE_RE.test(text)) return false;
+  if (kind === 'alert' || kind === 'clear') return true;
+  return THREAT_RE.test(text) && LIVE_CUE_RE.test(text);
 }
 
 function threatType(text) {
@@ -181,7 +171,6 @@ function factSet(text) {
   if (count) facts.add(`count:${count}`);
   if (/груп(?:а|ою|ой|и)\s+(?:бпла|шахед|дрон)/i.test(t)) facts.add('count:group');
   if (/(декілька|несколько)\s+(?:бпла|шахед|дрон|ракет)/i.test(t)) facts.add('count:several');
-
   return facts;
 }
 
@@ -200,7 +189,7 @@ function normalizeText(text = '') {
 }
 
 function tokenSet(text = '') {
-  const stop = new Set(['odesa','alert','увага','внимание','зараз','сейчас','будь','ласка','пожалуйста','уважно','уважно','повідомляють','сообщают','рухається','движется']);
+  const stop = new Set(['odesa','alert','увага','внимание','зараз','сейчас','будь','ласка','пожалуйста','повідомляють','сообщают','рухається','движется']);
   return new Set(normalizeText(text).split(' ').filter(w => w.length >= 3 && !stop.has(w)));
 }
 
@@ -226,11 +215,7 @@ function duplicateReason(item, kind, state) {
   for (const prev of state.recentSent || []) {
     const age = now - Number(prev.at || 0);
     if (age < 0 || age > RECENT_KEEP_MS) continue;
-
-    if ((kind === 'alert' || kind === 'clear') && prev.kind === kind && age <= 30 * 60 * 1000) {
-      return 'same-status';
-    }
-
+    if ((kind === 'alert' || kind === 'clear') && prev.kind === kind && age <= 30 * 60 * 1000) return 'same-status';
     if (normalizeText(prev.text) === normalizeText(item.text)) return 'same-text';
     if (textVerySimilar(prev.text, item.text)) return 'very-similar';
 
@@ -240,14 +225,11 @@ function duplicateReason(item, kind, state) {
         const prevFacts = factSet(prev.text);
         const currentDetails = new Set([...currentFacts].filter(x => !x.startsWith('type:')));
         const prevDetails = new Set([...prevFacts].filter(x => !x.startsWith('type:')));
-
-        // If the new message adds no new direction/location/count detail, treat it as a duplicate.
         if (currentDetails.size === 0 && prevDetails.size === 0) return 'same-threat-generic';
         if (currentDetails.size > 0 && isSubsetOf(currentDetails, prevDetails)) return 'same-threat-no-new-facts';
       }
     }
   }
-
   return null;
 }
 
@@ -263,9 +245,7 @@ function copiedCaption(item) {
 
 async function telegramCall(method, payload) {
   const response = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/${method}`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload),
+    method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload),
   });
   const data = await response.json().catch(() => ({}));
   if (!response.ok || data.ok === false) throw new Error(data.description || `Telegram ${method}: HTTP ${response.status}`);
@@ -274,31 +254,19 @@ async function telegramCall(method, payload) {
 
 async function sendCopied(item) {
   const caption = copiedCaption(item);
-
   if (item.image) {
     try {
-      return await telegramCall('sendPhoto', {
-        chat_id: CHAT_ID,
-        photo: item.image,
-        caption,
-        parse_mode: 'HTML',
-      });
+      return await telegramCall('sendPhoto', { chat_id: CHAT_ID, photo: item.image, caption, parse_mode: 'HTML' });
     } catch (error) {
       console.error(JSON.stringify({ photoFallback: true, source: item.source, sourceId: item.id, error: String(error?.message || error) }));
     }
   }
-
-  return telegramCall('sendMessage', {
-    chat_id: CHAT_ID,
-    text: caption,
-    parse_mode: 'HTML',
-    link_preview_options: { is_disabled: true },
-  });
+  return telegramCall('sendMessage', { chat_id: CHAT_ID, text: caption, parse_mode: 'HTML', link_preview_options: { is_disabled: true } });
 }
 
 async function fetchItems(source) {
   const response = await fetch(`https://t.me/s/${source}`, {
-    headers: { Accept: 'text/html', 'User-Agent': 'Mozilla/5.0 OdessaOnlineAlertBot/3.0' },
+    headers: { Accept: 'text/html', 'User-Agent': 'Mozilla/5.0 OdessaOnlineAlertBot/4.0' },
   });
   if (!response.ok) throw new Error(`${source}: HTTP ${response.status}`);
   return parseTelegramPage(await response.text(), source);
@@ -313,8 +281,8 @@ async function scanOnce(state) {
     try {
       const items = await fetchItems(source);
       if (!items.length) continue;
-
       const newest = items.at(-1).id;
+
       if (!state.initializedBySource[source]) {
         state.initializedBySource[source] = true;
         state.lastIdBySource[source] = newest;
@@ -325,7 +293,6 @@ async function scanOnce(state) {
 
       const lastId = Number(state.lastIdBySource[source] || 0);
       for (const item of items) if (item.id > lastId) candidates.push(item);
-
       if (newest > lastId) {
         state.lastIdBySource[source] = newest;
         changed = true;
@@ -340,8 +307,10 @@ async function scanOnce(state) {
   let sent = 0;
   for (const item of candidates) {
     const kind = kindOf(item.text);
-
-    if (!CITY_RE.test(item.text) || !kind || AD_RE.test(item.text) || SERVICE_RE.test(item.text)) continue;
+    if (!CITY_RE.test(item.text) || !isLiveRadarPost(item.text, kind)) {
+      console.log(JSON.stringify({ skippedNonRadar: true, source: item.source, sourceId: item.id }));
+      continue;
+    }
 
     const duplicate = duplicateReason(item, kind, state);
     if (duplicate) {
@@ -351,15 +320,8 @@ async function scanOnce(state) {
 
     const result = await sendCopied(item);
     console.log(JSON.stringify({ sent: true, source: item.source, sourceId: item.id, kind, messageId: result?.message_id || null, copied: true, hasPhoto: Boolean(item.image) }));
-
     if (kind === 'alert' || kind === 'clear') state.lastStatus = kind;
-    state.recentSent.push({
-      at: Date.now(),
-      source: item.source,
-      id: item.id,
-      kind,
-      text: item.text,
-    });
+    state.recentSent.push({ at: Date.now(), source: item.source, id: item.id, kind, text: item.text });
     changed = true;
     sent++;
   }
@@ -388,4 +350,4 @@ while (Date.now() - started < RUN_FOR_MS) {
   await new Promise(resolve => setTimeout(resolve, Math.min(CHECK_INTERVAL_MS, remaining)));
 }
 
-console.log(JSON.stringify({ ok: true, copiedFromSources: true, sources: SOURCES, intervalMs: CHECK_INTERVAL_MS, cycles, sentTotal, lastIdBySource: state.lastIdBySource }));
+console.log(JSON.stringify({ ok: true, radarOnly: true, sources: SOURCES, intervalMs: CHECK_INTERVAL_MS, cycles, sentTotal, lastIdBySource: state.lastIdBySource }));
