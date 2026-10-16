@@ -6,7 +6,7 @@ const CHAT_ID = process.env.TELEGRAM_CHAT_ID || '-1004426768141';
 const SOURCE = process.env.ALERT_SOURCE || 'trevoga_odessa_novini_novosti';
 const STATE_PATH = process.env.ALERT_STATE_PATH || 'data/odessa-alert-state.json';
 const CHECK_INTERVAL_MS = Number(process.env.CHECK_INTERVAL_MS || 20000);
-const RUN_FOR_MS = Number(process.env.RUN_FOR_MS || 840000);
+const RUN_FOR_MS = Number(process.env.RUN_FOR_MS || 3540000);
 
 if (!BOT_TOKEN) throw new Error('TELEGRAM_BOT_TOKEN is missing');
 
@@ -14,8 +14,9 @@ const CITY_RE = /(?:^|[^а-яіїєґa-z])(одеса|одесс[ауы]|м\.?\s
 const ALERT_RE = /(повітряна\s+тривога|воздушн(?:ая|ой)\s+тревог|тривога\s+в\s+одесі|тревога\s+в\s+одессе)/i;
 const CLEAR_RE = /(відбій(?:\s+повітряної)?\s+тривоги|отбой(?:\s+воздушной)?\s+тревоги|відбій\b|отбой\b)/i;
 const THREAT_RE = /(шахед|shahed|бпла|дрон|ракета|ракетн|балістик|баллистик|каб\b|керован.*авіабомб|управляем.*авиабомб|реактивн|крилат.*ракет|крылат.*ракет)/i;
-const AD_RE = /(реклам|промокод|розіграш|розыгрыш|донат|збір\s*(?:коштів|грошей)|сбор\s*(?:средств|денег)|підписуй|подписыв|підтримайте\s+канал|поддержите\s+канал)/i;
+const AD_RE = /(реклам|промокод|розіграш|розыгрыш|донат|збір\s*(?:коштів|грошей)|сбор\s*(?:средств|денег)|підписуй|подписыв|підтримайте\s+канал|поддержите\s+канал|monobank|privat24|paypal)/i;
 const SERVICE_RE = /(змінив.*фото|изменил.*фото|змінив.*назв|изменил.*назв|joined the group|left the group|channel title)/i;
+const SOURCE_PROMO_RE = /(моніторинг\s+одеса|мониторинг\s+одесса|підписат|подписат|сайт\s*\||youtube|instagram|tiktok|facebook|whatsapp|viber|з\s+питань\s+реклами|по\s+вопросам\s+рекламы|співпрац|сотрудничеств)/i;
 
 function decodeHtml(value = '') {
   let s = String(value)
@@ -46,11 +47,24 @@ function cleanPost(raw = '') {
     .split('\n')
     .map(line => line.trim())
     .filter(Boolean)
+    .filter(line => !SOURCE_PROMO_RE.test(line))
     .filter(line => !/https?:\/\/\S+/i.test(line))
     .filter(line => !/^@\w+$/i.test(line))
     .join('\n')
+    .replace(/(?:👉|➡️|⬇️|✅)\s*@\w+/g, '')
     .replace(/\n{3,}/g, '\n\n')
     .trim();
+}
+
+function safePhoto(value = '') {
+  try {
+    const url = new URL(String(value).trim());
+    if (url.protocol !== 'https:') return null;
+    if (!/(?:^|\.)telesco\.pe$|(?:^|\.)cdn-telegram\.org$/i.test(url.hostname)) return null;
+    return url.toString();
+  } catch {
+    return null;
+  }
 }
 
 function parseTelegramPage(html) {
@@ -59,12 +73,20 @@ function parseTelegramPage(html) {
   for (const block of blocks) {
     const post = block.match(/data-post="([^"/]+)\/(\d+)"/i);
     if (!post || post[1].toLowerCase() !== SOURCE.toLowerCase()) continue;
+
     const raw = block.match(/<div\b[^>]*class="[^"]*tgme_widget_message_text\b[^"]*"[^>]*>([\s\S]*?)<\/div>/i)?.[1] || '';
     const stamp = block.match(/<time\b[^>]*datetime="([^"]+)"/i)?.[1] || '';
+    const photoRaw = block.match(/class="[^"]*tgme_widget_message_photo_wrap\b[^\n]*?background-image:\s*url\(['"]([^'"]+)['"]\)/i)?.[1] || '';
     const text = cleanPost(raw);
     const date = Date.parse(stamp);
+
     if (!text || !Number.isFinite(date)) continue;
-    out.push({ id: Number(post[2]), date, text });
+    out.push({
+      id: Number(post[2]),
+      date,
+      text,
+      image: safePhoto(decodeHtml(photoRaw)),
+    });
   }
   return out.sort((a, b) => a.id - b.id);
 }
@@ -94,81 +116,53 @@ function kindOf(text) {
   return null;
 }
 
-function threatName(text) {
-  if (/(шахед|shahed)/i.test(text)) return 'Шахед';
-  if (/бпла|дрон/i.test(text)) return 'БПЛА';
-  if (/балістик|баллистик/i.test(text)) return 'баллистическая угроза';
-  if (/каб\b|авіабомб|авиабомб/i.test(text)) return 'авиационная угроза';
-  if (/реактивн/i.test(text)) return 'реактивная угроза';
-  if (/ракета|ракетн/i.test(text)) return 'ракета';
-  return null;
-}
-
 function escapeHtml(value = '') {
   return String(value).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
 
-function postTime(ms) {
-  return new Intl.DateTimeFormat('ru-RU', {
-    timeZone: 'Europe/Kyiv',
-    hour: '2-digit',
-    minute: '2-digit',
-    hour12: false,
-  }).format(new Date(ms));
+function copiedCaption(item) {
+  let text = escapeHtml(item.text);
+  if (text.length > 930) text = `${text.slice(0, 927).trimEnd()}…`;
+  return `${text}\n\n⚓️ <b>ОДЕССА Online</b>`;
 }
 
-function compactDetails(text = '') {
-  const lines = String(text)
-    .split('\n')
-    .map(x => x.trim())
-    .filter(Boolean)
-    .filter(x => !ALERT_RE.test(x) && !CLEAR_RE.test(x));
-  const result = lines.join(' ').replace(/\s+/g, ' ').trim();
-  return result.length > 240 ? `${result.slice(0, 237).trimEnd()}…` : result;
-}
-
-function formatMessage(item, kind) {
-  const time = postTime(item.date);
-  const threat = threatName(item.text);
-
-  if (kind === 'clear') {
-    return `🟢 <b>ОТБОЙ ВОЗДУШНОЙ ТРЕВОГИ</b>\n\n<b>ОДЕССА</b>\n🕒 ${time}\n\n⚓️ <b>ОДЕССА Online</b>`;
-  }
-
-  if (kind === 'alert') {
-    let text = `🔴 <b>ВНИМАНИЕ</b>\n\n<b>ОДЕССА — ВОЗДУШНАЯ ТРЕВОГА</b>`;
-    if (threat) text += `\n🚨 Угроза: <b>${escapeHtml(threat)}</b>`;
-    text += `\n🕒 ${time}\n\n⚓️ <b>ОДЕССА Online</b>`;
-    return text;
-  }
-
-  const details = compactDetails(item.text);
-  let text = `🔴 <b>ВНИМАНИЕ | ОДЕССА</b>`;
-  if (threat) text += `\n\n🚨 Угроза: <b>${escapeHtml(threat)}</b>`;
-  if (details) text += `\n${escapeHtml(details)}`;
-  text += `\n🕒 ${time}\n\n⚓️ <b>ОДЕССА Online</b>`;
-  return text;
-}
-
-async function telegramSend(text) {
-  const response = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+async function telegramCall(method, payload) {
+  const response = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/${method}`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      chat_id: CHAT_ID,
-      text,
-      parse_mode: 'HTML',
-      link_preview_options: { is_disabled: true },
-    }),
+    body: JSON.stringify(payload),
   });
   const data = await response.json().catch(() => ({}));
-  if (!response.ok || data.ok === false) throw new Error(data.description || `Telegram HTTP ${response.status}`);
+  if (!response.ok || data.ok === false) throw new Error(data.description || `Telegram ${method}: HTTP ${response.status}`);
   return data.result;
+}
+
+async function sendCopied(item) {
+  const caption = copiedCaption(item);
+  if (item.image) {
+    try {
+      return await telegramCall('sendPhoto', {
+        chat_id: CHAT_ID,
+        photo: item.image,
+        caption,
+        parse_mode: 'HTML',
+      });
+    } catch (error) {
+      console.error(JSON.stringify({ photoFallback: true, sourceId: item.id, error: String(error?.message || error) }));
+    }
+  }
+
+  return telegramCall('sendMessage', {
+    chat_id: CHAT_ID,
+    text: caption,
+    parse_mode: 'HTML',
+    link_preview_options: { is_disabled: true },
+  });
 }
 
 async function fetchItems() {
   const response = await fetch(`https://t.me/s/${SOURCE}`, {
-    headers: { Accept: 'text/html', 'User-Agent': 'Mozilla/5.0 OdessaOnlineAlertBot/1.0' },
+    headers: { Accept: 'text/html', 'User-Agent': 'Mozilla/5.0 OdessaOnlineAlertBot/2.0' },
   });
   if (!response.ok) throw new Error(`Source HTTP ${response.status}`);
   return parseTelegramPage(await response.text());
@@ -189,10 +183,9 @@ async function scanOnce(state) {
 
   let sent = 0;
   for (const item of items.filter(x => x.id > state.lastId)) {
-    const text = item.text;
-    const kind = kindOf(text);
+    const kind = kindOf(item.text);
 
-    if (!CITY_RE.test(text) || !kind || AD_RE.test(text) || SERVICE_RE.test(text)) {
+    if (!CITY_RE.test(item.text) || !kind || AD_RE.test(item.text) || SERVICE_RE.test(item.text)) {
       state.lastId = item.id;
       writeState(state);
       continue;
@@ -204,9 +197,8 @@ async function scanOnce(state) {
       continue;
     }
 
-    const message = formatMessage(item, kind);
-    const result = await telegramSend(message);
-    console.log(JSON.stringify({ sent: true, sourceId: item.id, kind, messageId: result?.message_id || null }));
+    const result = await sendCopied(item);
+    console.log(JSON.stringify({ sent: true, source: SOURCE, sourceId: item.id, kind, messageId: result?.message_id || null, copied: true, hasPhoto: Boolean(item.image) }));
 
     if (kind === 'alert' || kind === 'clear') state.lastStatus = kind;
     state.lastId = item.id;
@@ -236,4 +228,4 @@ while (Date.now() - started < RUN_FOR_MS) {
   await new Promise(resolve => setTimeout(resolve, Math.min(CHECK_INTERVAL_MS, remaining)));
 }
 
-console.log(JSON.stringify({ ok: true, source: SOURCE, intervalMs: CHECK_INTERVAL_MS, cycles, sentTotal, lastId: state.lastId }));
+console.log(JSON.stringify({ ok: true, copiedFromSource: true, source: SOURCE, intervalMs: CHECK_INTERVAL_MS, cycles, sentTotal, lastId: state.lastId }));
