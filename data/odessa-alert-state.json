@@ -1,5 +1,12 @@
 {
-  "initialized": true,
-  "lastId": 48585,
-  "lastStatus": null
+  "initializedBySource": {
+    "trevoga_odessa_novini_novosti": true,
+    "odessa_inform": true
+  },
+  "lastIdBySource": {
+    "trevoga_odessa_novini_novosti": 48591,
+    "odessa_inform": 55572
+  },
+  "lastStatus": null,
+  "recentSent": []
 }
