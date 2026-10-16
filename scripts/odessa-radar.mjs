@@ -63,11 +63,19 @@ async function send(text) {
 }
 
 async function cycle(s) {
-  const r=await fetch(`https://t.me/s/${SOURCE}`,{headers:{Accept:'text/html','User-Agent':'Mozilla/5.0 OdessaOnlineRadar/1.0'}});
+  const r=await fetch(`https://t.me/s/${SOURCE}`,{headers:{Accept:'text/html','User-Agent':'Mozilla/5.0 OdessaOnlineRadar/1.1'}});
   if(!r.ok) throw new Error(`source HTTP ${r.status}`);
   const items=parse(await r.text()); if(!items.length) return;
   const newest=items.at(-1).id;
-  if(!s.ready){s.ready=true;s.lastId=newest;save(s);console.log(JSON.stringify({baseline:newest,source:SOURCE}));return;}
+  if(!s.ready){
+    s.ready=true;
+    s.lastId=newest;
+    const recentBase=[...items].reverse().find(x=>Date.now()-x.date<=CONTEXT_MS && BASE.test(x.text) && !STOP.test(x.text));
+    s.activeUntil=recentBase && !CLEAR.test(recentBase.text) ? Date.now()+CONTEXT_MS : 0;
+    save(s);
+    console.log(JSON.stringify({baseline:newest,source:SOURCE,contextActive:s.activeUntil>Date.now()}));
+    return;
+  }
   for(const it of items.filter(x=>x.id>s.lastId)) {
     s.lastId=it.id;
     if(!wanted(it.text,s)){console.log(JSON.stringify({skip:true,id:it.id,text:it.text.slice(0,80)}));save(s);continue;}
