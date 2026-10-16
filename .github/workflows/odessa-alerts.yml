@@ -32,11 +32,11 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Copy Odessa alerts from source every 20 seconds
+      - name: Compare three Odessa alert sources every 20 seconds
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: '-1004426768141'
-          ALERT_SOURCE: 'trevoga_odessa_novini_novosti'
+          ALERT_SOURCES: 'trevoga_odessa_novini_novosti,odessa_inform,odessagolovna'
           CHECK_INTERVAL_MS: '20000'
           RUN_FOR_MS: '3540000'
         run: node scripts/odessa-alerts.mjs
