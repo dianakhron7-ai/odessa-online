@@ -1,9 +1,11 @@
-# Odessa runtime backup — 2026-10-17
+# Odessa runtime review — 2026-10-17
 
-This archive is the reviewed Termux + tgcloud runtime backup for ОДЕССА Online.
+The Termux + tgcloud runtime was audited against the user's full phone backup.
 
-Archive: `odessa-core-fixed-20261017.tar.gz`
+Reviewed artifact delivered in the ChatGPT conversation: `odessa-core-fixed-20261017.tar.gz`
 SHA-256: `7f582ee94fbf22a6f0f82adc015adb6340d7d34166bb0ff9535f62b53b16477f`
+
+The binary archive itself is intentionally **not** stored in this GitHub repository after an integrity mismatch was detected during an attempted binary upload. Use the SHA-256 above to verify the conversation artifact before applying it.
 
 Reviewed behavior:
 - radar source: `odessagolovna`
