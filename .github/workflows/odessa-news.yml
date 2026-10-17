@@ -1,52 +1,14 @@
-name: Odessa Strong News
+name: Odessa Strong News (disabled)
 
 on:
-  schedule:
-    - cron: '*/10 * * * *'
   workflow_dispatch:
-  push:
-    branches:
-      - main
-    paths:
-      - 'scripts/odessa-news.mjs'
-      - '.github/workflows/odessa-news.yml'
 
 permissions:
-  contents: write
-
-concurrency:
-  group: odessa-strong-news
-  cancel-in-progress: false
+  contents: read
 
 jobs:
-  publish:
+  disabled:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: Check strong Odessa news and publish
-        env:
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_CHAT_ID: '-1004426768141'
-        run: node scripts/odessa-news.mjs
-
-      - name: Save deduplication state
-        if: always()
-        run: |
-          if git diff --quiet -- data/odessa-news-state.json; then
-            echo "No state changes"
-            exit 0
-          fi
-          git config user.name "odessa-news-bot"
-          git config user.email "odessa-news-bot@users.noreply.github.com"
-          git add data/odessa-news-state.json
-          git commit -m "Update Odessa news state"
-          git push
+      - name: News automation is disabled
+        run: echo "Odessa news autopublishing is disabled."
