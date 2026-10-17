@@ -1,12 +1,7 @@
 {
-  "initializedBySource": {
-    "trevoga_odessa_novini_novosti": true,
-    "odessa_inform": true
-  },
-  "lastIdBySource": {
-    "trevoga_odessa_novini_novosti": 48591,
-    "odessa_inform": 55572
-  },
+  "initializedBySource": {},
+  "lastIdBySource": {},
+  "contextUntilBySource": {},
   "lastStatus": null,
   "recentSent": []
 }
