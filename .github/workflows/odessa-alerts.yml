@@ -1,4 +1,4 @@
-name: Odessa Alerts 20s Backup
+name: Odessa Alerts Manual Backup
 
 on:
   workflow_dispatch:
@@ -7,7 +7,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: odessa-alerts-backup
+  group: odessa-alerts-manual-backup
   cancel-in-progress: false
 
 jobs:
@@ -24,12 +24,12 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Monitor odessagolovna every 20 seconds
+      - name: Monitor odessagolovna every 10 seconds
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: '-1004426768141'
           ALERT_SOURCES: 'odessagolovna'
-          CHECK_INTERVAL_MS: '20000'
+          CHECK_INTERVAL_MS: '10000'
           RUN_FOR_MS: '3540000'
         run: node scripts/odessa-alerts.mjs
 
