@@ -63,7 +63,9 @@ def render(src,size,season,seed,hero=False):
 for season,image in photos.items():
     render(image,(1152,760),season,season,True).save(output/(season+".jpg"),quality=87,optimize=True,progressive=True)
 # Category photographs are independent. Each season has its own tram/medical imagery.
-tram={"winter":"t14","spring":"t1","summer":"t13","autumn":"c1"}
+# Use only source images visually verified to show a real Odessa tram.
+# Prior t14/t13 were medical photographs, wrongly assigned to Transport.
+tram={"winter":"c1","spring":"t1","summer":"t1","autumn":"c1"}
 med={"winter":"m10","spring":"m8","summer":"m0","autumn":"m5"}
 for season in sources:
     for kind,keys in (("transport",tram),("medicine",med)):
