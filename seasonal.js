@@ -15,7 +15,7 @@ function update(){
   const wx=document.createElement('div');wx.className='odessa-weather-fx';wx.setAttribute('aria-hidden','true');hero.appendChild(wx);
   const badge=document.createElement('div');badge.className='odessa-views';
   badge.title='Количество посещений по данным внешнего счётчика. Число не является точным количеством разных людей.';
-  badge.innerHTML='<span class="odessa-eye" aria-hidden="true">◉</span><span class="odessa-view-label">Просмотрено:</span><span class="odessa-views-clip"><img alt="Число просмотров" loading="eager"></span>';
+  badge.innerHTML='<span class="odessa-eye" aria-hidden="true">👁</span><span class="odessa-view-label">Просмотрено:</span><span class="odessa-views-clip"><img alt="Число просмотров" loading="eager"></span>';
   badge.querySelector('img').src=viewsUrl;
   hero.appendChild(badge);
  }
