@@ -1,0 +1,45 @@
+name: Refresh sharp Odessa seasonal imagery
+on:
+  push:
+    paths:
+      - '.github/workflows/refine-odessa-seasonal.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: refine-odessa-seasons
+  cancel-in-progress: false
+jobs:
+  update-photos:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install --quiet Pillow
+      - name: Generate high-resolution city season pictures
+        run: python scripts/refine-odessa-seasons.py
+      - name: Verify photos are distinct and correctly sized
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from PIL import Image
+          import hashlib
+          paths=[Path(f'assets/seasons/{season}.jpg') for season in ('spring','summer','autumn','winter')]
+          for p in paths:
+            with Image.open(p) as im:
+              assert im.width>=1200 and im.height>=850,(p,im.size)
+          assert len({hashlib.sha256(p.read_bytes()).digest() for p in paths})==4
+          print('Four full-resolution distinct seasonal assets verified')
+          PY
+      - name: Commit refreshed images
+        run: |
+          git config user.name 'odessa-guide-updater'
+          git config user.email 'odessa-guide-updater@users.noreply.github.com'
+          git add assets/seasons/
+          if ! git diff --cached --quiet; then
+            git commit -m 'Replace blurry Odessa seasonal images with sharp originals'
+            git push origin HEAD:main
+          fi
