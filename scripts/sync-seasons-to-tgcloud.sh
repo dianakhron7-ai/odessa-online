@@ -21,7 +21,7 @@ node --check "$WORK/seasonal.js" || { echo "❌ Ошибка сезонного 
 node --check "$WORK/tgcloud/endpoints/odessaGuideViews.js" || { echo "❌ Ошибка облачного счётчика"; exit 1; }
 python - "$WORK" <<'PY'
 from pathlib import Path
-import sys
+import sys,re
 w=Path(sys.argv[1])
 for season in ("autumn","spring","summer","winter"):
  for path in (w/"assets/seasons"/(season+".jpg"),*(w/"assets/seasons/cards"/(season+"-"+kind+".jpg") for kind in ("transport","medicine"))):
