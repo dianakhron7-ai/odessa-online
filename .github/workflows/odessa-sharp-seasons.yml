@@ -1,0 +1,51 @@
+name: Odessa Sharp Seasonal Images
+on:
+  push:
+    paths:
+      - '.github/workflows/odessa-sharp-seasons.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: odessa-sharp-seasons
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Image dependencies
+        run: python -m pip install --quiet Pillow
+      - name: Download and render clean season backgrounds
+        run: python scripts/generate-sharp-seasons.py
+      - name: Validate sharp images and categories
+        run: |
+          python - <<'PY'
+          from PIL import Image
+          from pathlib import Path
+          root=Path('assets/seasons')
+          for season in ('autumn','spring','summer','winter'):
+           for kind in ('','-transport','-medicine'):
+            p=root/(season+kind+'.jpg')
+            with Image.open(p) as img:
+             assert img.width>=700 and img.height>=600, (p,img.size)
+             img.verify()
+          print('All 12 images validated')
+          PY
+      - name: Commit seasonal images
+        run: |
+          git config user.name 'odessa-guide-updater'
+          git config user.email 'odessa-guide-updater@users.noreply.github.com'
+          git add assets/seasons/
+          if git diff --cached --quiet; then
+            echo 'No asset changes'
+          else
+            git commit -m 'Replace blurred seasonal images with crisp Odessa Opera and category scenes'
+            git push origin HEAD:main
+          fi
