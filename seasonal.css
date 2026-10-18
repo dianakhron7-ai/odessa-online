@@ -13,7 +13,7 @@
 .season-summer .odessa-season-fx{background:radial-gradient(circle at 82% 16%,#ffdb9e24,transparent 42%)}
 .season-winter .odessa-season-fx,.odessa-snow .odessa-weather-fx{background-image:radial-gradient(#fff9 1px,transparent 2px),radial-gradient(#fffd 1.7px,transparent 3.4px);background-size:74px 96px,131px 149px;animation:odessa-snowfall 16s linear infinite;opacity:.75}
 .odessa-seasonal.odessa-rain .odessa-weather-fx{background-image:repeating-linear-gradient(102deg,transparent 0px,transparent 26px,#d0e4ff5a 27px,transparent 28px,transparent 64px);background-size:100px 205px;opacity:.19;animation:odessa-rainfall 2.6s linear infinite}
-.odessa-seasonal .odessa-season-tile{background-size:100% 100%,cover!important;background-position:center!important}
+.home-content .odessa-season-tile{background-size:100% 100%,cover!important;background-position:center!important}
 @keyframes odessa-season-drift{from{transform:translateY(-10%) translateX(-4%)}to{transform:translateY(17%) translateX(8%)}}
 @keyframes odessa-snowfall{from{background-position:0 -90px,0 -120px}to{background-position:33px 210px,-30px 180px}}
 @keyframes odessa-rainfall{from{background-position:0 -205px}to{background-position:-17px 205px}}
