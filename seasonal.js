@@ -47,7 +47,7 @@ function update(){
    const card=home.querySelector('.tile[data-sid="'+id+'"]');
    if(card){
     card.classList.add('odessa-season-tile');
-    card.style.setProperty('--atlas','url("assets/seasons/'+season+'-'+type+'.jpg")');
+    card.style.setProperty('--atlas','url("assets/seasons/cards/'+season+'-'+type+'.jpg")');
    }
   }
  }
