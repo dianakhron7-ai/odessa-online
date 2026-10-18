@@ -32,8 +32,8 @@ for term in ("<div id=\"app\">","const PHOTO_DATA=","home-content","</head>","</
  assert term in s, "Другая версия справочника: "+term
 if not re.search(r'href="seasonal[.]css',s): s=s.replace("</head>",'<link rel="stylesheet" href="seasonal.css"></head>',1)
 if not re.search(r'src="seasonal[.]js',s): s=s.replace("</body>",'<script defer src="seasonal.js"></script></body>',1)
-s=re.sub(r'href="seasonal[.]css(?:[?][^"]*)?"','href="seasonal.css?v=oct18-sharp2"',s)
-s=re.sub(r'src="seasonal[.]js(?:[?][^"]*)?"','src="seasonal.js?v=oct18-sharp2"',s)
+s=re.sub(r'href="seasonal[.]css(?:[?][^"]*)?"','href="seasonal.css?v=oct18-sharp3"',s)
+s=re.sub(r'src="seasonal[.]js(?:[?][^"]*)?"','src="seasonal.js?v=oct18-sharp3"',s)
 (w/"index.html").write_text(s,encoding="utf-8")
 print("✅ Все 12 фото, код и страница проверены")
 PY
