@@ -1,0 +1,19 @@
+/* ODESSA_SEASONS_20261018_V1 */
+.hero.odessa-seasonal{isolation:isolate;background-size:100% 100%,cover!important;background-position:center!important}
+.hero.odessa-seasonal .odessa-season-fx,.hero.odessa-seasonal .odessa-weather-fx{position:absolute;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.hero.odessa-seasonal .brand,.hero.odessa-seasonal .hero-title,.hero.odessa-seasonal .odessa-views{z-index:2}
+.hero.odessa-seasonal .hero-title{top:34%}
+.hero.odessa-seasonal .hero-title h1{font-size:clamp(39px,9vw,71px);line-height:1.02}
+.odessa-views{position:absolute;left:24px;bottom:16px;display:flex;gap:8px;align-items:center;font:600 14px/1.25 var(--sans);color:#fff0d3;text-shadow:0 1px 3px #07192b;padding:5px 8px;background:#04172872;border-radius:20px}
+.odessa-views .odessa-eye{font:22px/1 var(--sans)}
+.odessa-views img{height:20px;min-width:60px;max-width:125px;object-fit:contain;vertical-align:middle}
+.odessa-seasonal .odessa-season-fx::after{position:absolute;white-space:pre;display:block;left:-10%;top:-50%;width:130%;height:130%;font:28px/5.2 sans-serif;text-shadow:0 1px 3px #131d1e33;will-change:transform}
+.odessa-seasonal.season-autumn .odessa-season-fx::after{content:'🍁                       🍂       🍁\a              🍂                 🍁             🍂\a       🍁                        🍂       🍁';animation:odessa-fall 13s linear infinite;opacity:.65}
+.odessa-seasonal.season-spring .odessa-season-fx::after{content:'🌸                  🌸                     🌸\a              🌸                       🌸\a    🌸                        🌸';animation:odessa-fall 16s linear infinite;opacity:.32;font-size:20px}
+.odessa-seasonal.season-summer .odessa-season-fx{background:radial-gradient(circle at 83% 12%,#ffe9ac28,transparent 50%)}
+.odessa-seasonal.season-winter .odessa-season-fx,.odessa-seasonal.odessa-snow .odessa-weather-fx{background-image:radial-gradient(#fff9 1.5px,transparent 3px),radial-gradient(#fff7 2px,transparent 4px);background-size:57px 71px,113px 121px;animation:odessa-snow 10s linear infinite}
+.odessa-seasonal.odessa-rain .odessa-weather-fx{background:repeating-linear-gradient(101deg,transparent 0 21px,#d5eaff5e 22px,#d5eaff5e 23px,transparent 24px 51px);background-size:110px 190px;opacity:.38;animation:odessa-rain .7s linear infinite}
+@keyframes odessa-fall{from{transform:translateY(-18%) rotate(-6deg)}to{transform:translate(12%,70%) rotate(8deg)}}
+@keyframes odessa-snow{from{background-position:0 -200px,0 -200px}to{background-position:33px 200px,-20px 200px}}
+@keyframes odessa-rain{from{background-position:0 -200px}to{background-position:-30px 200px}}
+@media(prefers-reduced-motion:reduce){.odessa-seasonal .odessa-season-fx::after,.odessa-seasonal .odessa-weather-fx,.odessa-seasonal .odessa-season-fx{animation:none!important}}
