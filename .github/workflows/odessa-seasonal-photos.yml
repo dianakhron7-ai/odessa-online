@@ -1,0 +1,56 @@
+name: Odessa Seasonal Photo Build
+
+on:
+  push:
+    paths:
+      - '.github/workflows/odessa-seasonal-photos.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: odessa-seasonal-photos
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install --quiet Pillow
+      - name: Build high resolution season photographs
+        run: python scripts/build-season-assets.py
+      - name: Validate all 12 distinct images
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib
+          from PIL import Image
+          paths=list(Path('assets/seasons').glob('*.jpg'))+list(Path('assets/seasons/cards').glob('*.jpg'))
+          assert len(paths)==12,len(paths)
+          hashes=set()
+          for path in paths:
+            with Image.open(path) as im:
+              width,height=im.size
+              assert width>=700 and height>=490,(path,im.size)
+              im.verify()
+            hashes.add(hashlib.sha256(path.read_bytes()).hexdigest())
+          assert len(hashes)==len(paths),'Duplicate image files detected'
+          print('All 12 unique season image assets verified')
+          PY
+      - name: Publish seasonal image assets only
+        run: |
+          git config user.name 'odessa-guide-updater'
+          git config user.email 'odessa-guide-updater@users.noreply.github.com'
+          git add assets/seasons
+          if git diff --cached --quiet; then
+            echo "No new image changes"
+          else
+            git commit -m "Publish four distinct seasonal opera backgrounds and themed category images"
+            git push origin HEAD:main
+          fi
