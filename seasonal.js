@@ -3,7 +3,7 @@
 'use strict';
 const month=Number(new Intl.DateTimeFormat('en-US',{timeZone:'Europe/Kyiv',month:'numeric'}).format(new Date()));
 const season=[12,1,2].includes(month)?'winter':[3,4,5].includes(month)?'spring':[6,7,8].includes(month)?'summer':'autumn';
-const assetRevision='oct18-sharp2';
+const assetRevision='oct18-sharp3';
 let counted=false;
 function getVisitor(){
  try {
