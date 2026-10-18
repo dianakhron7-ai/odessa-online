@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - '.github/workflows/odessa-seasonal-photos.yml'
+      - 'scripts/build-season-assets.py'
   workflow_dispatch:
 
 permissions:
