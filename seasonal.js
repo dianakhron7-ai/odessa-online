@@ -20,8 +20,11 @@ function update(){
   hero.appendChild(badge);
  }
  const t=document.getElementById('home-weather')?.textContent?.toLowerCase()||'';
- hero.classList.toggle('odessa-rain',/дожд|ливень|осадк|гроза/.test(t));
- hero.classList.toggle('odessa-snow',/снег|сніг/.test(t));
+ const code=typeof weatherCache!=='undefined'&&weatherCache?Number(weatherCache.code):NaN;
+ const rain=/дожд|ливень|осадк|гроза/.test(t)||(code>=51&&code<=67)||(code>=80&&code<=82)||code>=95;
+ const snow=/снег|сніг/.test(t)||(code>=71&&code<=77)||(code>=85&&code<=86);
+ hero.classList.toggle('odessa-rain',rain);
+ hero.classList.toggle('odessa-snow',snow);
 }
 const app=document.getElementById('app');
 if(!app)return;
