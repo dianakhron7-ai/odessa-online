@@ -3,6 +3,7 @@ on:
   push:
     paths:
       - '.github/workflows/odessa-sharp-seasons.yml'
+      - 'scripts/generate-sharp-seasons.py'
   workflow_dispatch:
 permissions:
   contents: write
@@ -47,5 +48,12 @@ jobs:
             echo 'No asset changes'
           else
             git commit -m 'Replace blurred seasonal images with crisp Odessa Opera and category scenes'
-            git push origin HEAD:main
+            for i in 1 2 3; do
+              git fetch origin main
+              git rebase origin/main
+              if git push origin HEAD:main; then exit 0; fi
+              echo "Retrying publish after concurrent update"
+              sleep 2
+            done
+            exit 1
           fi
