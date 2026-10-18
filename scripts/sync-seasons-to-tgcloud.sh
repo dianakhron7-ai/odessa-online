@@ -8,7 +8,7 @@ command -v python >/dev/null && command -v node >/dev/null && command -v curl >/
 BASE='https://raw.githubusercontent.com/dianakhron7-ai/odessa-online/main'
 WORK="$(mktemp -d)"
 trap 'rm -rf "$WORK"' EXIT
-mkdir -p "$WORK/assets/seasons" "$WORK/assets/seasons/cards"
+mkdir -p "$WORK/assets/seasons/cards" "$WORK/tgcloud/endpoints" "$WORK/assets/seasons/cards"
 echo '=== Загрузка оформления из GitHub ==='
 for file in seasonal.js seasonal.css assets/seasons/autumn.jpg assets/seasons/winter.jpg assets/seasons/spring.jpg assets/seasons/summer.jpg assets/seasons/cards/autumn-transport.jpg assets/seasons/cards/autumn-medicine.jpg assets/seasons/cards/spring-transport.jpg assets/seasons/cards/spring-medicine.jpg assets/seasons/cards/summer-transport.jpg assets/seasons/cards/summer-medicine.jpg assets/seasons/cards/winter-transport.jpg assets/seasons/cards/winter-medicine.jpg; do
   curl --fail --location --silent --show-error --retry 2 --max-time 90 "$BASE/$file" --output "$WORK/$file" || { echo "❌ Ошибка загрузки: $file, файлы не изменены"; exit 1; }
@@ -19,8 +19,10 @@ from pathlib import Path
 import sys,re
 w=Path(sys.argv[1])
 for season in 'autumn winter spring summer'.split():
- b=(w/'assets/seasons'/(season+'.jpg')).read_bytes()
- assert b.startswith(b'\xff\xd8') and len(b)>10000,'Invalid image '+season
+ for suffix in ['', '-transport', '-medicine']:
+  path=(w/'assets/seasons'/(season+'.jpg')) if not suffix else (w/'assets/seasons/cards'/(season+suffix+'.jpg'))
+  b=path.read_bytes()
+  assert b.startswith(b'\xff\xd8') and len(b)>10000,'Invalid image '+str(path)
 for image in (w/'assets/seasons/cards').glob('*.jpg'):
  assert image.read_bytes().startswith(b'\xff\xd8') and image.stat().st_size>5000,'Invalid '+str(image)
 assert len(list((w/'assets/seasons/cards').glob('*.jpg')))==8
@@ -70,14 +72,25 @@ BACKUP="$HOME/odessa-guide-before-seasonal-$(date +%Y%m%d-%H%M%S)"
 mkdir -p "$BACKUP"
 cp -p dist/index.html "$BACKUP/index.html"
 echo "✅ Резервная копия: $BACKUP/index.html"
-mkdir -p dist/assets/seasons/cards
+mkdir -p dist/assets/seasons/cards/cards
 cp "$WORK/index.html" dist/index.html
 cp "$WORK/seasonal.js" dist/seasonal.js
 cp "$WORK/seasonal.css" dist/seasonal.css
 cp "$WORK/assets/seasons/"*.jpg dist/assets/seasons/
 cp "$WORK/assets/seasons/cards/"*.jpg dist/assets/seasons/cards/
+cp "$WORK/assets/seasons/cards/"*.jpg dist/assets/seasons/cards/
 echo '=== Обновление только файлов справочника в Telegram Cloud ==='
 if npx tgcloud push dist/; then
+ echo '✅ Сезонные фотографии и карточки загружены.'
+ if [ -f tgcloud/endpoints/odessaGuideViews.js ]; then
+   cp -p tgcloud/endpoints/odessaGuideViews.js "$BACKUP/odessaGuideViews.js"
+ fi
+ cp "$WORK/tgcloud/endpoints/odessaGuideViews.js" tgcloud/endpoints/odessaGuideViews.js
+ if npx tgcloud push tgcloud/endpoints/odessaGuideViews.js; then
+   echo '✅ Счётчик посещений подключён в Telegram Cloud.'
+ else
+   echo '⚠️ Счётчик не удалось подключить, но страница справочника обновлена.'
+ fi
  echo '✅ ГОТОВО! Закрой и заново открой справочник в Telegram.'
 else
  cp -p "$BACKUP/index.html" dist/index.html
