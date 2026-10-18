@@ -3,6 +3,7 @@
 'use strict';
 const month=Number(new Intl.DateTimeFormat('en-US',{timeZone:'Europe/Kyiv',month:'numeric'}).format(new Date()));
 const season=[12,1,2].includes(month)?'winter':[3,4,5].includes(month)?'spring':[6,7,8].includes(month)?'summer':'autumn';
+const assetRevision='oct18-sharp2';
 let counted=false;
 function getVisitor(){
  try {
@@ -37,7 +38,7 @@ function update(){
  if(!hero?.classList?.contains('hero'))return;
  if(!hero.classList.contains('odessa-seasonal')){
   hero.classList.add('odessa-seasonal','season-'+season);
-  hero.style.setProperty('--atlas','url("assets/seasons/'+season+'.jpg")');
+  hero.style.setProperty('--atlas','url("assets/seasons/'+season+'.jpg?v='+assetRevision+'")');
   const fx=document.createElement('div');fx.className='odessa-season-fx';fx.setAttribute('aria-hidden','true');hero.appendChild(fx);
   const wx=document.createElement('div');wx.className='odessa-weather-fx';wx.setAttribute('aria-hidden','true');hero.appendChild(wx);
   const badge=document.createElement('div');badge.className='odessa-views';
@@ -49,7 +50,7 @@ function update(){
    const card=home.querySelector('.tile[data-sid="'+id+'"]');
    if(card){
     card.classList.add('odessa-season-tile');
-    card.style.setProperty('--atlas','url("assets/seasons/cards/'+season+'-'+type+'.jpg")');
+    card.style.setProperty('--atlas','url("assets/seasons/cards/'+season+'-'+type+'.jpg?v='+assetRevision+'")');
    }
   }
  }
