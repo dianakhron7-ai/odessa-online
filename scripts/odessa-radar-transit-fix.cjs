@@ -17,7 +17,7 @@ const insert=[
  ' if(odessaTransit.length>0&&odessaTransit.length<=350',
  '   &&/транзит|транзіт/i.test(odessaTransit)',
  '   &&/област|район|одес|север|північ|юг|півден|бпл|дрон|шахед|ракети|ракет/i.test(odessaTransit)',
- '   &&!/реклам|донат|збір|сбор|промокод|https?:\/\/|t\.me\/|підпиш|подпиш|купить|продам/i.test(odessaTransit)) return true;',
+ String.raw`   &&!/реклам|донат|збір|сбор|промокод|https?:\/\/|t\.me\/|підпиш|подпиш|купить|продам/i.test(odessaTransit)) return true;`,
  ''
 ].join('\n');
 const plans=[
