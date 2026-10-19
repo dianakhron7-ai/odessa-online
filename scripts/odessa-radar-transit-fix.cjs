@@ -75,7 +75,7 @@ async function main(){
  console.log('✅ Резервная копия: '+backups);
  // Check saved cursor exists and do not modify it.
  const state=path.join(root,'odessa-live-state.json');
- const previousState=fs.existsSync(state)?fs.readFileSync(state):null;
+ const cursorPresent=fs.existsSync(state);
  for(const m of modified){
   const tmp=m.file+'.transit-new';
   fs.writeFileSync(tmp,m.after);
@@ -97,8 +97,7 @@ async function main(){
   for(const m of modified){try{fs.copyFileSync(path.join(backups,m.rel),m.file);}catch{}}
   throw e;
  }
- if(previousState!==null&&fs.existsSync(state)&&!previousState.equals(fs.readFileSync(state)))
-  throw Error('Внимание: файл состояния изменился извне; автоматический перезапуск остановлен');
+ if(cursorPresent&&!fs.existsSync(state))throw Error('Файл состояния радара исчез во время обновления. Перезапуск остановлен.');
  const pids=running();
  for(const pid of pids)try{process.kill(pid,'SIGTERM');}catch(e){if(e.code!=='ESRCH')throw e;}
  if(pids.length)run('sleep',['2']);
