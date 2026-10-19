@@ -12,7 +12,7 @@ function run(cmd,args){
  return r.stdout||'';
 }
 function radarPids(){
- const r=cp.spawnSync('pgrep',['-f','^node odessa-live[.]cjs$'],{cwd:root,encoding:'utf8'});
+ const r=cp.spawnSync('pgrep',['-f','node odessa-live[.]cjs$'],{cwd:root,encoding:'utf8'});
  if(r.status===1)return [];
  if(r.status!==0)throw Error('Невозможно проверить радар: '+(r.stderr||r.status));
  return r.stdout.trim().split(/\s+/).filter(Boolean).map(Number);
@@ -65,8 +65,10 @@ async function main(){
  const old=radarPids();
  if(old.length>1)throw Error('Несколько процессов радара. Не перезапускаю автоматически.');
  if(old.length===1)try{process.kill(old[0],'SIGTERM')}catch(e){if(e.code!=='ESRCH')throw e}
- await new Promise(r=>setTimeout(r,2600));
+ await new Promise(r=>setTimeout(r,4500));
  if(radarPids().length)throw Error('Старый радар ещё работает. Второй запуск отменён.');
+ const lock=path.join(root,'odessa-live.lock');
+ if(fs.existsSync(lock)){const stale=lock+'.before-'+Date.now();fs.renameSync(lock,stale);console.log('Старый lock сохранён: '+stale);}
  function launch(){
   const log=fs.openSync(path.join(root,'odessa-live.log'),'a');
   const p=cp.spawn(process.execPath,['odessa-live.cjs'],{cwd:root,detached:true,stdio:['ignore',log,log]});
@@ -74,12 +76,14 @@ async function main(){
   return p.pid;
  }
  const pid=launch();
- await new Promise(r=>setTimeout(r,3200));
+ await new Promise(r=>setTimeout(r,4500));
  if(!radarPids().length){
   console.error('❌ Новый радар не запустился. Восстанавливаю прежние фильтры.');
   await restore();
+  if(radarPids().length)throw Error('Радар уже запустился, второй не запускаю');
+  if(fs.existsSync(lock))fs.renameSync(lock,lock+'.failed-'+Date.now());
   const pidOld=launch();
-  await new Promise(r=>setTimeout(r,3000));
+  await new Promise(r=>setTimeout(r,4500));
   console.log(radarPids().length?'✅ Старый радар восстановлен: '+pidOld:'⚠️ Радар не запустился, проверьте журнал');
   throw Error('Новое правило не запустилось; исправление отменено.');
  }
