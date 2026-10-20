@@ -202,8 +202,22 @@ function escapeHtml(value = '') {
   return String(value).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
 
+// ODESSA_TRANSIT_BOW_BACKUP_V1
+function transitBowForDisplay(text) {
+  let result=String(text||'');
+  const edits=[];
+  for (const m of result.matchAll(/транз[иі]т[\p{L}]*/giu)) {
+    const at=m.index+m[0].length;
+    const next=/^[ \t]*(🏹|✈️|✈|🛩️|🛩|🛫|🛬)/u.exec(result.slice(at));
+    if(next?.[1]==='🏹')continue;
+    edits.push({at,length:next?next[0].length:0});
+  }
+  for(const e of edits.reverse())result=result.slice(0,e.at)+' 🏹'+result.slice(e.at+e.length);
+  return result;
+}
+
 function copiedCaption(item) {
-  let text = escapeHtml(item.text);
+  let text = escapeHtml(transitBowForDisplay(item.text));
   if (text.length > 930) text = `${text.slice(0, 927).trimEnd()}…`;
   return `${text}\n\n⚓️ <b>ОДЕССА Online</b>`;
 }
