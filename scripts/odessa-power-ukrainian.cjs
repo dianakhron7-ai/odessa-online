@@ -19,12 +19,12 @@ const newPredicate=[
  " const s=String(text||'');",
  ' if(!s.trim())return false;',
  ' // Comment notifications are not copied news or power updates.',
- ' if(/^\s*💬\s*(?:Новый комментарий|Новый ответ|Новий коментар|Нова відповідь)/i.test(s))return false;',
+ ' if(/^\\s*💬\\s*(?:Новый комментарий|Новый ответ|Новий коментар|Нова відповідь)/i.test(s))return false;',
  ' return true;',
  '}',
  ''
 ].join('\n');
-const additionalRussianPowerWords=' if(/(?:отключен|включен|электро|электрич|электроснабж|света|свету|дали свет|нет свет|без свет|график|дтэк|очеред|групп|аварийн|экстренн|планов[а-я]*\s+отключ|обесточ|восстанов|ремонтн|подач[аиу]\s+свет|потребител|возобнов)/i.test(s))return true;';
+const additionalRussianPowerWords=' if(/(?:отключен|включен|электро|электрич|электроснабж|света|свету|дали свет|нет свет|без свет|график|дтэк|очеред|групп|аварийн|экстренн|планов[а-я]*\\s+отключ|обесточ|восстанов|ремонтн|подач[аиу]\\s+свет|потребител|возобнов)/i.test(s))return true;';
 function run(cmd,args){
  const r=cp.spawnSync(cmd,args,{cwd:root,encoding:'utf8',timeout:180000,maxBuffer:5000000});
  if(r.stdout)process.stdout.write(r.stdout);
