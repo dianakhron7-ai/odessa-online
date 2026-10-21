@@ -1,0 +1,55 @@
+name: One-time Odesa public business POI extraction
+on:
+  push:
+    branches:
+      - research/odessa-contact-export-20261021
+    paths:
+      - .github/workflows/odessa-public-contacts-extract.yml
+permissions:
+  contents: read
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - name: Install DuckDB
+        run: python -m pip install duckdb==1.4.1 --quiet
+      - name: Extract public Overture Maps places in southern Ukraine
+        run: |
+          python - <<'PY'
+          import duckdb, csv, time
+          db=duckdb.connect()
+          db.execute("SET s3_region='us-west-2'")
+          db.execute("INSTALL httpfs")
+          db.execute("LOAD httpfs")
+          db.execute("SET threads=4")
+          db.execute("SET memory_limit='6GB'")
+          q="""
+          COPY (
+          SELECT names."primary" AS name,
+                 categories."primary" AS category,
+                 addresses[1].region AS region,
+                 addresses[1].locality AS city,
+                 addresses[1].freeform AS address,
+                 phones[1] AS phone,
+                 round(confidence,3) AS confidence,
+                 round((bbox.ymin+bbox.ymax)/2,6) AS lat,
+                 round((bbox.xmin+bbox.xmax)/2,6) AS lon
+          FROM read_parquet('s3://overturemaps-us-west-2/release/2026-06-17.0/theme=places/type=place/*.parquet')
+          WHERE bbox.xmin BETWEEN 28.0 AND 31.8
+          AND bbox.ymin BETWEEN 45.0 AND 48.4
+          AND addresses[1].country='UA'
+          AND phones[1] IS NOT NULL
+          AND names."primary" IS NOT NULL
+          ) TO 'odessa_region_candidate_businesses.csv' (HEADER, DELIMITER ',');
+          """
+          t=time.time();db.execute(q)
+          with open('odessa_region_candidate_businesses.csv',encoding='utf-8') as f: n=sum(1 for _ in f)-1
+          print('EXPORTED_CANDIDATES',n,'seconds',round(time.time()-t))
+          PY
+      - name: Upload source candidates
+        uses: actions/upload-artifact@v4
+        with:
+          name: odesa-public-business-candidates
+          path: odessa_region_candidate_businesses.csv
+          retention-days: 1
