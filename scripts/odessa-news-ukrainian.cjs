@@ -19,7 +19,7 @@ const replacement=[
  ' if(!s.trim())return false;',
  ' // Leave electricity posts and comment notifications untouched.',
  ' if(/(?:відключен|отключен|електроенерг|электроэнерг|електропостач|электроснабж|світла|света|графік|график|дтек|дтэк|черг[аи]|очеред[ьи])/i.test(s))return false;',
- ' if(/^\s*💬\s*(?:Новый комментарий|Новый ответ|Новий коментар|Нова відповідь)/i.test(s))return false;',
+ ' if(/^\\s*💬\\s*(?:Новый комментарий|Новый ответ|Новий коментар|Нова відповідь)/i.test(s))return false;',
  ' return true;',
  '}',
  ''
