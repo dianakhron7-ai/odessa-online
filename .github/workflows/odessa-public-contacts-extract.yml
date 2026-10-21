@@ -33,7 +33,7 @@ jobs:
           q="""
           COPY (
           SELECT names."primary" AS name,
-                 categories."primary" AS category,
+                 taxonomy."primary" AS category,
                  addresses[1].region AS region,
                  addresses[1].locality AS city,
                  addresses[1].freeform AS address,
@@ -41,7 +41,7 @@ jobs:
                  round(confidence,3) AS confidence,
                  round((bbox.ymin+bbox.ymax)/2,6) AS lat,
                  round((bbox.xmin+bbox.xmax)/2,6) AS lon
-          FROM read_parquet('s3://overturemaps-us-west-2/release/2026-06-17.0/theme=places/type=place/*.parquet')
+          FROM read_parquet('s3://overturemaps-us-west-2/release/2026-09-23.1/theme=places/type=place/*.parquet')
           WHERE bbox.xmin BETWEEN 28.0 AND 31.8
           AND bbox.ymin BETWEEN 45.0 AND 48.4
           AND addresses[1].country='UA'
