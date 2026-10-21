@@ -14,6 +14,12 @@ jobs:
     steps:
       - name: Install DuckDB
         run: python -m pip install duckdb==1.4.1 --quiet
+      - name: Inspect source data availability
+        run: |
+          echo 'JUNE';
+          aws s3 ls s3://overturemaps-us-west-2/release/2026-06-17.0/theme=places/type=place/ --no-sign-request | head -n 5 || true
+          echo 'SEPTEMBER';
+          aws s3 ls s3://overturemaps-us-west-2/release/2026-09-23.1/theme=places/type=place/ --no-sign-request | head -n 5 || true
       - name: Extract public Overture Maps places in southern Ukraine
         run: |
           python - <<'PY'
