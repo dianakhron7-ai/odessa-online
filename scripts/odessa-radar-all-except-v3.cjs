@@ -54,11 +54,11 @@ function processes(){
 }
 function patchFilter(source,func){
  if(source.includes(marker))return source;
- const re=new RegExp('((?:export\\\\s+)?function\\\\s+'+func+'\\\\s*\\\\(\\\\s*text\\\\s*\\\\)\\\\s*\\\\{)');
+ const re=new RegExp('((?:export\\s+)?function\\s+'+func+'\\s*\\(\\s*text\\s*\\)\\s*\\{)');
  const match=re.exec(source);
  if(!match)return null;
- const before=source.slice(0,match.index),after=source.slice(match.index).replace(re,'$1\\n return odessaRadarAllExceptV3(text);');
- return before+common+'\\n'+after;
+ const before=source.slice(0,match.index),after=source.slice(match.index).replace(re,'$1\n return odessaRadarAllExceptV3(text);');
+ return before+common+'\n'+after;
 }
 function patchOutgoing(source){
  if(!source.includes(marker))throw Error('В облачном обработчике нет нового фильтра');
