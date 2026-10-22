@@ -125,7 +125,7 @@ async function main(){
   let after=patchFilter(before);
   if(after===null)continue;
   if(type==='cloud'&&rel==='tgcloud/endpoints/odessaLive.js')after=patchCloudTranslation(after);
-  checkModule(after,rel.endsWith('.mjs')?'mjs':'js','odessa-temp-'+type);
+  checkModule(after,'mjs','odessa-temp-'+type);
   found.push({rel,type});
   if(after!==before)edits.push({rel,type,file,before,after});
  }
@@ -157,7 +157,7 @@ async function main(){
  }
  if(!processes().length) {
   const lock=path.join(root,'odessa-live.lock');
-  if(fs.existsSync(lock)){try{const saved=Number(fs.readFileSync(lock,'utf8'));process.kill(saved,0);throw Error('Радар запущен под другим именем; второй не запускаю')}catch(e){if(e.code!=='ESRCH')throw e}}
+  if(fs.existsSync(lock)){try{const saved=Number(fs.readFileSync(lock,'utf8'));if(Number.isInteger(saved)&&saved>1){process.kill(saved,0);throw Error('Радар запущен под другим именем; второй не запускаю')}}catch(e){if(e.code!=='ESRCH')throw e}}
   launch();await new Promise(resolve=>setTimeout(resolve,4500));
  }
  if(!processes().length)throw Error('Радар не запустился. Пришлите последние строки odessa-live.log');
