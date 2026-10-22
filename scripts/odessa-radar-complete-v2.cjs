@@ -61,7 +61,7 @@ function processes(){
  const r=cp.spawnSync('pgrep',['-f','node odessa-live[.]cjs$'],{encoding:'utf8'});
  if(r.status===1)return [];
  if(r.error||r.status!==0)throw Error('Не удалось проверить процессы радара');
- return r.stdout.split(/\s+/).map(Number).filter(Number.isInteger);
+ return r.stdout.trim().split(/\s+/).filter(Boolean).map(Number).filter(pid=>Number.isInteger(pid)&&pid>0);
 }
 function patchFilter(source){
  if(source.includes(marker))return source;
