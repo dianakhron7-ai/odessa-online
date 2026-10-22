@@ -8,7 +8,7 @@ const cp=require('node:child_process');
 const vm=require('node:vm');
 const root=path.join(os.homedir(),'OdessaOnlineGuideBot');
 const marker='ODESSA_RADAR_COMPLETE_V2_20261022';
-const helper=String.raw\`
+const helper=String.raw`
 // ODESSA_RADAR_COMPLETE_V2_20261022
 function odessaRadarCompleteV2(text) {
   const s=String(text||'').replace(/[\u200B-\u200D\uFEFF]/g,'').trim();
@@ -22,12 +22,12 @@ function odessaRadarCompleteV2(text) {
   if(/^(?:[\s🟢🟡🔴⚠️❗️✅-]*)(?:мінус|минус|так\s+заходят|так\s+заходять|далі\s+в\s+бік|дальше\s+в\s+сторону)[\s.!❗️✅-]*$/iu.test(s)) return true;
   // 5 на Вилково, 7х на Килию, 1х курсом на Балту, Вилкове/Ліски 1х.
   const countToPlace=/^\s*[\d]+\s*[xх×]?\s*(?:(?:курсом|у\s+напрямку|в\s+напрямку|в\s+сторону|у\s+бік)\s+)?(?:на|у|в|до|к|біля)\s+[\p{L}]/iu.test(s);
-  const placeCount=/^\s*[\p{L}][\p{L}\s./-]{2,65}\s+[\d]+\s*[xх×]\b?/iu.test(s);
+  const placeCount=/^\s*[\p{L}][\p{L}\s./-]{2,65}\s+[\d]+\s*[xх×](?:\s|$)/iu.test(s);
   const shortMap=/^(?:на\s+)?(?:вилков|вилкове|кіл[ія]|кил[ияи]|ліск[иаі]|лиск[иа]|приморськ|приморск|балта|ізмаїл|измаил|ши[рр]я[єе]в|анань[їиь]|любашів|любашев|березів|одес|одесс|нерубай|кубанк|августів|августов|шевченков|утконосов|усатов|іллінк|ильинк)[\p{L}\s/,.0-9xх×-]*$/iu.test(s);
   return countToPlace || placeCount || shortMap;
 }
-\`;
-const uaHelper=String.raw\`
+`;
+const uaHelper=String.raw`
 // ODESSA_RADAR_COMPLETE_V2_20261022 — fix common Russian alert texts even if
 // the online Ukrainian translation service cannot be reached.
 function odessaRadarOfflineUaV2(prepared,key) {
@@ -49,7 +49,7 @@ function odessaRadarOfflineUaV2(prepared,key) {
   delete out[key==='caption'?'caption_entities':'entities'];
   return out;
 }
-\`;
+`;
 function execute(cmd,args,opts={}){
  const r=cp.spawnSync(cmd,args,{cwd:root,encoding:'utf8',timeout:180000,maxBuffer:4_000_000,...opts});
  if(r.stdout)process.stdout.write(r.stdout);
